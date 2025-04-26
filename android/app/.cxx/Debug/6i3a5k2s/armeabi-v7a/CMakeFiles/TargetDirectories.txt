@@ -1,0 +1,2 @@
+/Users/cg/Documents/skripsi/mobile/mobile/android/app/.cxx/Debug/6i3a5k2s/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/cg/Documents/skripsi/mobile/mobile/android/app/.cxx/Debug/6i3a5k2s/armeabi-v7a/CMakeFiles/rebuild_cache.dir
