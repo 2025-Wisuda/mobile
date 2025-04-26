@@ -1,0 +1,51 @@
+name: mobile
+description: "Under Development"
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  logger: ^2.5.0
+  get: ^4.7.2
+  flutter_svg: ^2.1.0
+  easy_localization: ^3.0.7+1
+  shared_preferences: ^2.5.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter_18pt-Black.ttf
+        - asset: assets/fonts/Inter_18pt-BlackItalic.ttf
+        - asset: assets/fonts/Inter_18pt-Bold.ttf
+        - asset: assets/fonts/Inter_18pt-BoldItalic.ttf
+        - asset: assets/fonts/Inter_18pt-ExtraBold.ttf
+        - asset: assets/fonts/Inter_18pt-ExtraBoldItalic.ttf
+        - asset: assets/fonts/Inter_18pt-ExtraLight.ttf
+        - asset: assets/fonts/Inter_18pt-ExtraLightItalic.ttf
+        - asset: assets/fonts/Inter_18pt-Italic.ttf
+        - asset: assets/fonts/Inter_18pt-Light.ttf
+        - asset: assets/fonts/Inter_18pt-LightItalic.ttf
+        - asset: assets/fonts/Inter_18pt-Medium.ttf
+        - asset: assets/fonts/Inter_18pt-MediumItalic.ttf
+        - asset: assets/fonts/Inter_18pt-Regular.ttf
+        - asset: assets/fonts/Inter_18pt-SemiBold.ttf
+        - asset: assets/fonts/Inter_18pt-SemiBoldItalic.ttf
+        - asset: assets/fonts/Inter_18pt-Thin.ttf
+        - asset: assets/fonts/Inter_18pt-ThinItalic.ttf
+  assets:
+    - assets/images/
+    - assets/translations/en-US.json
+    - assets/translations/id-ID.json
+    - assets/images/illustrations/
+    - assets/icons/

@@ -1,0 +1,29 @@
+{
+    "appName": "Laboratorium",
+    "features": {
+        "auth": {
+            "login": {
+                "welcomeTitle": "Masuk ke akun Anda",
+                "welcomeDescription": "Silahkan masuk ke akun Anda",
+                "username": "Nama Pengguna",
+                "usernameHint": "Masukkan nama pengguna",
+                "password": "Kata Sandi",
+                "passwordHint": "Masukkan kata sandi",
+                "button": {
+                    "login": "Masuk"
+                }
+            }
+        }
+    },
+    "general": {
+        "options": {
+            "save": "Simpan",
+            "cancel": "Batalkan",
+            "delete": "Hapus",
+            "edit": "Edit"
+        },
+        "note": {
+            "optional": "Opsional"
+        }
+    }
+}

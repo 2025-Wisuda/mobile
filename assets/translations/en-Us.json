@@ -1,0 +1,29 @@
+{
+    "appName": "Laboratory",
+    "features": {
+        "auth": {
+            "login": {
+                "welcomeTitle": "Login to your account",
+                "welcomeDescription": "Please log in to your account",
+                "username": "Username",
+                "usernameHint": "Enter your username",
+                "password": "Password",
+                "passwordHint": "Enter your password",
+                "button": {
+                    "login": "Login"
+                }
+            }
+        }
+    },
+    "general": {
+        "options": {
+            "save": "Save",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "edit": "Edit"
+        },
+        "note": {
+            "optional": "Optional"
+        }
+    }
+}
