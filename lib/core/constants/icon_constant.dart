@@ -1,5 +1,7 @@
 class IconConstant {
-  static const personIcon = 'assets/icons/person_icon.png';
-  static const lockIcon = 'assets/icons/lock_icon.png';
-  static const eyeOffIcon = 'assets/icons/eye_off_icon.png';
+  static const userSolidIcon = 'assets/icons/user_solid_icon.svg';
+  static const lockClosedSolidIcon = 'assets/icons/lock_closed_solid_icon.svg';
+  static const lockOpenSolidIcon = 'assets/icons/lock_open_solid_icon.svg';
+  static const eyeOffSolidIcon = 'assets/icons/eye_off_solid_icon.svg';
+  static const eyeSolidIcon = 'assets/icons/eye_solid_icon.svg';
 }

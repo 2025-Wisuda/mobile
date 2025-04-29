@@ -1,0 +1,2 @@
+D:/skripsi coba/elsavadore/android/app/.cxx/Debug/4t0623z4/x86_64/CMakeFiles/edit_cache.dir
+D:/skripsi coba/elsavadore/android/app/.cxx/Debug/4t0623z4/x86_64/CMakeFiles/rebuild_cache.dir

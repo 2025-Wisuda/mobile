@@ -4,5 +4,6 @@ class AppScreen {
   static final routes = [
     ...splashRoutes,
     ...authRoutes,
+    ...homeRoutes,
   ];
 }

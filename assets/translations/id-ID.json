@@ -1,29 +1,73 @@
 {
-    "appName": "Laboratorium",
-    "features": {
-        "auth": {
-            "login": {
-                "welcomeTitle": "Masuk ke akun Anda",
-                "welcomeDescription": "Silahkan masuk ke akun Anda",
-                "username": "Nama Pengguna",
-                "usernameHint": "Masukkan nama pengguna",
-                "password": "Kata Sandi",
-                "passwordHint": "Masukkan kata sandi",
-                "button": {
-                    "login": "Masuk"
-                }
-            }
-        }
-    },
-    "general": {
-        "options": {
-            "save": "Simpan",
-            "cancel": "Batalkan",
-            "delete": "Hapus",
-            "edit": "Edit"
+  "appName": "Laboratorium",
+  "features": {
+    "auth": {
+      "login": {
+        "welcomeTitle": "Masuk ke akun Anda",
+        "welcomeDescription": "Silakan masuk ke akun Anda",
+        "form": {
+          "label": {
+            "username": "Nama Pengguna",
+            "password": "Kata Sandi"
+          },
+          "hint": {
+            "username": "Masukkan nama pengguna Anda",
+            "password": "Masukkan kata sandi Anda"
+          }
         },
-        "note": {
-            "optional": "Opsional"
+        "button": {
+          "login": "Masuk"
+        },
+        "error": {
+          "400": "Nama pengguna atau kata sandi tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "408": "Waktu permintaan habis, coba lagi nanti",
+          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Ada yang salah. Silakan coba lagi nanti."
+        },
+        "validator": {
+          "username": {
+            "empty": "Nama pengguna tidak boleh kosong"
+          },
+          "password": {
+            "empty": "Kata sandi tidak boleh kosong"
+          }
         }
+      },
+      "refreshToken": {
+        "error": {
+          "400": "Token penyegaran tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "408": "Waktu permintaan habis, coba lagi nanti",
+          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Ada yang salah. Silakan coba lagi nanti."
+        }
+      }
     }
+  },
+  "general": {
+    "options": {
+      "save": "Simpan",
+      "cancel": "Batal",
+      "delete": "Hapus",
+      "edit": "Edit",
+      "close": "Tutup"
+    },
+    "note": {
+      "optional": "Opsional"
+    },
+    "error": {
+      "default": "Terjadi kesalahan"
+    }
+  }
 }

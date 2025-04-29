@@ -5,10 +5,10 @@ class ColorSchemeX {
   static const ColorScheme kColorSchemeLight = ColorScheme.light(
     primary: ColorConstant.kPrimary500,
     onPrimary: ColorConstant.kNeutral900,
-    primaryContainer: ColorConstant.kPrimary500,
-    onPrimaryContainer: ColorConstant.kNeutral900,
-    primaryFixed: ColorConstant.kPrimary500,
-    primaryFixedDim: ColorConstant.kPrimary500,
+    primaryContainer: ColorConstant.kPrimary300,
+    onPrimaryContainer: Color.fromRGBO(16, 16, 16, 1),
+    primaryFixed: ColorConstant.kPrimary300,
+    primaryFixedDim: ColorConstant.kPrimary400,
     onPrimaryFixed: ColorConstant.kNeutral900,
     onPrimaryFixedVariant: ColorConstant.kNeutral900,
     secondary: ColorConstant.kSecondary500,
@@ -47,8 +47,8 @@ class ColorSchemeX {
     scrim: ColorConstant.kNeutral500,
     inverseSurface: ColorConstant.kNeutral900,
     onInverseSurface: ColorConstant.kNeutral50,
-    inversePrimary: ColorConstant.kPrimary500,
-    surfaceTint: ColorConstant.kPrimary500,
+    inversePrimary: ColorConstant.kPrimary100,
+    surfaceTint: ColorConstant.kPrimary200,
   );
 
   static const ColorScheme kColorSchemeDark = ColorScheme.dark(
