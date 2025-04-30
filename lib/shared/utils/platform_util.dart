@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:mobile/core/enums/platform/platform_enum.dart';
 
-
 PlatformType getPlatformType() {
   if (kIsWeb) {
     return PlatformType.web;
@@ -20,5 +19,5 @@ PlatformType getPlatformType() {
       return PlatformType.linux;
     case TargetPlatform.fuchsia:
       return PlatformType.unknown;
-    }
+  }
 }

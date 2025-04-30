@@ -11,8 +11,7 @@ class AuthController extends GetxController {
 
   AuthController(this.loginUseCase);
 
-  final usernameController =
-      Rx<TextEditingController>(TextEditingController());
+  final usernameController = Rx<TextEditingController>(TextEditingController());
   final passwordController = Rx<TextEditingController>(TextEditingController());
   final usernameFocusNode = Rx<FocusNode>(FocusNode());
   final passwordFocusNode = Rx<FocusNode>(FocusNode());
@@ -29,17 +28,23 @@ class AuthController extends GetxController {
 
   void validateUsername(String value) {
     usernameError.value =
-        value.isEmpty ? 'features.auth.login.validator.username.empty'.tr() : '';
+        value.isEmpty
+            ? 'features.auth.login.validator.username.empty'.tr()
+            : '';
     validateForm();
   }
 
   void validatePassword(String value) {
-    passwordError.value = value.isEmpty ? 'features.auth.login.validator.password.empty'.tr() : '';
+    passwordError.value =
+        value.isEmpty
+            ? 'features.auth.login.validator.password.empty'.tr()
+            : '';
     validateForm();
   }
 
   void validateForm() {
-    isFormValid.value = usernameError.value.isEmpty &&
+    isFormValid.value =
+        usernameError.value.isEmpty &&
         passwordError.value.isEmpty &&
         usernameController.value.text.isNotEmpty &&
         passwordController.value.text.isNotEmpty;
@@ -55,16 +60,16 @@ class AuthController extends GetxController {
   Future<void> login(BuildContext context) async {
     state.value = SubmitStateEnum.loading;
     final result = await loginUseCase.execute(
-        usernameController.value.text, passwordController.value.text);
+      usernameController.value.text,
+      passwordController.value.text,
+    );
     result.fold(
       (failure) {
         state.value = SubmitStateEnum.failure;
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            return CustomDialogErrorWidget(
-              errorText: failure.message,
-            );
+            return CustomDialogErrorWidget(errorText: failure.message);
           },
         );
       },
@@ -75,7 +80,8 @@ class AuthController extends GetxController {
         }
         if (response.refreshToken != null) {
           await SessionDatabase.saveRefreshToken(response.refreshToken!);
-        }        clearForm();
+        }
+        clearForm();
         Get.offAllNamed(AppRoute.home);
       },
     );

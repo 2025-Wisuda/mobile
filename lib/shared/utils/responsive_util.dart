@@ -1,4 +1,3 @@
-
 import 'package:mobile/core/enums/screens/screen.dart';
 
 ScreenWidthEnum getScreenWidth(double maxWidth) {

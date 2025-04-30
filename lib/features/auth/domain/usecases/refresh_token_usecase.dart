@@ -8,7 +8,8 @@ class RefreshTokenUseCase {
   RefreshTokenUseCase(this.repository);
 
   Future<Either<Failure, RefreshTokenResponseEntity>> execute(
-      String refreshToken) {
+    String refreshToken,
+  ) {
     return repository.refreshToken(refreshToken);
   }
 }

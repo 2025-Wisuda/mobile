@@ -8,7 +8,9 @@ class LoginUseCase {
   LoginUseCase(this.repository);
 
   Future<Either<Failure, LoginResponseEntity>> execute(
-      String username, String password) {
+    String username,
+    String password,
+  ) {
     return repository.login(username, password);
   }
 }

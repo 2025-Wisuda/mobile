@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/core/core.dart';
 import 'package:mobile/shared/shared.dart';
-import 'package:mobile/shared/themes/button_theme.dart';
 
 class AppTheme {
-  static const _kLightThemeFont = 'Inter', _kDarkThemeFont = 'Inter'; // Change to app desired font family
+  static const _kLightThemeFont = 'Inter',
+      _kDarkThemeFont = 'Inter'; // Change to app desired font family
   static final kLightTheme = ThemeData(
     primaryColor: ColorConstant.kPrimary500,
     brightness: Brightness.light,
@@ -15,6 +15,8 @@ class AppTheme {
     textTheme: TextThemeX.kTextThemeLight,
     inputDecorationTheme: InputDecorationThemeX.kInputDecorationThemeLight,
     buttonTheme: ButtonThemeX.kButtonThemeDataLight,
+    dividerTheme: DividerThemeX.kDividerThemeDataLight,
+    bottomAppBarTheme: BottomAppBarThemeX.kButtonAppBarThemeDataLight,
   );
 
   // Change this theme if want to use a different theme for dark theme
@@ -28,5 +30,7 @@ class AppTheme {
     textTheme: TextThemeX.kTextThemeDark,
     inputDecorationTheme: InputDecorationThemeX.kInputDecorationThemeDark,
     buttonTheme: ButtonThemeX.kButtonDataThemeDataDark,
+    dividerTheme: DividerThemeX.kDividerDataThemeDataDark,
+    bottomAppBarTheme: BottomAppBarThemeX.kButtonAppBarThemeDataDark,
   );
 }

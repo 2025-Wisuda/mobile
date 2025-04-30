@@ -1,6 +1,1 @@
-enum SubmitStateEnum {
-  initial,
-  loading,
-  success,
-  failure,
-}
+enum SubmitStateEnum { initial, loading, success, failure }

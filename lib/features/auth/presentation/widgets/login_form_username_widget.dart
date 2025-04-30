@@ -24,7 +24,11 @@ class LoginFormUsernameWidget extends StatelessWidget {
         keyboardType: TextInputType.text,
         prefixIcon: Padding(
           padding: const EdgeInsets.all(8),
-          child: customImageIconWidget(imagePath: IconConstant.userSolidIcon,),
+          child: customImageIconWidget(
+            imagePath: IconConstant.userSolidIcon,
+            width: 12,
+            height: 12,
+          ),
         ),
       ),
     );

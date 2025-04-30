@@ -5,10 +5,7 @@ import 'dialog.dart';
 
 class CustomDialogErrorWidget extends StatelessWidget {
   final String? errorText;
-  const CustomDialogErrorWidget({
-    super.key,
-    this.errorText,
-  });
+  const CustomDialogErrorWidget({super.key, this.errorText});
 
   @override
   Widget build(BuildContext context) {

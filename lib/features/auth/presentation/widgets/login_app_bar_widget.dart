@@ -20,14 +20,15 @@ class LoginAppBarWidget extends StatelessWidget {
           ),
           Text(
             'features.auth.login.welcomeDescription'.tr(),
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.scrim),
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.scrim,
+            ),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 36),
-            child: Image.asset(IllustrationConstant.loginIllustration),)
+            child: Image.asset(IllustrationConstant.loginIllustration),
+          ),
         ],
       ),
     );

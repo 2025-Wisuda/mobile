@@ -3,8 +3,6 @@ import 'package:mobile/features/auth/domain/entities/refresh_token_response_enti
 
 extension RefreshTokenResponseModelExtension on RefreshTokenResponseModel {
   RefreshTokenResponseEntity toEntity() {
-    return RefreshTokenResponseEntity(
-      accessToken: accessToken,
-    );
+    return RefreshTokenResponseEntity(accessToken: accessToken);
   }
 }

@@ -6,7 +6,6 @@ class CustomButtonWidget extends StatelessWidget {
   final bool? isFormValid;
   final WidgetStateProperty<Color?>? backgroundColor;
   final double height;
-  
 
   const CustomButtonWidget({
     super.key,
@@ -22,7 +21,7 @@ class CustomButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       style: ButtonStyle(
         minimumSize: WidgetStateProperty.all<Size>(
-           Size(double.infinity, height),
+          Size(double.infinity, height),
         ),
         backgroundColor: backgroundColor,
       ),

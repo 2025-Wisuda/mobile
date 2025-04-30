@@ -7,8 +7,7 @@ class InputDecorationThemeX {
       color: ColorConstant.kNeutral900,
       overflow: TextOverflow.ellipsis,
     ),
-    floatingLabelStyle:
-        TextStyleConstant.kInterBodyMediumSemiBold.copyWith(
+    floatingLabelStyle: TextStyleConstant.kInterBodyMediumSemiBold.copyWith(
       color: ColorConstant.kNeutral900,
     ),
     helperStyle: TextStyleConstant.kInterBodyMediumSemiBold.copyWith(
@@ -55,24 +54,15 @@ class InputDecorationThemeX {
     focusColor: ColorConstant.kNeutral900,
     hoverColor: ColorConstant.kNeutral100,
     errorBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: ColorConstant.kError500,
-        width: 1.0,
-      ),
+      borderSide: const BorderSide(color: ColorConstant.kError500, width: 1.0),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: ColorConstant.kNeutral500,
-        width: 1,
-      ),
+      borderSide: const BorderSide(color: ColorConstant.kNeutral500, width: 1),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     focusedErrorBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: ColorConstant.kError500,
-        width: 1,
-      ),
+      borderSide: const BorderSide(color: ColorConstant.kError500, width: 1),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     disabledBorder: OutlineInputBorder(
@@ -104,8 +94,7 @@ class InputDecorationThemeX {
       color: ColorConstant.kNeutral50,
       overflow: TextOverflow.ellipsis,
     ),
-    floatingLabelStyle:
-        TextStyleConstant.kInterBodyMediumSemiBold.copyWith(
+    floatingLabelStyle: TextStyleConstant.kInterBodyMediumSemiBold.copyWith(
       color: ColorConstant.kNeutral50,
     ),
     helperStyle: TextStyleConstant.kInterBodyMediumSemiBold.copyWith(
@@ -152,24 +141,15 @@ class InputDecorationThemeX {
     focusColor: ColorConstant.kNeutral50,
     hoverColor: ColorConstant.kNeutral600,
     errorBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: ColorConstant.kError500,
-        width: 1.0,
-      ),
+      borderSide: const BorderSide(color: ColorConstant.kError500, width: 1.0),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: ColorConstant.kNeutral50,
-        width: 1,
-      ),
+      borderSide: const BorderSide(color: ColorConstant.kNeutral50, width: 1),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     focusedErrorBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: ColorConstant.kError500,
-        width: 1,
-      ),
+      borderSide: const BorderSide(color: ColorConstant.kError500, width: 1),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     disabledBorder: OutlineInputBorder(

@@ -27,7 +27,7 @@ class LoginFormPasswordWidget extends StatelessWidget {
           icon:
               authController.obscureText.value
                   ? customImageIconWidget(
-                    imagePath: IconConstant.lockClosedSolidIcon, 
+                    imagePath: IconConstant.lockClosedSolidIcon,
                   )
                   : customImageIconWidget(
                     imagePath: IconConstant.lockOpenSolidIcon,
@@ -38,10 +38,9 @@ class LoginFormPasswordWidget extends StatelessWidget {
           icon:
               authController.obscureText.value
                   ? customImageIconWidget(
-                    imagePath: IconConstant.eyeOffSolidIcon
+                    imagePath: IconConstant.eyeOffSolidIcon,
                   )
-                  : customImageIconWidget(imagePath: IconConstant.eyeSolidIcon, 
-                  ),
+                  : customImageIconWidget(imagePath: IconConstant.eyeSolidIcon),
         ),
         obscureText: authController.obscureText.value,
       ),

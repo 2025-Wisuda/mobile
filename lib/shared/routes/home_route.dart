@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
-import 'package:mobile/features/general/home/presentation/screens/home_screen.dart';
+import 'package:mobile/features/general/menu/presentation/widgets/menu_bottom_nav_bar_widget.dart';
+import 'package:mobile/shared/bindings/binding.dart';
 import 'app_route.dart';
 
 final homeRoutes = [
   GetPage(
     name: AppRoute.home,
-    page: () => const HomeScreen(),
+    page: () => MenuBottomNavBarWidget(),
+    binding: HomeBinding(),
   ),
 ];

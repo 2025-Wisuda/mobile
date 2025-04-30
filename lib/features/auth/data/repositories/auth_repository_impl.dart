@@ -10,7 +10,9 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.remoteDataSource);
   @override
   Future<Either<Failure, LoginResponseEntity>> login(
-      String username, String password) async {
+    String username,
+    String password,
+  ) async {
     final response = await remoteDataSource.login(username, password);
     return response.fold(
       (failure) => left(failure),
@@ -20,7 +22,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, RefreshTokenResponseEntity>> refreshToken(
-      String refreshToken) async {
+    String refreshToken,
+  ) async {
     final response = await remoteDataSource.refreshToken(refreshToken);
     return response.fold(
       (failure) => left(failure),

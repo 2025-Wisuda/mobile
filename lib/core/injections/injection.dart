@@ -6,13 +6,9 @@ import 'package:mobile/features/auth/auth.dart';
 class Injection {
   static void init() {
     final refreshTokenUseCase = RefreshTokenUseCase(
-      AuthRepositoryImpl(
-        AuthRemoteDataSourceImpl(
-          Dio(),
-        ),
-      ),
+      AuthRepositoryImpl(AuthRemoteDataSourceImpl(Dio())),
     );
     final dio = DioClientNetwork.createDio(refreshTokenUseCase);
-    Get.put<Dio>(dio); 
+    Get.put<Dio>(dio);
   }
 }

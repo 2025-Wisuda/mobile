@@ -1,7 +1,1 @@
-enum FetchStateEnum {
-  initial,
-  loading,
-  loaded,
-  empty,
-  error,
-}
+enum FetchStateEnum { initial, loading, loaded, empty, error }

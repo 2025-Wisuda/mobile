@@ -42,31 +42,26 @@ class CustomAlertDialogWidget extends StatelessWidget {
         spacing: 8,
         children: <Widget>[
           if (isSvg)
-            SvgPicture.asset(
-              imageDialog!,
-              height: imageHeight,
-            )
+            SvgPicture.asset(imageDialog!, height: imageHeight)
           else
-            Image.asset(
-              imageDialog!,
-              height: imageHeight,
-            ),
+            Image.asset(imageDialog!, height: imageHeight),
           Text(
             titleText ?? '',
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
           ),
           Text(
             descriptionText ?? '',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],
       ),
-      actionsAlignment: actionOne == null
-          ? MainAxisAlignment.end
-          : MainAxisAlignment.spaceEvenly,
+      actionsAlignment:
+          actionOne == null
+              ? MainAxisAlignment.end
+              : MainAxisAlignment.spaceEvenly,
       actions: <Widget>[
         actionOne ?? const SizedBox.shrink(),
         actionTwo ??

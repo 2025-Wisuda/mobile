@@ -18,7 +18,7 @@ class TextThemeX {
   );
 
   static TextTheme kTextThemeDark = TextTheme(
-  displayLarge: TextStyleConstant.kInterHeading1Medium,
+    displayLarge: TextStyleConstant.kInterHeading1Medium,
     displayMedium: TextStyleConstant.kInterHeading2Medium,
     displaySmall: TextStyleConstant.kInterHeading3Medium,
     headlineLarge: TextStyleConstant.kInterHeading4Medium,

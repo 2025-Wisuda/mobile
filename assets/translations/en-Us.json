@@ -53,6 +53,40 @@
           "default": "Oops! Something went wrong. Please try again later."
         }
       }
+    },
+    "menu": {
+      "home": "Home",
+      "settings": "Settings",
+      "class": "Class",
+      "assistantAttendance": "Assistant Attendance",
+      "practicumAttendance": "Practicum Attendance",
+      "guestVisit": "Guest Visit",
+      "roomBooking": "Room Booking",
+      "schedule": "Schedule",
+      "profile": "Profile"
+    },
+    "home": {
+      "appBar": {
+        "greeting": {
+          "morning": "Good Morning",
+          "afternoon": "Good Afternoon",
+          "evening": "Good Evening",
+          "night": "Good Night"
+        },
+        "username": "Username"
+      },
+      "menu": "Menu",
+      "schedule": {
+        "title": "Schedule for Today",
+        "empty": "No laboratory scheduled for today",
+        "more": "See more"
+      },
+      "duty": {
+        "title": "Duty Schedule for Today",
+        "empty": "No duty schedule for today",
+        "more": "See more",
+        "time": "08:00 - 17:00"
+      }
     }
   },
   "general": {

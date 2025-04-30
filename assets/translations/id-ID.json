@@ -53,6 +53,40 @@
           "default": "Ups! Ada yang salah. Silakan coba lagi nanti."
         }
       }
+    },
+    "menu": {
+      "home": "Beranda",
+      "settings": "Pengaturan",
+      "class": "Kelas",
+      "assistantAttendance": "Absensi Asisten",
+      "practicumAttendance": "Absensi Praktikum",
+      "guestVisit": "Kunjungan Tamu",
+      "roomBooking": "Peminjaman Ruangan",
+      "schedule": "Jadwal",
+      "profile": "Profil"
+    },
+    "home": {
+      "appBar": {
+        "greeting": {
+          "morning": "Selamat Pagi",
+          "afternoon": "Selamat Siang",
+          "evening": "Selamat Malam",
+          "night": "Selamat Malam"
+        },
+        "username": "Nama Pengguna"
+      },
+      "menu": "Menu",
+      "schedule": {
+        "title": "Jadwal Hari Ini",
+        "empty": "Tidak ada jadwal untuk hari ini",
+        "more": "Lihat lebih banyak"
+      },
+      "duty": {
+        "title": "Jadwal Piket Hari Ini",
+        "empty": "Tidak ada jadwal piket untuk hari ini",
+        "more": "Lihat lebih banyak",
+        "time": "08:00 - 17:00"
+      }
     }
   },
   "general": {

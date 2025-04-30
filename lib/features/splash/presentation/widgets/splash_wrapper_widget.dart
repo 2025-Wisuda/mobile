@@ -17,10 +17,7 @@ class SplashWrapperWidget extends StatelessWidget {
             size: 100,
             color: Theme.of(context).colorScheme.primary,
           ),
-          Text(
-            'appName'.tr(),
-            style: Theme.of(context).textTheme.bodyMedium
-          ),
+          Text('appName'.tr(), style: Theme.of(context).textTheme.bodyMedium),
         ],
       ),
     );

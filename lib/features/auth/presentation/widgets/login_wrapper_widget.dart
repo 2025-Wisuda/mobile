@@ -13,13 +13,14 @@ class LoginWrapperWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           spacing: 8,
-          children: [LoginAppBarWidget(), LoginFormUsernameWidget(),
+          children: [
+            LoginAppBarWidget(),
+            LoginFormUsernameWidget(),
             const SizedBox(height: 8),
             LoginFormPasswordWidget(),
             SizedBox(height: 48),
             LoginButtonWidget(),
-            ],
-            
+          ],
         ),
       ),
     );
