@@ -18,8 +18,16 @@ class IconConstant {
   static const dateRangeSolidIcon = 'assets/icons/date_range_solid_icon.svg';
   static const documentAddSolidIcon =
       'assets/icons/document_add_solid_icon.svg';
+  static const pencilAltSolidIcon = 'assets/icons/pencil_alt_solid_icon.svg';
+  static const pencilAltOutlineIocn =
+      'assets/icons/pencil_alt_outline_icon.svg';
+  static const keyOutlineIcon = 'assets/icons/key_outline_icon.svg';
   static const chevronRightOutlineIcon =
       'assets/icons/chevron_right_outline_icon.svg';
+  static const translateOutlineIcon = 'assets/icons/translate_outline_icon.svg';
+  static const codeOutlineIcon = 'assets/icons/code_outline_icon.svg';
   static const chevronLeftOutlineIcon =
       'assets/icons/chevron_left_outline_icon.svg';
+  static const seacrhOutlineIcon = 'assets/icons/search_outline_icon.svg';
+  static const sunOutlineIcon = 'assets/icons/sun_outline_icon.svg';
 }

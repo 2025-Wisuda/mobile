@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile/features/general/home/presentation/screens/home_screen.dart';
 import 'package:mobile/features/general/menu/menu.dart';
+import 'package:mobile/features/general/profile/profile.dart';
 
 class MenuController extends GetxController {
   final FetchMainMenuUsecase fetchMainMenuUsecase;
   final FetchMainNavMenuUsecase fetchMainNavMenuUsecase;
-  var navMenus = <MenuModel>[].obs;
+  var navMenuList = <MenuModel>[].obs;
   var mainNavMenuCurrentIndex = 0.obs;
   var mainMenuList = <MenuModel>[].obs;
   late final PageController pageController;
   late final List<Widget> pages;
+  var profileMenuList = <MenuSectionModel>[].obs;
+  final FetchProfileMenuUsecase fetchProfileMenuUsecase;
 
   MenuController({
     required this.fetchMainMenuUsecase,
     required this.fetchMainNavMenuUsecase,
+    required this.fetchProfileMenuUsecase,
   });
 
   @override
@@ -25,12 +29,13 @@ class MenuController extends GetxController {
       HomeScreen(),
       Container(color: Colors.green),
       Container(color: Colors.blue),
-      Container(color: Colors.yellow),
+      ProfileScreen(),
     ];
-    navMenus.value = fetchMainNavMenuUsecase.execute();
+    navMenuList.value = fetchMainNavMenuUsecase.execute();
     mainMenuList.value = fetchMainMenuUsecase.execute();
     mainNavMenuCurrentIndex.value =
         fetchMainNavMenuUsecase.execute().first.routeName;
+    profileMenuList.value = fetchProfileMenuUsecase.execute();
   }
 
   void changeMainNavIndex(int index) {

@@ -5,3 +5,4 @@ export 'input_decoration_theme.dart';
 export 'divider_theme.dart';
 export 'button_theme.dart';
 export 'bottom_app_bar_theme.dart';
+export 'app_bar_theme.dart';

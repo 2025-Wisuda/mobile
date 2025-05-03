@@ -5,7 +5,7 @@ import 'app_route.dart';
 
 final splashRoutes = [
   GetPage(
-    name: AppRoute.root,
+    name: AppRoute.splash,
     page: () => const SplashScreen(),
     binding: splashBinding(),
   ),

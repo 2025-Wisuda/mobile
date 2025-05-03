@@ -17,6 +17,7 @@ class AppTheme {
     buttonTheme: ButtonThemeX.kButtonThemeDataLight,
     dividerTheme: DividerThemeX.kDividerThemeDataLight,
     bottomAppBarTheme: BottomAppBarThemeX.kButtonAppBarThemeDataLight,
+    appBarTheme: AppBarThemeData.kAppBarThemeLight,
   );
 
   // Change this theme if want to use a different theme for dark theme
@@ -32,5 +33,6 @@ class AppTheme {
     buttonTheme: ButtonThemeX.kButtonDataThemeDataDark,
     dividerTheme: DividerThemeX.kDividerDataThemeDataDark,
     bottomAppBarTheme: BottomAppBarThemeX.kButtonAppBarThemeDataDark,
+    appBarTheme: AppBarThemeData.kAppBarThemeDark,
   );
 }

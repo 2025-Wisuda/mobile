@@ -30,7 +30,7 @@ class HomeMenuSectionWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ...menuController.mainMenuList.map(
-                (menu) => MenuItemWidget(
+                (menu) => MainMenuItemWidget(
                   iconMenu: customImageIconWidget(imagePath: menu.iconMenu),
                   nameMenu: menu.nameMenu,
                   routeName: menu.routeName,

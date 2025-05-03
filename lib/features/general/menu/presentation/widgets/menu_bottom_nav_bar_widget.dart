@@ -21,8 +21,8 @@ class MenuBottomNavBarWidget extends StatelessWidget {
         () => BottomAppBar(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(menuController.navMenus.length, (index) {
-              final menu = menuController.navMenus[index];
+            children: List.generate(menuController.navMenuList.length, (index) {
+              final menu = menuController.navMenuList[index];
               final isSelected =
                   menuController.mainNavMenuCurrentIndex.value == index;
               return menuBottomNavBarItemWidget(

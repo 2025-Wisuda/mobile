@@ -63,7 +63,26 @@
       "guestVisit": "Kunjungan Tamu",
       "roomBooking": "Peminjaman Ruangan",
       "schedule": "Jadwal",
-      "profile": "Profil"
+      "profile": "Profil",
+      "logout": "Keluar",
+      "about": "Tentang",
+      "help": "Bantuan",
+      "contact": "Kontak",
+      "privacyPolicy": "Kebijakan Privasi",
+      "termsOfService": "Syarat dan Ketentuan",
+      "feedback": "Umpan Balik",
+      "language": "Bahasa",
+      "darkMode": "Mode Gelap",
+      "lightMode": "Mode Terang",
+      "notifications": "Notifikasi",
+      "update": "Pembaruan",
+      "version": "Versi",
+      "checkForUpdates": "Periksa Pembaruan",
+      "changePassword": "Ubah Kata Sandi",
+      "setting": "Pengaturan",
+      "aboutUs": "Tentang Kami",
+      "personalInfo": "Informasi Pribadi",
+      "accountInfo": "Informasi Akun"
     },
     "home": {
       "appBar": {
@@ -87,6 +106,66 @@
         "more": "Lihat lebih banyak",
         "time": "08:00 - 17:00"
       }
+    },
+    "user": {
+      "form": {
+        "label": {
+          "password": "Kata Sandi",
+          "last_login": "Login Terakhir",
+          "username": "Nama Pengguna",
+          "studentId": "NIM",
+          "employeeID": "NIP",
+          "firstName": "Nama Depan",
+          "lastName": "Nama Belakang",
+          "email": "Email",
+          "isStaff": "Staf",
+          "isSuperuser": "Superuser",
+          "isActive": "Aktif",
+          "dateJoined": "Tanggal Bergabung",
+          "faceImage": "Gambar Wajah",
+          "faceUploaded": "Status Gambar Wajah",
+          "avatar": "Avatar",
+          "group": "Grup",
+          "createdAt": "Tanggal Dibuat",
+          "updatedAt": "Tanggal Diperbarui",
+          "fullName": "Nama Lengkap"
+        },
+        "hint": {
+          "password": "Masukkan kata sandi Anda",
+          "last_login": "Tanggal login terakhir",
+          "username": "Masukkan nama pengguna Anda",
+          "studentId": "Masukkan NIM Anda",
+          "employeeID": "Masukkan NIP Anda",
+          "firstName": "Masukkan nama depan Anda",
+          "lastName": "Masukkan nama belakang Anda",
+          "email": "Masukkan alamat email Anda",
+          "isStaff": "Apakah pengguna ini seorang staf?",
+          "isSuperuser": "Apakah pengguna ini seorang superuser?",
+          "isActive": "Apakah pengguna ini aktif?",
+          "dateJoined": "Tanggal pengguna bergabung",
+          "faceImage": "Unggah gambar wajah",
+          "faceUploaded": "Status unggah gambar wajah",
+          "avatar": "Unggah gambar avatar",
+          "group": "Pilih grup",
+          "createdAt": "Tanggal data dibuat",
+          "updatedAt": "Tanggal data diperbarui",
+          "fullName": "Nama Lengkap"
+        }
+      },
+      "button": {
+        "saveChanges": "Simpan Perubahan",
+        "changePassword": "Ubah Kata Sandi",
+        "upload": "Unggah",
+        "delete": "Hapus",
+        "confirm": "Konfirmasi",
+        "cancel": "Batal",
+        "logout": "Keluar"
+      }
+    },
+    "aboutUs": {
+      "title": "Laboratorium Teknik Komputer",
+      "description": "Universitas Lampung",
+      "allRightsReserved": "Hak Cipta Dilindungi"
     }
   },
   "general": {

@@ -6,9 +6,11 @@ class HomeBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<MainMenuLocalDatasource>(() => MainMenuLocalDatasource());
     Get.lazyPut<MainNavMenuLocalDatasource>(() => MainNavMenuLocalDatasource());
+    Get.lazyPut<ProfileMenuLocalDatasource>(() => ProfileMenuLocalDatasource());
     Get.lazyPut<MenuRepository>(
       () => MenuRepositoryImpl(
         mainMenuLocalDatasource: Get.find<MainMenuLocalDatasource>(),
+        profileMenuLocalDatasource: Get.find<ProfileMenuLocalDatasource>(),
         Get.find<MainMenuLocalDatasource>(),
       ),
     );
@@ -24,10 +26,14 @@ class HomeBinding extends Bindings {
     Get.lazyPut<FetchMainNavMenuUsecase>(
       () => FetchMainNavMenuUsecase(Get.find<NavRepository>()),
     );
+    Get.lazyPut<FetchProfileMenuUsecase>(
+      () => FetchProfileMenuUsecase(Get.find<MenuRepository>()),
+    );
     Get.lazyPut<MenuController>(
       () => MenuController(
         fetchMainMenuUsecase: Get.find<FetchMainMenuUsecase>(),
         fetchMainNavMenuUsecase: Get.find<FetchMainNavMenuUsecase>(),
+        fetchProfileMenuUsecase: Get.find<FetchProfileMenuUsecase>(),
       ),
     );
   }

@@ -63,7 +63,26 @@
       "guestVisit": "Guest Visit",
       "roomBooking": "Room Booking",
       "schedule": "Schedule",
-      "profile": "Profile"
+      "profile": "Profile",
+      "logout": "Logout",
+      "about": "About",
+      "help": "Help",
+      "contact": "Contact",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "feedback": "Feedback",
+      "language": "Language",
+      "darkMode": "Dark Mode",
+      "lightMode": "Light Mode",
+      "notifications": "Notifications",
+      "update": "Update",
+      "version": "Version",
+      "checkForUpdates": "Check for Updates",
+      "changePassword": "Change Password",
+      "setting": "Setting",
+      "aboutUs": "About Us",
+      "personalInfo": "Personal Information",
+      "accountInfo": "Account Information"
     },
     "home": {
       "appBar": {
@@ -87,6 +106,66 @@
         "more": "See more",
         "time": "08:00 - 17:00"
       }
+    },
+    "user": {
+      "form": {
+        "label": {
+          "password": "Password",
+          "last_login": "Last Login",
+          "username": "Username",
+          "studentId": "Student ID",
+          "employeeID": "Employee ID",
+          "firstName": "First Name",
+          "lastName": "Last Name",
+          "email": "Email",
+          "isStaff": "Is Staff",
+          "isSuperuser": "Is Superuser",
+          "isActive": "Is Active",
+          "dateJoined": "Date Joined",
+          "faceImage": "Face Image",
+          "faceUploaded": "Face Uploaded",
+          "avatar": "Avatar",
+          "group": "Group",
+          "createdAt": "Created At",
+          "updatedAt": "Updated At",
+          "fullName": "Full Name"
+        },
+        "hint": {
+          "password": "Enter your password",
+          "last_login": "Last login date",
+          "username": "Enter your username",
+          "studentId": "Enter your student ID",
+          "employeeID": "Enter your employee ID",
+          "firstName": "Enter your first name",
+          "lastName": "Enter your last name",
+          "email": "Enter your email address",
+          "isStaff": "Is this user a staff member?",
+          "isSuperuser": "Is this user a superuser?",
+          "isActive": "Is this user active?",
+          "dateJoined": "Date the user joined",
+          "faceImage": "Upload face image",
+          "faceUploaded": "Face image uploaded status",
+          "avatar": "Upload avatar image",
+          "group": "Select group",
+          "createdAt": "Date the record was created",
+          "updatedAt": "Date the record was last updated",
+          "fullName": "Enter your full name"
+        }
+      },
+      "button": {
+        "saveChanges": "Save Changes",
+        "changePassword": "Change Password",
+        "upload": "Upload",
+        "delete": "Delete",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "logout": "Logout"
+      }
+    },
+    "aboutUs": {
+      "title": "Computer Engineering Laboratory",
+      "description": "Lampung University",
+      "allRightsReserved": "All rights reserved"
     }
   },
   "general": {

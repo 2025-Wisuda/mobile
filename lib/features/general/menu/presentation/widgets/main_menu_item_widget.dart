@@ -3,13 +3,13 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:mobile/shared/widgets/button/custom_button_menu_widget.dart';
 
-class MenuItemWidget extends StatelessWidget {
+class MainMenuItemWidget extends StatelessWidget {
   final Widget iconMenu;
   final String nameMenu;
   final String routeName;
   final Color? backgroundColor;
 
-  const MenuItemWidget({
+  const MainMenuItemWidget({
     super.key,
     required this.iconMenu,
     required this.nameMenu,
