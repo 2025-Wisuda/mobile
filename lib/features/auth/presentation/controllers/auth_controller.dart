@@ -90,6 +90,7 @@ class AuthController extends GetxController {
   Future<void> logout() async {
     await SessionDatabase.clearAllTokens();
     final accessToken = await SessionDatabase.getAccessToken();
+    await UserDatabase.clearAllUserData();
     if (accessToken == null) {
       Get.offAllNamed(AppRoute.login);
     }

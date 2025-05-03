@@ -1,0 +1,17 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mobile/core/models/pagination_model.dart';
+import 'user_model.dart';
+
+part 'list_user_model.freezed.dart';
+part 'list_user_model.g.dart';
+
+@freezed
+abstract class ListUserModel with _$ListUserModel {
+  const factory ListUserModel({
+    @JsonKey(name: 'data') List<UserModel>? data,
+    @JsonKey(name: 'meta') PaginationModel? pagination,
+  }) = _ListUserModel;
+
+  factory ListUserModel.fromJson(Map<String, dynamic> json) =>
+      _$ListUserModelFromJson(json);
+}

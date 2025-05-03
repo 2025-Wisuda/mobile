@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:mobile/features/general/menu/menu.dart';
+import 'package:mobile/features/user/user.dart';
+import 'package:mobile/features/auth/auth.dart';
 
 class HomeBinding extends Bindings {
   @override
@@ -35,6 +38,46 @@ class HomeBinding extends Bindings {
         fetchMainNavMenuUsecase: Get.find<FetchMainNavMenuUsecase>(),
         fetchProfileMenuUsecase: Get.find<FetchProfileMenuUsecase>(),
       ),
+    );
+
+    Get.lazyPut<UserRemoteDataSource>(
+      () => UserRemoteDataSourceImpl(Get.find<Dio>()),
+    );
+    Get.lazyPut<UserRepository>(
+      () => UserRepositoryImpl(Get.find<UserRemoteDataSource>()),
+    );
+    Get.lazyPut<FetchListUserUsecase>(
+      () => FetchListUserUsecase(Get.find<UserRepository>()),
+    );
+    Get.lazyPut<FetchUserDetailUsecase>(
+      () => FetchUserDetailUsecase(Get.find<UserRepository>()),
+    );
+    Get.lazyPut<FetchUserProfileUsecase>(
+      () => FetchUserProfileUsecase(Get.find<UserRepository>()),
+    );
+    Get.lazyPut<UpdateUserProfileUsecase>(
+      () => UpdateUserProfileUsecase(Get.find<UserRepository>()),
+    );
+    Get.lazyPut<ChangePasswordUsecase>(
+      () => ChangePasswordUsecase(Get.find<UserRepository>()),
+    );
+    Get.lazyPut<UserController>(
+      () => UserController(
+        fetchListUserUsecase: Get.find<FetchListUserUsecase>(),
+        fetchUserDetailUsecase: Get.find<FetchUserDetailUsecase>(),
+        fetchUserProfileUsecase: Get.find<FetchUserProfileUsecase>(),
+        updateUserProfileUsecase: Get.find<UpdateUserProfileUsecase>(),
+        changePasswordUsecase: Get.find<ChangePasswordUsecase>(),
+      ),
+    );
+
+    Get.lazyPut<AuthController>(() => AuthController(Get.find<LoginUseCase>()));
+    Get.lazyPut<LoginUseCase>(() => LoginUseCase(Get.find<AuthRepository>()));
+    Get.lazyPut<AuthRepository>(
+      () => AuthRepositoryImpl(Get.find<AuthRemoteDataSource>()),
+    );
+    Get.lazyPut<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImpl(Get.find<Dio>()),
     );
   }
 }

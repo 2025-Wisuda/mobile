@@ -114,7 +114,7 @@
           "last_login": "Login Terakhir",
           "username": "Nama Pengguna",
           "studentId": "NIM",
-          "employeeID": "NIP",
+          "employeeId": "NIP",
           "firstName": "Nama Depan",
           "lastName": "Nama Belakang",
           "email": "Email",
@@ -135,7 +135,7 @@
           "last_login": "Tanggal login terakhir",
           "username": "Masukkan nama pengguna Anda",
           "studentId": "Masukkan NIM Anda",
-          "employeeID": "Masukkan NIP Anda",
+          "employeeId": "Masukkan NIP Anda",
           "firstName": "Masukkan nama depan Anda",
           "lastName": "Masukkan nama belakang Anda",
           "email": "Masukkan alamat email Anda",
@@ -160,6 +160,89 @@
         "confirm": "Konfirmasi",
         "cancel": "Batal",
         "logout": "Keluar"
+      },
+      "fetchListUser": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "408": "Waktu permintaan habis, coba lagi nanti",
+          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Ada yang salah. Silakan coba lagi nanti."
+        }
+      },
+      "fetchUserDetail": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "408": "Waktu permintaan habis, coba lagi nanti",
+          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Ada yang salah. Silakan coba lagi nanti."
+        }
+      },
+      "fetchProfile": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "408": "Waktu permintaan habis, coba lagi nanti",
+          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Ada yang salah. Silakan coba lagi nanti."
+        }
+      },
+      "updateProfile": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "408": "Waktu permintaan habis, coba lagi nanti",
+          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Ada yang salah. Silakan coba lagi nanti."
+        }
+      },
+      "changePassword": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "408": "Waktu permintaan habis, coba lagi nanti",
+          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Ada yang salah. Silakan coba lagi nanti."
+        },
+        "validator": {
+          "oldPassword": {
+            "empty": "Kata sandi lama tidak boleh kosong"
+          },
+          "newPassword": {
+            "empty": "Kata sandi baru tidak boleh kosong",
+            "regex": "Kata sandi baru harus terdiri dari minimal 8 karakter, termasuk huruf besar, huruf kecil, angka, dan simbol"
+          },
+          "confirmPassword": {
+            "empty": "Konfirmasi kata sandi tidak boleh kosong",
+            "notMatch": "Konfirmasi kata sandi tidak cocok"
+          }
+        }
       }
     },
     "aboutUs": {
@@ -181,6 +264,10 @@
     },
     "error": {
       "default": "Terjadi kesalahan"
-    }
+    },
+    "yes": "Ya",
+    "no": "Tidak",
+    "active": "Aktif",
+    "inactive": "Tidak Aktif"
   }
 }

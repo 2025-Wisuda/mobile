@@ -114,7 +114,7 @@
           "last_login": "Last Login",
           "username": "Username",
           "studentId": "Student ID",
-          "employeeID": "Employee ID",
+          "employeeId": "Employee ID",
           "firstName": "First Name",
           "lastName": "Last Name",
           "email": "Email",
@@ -135,7 +135,7 @@
           "last_login": "Last login date",
           "username": "Enter your username",
           "studentId": "Enter your student ID",
-          "employeeID": "Enter your employee ID",
+          "employeeId": "Enter your employee ID",
           "firstName": "Enter your first name",
           "lastName": "Enter your last name",
           "email": "Enter your email address",
@@ -160,6 +160,89 @@
         "confirm": "Confirm",
         "cancel": "Cancel",
         "logout": "Logout"
+      },
+      "fetchListUser": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        }
+      },
+      "fetchUserDetail": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        }
+      },
+      "fetchProfile": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        }
+      },
+      "updateProfile": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        }
+      },
+      "changePassword": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        },
+        "validator": {
+          "oldPassword": {
+            "empty": "Old password cannot be empty"
+          },
+          "newPassword": {
+            "empty": "New password cannot be empty",
+            "regex": "New password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+          },
+          "confirmPassword": {
+            "empty": "Confirm password cannot be empty",
+            "notMatch": "Confirm password does not match new password"
+          }
+        }
       }
     },
     "aboutUs": {
@@ -181,6 +264,10 @@
     },
     "error": {
       "default": "Something went wrong"
-    }
+    },
+    "yes": "Yes",
+    "no": "No",
+    "active": "Active",
+    "inactive": "Inactive"
   }
 }
