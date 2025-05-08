@@ -28,7 +28,7 @@ class ProfileMenuSectionWidget extends StatelessWidget {
                   section.title,
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 2),
                 ...section.menus.map(
                   (menu) => Column(
                     children: [

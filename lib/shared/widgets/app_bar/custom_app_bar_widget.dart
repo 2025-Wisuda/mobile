@@ -15,6 +15,9 @@ class CustomUserAppBarWidget extends StatelessWidget {
   final Widget? trailingButton;
   final Function()? onTapTrailingButton;
   final bool showTrailing;
+  final bool showBackButton;
+  final Color? backButtonBorderColor;
+  final Function()? onTapBackButton;
 
   const CustomUserAppBarWidget({
     super.key,
@@ -29,6 +32,9 @@ class CustomUserAppBarWidget extends StatelessWidget {
     this.trailingButton,
     this.onTapTrailingButton,
     this.showTrailing = false,
+    this.showBackButton = true,
+    this.backButtonBorderColor,
+    this.onTapBackButton,
   });
 
   @override
@@ -45,33 +51,40 @@ class CustomUserAppBarWidget extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: 44,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadiusConstant.kDefaultBorderRadiusCircle,
-                    border: Border.all(
-                      color: Theme.of(context).colorScheme.outline,
-                    ),
-                  ),
-                  child:
-                      backButton ??
-                      CustomButtonBackgroundWidget(
-                        iconButton: customImageIconWidget(
-                          imagePath: IconConstant.chevronLeftOutlineIcon,
-                        ),
-                        onPressed: () => Get.back(),
-                        backgroundColor:
-                            iconBackgroundColor ??
-                            WidgetStateProperty.all<Color?>(Colors.transparent),
+                if (showBackButton)
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadiusConstant.kDefaultBorderRadiusCircle,
+                      border: Border.all(
+                        color:
+                            backButtonBorderColor ??
+                            Theme.of(context).colorScheme.outline,
                       ),
-                ),
+                    ),
+                    child:
+                        backButton ??
+                        CustomButtonBackgroundWidget(
+                          iconButton: customImageIconWidget(
+                            imagePath: IconConstant.chevronLeftOutlineIcon,
+                          ),
+                          onPressed: () {
+                            onTapBackButton?.call() ?? Get.back();
+                          },
+                          backgroundColor:
+                              iconBackgroundColor ??
+                              WidgetStateProperty.all<Color?>(
+                                Colors.transparent,
+                              ),
+                        ),
+                  ),
                 const Spacer(),
                 if (showSearchButton)
                   CustomButtonBackgroundWidget(
                     iconButton: customImageIconWidget(
-                      imagePath: IconConstant.seacrhOutlineIcon,
+                      imagePath: IconConstant.searchOutlineIcon,
                     ),
                     onPressed: onTapSearchButton,
                     backgroundColor:
@@ -83,7 +96,7 @@ class CustomUserAppBarWidget extends StatelessWidget {
                     iconButton:
                         trailingButton ??
                         customImageIconWidget(
-                          imagePath: IconConstant.seacrhOutlineIcon,
+                          imagePath: IconConstant.searchOutlineIcon,
                         ),
                     onPressed: onTapTrailingButton,
                     backgroundColor:

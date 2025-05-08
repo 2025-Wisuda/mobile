@@ -28,6 +28,6 @@ class IconConstant {
   static const codeOutlineIcon = 'assets/icons/code_outline_icon.svg';
   static const chevronLeftOutlineIcon =
       'assets/icons/chevron_left_outline_icon.svg';
-  static const seacrhOutlineIcon = 'assets/icons/search_outline_icon.svg';
+  static const searchOutlineIcon = 'assets/icons/search_outline_icon.svg';
   static const sunOutlineIcon = 'assets/icons/sun_outline_icon.svg';
 }

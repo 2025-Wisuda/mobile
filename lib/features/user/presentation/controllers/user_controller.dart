@@ -237,7 +237,6 @@ class UserController extends GetxController {
 
   Future<void> updateUserProfile() async {
     updateUserProfileState.value = FetchStateEnum.loading;
-
     final request = UpdateUserProfileRequestEntity(
       studentId:
           studentIdController.value.text.trim().isEmpty

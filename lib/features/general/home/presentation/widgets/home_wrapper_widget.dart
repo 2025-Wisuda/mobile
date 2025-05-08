@@ -12,11 +12,19 @@ class HomeWrapperWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 24,
           children: [
-            HomeScheduleSectionWidget(),
-            const HomeDutySectionWidget(),
+            SizedBox(height: 16),
+            HomeLabScheduleSectionWidget(),
+            SizedBox(height: 16),
             HomeMenuSectionWidget(),
+            Center(
+              child: SizedBox(
+                height: 32,
+                width: 32,
+                child: Divider(color: Theme.of(context).colorScheme.primary),
+              ),
+            ),
+            const HomeDutyScheduleSectionWidget(),
           ],
         ),
       ),

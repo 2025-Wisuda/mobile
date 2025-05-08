@@ -26,12 +26,7 @@ class CustomProfilePictureImageWidget extends StatelessWidget {
       padding: const EdgeInsets.all(4),
       width: widthImage ?? defaultSize,
       height: heightImage ?? defaultSize,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: Theme.of(context).colorScheme.surfaceContainerHighest,
-        ),
-      ),
+      decoration: BoxDecoration(shape: BoxShape.circle),
       child: Center(
         child: ClipOval(
           child:

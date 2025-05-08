@@ -82,7 +82,8 @@
       "setting": "Pengaturan",
       "aboutUs": "Tentang Kami",
       "personalInfo": "Informasi Pribadi",
-      "accountInfo": "Informasi Akun"
+      "accountInfo": "Informasi Akun",
+      "labSchedule": "Jadwal Laboratorium"
     },
     "home": {
       "appBar": {
@@ -95,15 +96,15 @@
         "username": "Nama Pengguna"
       },
       "menu": "Menu",
-      "schedule": {
-        "title": "Jadwal Hari Ini",
+      "labSchedule": {
+        "title": "Jadwal Lab Hari Ini",
         "empty": "Tidak ada jadwal untuk hari ini",
-        "more": "Lihat lebih banyak"
+        "more": "Lihat semua"
       },
-      "duty": {
-        "title": "Jadwal Piket Hari Ini",
+      "dutySchedule": {
+        "title": "Asisten Laboratorium Yang Bertugas",
         "empty": "Tidak ada jadwal piket untuk hari ini",
-        "more": "Lihat lebih banyak",
+        "more": "Lihat semua",
         "time": "08:00 - 17:00"
       }
     },
@@ -245,6 +246,127 @@
         }
       }
     },
+    "schedule": {
+      "lab": {
+        "form": {
+          "label": {
+            "activityType": "Jenis Aktivitas",
+            "activityDescription": "Deskripsi Aktivitas",
+            "scheduleDate": "Tanggal Jadwal",
+            "startTime": "Waktu Mulai",
+            "endTime": "Waktu Selesai",
+            "createdBy": "Dibuat Oleh",
+            "isActive": "Aktif",
+            "approvalStatus": "Status Persetujuan",
+            "approvedBy": "Disetujui Oleh",
+            "approvalTime": "Waktu Persetujuan",
+            "createdAt": "Dibuat Pada",
+            "updatedAt": "Diperbarui Pada"
+          },
+          "hint": {
+            "activityType": "Pilih jenis aktivitas",
+            "activityDescription": "Masukkan deskripsi aktivitas",
+            "scheduleDate": "Pilih tanggal jadwal",
+            "startTime": "Pilih waktu mulai",
+            "endTime": "Pilih waktu selesai",
+            "createdBy": "Masukkan nama pembuat",
+            "isActive": "Apakah jadwal ini aktif?",
+            "approvalStatus": "Pilih status persetujuan",
+            "approvedBy": "Masukkan nama penyetuju",
+            "approvalTime": "Pilih waktu persetujuan",
+            "createdAt": "Tanggal data dibuat",
+            "updatedAt": "Tanggal data terakhir diperbarui"
+          }
+        },
+        "button": {
+          "saveChanges": "Simpan Perubahan",
+          "delete": "Hapus",
+          "confirm": "Konfirmasi",
+          "cancel": "Batal"
+        },
+        "fetchListLabSchedule": {
+          "error": {
+            "400": "Permintaan tidak valid, silakan coba lagi",
+            "401": "Akses tidak sah, silakan login",
+            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+            "408": "Permintaan habis waktu, silakan coba lagi nanti",
+            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
+            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
+            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+            "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti."
+          },
+          "empty": "Tidak ada jadwal yang ditemukan"
+        },
+        "fetchLabScheduleDetail": {
+          "error": {
+            "400": "Permintaan tidak valid, silakan coba lagi",
+            "401": "Akses tidak sah, silakan login",
+            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+            "408": "Permintaan habis waktu, silakan coba lagi nanti",
+            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
+            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
+            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+            "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti."
+          }
+        },
+        "updateLabSchedule": {
+          "error": {
+            "400": "Permintaan tidak valid, silakan coba lagi",
+            "401": "Akses tidak sah, silakan login",
+            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+            "408": "Permintaan habis waktu, silakan coba lagi nanti",
+            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
+            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
+            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+            "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti."
+          }
+        },
+        "approveLabSchedule": {
+          "error": {
+            "400": "Permintaan tidak valid, silakan coba lagi",
+            "401": "Akses tidak sah, silakan login",
+            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+            "408": "Permintaan habis waktu, silakan coba lagi nanti",
+            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
+            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
+            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+            "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti."
+          }
+        },
+        "deleteLabSchedule": {
+          "error": {
+            "400": "Permintaan tidak valid, silakan coba lagi",
+            "401": "Akses tidak sah, silakan login",
+            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+            "408": "Permintaan habis waktu, silakan coba lagi nanti",
+            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
+            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
+            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+            "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti."
+          }
+        },
+        "searchLabSchedule": {
+          "placeholder": "Cari jadwal Laboratorium...",
+          "empty": "Tidak ada hasil ditemukan untuk pencarian Anda",
+          "loading": "Memuat hasil pencarian..."
+        },
+        "legend": {
+          "status": {
+            "selectedDate": "Tanggal yang dipilih"
+          }
+        }
+      }
+    },
     "aboutUs": {
       "title": "Laboratorium Teknik Komputer",
       "description": "Universitas Lampung",
@@ -268,6 +390,8 @@
     "yes": "Ya",
     "no": "Tidak",
     "active": "Aktif",
-    "inactive": "Tidak Aktif"
+    "inactive": "Tidak Aktif",
+    "undefined": "Tidak Ditentukan",
+    "searching": "Mencari..."
   }
 }

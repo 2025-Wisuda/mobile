@@ -8,7 +8,7 @@ class AppTheme {
   static final kLightTheme = ThemeData(
     primaryColor: ColorConstant.kPrimary500,
     brightness: Brightness.light,
-    scaffoldBackgroundColor: ColorConstant.kNeutral100,
+    scaffoldBackgroundColor: ColorConstant.kNeutral50,
     useMaterial3: true,
     fontFamily: _kLightThemeFont,
     colorScheme: ColorSchemeX.kColorSchemeLight,
@@ -18,13 +18,14 @@ class AppTheme {
     dividerTheme: DividerThemeX.kDividerThemeDataLight,
     bottomAppBarTheme: BottomAppBarThemeX.kButtonAppBarThemeDataLight,
     appBarTheme: AppBarThemeData.kAppBarThemeLight,
+    searchBarTheme: SearchBarThemeX.kSearchBarThemeDataLight,
   );
 
   // Change this theme if want to use a different theme for dark theme
   static final kDarkTheme = ThemeData(
     primaryColor: ColorConstant.kPrimary500,
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: ColorConstant.kNeutral100,
+    scaffoldBackgroundColor: ColorConstant.kNeutral900,
     useMaterial3: true,
     fontFamily: _kDarkThemeFont,
     colorScheme: ColorSchemeX.kColorSchemeDark,
@@ -34,5 +35,6 @@ class AppTheme {
     dividerTheme: DividerThemeX.kDividerDataThemeDataDark,
     bottomAppBarTheme: BottomAppBarThemeX.kButtonAppBarThemeDataDark,
     appBarTheme: AppBarThemeData.kAppBarThemeDark,
+    searchBarTheme: SearchBarThemeX.kSearchBarThemeDataDark,
   );
 }

@@ -19,6 +19,9 @@ class MenuBottomNavBarWidget extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(
         () => BottomAppBar(
+          shadowColor: Theme.of(context).colorScheme.onSurface,
+          clipBehavior: Clip.antiAlias,
+          surfaceTintColor: Theme.of(context).colorScheme.shadow,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(menuController.navMenuList.length, (index) {

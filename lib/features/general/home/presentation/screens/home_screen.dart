@@ -9,10 +9,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.shadow,
-        flexibleSpace: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: HomeAppBarWidget(),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(16),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: HomeAppBarWidget(),
+          ),
         ),
       ),
       body: HomeWrapperWidget(),

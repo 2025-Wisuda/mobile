@@ -1,2 +1,2 @@
 export 'auth/auth.dart';
-export 'splash/splash.dart';
+export 'general/splash/splash.dart';

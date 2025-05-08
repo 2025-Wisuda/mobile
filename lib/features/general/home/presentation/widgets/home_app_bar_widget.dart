@@ -20,7 +20,6 @@ class HomeAppBarWidget extends StatelessWidget {
             ),
           ),
           Column(
-            // TODO 2: make it dynamic
             spacing: 2,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,

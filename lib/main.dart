@@ -24,7 +24,7 @@ void main() async {
             theme: AppTheme.kLightTheme,
             darkTheme: AppTheme.kDarkTheme,
             themeMode: ThemeMode.system,
-            initialRoute: AppRoute.home,
+            initialRoute: AppRoute.splash,
             getPages: AppScreen.routes,
           );
         },

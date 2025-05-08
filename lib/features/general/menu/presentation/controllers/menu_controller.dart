@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mobile/features/general/home/presentation/screens/home_screen.dart';
 import 'package:mobile/features/general/menu/menu.dart';
 import 'package:mobile/features/general/profile/profile.dart';
+import 'package:mobile/features/schedule/presentation/screens/screen.dart';
 
 class MenuController extends GetxController {
   final FetchMainMenuUsecase fetchMainMenuUsecase;
@@ -27,7 +28,7 @@ class MenuController extends GetxController {
     pageController = PageController();
     pages = [
       HomeScreen(),
-      Container(color: Colors.green),
+      ListLabScheduleScreen(),
       Container(color: Colors.blue),
       ProfileScreen(),
     ];

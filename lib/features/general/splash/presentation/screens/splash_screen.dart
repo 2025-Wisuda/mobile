@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/utils.dart';
-import 'package:mobile/features/splash/presentation/presentation.dart';
+import 'package:mobile/features/general/splash/presentation/presentation.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

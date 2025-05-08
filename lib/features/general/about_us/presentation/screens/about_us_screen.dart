@@ -9,12 +9,14 @@ class AboutUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(76),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: CustomUserAppBarWidget(
-            titleAppBar: 'features.menu.aboutUs'.tr(),
+      appBar: AppBar(
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(20),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomUserAppBarWidget(
+              titleAppBar: 'features.menu.aboutUs'.tr(),
+            ),
           ),
         ),
       ),

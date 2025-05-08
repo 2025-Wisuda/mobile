@@ -82,7 +82,8 @@
       "setting": "Setting",
       "aboutUs": "About Us",
       "personalInfo": "Personal Information",
-      "accountInfo": "Account Information"
+      "accountInfo": "Account Information",
+      "labSchedule": "Laboratory Schedule"
     },
     "home": {
       "appBar": {
@@ -95,13 +96,13 @@
         "username": "Username"
       },
       "menu": "Menu",
-      "schedule": {
-        "title": "Schedule for Today",
+      "labSchedule": {
+        "title": "Lab Schedule for Today",
         "empty": "No laboratory scheduled for today",
         "more": "See more"
       },
-      "duty": {
-        "title": "Duty Schedule for Today",
+      "dutySchedule": {
+        "title": "Assistant On Duty",
         "empty": "No duty schedule for today",
         "more": "See more",
         "time": "08:00 - 17:00"
@@ -245,6 +246,127 @@
         }
       }
     },
+    "schedule": {
+      "lab": {
+        "form": {
+          "label": {
+            "activityType": "Activity Type",
+            "activityDescription": "Activity Description",
+            "scheduleDate": "Schedule Date",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "createdBy": "Created By",
+            "isActive": "Is Active",
+            "approvalStatus": "Approval Status",
+            "approvedBy": "Approved By",
+            "approvalTime": "Approval Time",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At"
+          },
+          "hint": {
+            "activityType": "Select activity type",
+            "activityDescription": "Enter activity description",
+            "scheduleDate": "Select schedule date",
+            "startTime": "Select start time",
+            "endTime": "Select end time",
+            "createdBy": "Enter creator's name",
+            "isActive": "Is this schedule active?",
+            "approvalStatus": "Select approval status",
+            "approvedBy": "Enter approver's name",
+            "approvalTime": "Select approval time",
+            "createdAt": "Date the record was created",
+            "updatedAt": "Date the record was last updated"
+          }
+        },
+        "button": {
+          "saveChanges": "Save Changes",
+          "delete": "Delete",
+          "confirm": "Confirm",
+          "cancel": "Cancel"
+        },
+        "fetchListLabSchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong. Please try again later."
+          },
+          "empty": "No laboratory schedule found"
+        },
+        "fetchLabScheduleDetail": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong. Please try again later."
+          }
+        },
+        "updateLabSchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong. Please try again later."
+          }
+        },
+        "approveLabSchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong. Please try again later."
+          }
+        },
+        "deleteLabSchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong. Please try again later."
+          }
+        },
+        "searchLabSchedule": {
+          "placeholder": "Search lab schedule...",
+          "empty": "No results found",
+          "loading": "Loading results..."
+        },
+        "legend": {
+          "status": {
+            "selectedDate": "Selected date"
+          }
+        }
+      }
+    },
     "aboutUs": {
       "title": "Computer Engineering Laboratory",
       "description": "Lampung University",
@@ -268,6 +390,8 @@
     "yes": "Yes",
     "no": "No",
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "undefined": "Undefined",
+    "searching": "Searching..."
   }
 }
