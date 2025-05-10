@@ -8,5 +8,6 @@ class AppScreen {
     ...profileRoutes,
     ...aboutUsRoute,
     ...labScheduleRoute,
+    ...dutyScheduleRoute,
   ];
 }

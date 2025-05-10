@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:mobile/features/general/menu/menu.dart';
 
 class FetchMainNavMenuUsecase {
@@ -5,7 +7,7 @@ class FetchMainNavMenuUsecase {
 
   FetchMainNavMenuUsecase(this.navRepository);
 
-  List<MenuModel> execute() {
-    return navRepository.getNavData();
+  List<MenuModel> execute({VoidCallback? onTap}) {
+    return navRepository.fetchMainNavMenuData(onTap: onTap);
   }
 }

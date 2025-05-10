@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:mobile/features/general/home/presentation/controllers/home_controller.dart';
 import 'package:mobile/features/general/menu/menu.dart';
-import 'package:mobile/features/schedule/schedule.dart';
+import 'package:mobile/features/lab_schedule/lab_schedule.dart';
+import 'package:mobile/features/duty_schedule/duty_schedule.dart';
+
 import 'package:mobile/features/user/user.dart';
 import 'package:mobile/features/auth/auth.dart';
 
@@ -113,5 +116,31 @@ class HomeBinding extends Bindings {
         deleteLabScheduleUsecase: Get.find<DeleteLabScheduleUsecase>(),
       ),
     );
+
+    Get.lazyPut<DutyScheduleRemoteDataSource>(
+      () => DutyScheduleRemoteDataSourceImpl(Get.find<Dio>()),
+    );
+
+    Get.lazyPut<DutyScheduleRepository>(
+      () =>
+          DutyScheduleRepositoryImpl(Get.find<DutyScheduleRemoteDataSource>()),
+    );
+
+    Get.lazyPut<FetchListDutyScheduleUsecase>(
+      () => FetchListDutyScheduleUsecase(Get.find<DutyScheduleRepository>()),
+    );
+    Get.lazyPut<FetchDutyScheduleDetailUsecase>(
+      () => FetchDutyScheduleDetailUsecase(Get.find<DutyScheduleRepository>()),
+    );
+
+    Get.lazyPut<DutyScheduleController>(
+      () => DutyScheduleController(
+        fetchListDutyScheduleUsecase: Get.find<FetchListDutyScheduleUsecase>(),
+        fetchDutyScheduleDetailUsecase:
+            Get.find<FetchDutyScheduleDetailUsecase>(),
+      ),
+    );
+
+    Get.lazyPut(() => HomeController());
   }
 }

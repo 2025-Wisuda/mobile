@@ -6,3 +6,4 @@ export 'home_route.dart';
 export 'profile_route.dart';
 export 'about_us_route.dart';
 export 'lab_schedule_route.dart';
+export 'duty_schedule_route.dart';

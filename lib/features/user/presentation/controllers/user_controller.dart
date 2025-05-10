@@ -167,13 +167,9 @@ class UserController extends GetxController {
 
   void fetchUserGroup() async {
     final group = await UserDatabase.getUserGroup();
-    if (group != null) {
-      userGroup.value = group;
-      if (group == 'Mahasiswa') {
-        studentIdController.value.text = userEntity.value?.studentIdStr ?? '';
-      } else if (group == 'Dosen') {
-        employeeIdController.value.text = userEntity.value?.employeeIdStr ?? '';
-      }
+    final lowerGroup = group?.toLowerCase();
+    if (lowerGroup != null) {
+      userGroup.value = lowerGroup;
     }
   }
 
@@ -218,6 +214,7 @@ class UserController extends GetxController {
   }
 
   Future<void> fetchUserProfile() async {
+    final lastGroup = await UserDatabase.getUserGroup();
     final result = await fetchUserProfileUsecase.execute();
     fetchUserProfileState.value = FetchStateEnum.loading;
     result.fold(
@@ -230,6 +227,9 @@ class UserController extends GetxController {
         userEntity.value = response;
         if (response.group != null) {
           await UserDatabase.saveUserGroup(response.group!);
+          if (lastGroup != null && lastGroup != response.group) {
+            await UserDatabase.saveUserGroup(response.group!);
+          }
         }
       },
     );

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:mobile/features/schedule/schedule.dart';
+import 'package:mobile/features/lab_schedule/lab_schedule.dart';
 
 class LabScheduleBinding extends Bindings {
   @override

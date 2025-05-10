@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:mobile/features/general/menu/data/data.dart';
 import 'package:mobile/features/general/menu/domain/repositories/repository.dart';
 
@@ -12,12 +14,12 @@ class MenuRepositoryImpl implements MenuRepository {
   });
 
   @override
-  List<MenuModel> getMenuData() {
-    return mainMenuLocalDatasource.getMenuData();
+  List<MenuModel> fetchMainMenuData({VoidCallback? onTap}) {
+    return mainMenuLocalDatasource.fetchMainMenuData(onTap: onTap);
   }
 
   @override
-  List<MenuSectionModel> getProfileMenuData() {
-    return profileMenuLocalDatasource.getProfileMenuData();
+  List<MenuSectionModel> fetchProfileMenuData({VoidCallback? onTap}) {
+    return profileMenuLocalDatasource.fetchProfileMenuData(onTap: onTap);
   }
 }

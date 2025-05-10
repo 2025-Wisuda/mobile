@@ -20,4 +20,8 @@ class DateHelper {
     if (date == null) return '-';
     return DateFormat('d MMM yyyy • HH:mm', 'id_ID').format(date);
   }
+
+  static String getCurrentEnglishDay() {
+    return DateFormat('EEEE', 'en_US').format(DateTime.now()).toLowerCase();
+  }
 }

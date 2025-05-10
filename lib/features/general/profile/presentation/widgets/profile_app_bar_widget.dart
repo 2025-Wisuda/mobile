@@ -20,13 +20,12 @@ class ProfileAppBarWidget extends StatelessWidget {
       final group = userController.userGroup.value;
       final String? firstName = user?.firstNameStr;
       final String? lastName = user?.lastNameStr;
-      final String fullName =
-          (firstName?.isNotEmpty == true || lastName?.isNotEmpty == true)
-              ? '$firstName $lastName'
-              : 'features.user.form.label.fullName'.tr();
+      final String fullName = '$firstName $lastName';
+      ;
       final String? avatarUrl = user?.avatarStr;
       final String? identity =
-          group.toLowerCase() == 'mahasiswa'
+          group.toLowerCase() == 'mahasiswa' ||
+                  group.toLowerCase() == 'asisten laboratorium'
               ? user?.studentIdStr
               : user?.employeeIdStr;
 
@@ -37,9 +36,10 @@ class ProfileAppBarWidget extends StatelessWidget {
           children: [
             CustomProfilePictureImageWidget(
               imageUrl: avatarUrl ?? '',
-              heightImage: 60,
-              widthImage: 60,
-              radiusImage: 60,
+              radiusImage: 72,
+              firstName: firstName ?? '',
+              lastName: lastName ?? '',
+              username: user?.usernameStr ?? '',
             ),
             const SizedBox(height: 8),
             Column(
@@ -47,9 +47,12 @@ class ProfileAppBarWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  fullName,
+                  user?.firstName != null
+                      ? fullName
+                      : user?.usernameStr ??
+                          'features.user.form.label.fullName'.tr(),
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),

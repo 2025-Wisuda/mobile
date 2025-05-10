@@ -7,3 +7,4 @@ export 'button_theme.dart';
 export 'bottom_app_bar_theme.dart';
 export 'app_bar_theme.dart';
 export 'search_bar_theme.dart';
+export 'tab_bar_theme.dart';

@@ -1,11 +1,17 @@
+import 'dart:ui';
+
 class MenuModel {
-  final dynamic iconMenu;
   final String nameMenu;
   final dynamic routeName;
+  final String iconMenu;
+  final List<String> allowedGroup;
+  final VoidCallback? onTap;
 
   MenuModel({
-    required this.iconMenu,
     required this.nameMenu,
-    required this.routeName,
+    this.routeName,
+    required this.iconMenu,
+    required this.allowedGroup,
+    this.onTap,
   });
 }

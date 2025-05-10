@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:mobile/features/general/menu/data/data.dart';
 import 'package:mobile/features/general/menu/domain/repositories/repository.dart';
 
@@ -10,7 +12,7 @@ class NavRepositoryImpl implements NavRepository {
   });
 
   @override
-  List<MenuModel> getNavData() {
-    return mainNavMenuLocalDatasource.getNavData();
+  List<MenuModel> fetchMainNavMenuData({VoidCallback? onTap}) {
+    return mainNavMenuLocalDatasource.fetchMainNavMenuData(onTap: onTap);
   }
 }

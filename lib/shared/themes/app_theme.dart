@@ -19,6 +19,7 @@ class AppTheme {
     bottomAppBarTheme: BottomAppBarThemeX.kButtonAppBarThemeDataLight,
     appBarTheme: AppBarThemeData.kAppBarThemeLight,
     searchBarTheme: SearchBarThemeX.kSearchBarThemeDataLight,
+    tabBarTheme: TabBarThemeDataX.kTabBarThemeLight,
   );
 
   // Change this theme if want to use a different theme for dark theme
@@ -36,5 +37,6 @@ class AppTheme {
     bottomAppBarTheme: BottomAppBarThemeX.kButtonAppBarThemeDataDark,
     appBarTheme: AppBarThemeData.kAppBarThemeDark,
     searchBarTheme: SearchBarThemeX.kSearchBarThemeDataDark,
+    tabBarTheme: TabBarThemeDataX.kTabBarThemeDark,
   );
 }

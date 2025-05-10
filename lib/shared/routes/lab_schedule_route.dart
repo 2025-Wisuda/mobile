@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mobile/features/schedule/presentation/presentation.dart';
+import 'package:mobile/features/lab_schedule/presentation/presentation.dart';
 import 'package:mobile/shared/bindings/binding.dart';
 import 'app_route.dart';
 

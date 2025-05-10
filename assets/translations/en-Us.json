@@ -83,7 +83,8 @@
       "aboutUs": "About Us",
       "personalInfo": "Personal Information",
       "accountInfo": "Account Information",
-      "labSchedule": "Laboratory Schedule"
+      "labSchedule": "Laboratory Schedule",
+      "dutySchedule": "Assistant Duty Schedule"
     },
     "home": {
       "appBar": {
@@ -98,14 +99,17 @@
       "menu": "Menu",
       "labSchedule": {
         "title": "Lab Schedule for Today",
-        "empty": "No laboratory scheduled for today",
-        "more": "See more"
+        "empty": "Today there is no Laboratory schedule",
+        "more": "See more",
+        "seeScheduleOtherDay": "See schedule for other days",
+        "loading": "Loading Laboratory schedule..."
       },
       "dutySchedule": {
         "title": "Assistant On Duty",
-        "empty": "No duty schedule for today",
+        "empty": "No assistant on duty today",
         "more": "See more",
-        "time": "08:00 - 17:00"
+        "time": "08:00 - 17:00",
+        "seeScheduleOtherDay": "See assistant schedule for other days"
       }
     },
     "user": {
@@ -364,6 +368,76 @@
           "status": {
             "selectedDate": "Selected date"
           }
+        }
+      },
+      "duty": {
+        "form": {
+          "label": {
+            "teachingAssistant": "Teaching Assistant",
+            "days": "Days",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "isActive": "Is Active",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At"
+          },
+          "hint": {
+            "teachingAssistant": "Select teaching assistant",
+            "days": "Select days",
+            "startDate": "Select start date",
+            "endDate": "Select end date",
+            "startTime": "Select start time",
+            "endTime": "Select end time",
+            "isActive": "Is this schedule active?",
+            "createdAt": "Date the record was created",
+            "updatedAt": "Date the record was last updated"
+          }
+        },
+        "button": {
+          "saveChanges": "Save Changes",
+          "delete": "Delete",
+          "confirm": "Confirm",
+          "cancel": "Cancel"
+        },
+        "fetchListDutySchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong. Please try again later."
+          },
+          "empty": "No duty schedule found"
+        },
+        "fetchDutyScheduleDetail": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong. Please try again later."
+          }
+        },
+        "days": {
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "sunday": "Sunday"
         }
       }
     },

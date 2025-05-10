@@ -4,7 +4,7 @@ import 'package:mobile/core/constants/color_constant.dart';
 class ColorSchemeX {
   static const ColorScheme kColorSchemeLight = ColorScheme.light(
     primary: ColorConstant.kPrimary500,
-    onPrimary: ColorConstant.kNeutral900,
+    onPrimary: ColorConstant.kNeutral50,
     primaryContainer: ColorConstant.kPrimary50,
     onPrimaryContainer: ColorConstant.kNeutral900,
     primaryFixed: ColorConstant.kPrimary300,

@@ -8,4 +8,5 @@ class AppRoute {
   static const String searchLabSchedule = '/search-lab-schedule';
   static const String labSchedule = '/lab-schedule';
   static const String detailLabSchedule = '/lab-schedule/detail';
+  static const String dutySchedule = '/duty-schedule';
 }
