@@ -10,7 +10,7 @@ class DutyScheduleFilterParamsModel {
     params['page'] = page;
     params['page_size'] = pageSize;
     if (days != null) {
-      params['days__iexact'] = days;
+      params['days'] = days;
     }
 
     return params;

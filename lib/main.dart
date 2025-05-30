@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/core/injections/injection.dart';
 import 'shared/routes/route.dart';
 import 'shared/themes/theme.dart';

@@ -1,9 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart' show Theme;
 import 'package:flutter/widgets.dart';
-import 'package:get/instance_manager.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/features/general/menu/presentation/controllers/menu_controller.dart';
 import 'package:mobile/features/general/menu/presentation/widgets/profile_menu_item_widget.dart';
-import 'package:mobile/shared/shared.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class ProfileMenuSectionWidget extends StatelessWidget {
   const ProfileMenuSectionWidget({super.key});
@@ -40,8 +46,7 @@ class ProfileMenuSectionWidget extends StatelessWidget {
                         ),
                         nameMenu: menu.nameMenu,
                         routeName: menu.routeName,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.surfaceContainerHigh,
+                        backgroundColor: context.surfaceContainerHigh,
                       ),
                     ],
                   ),

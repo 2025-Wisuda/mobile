@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/features/duty_schedule/duty_schedule.dart';
 
 class DutyScheduleBinding extends Bindings {

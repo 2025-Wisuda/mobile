@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:mobile/core/core.dart';
 import 'package:mobile/shared/themes/color_scheme_theme.dart';
 

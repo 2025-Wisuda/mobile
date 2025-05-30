@@ -1,9 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:mobile/core/constants/border_radius_constant.dart';
-import 'package:mobile/features/duty_schedule/domain/entities/duty_schedule_entity.dart';
-import 'package:mobile/features/user/domain/entities/user_entity_extension.dart';
-import 'package:mobile/shared/helpers/helper.dart';
-import 'package:mobile/shared/widgets/image/custom_profile_picture_image_widget.dart';
+import 'package:mobile/features/duty_schedule/domain/entities/entity.dart';
+import 'package:mobile/features/user/domain/entities/entity.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class DutyScheduleTeachingAssistantItemWidget extends StatelessWidget {
   final DutyScheduleEntity schedule;
@@ -39,7 +42,7 @@ class DutyScheduleTeachingAssistantItemWidget extends StatelessWidget {
                             assistant.firstName != null
                                 ? '${assistant.firstNameStr} ${assistant.lastNameStr}'
                                 : assistant.usernameStr,
-                            style: context.text.bodyMedium,
+                            style: context.bodyMediumW(500),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -52,21 +55,20 @@ class DutyScheduleTeachingAssistantItemWidget extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: context.color.tertiaryContainer,
+                            color: context.tertiaryContainer,
                             borderRadius:
                                 BorderRadiusConstant.kDefaultBorderRadius,
                           ),
                           child: Text(
                             'Sedang Piket',
-                            style: context.text.labelSmall!.copyWith(
-                              color: context.color.tertiary,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: context
+                                .labelSmallW(600)
+                                .copyWith(color: context.tertiary),
                           ),
                         ),
                       ],
                     ),
-                    Divider(height: 16, color: context.color.shadow),
+                    Divider(height: 16, color: context.shadow),
                   ],
                 );
               }).toList() ??

@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/helpers/helper.dart';
+
+// Project imports:
+import 'package:mobile/shared/helpers/extensions/extension.dart';
+
+// Project imports:
 
 Widget errorEmptyTextWidget(BuildContext context, {required String message}) {
   return SizedBox(
@@ -9,8 +14,7 @@ Widget errorEmptyTextWidget(BuildContext context, {required String message}) {
       children: [
         Text(
           message,
-          style: context.text.bodyMedium,
-
+          style: context.bodyMediumW(500),
           textAlign: TextAlign.center,
         ),
       ],

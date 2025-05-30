@@ -1,4 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+
+// Project imports:
 import 'package:mobile/features/user/domain/entities/user_entity.dart';
 
 extension UserEntityExtension on UserEntity {
@@ -6,27 +9,45 @@ extension UserEntityExtension on UserEntity {
   String get passwordStr => password ?? '';
   String get lastLoginStr => lastLogin?.toIso8601String() ?? '';
   String get isSuperuserStr =>
-      isSuperuser == true ? 'general.yes'.tr() : 'general.no'.tr();
+      isSuperuser == true ? i18n.tr('general.yes') : i18n.tr('general.no');
   String get usernameStr => username ?? '';
   String get studentIdStr =>
-      studentId ?? 'features.user.form.label.studentId'.tr();
+      studentId ?? i18n.tr('features.user.form.label.studentId');
   String get employeeIdStr =>
-      employeeId ?? 'features.user.form.label.employeeId'.tr();
+      employeeId ?? i18n.tr('features.user.form.label.employeeId');
   String get firstNameStr =>
-      firstName ?? 'features.user.form.label.firstName'.tr();
+      firstName ?? i18n.tr('features.user.form.label.firstName');
   String get lastNameStr =>
-      lastName ?? 'features.user.form.label.lastName'.tr();
+      lastName ?? i18n.tr('features.user.form.label.lastName');
   String get emailStr => email ?? '';
   String get isActiveStr =>
-      isActive == true ? 'general.active'.tr() : 'general.inactive'.tr();
+      isActive == true
+          ? i18n.tr('general.active')
+          : i18n.tr('general.inactive');
   String get isStaffStr =>
-      isStaff == true ? 'general.yes'.tr() : 'general.no'.tr();
+      isStaff == true ? i18n.tr('general.yes') : i18n.tr('general.no');
   String get dateJoinedStr => dateJoined?.toIso8601String() ?? '';
   String get faceImageStr => faceImage ?? '';
   String get faceUploadedStr =>
-      faceUploaded == true ? 'general.yes'.tr() : 'general.no'.tr();
+      faceUploaded == true ? i18n.tr('general.yes') : i18n.tr('general.no');
   String get avatarStr => avatar ?? '';
   String get groupStr => group ?? '';
   String get createdAtStr => createdAt?.toIso8601String() ?? '';
   String get updatedAtStr => updatedAt?.toIso8601String() ?? '';
+
+  String get fullNameStr =>
+      (firstName?.isNotEmpty == true || lastName?.isNotEmpty == true)
+          ? '$firstName $lastName'
+          : i18n.tr('features.user.form.label.fullName');
+
+  String get handleFullNameStr {
+    if (firstName?.isNotEmpty == true && lastName?.isNotEmpty == true) {
+      return '$firstName $lastName';
+    } else if (firstName?.isNotEmpty == true) {
+      return firstName!;
+    } else if (lastName?.isNotEmpty == true) {
+      return lastName!;
+    }
+    return id ?? '';
+  }
 }

@@ -1,12 +1,14 @@
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+
+// Project imports:
+import 'package:mobile/features/auth/auth.dart';
+import 'package:mobile/features/duty_schedule/duty_schedule.dart';
 import 'package:mobile/features/general/home/presentation/controllers/home_controller.dart';
 import 'package:mobile/features/general/menu/menu.dart';
 import 'package:mobile/features/lab_schedule/lab_schedule.dart';
-import 'package:mobile/features/duty_schedule/duty_schedule.dart';
-
 import 'package:mobile/features/user/user.dart';
-import 'package:mobile/features/auth/auth.dart';
 
 class HomeBinding extends Bindings {
   @override
@@ -97,23 +99,15 @@ class HomeBinding extends Bindings {
     Get.lazyPut<FetchLabScheduleDetailUsecase>(
       () => FetchLabScheduleDetailUsecase(Get.find<LabScheduleRepository>()),
     );
-    Get.lazyPut<UpdateLabScheduleUsecase>(
-      () => UpdateLabScheduleUsecase(Get.find<LabScheduleRepository>()),
-    );
     Get.lazyPut<ApproveLabScheduleUsecase>(
       () => ApproveLabScheduleUsecase(Get.find<LabScheduleRepository>()),
-    );
-    Get.lazyPut<DeleteLabScheduleUsecase>(
-      () => DeleteLabScheduleUsecase(Get.find<LabScheduleRepository>()),
     );
     Get.lazyPut<LabScheduleController>(
       () => LabScheduleController(
         fetchListLabScheduleUsecase: Get.find<FetchListLabScheduleUsecase>(),
         fetchLabScheduleDetailUsecase:
             Get.find<FetchLabScheduleDetailUsecase>(),
-        updateLabScheduleUsecase: Get.find<UpdateLabScheduleUsecase>(),
         approveLabScheduleUsecase: Get.find<ApproveLabScheduleUsecase>(),
-        deleteLabScheduleUsecase: Get.find<DeleteLabScheduleUsecase>(),
       ),
     );
 

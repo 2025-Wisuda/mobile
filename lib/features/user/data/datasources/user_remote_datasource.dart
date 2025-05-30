@@ -1,7 +1,10 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:mobile/core/errors/types/type.dart';
+
+// Project imports:
 import 'package:mobile/core/errors/texts/text.dart';
+import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/user/data/models/model.dart';
 import 'package:mobile/features/user/domain/entities/entity.dart';
 import 'package:mobile/shared/utils/util.dart';
@@ -30,15 +33,12 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     UserFilterParamsModel? params,
   }) async {
     try {
-      LoggerUtil.logInfo('Fetch all user request');
       final queryParams = params?.toQueryParameters() ?? {};
-      final response = await _dio.get(
-        BaseUrlUtil.userUrl,
-        queryParameters: queryParams,
+      final stringParams = queryParams.map(
+        (key, value) => MapEntry(key, value.toString()),
       );
-      LoggerUtil.logInfo(
-        'Fetch all user response: ${LoggerUtil.prettyJson(response.data)}',
-      );
+      final url = BaseUrlUtil.userUrl;
+      final response = await _dio.get(url, queryParameters: stringParams);
       if (response.statusCode == 200) {
         return right(ListUserModel.fromJson(response.data));
       } else {
@@ -47,7 +47,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Fetch all user error: ${e.toString()}');
       return left(ServerFailure(UserText.catchFetchListUser(e)));
     }
   }
@@ -55,11 +54,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<Either<Failure, UserModel>> fetchUserDetail(String userId) async {
     try {
-      LoggerUtil.logInfo('Fetch user detail request: $userId');
-      final response = await _dio.get('${BaseUrlUtil.userUrl}/$userId');
-      LoggerUtil.logInfo(
-        'Fetch user detail response: ${LoggerUtil.prettyJson(response.data)}',
-      );
+      final url = '${BaseUrlUtil.userUrl}/$userId';
+      final response = await _dio.get(url);
       if (response.statusCode == 200) {
         return right(UserModel.fromJson(response.data));
       } else {
@@ -68,7 +64,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Fetch user detail error: ${e.toString()}');
       return left(ServerFailure(UserText.catchFetchUserDetail(e)));
     }
   }
@@ -76,12 +71,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   @override
   Future<Either<Failure, UserModel>> fetchUserProfile() async {
     try {
-      LoggerUtil.logInfo('Fetch user profile request');
-      final response = await _dio.get('${BaseUrlUtil.userUrl}/me');
-      LoggerUtil.logInfo('Fetch user profile url:  ${BaseUrlUtil.userUrl}/me');
-      LoggerUtil.logInfo(
-        'Fetch user profile response: ${LoggerUtil.prettyJson(response.data)}',
-      );
+      final url = '${BaseUrlUtil.userUrl}/me';
+      final response = await _dio.get(url);
       if (response.statusCode == 200) {
         return right(UserModel.fromJson(response.data));
       } else {
@@ -90,8 +81,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logInfo('Fetch user profile url:  ${BaseUrlUtil.userUrl}/me');
-      LoggerUtil.logError('Fetch user profile error: ${e.toString()}');
       return left(ServerFailure(UserText.catchFetchProfile(e)));
     }
   }
@@ -110,16 +99,8 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         if (data.avatar != null)
           'avatar': await MultipartFile.fromFile(data.avatar!.path),
       });
-      LoggerUtil.logInfo(
-        'Update user profile request: ${LoggerUtil.prettyJson(formData)}',
-      );
-      final response = await _dio.put(
-        '${BaseUrlUtil.userUrl}/me',
-        data: formData,
-      );
-      LoggerUtil.logInfo(
-        'Update user profile response: ${LoggerUtil.prettyJson(response.data)}',
-      );
+      final url = '${BaseUrlUtil.userUrl}/me';
+      final response = await _dio.put(url, data: formData);
       if (response.statusCode == 200) {
         return right(UserModel.fromJson(response.data));
       } else {
@@ -128,7 +109,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Update user profile error: ${e.toString()}');
       return left(ServerFailure(UserText.catchUpdateProfile(e)));
     }
   }
@@ -138,20 +118,12 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     ChangeUserPasswordRequestEntity? data,
   ) async {
     try {
+      final url = '${BaseUrlUtil.userUrl}/me/change-password';
       final body = {
         'old_password': data?.oldPassword ?? '',
         'new_password': data?.newPassword ?? '',
       };
-      LoggerUtil.logInfo(
-        'Update password request: ${LoggerUtil.prettyJson(body)}',
-      );
-      final response = await _dio.put(
-        BaseUrlUtil.changePasswordUrl,
-        data: body,
-      );
-      LoggerUtil.logInfo(
-        'Update password response: ${LoggerUtil.prettyJson(response.data)}',
-      );
+      final response = await _dio.put(url, data: body);
       if (response.statusCode == 200) {
         return right(UserModel.fromJson(response.data));
       } else {
@@ -160,7 +132,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Update password error: ${e.toString()}');
       return left(ServerFailure(UserText.catchChangePassword(e)));
     }
   }

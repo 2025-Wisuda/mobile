@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ListLabScheduleEntity {
 
- List<LabScheduleEntity>? get data; PaginationEntity? get pagination;
+ List<LabScheduleEntity>? get data; MetaEntity? get meta;
 /// Create a copy of ListLabScheduleEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $ListLabScheduleEntityCopyWith<ListLabScheduleEntity> get copyWith => _$ListLabS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListLabScheduleEntity&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.pagination, pagination) || other.pagination == pagination));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListLabScheduleEntity&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),pagination);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),meta);
 
 @override
 String toString() {
-  return 'ListLabScheduleEntity(data: $data, pagination: $pagination)';
+  return 'ListLabScheduleEntity(data: $data, meta: $meta)';
 }
 
 
@@ -46,11 +46,11 @@ abstract mixin class $ListLabScheduleEntityCopyWith<$Res>  {
   factory $ListLabScheduleEntityCopyWith(ListLabScheduleEntity value, $Res Function(ListLabScheduleEntity) _then) = _$ListLabScheduleEntityCopyWithImpl;
 @useResult
 $Res call({
- List<LabScheduleEntity>? data, PaginationEntity? pagination
+ List<LabScheduleEntity>? data, MetaEntity? meta
 });
 
 
-$PaginationEntityCopyWith<$Res>? get pagination;
+$MetaEntityCopyWith<$Res>? get meta;
 
 }
 /// @nodoc
@@ -63,24 +63,24 @@ class _$ListLabScheduleEntityCopyWithImpl<$Res>
 
 /// Create a copy of ListLabScheduleEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? pagination = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? meta = freezed,}) {
   return _then(_self.copyWith(
 data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<LabScheduleEntity>?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as PaginationEntity?,
+as List<LabScheduleEntity>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaEntity?,
   ));
 }
 /// Create a copy of ListLabScheduleEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PaginationEntityCopyWith<$Res>? get pagination {
-    if (_self.pagination == null) {
+$MetaEntityCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
     return null;
   }
 
-  return $PaginationEntityCopyWith<$Res>(_self.pagination!, (value) {
-    return _then(_self.copyWith(pagination: value));
+  return $MetaEntityCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }
@@ -90,7 +90,7 @@ $PaginationEntityCopyWith<$Res>? get pagination {
 
 
 class _ListLabScheduleEntity implements ListLabScheduleEntity {
-  const _ListLabScheduleEntity({required final  List<LabScheduleEntity>? data, required this.pagination}): _data = data;
+  const _ListLabScheduleEntity({required final  List<LabScheduleEntity>? data, required this.meta}): _data = data;
   
 
  final  List<LabScheduleEntity>? _data;
@@ -102,7 +102,7 @@ class _ListLabScheduleEntity implements ListLabScheduleEntity {
   return EqualUnmodifiableListView(value);
 }
 
-@override final  PaginationEntity? pagination;
+@override final  MetaEntity? meta;
 
 /// Create a copy of ListLabScheduleEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -114,16 +114,16 @@ _$ListLabScheduleEntityCopyWith<_ListLabScheduleEntity> get copyWith => __$ListL
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListLabScheduleEntity&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.pagination, pagination) || other.pagination == pagination));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListLabScheduleEntity&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),pagination);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),meta);
 
 @override
 String toString() {
-  return 'ListLabScheduleEntity(data: $data, pagination: $pagination)';
+  return 'ListLabScheduleEntity(data: $data, meta: $meta)';
 }
 
 
@@ -134,11 +134,11 @@ abstract mixin class _$ListLabScheduleEntityCopyWith<$Res> implements $ListLabSc
   factory _$ListLabScheduleEntityCopyWith(_ListLabScheduleEntity value, $Res Function(_ListLabScheduleEntity) _then) = __$ListLabScheduleEntityCopyWithImpl;
 @override @useResult
 $Res call({
- List<LabScheduleEntity>? data, PaginationEntity? pagination
+ List<LabScheduleEntity>? data, MetaEntity? meta
 });
 
 
-@override $PaginationEntityCopyWith<$Res>? get pagination;
+@override $MetaEntityCopyWith<$Res>? get meta;
 
 }
 /// @nodoc
@@ -151,11 +151,11 @@ class __$ListLabScheduleEntityCopyWithImpl<$Res>
 
 /// Create a copy of ListLabScheduleEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? pagination = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? meta = freezed,}) {
   return _then(_ListLabScheduleEntity(
 data: freezed == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<LabScheduleEntity>?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as PaginationEntity?,
+as List<LabScheduleEntity>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaEntity?,
   ));
 }
 
@@ -163,13 +163,13 @@ as PaginationEntity?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PaginationEntityCopyWith<$Res>? get pagination {
-    if (_self.pagination == null) {
+$MetaEntityCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
     return null;
   }
 
-  return $PaginationEntityCopyWith<$Res>(_self.pagination!, (value) {
-    return _then(_self.copyWith(pagination: value));
+  return $MetaEntityCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }

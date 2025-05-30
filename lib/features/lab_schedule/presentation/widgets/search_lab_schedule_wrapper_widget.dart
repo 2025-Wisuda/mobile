@@ -1,14 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/core/core.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/features/lab_schedule/lab_schedule.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:easy_localization/easy_localization.dart'
-    show StringTranslateExtension;
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:mobile/shared/helpers/helper.dart';
-import 'package:mobile/shared/widgets/loading/loading.dart';
-import 'package:mobile/shared/widgets/text/error_empty_text_widget.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class SearchLabScheduleWrapperWidget extends StatelessWidget {
   const SearchLabScheduleWrapperWidget({super.key});
@@ -23,38 +23,36 @@ class SearchLabScheduleWrapperWidget extends StatelessWidget {
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: Padding(
-              padding: const EdgeInsets.only(
-                top: 8,
-                left: 16,
-                right: 16,
-                bottom: 16,
-              ),
+              padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
               child: Obx(() {
                 final state =
                     labScheduleController.searchLabScheduleState.value;
                 final schedules =
                     labScheduleController.listLabScheduleEntity.value?.data ??
                     [];
+                final errorMessage = labScheduleController.errorMessage.value;
+                final emptyMessage = i18n.tr(
+                  'features.schedule.lab.fetchLabScheduleDetail.empty',
+                );
+                final loadedWidget = LabScheduleListItemWidget(
+                  schedules: schedules,
+                );
+                final emptyWidget = errorEmptyTextWidget(
+                  context,
+                  message: emptyMessage,
+                );
+                final errorWidget = errorEmptyTextWidget(
+                  context,
+                  message: errorMessage,
+                );
 
-                switch (state) {
-                  case FetchStateEnum.loading:
-                    return _loadingStateWidget(context);
-                  case FetchStateEnum.loaded:
-                    return LabScheduleListItemWidget(schedules: schedules);
-                  case FetchStateEnum.empty:
-                    return errorEmptyTextWidget(
-                      context,
-                      message:
-                          'features.schedule.lab.searchLabSchedule.empty'.tr(),
-                    );
-                  case FetchStateEnum.error:
-                    return errorEmptyTextWidget(
-                      context,
-                      message: labScheduleController.errorMessage.value,
-                    );
-                  default:
-                    return const SizedBox.shrink();
-                }
+                return state.toWidget(
+                  loadingWidget: _loadingStateWidget(context),
+                  loadedWidget: loadedWidget,
+                  emptyWidget: emptyWidget,
+                  errorWidget: errorWidget,
+                  initialWidget: SizedBox.shrink(),
+                );
               }),
             ),
           ),
@@ -64,16 +62,14 @@ class SearchLabScheduleWrapperWidget extends StatelessWidget {
   }
 
   Widget _loadingStateWidget(BuildContext context) {
+    final text = i18n.tr('features.schedule.lab.searchLabSchedule.loading');
     return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 4,
         children: [
-          Text(
-            'features.schedule.lab.searchLabSchedule.loading'.tr(),
-            style: context.text.bodyMedium,
-          ),
+          Text(text, style: context.bodyMediumW(500)),
           customLoadingWidget,
         ],
       ),

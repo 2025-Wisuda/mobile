@@ -1,6 +1,7 @@
-import 'package:mobile/features/lab_schedule/data/models/lab_schedule_model.dart';
-import 'package:mobile/features/lab_schedule/domain/entities/lab_schedule_entity.dart';
-import 'package:mobile/features/user/data/models/user_model_extension.dart';
+// Project imports:
+import 'package:mobile/features/lab_schedule/data/models/model.dart';
+import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
+import 'package:mobile/features/user/data/models/model.dart';
 
 extension LabScheduleModelExtension on LabScheduleModel {
   LabScheduleEntity toEntity() {

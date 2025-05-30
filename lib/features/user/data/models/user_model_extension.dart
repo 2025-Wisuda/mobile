@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:mobile/features/user/data/models/model.dart';
 import 'package:mobile/features/user/domain/entities/entity.dart';
 

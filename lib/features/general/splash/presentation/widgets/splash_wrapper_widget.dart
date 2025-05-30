@@ -1,5 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
 
 class SplashWrapperWidget extends StatelessWidget {
   const SplashWrapperWidget({super.key});
@@ -17,7 +20,10 @@ class SplashWrapperWidget extends StatelessWidget {
             size: 100,
             color: Theme.of(context).colorScheme.primary,
           ),
-          Text('appName'.tr(), style: Theme.of(context).textTheme.bodyMedium),
+          Text(
+            i18n.tr('appName'),
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
         ],
       ),
     );

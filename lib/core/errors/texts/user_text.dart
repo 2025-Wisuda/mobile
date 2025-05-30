@@ -1,29 +1,30 @@
+// Package imports:
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as i18n;
 
 class UserText {
   static String tryFetchListUser(int? statusCode) {
     switch (statusCode) {
       case 400:
-        return 'features.user.fetchListUser.error.400'.tr();
+        return i18n.tr('features.user.fetchListUser.error.400');
       case 401:
-        return 'features.user.fetchListUser.error.401'.tr();
+        return i18n.tr('features.user.fetchListUser.error.401');
       case 403:
-        return 'features.user.fetchListUser.error.403'.tr();
+        return i18n.tr('features.user.fetchListUser.error.403');
       case 404:
-        return 'features.user.fetchListUser.error.404'.tr();
+        return i18n.tr('features.user.fetchListUser.error.404');
       case 408:
-        return 'features.user.fetchListUser.error.408'.tr();
+        return i18n.tr('features.user.fetchListUser.error.408');
       case 409:
-        return 'features.user.fetchListUser.error.409'.tr();
+        return i18n.tr('features.user.fetchListUser.error.409');
       case 422:
-        return 'features.user.fetchListUser.error.422'.tr();
+        return i18n.tr('features.user.fetchListUser.error.422');
       case 429:
-        return 'features.user.fetchListUser.error.429'.tr();
+        return i18n.tr('features.user.fetchListUser.error.429');
       case 500:
-        return 'features.user.fetchListUser.error.500'.tr();
+        return i18n.tr('features.user.fetchListUser.error.500');
       default:
-        return 'features.user.fetchListUser.error.default'.tr();
+        return i18n.tr('features.user.fetchListUser.error.default');
     }
   }
 
@@ -31,32 +32,32 @@ class UserText {
     if (e.response != null && e.response!.statusCode != null) {
       return tryFetchListUser(e.response!.statusCode);
     } else {
-      return 'features.user.fetchListUser.error.default'.tr();
+      return i18n.tr('features.user.fetchListUser.error.default');
     }
   }
 
   static String tryFetchUserDetail(int? statusCode) {
     switch (statusCode) {
       case 400:
-        return 'features.user.fetchUserDetail.error.400'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.400');
       case 401:
-        return 'features.user.fetchUserDetail.error.401'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.401');
       case 403:
-        return 'features.user.fetchUserDetail.error.403'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.403');
       case 404:
-        return 'features.user.fetchUserDetail.error.404'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.404');
       case 408:
-        return 'features.user.fetchUserDetail.error.408'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.408');
       case 409:
-        return 'features.user.fetchUserDetail.error.409'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.409');
       case 422:
-        return 'features.user.fetchUserDetail.error.422'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.422');
       case 429:
-        return 'features.user.fetchUserDetail.error.429'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.429');
       case 500:
-        return 'features.user.fetchUserDetail.error.500'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.500');
       default:
-        return 'features.user.fetchUserDetail.error.default'.tr();
+        return i18n.tr('features.user.fetchUserDetail.error.default');
     }
   }
 
@@ -64,32 +65,32 @@ class UserText {
     if (e.response != null && e.response!.statusCode != null) {
       return tryFetchUserDetail(e.response!.statusCode);
     } else {
-      return 'features.user.fetchUserDetail.error.default'.tr();
+      return i18n.tr('features.user.fetchUserDetail.error.default');
     }
   }
 
   static String tryFetchProfile(int? statusCode) {
     switch (statusCode) {
       case 400:
-        return 'features.user.fetchProfile.error.400'.tr();
+        return i18n.tr('features.user.fetchProfile.error.400');
       case 401:
-        return 'features.user.fetchProfile.error.401'.tr();
+        return i18n.tr('features.user.fetchProfile.error.401');
       case 403:
-        return 'features.user.fetchProfile.error.403'.tr();
+        return i18n.tr('features.user.fetchProfile.error.403');
       case 404:
-        return 'features.user.fetchProfile.error.404'.tr();
+        return i18n.tr('features.user.fetchProfile.error.404');
       case 408:
-        return 'features.user.fetchProfile.error.408'.tr();
+        return i18n.tr('features.user.fetchProfile.error.408');
       case 409:
-        return 'features.user.fetchProfile.error.409'.tr();
+        return i18n.tr('features.user.fetchProfile.error.409');
       case 422:
-        return 'features.user.fetchProfile.error.422'.tr();
+        return i18n.tr('features.user.fetchProfile.error.422');
       case 429:
-        return 'features.user.fetchProfile.error.429'.tr();
+        return i18n.tr('features.user.fetchProfile.error.429');
       case 500:
-        return 'features.user.fetchProfile.error.500'.tr();
+        return i18n.tr('features.user.fetchProfile.error.500');
       default:
-        return 'features.user.fetchProfile.error.default'.tr();
+        return i18n.tr('features.user.fetchProfile.error.default');
     }
   }
 
@@ -97,32 +98,32 @@ class UserText {
     if (e.response != null && e.response!.statusCode != null) {
       return tryFetchProfile(e.response!.statusCode);
     } else {
-      return 'features.user.fetchProfile.error.default'.tr();
+      return i18n.tr('features.user.fetchProfile.error.default');
     }
   }
 
   static String tryUpdateProfile(int? statusCode) {
     switch (statusCode) {
       case 400:
-        return 'features.user.updateProfile.error.400'.tr();
+        return i18n.tr('features.user.updateProfile.error.400');
       case 401:
-        return 'features.user.updateProfile.error.401'.tr();
+        return i18n.tr('features.user.updateProfile.error.401');
       case 403:
-        return 'features.user.updateProfile.error.403'.tr();
+        return i18n.tr('features.user.updateProfile.error.403');
       case 404:
-        return 'features.user.updateProfile.error.404'.tr();
+        return i18n.tr('features.user.updateProfile.error.404');
       case 408:
-        return 'features.user.updateProfile.error.408'.tr();
+        return i18n.tr('features.user.updateProfile.error.408');
       case 409:
-        return 'features.user.updateProfile.error.409'.tr();
+        return i18n.tr('features.user.updateProfile.error.409');
       case 422:
-        return 'features.user.updateProfile.error.422'.tr();
+        return i18n.tr('features.user.updateProfile.error.422');
       case 429:
-        return 'features.user.updateProfile.error.429'.tr();
+        return i18n.tr('features.user.updateProfile.error.429');
       case 500:
-        return 'features.user.updateProfile.error.500'.tr();
+        return i18n.tr('features.user.updateProfile.error.500');
       default:
-        return 'features.user.updateProfile.error.default'.tr();
+        return i18n.tr('features.user.updateProfile.error.default');
     }
   }
 
@@ -130,32 +131,32 @@ class UserText {
     if (e.response != null && e.response!.statusCode != null) {
       return tryUpdateProfile(e.response!.statusCode);
     } else {
-      return 'features.user.updateProfile.error.default'.tr();
+      return i18n.tr('features.user.updateProfile.error.default');
     }
   }
 
   static String tryChangePassword(int? statusCode) {
     switch (statusCode) {
       case 400:
-        return 'features.user.updatePassword.error.400'.tr();
+        return i18n.tr('features.user.updatePassword.error.400');
       case 401:
-        return 'features.user.updatePassword.error.401'.tr();
+        return i18n.tr('features.user.updatePassword.error.401');
       case 403:
-        return 'features.user.updatePassword.error.403'.tr();
+        return i18n.tr('features.user.updatePassword.error.403');
       case 404:
-        return 'features.user.updatePassword.error.404'.tr();
+        return i18n.tr('features.user.updatePassword.error.404');
       case 408:
-        return 'features.user.updatePassword.error.408'.tr();
+        return i18n.tr('features.user.updatePassword.error.408');
       case 409:
-        return 'features.user.updatePassword.error.409'.tr();
+        return i18n.tr('features.user.updatePassword.error.409');
       case 422:
-        return 'features.user.updatePassword.error.422'.tr();
+        return i18n.tr('features.user.updatePassword.error.422');
       case 429:
-        return 'features.user.updatePassword.error.429'.tr();
+        return i18n.tr('features.user.updatePassword.error.429');
       case 500:
-        return 'features.user.updatePassword.error.500'.tr();
+        return i18n.tr('features.user.updatePassword.error.500');
       default:
-        return 'features.user.updatePassword.error.default'.tr();
+        return i18n.tr('features.user.updatePassword.error.default');
     }
   }
 
@@ -163,7 +164,7 @@ class UserText {
     if (e.response != null && e.response!.statusCode != null) {
       return tryChangePassword(e.response!.statusCode);
     } else {
-      return 'features.user.updatePassword.error.default'.tr();
+      return i18n.tr('features.user.updatePassword.error.default');
     }
   }
 }

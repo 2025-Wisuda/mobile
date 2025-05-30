@@ -1,8 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
-import 'package:mobile/shared/helpers/helper.dart';
+
+// Project imports:
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 import 'package:mobile/shared/widgets/button/custom_button_menu_widget.dart';
 
 class MainMenuItemWidget extends StatelessWidget {
@@ -32,7 +39,7 @@ class MainMenuItemWidget extends StatelessWidget {
         spacing: 4,
         children: [
           CustomButtonMenuWidget(
-            foregroundColor: context.color.primaryContainer,
+            foregroundColor: context.primaryContainer,
             backgroundColor: backgroundColor,
             onPressed: () {
               Get.toNamed(routeName);
@@ -44,10 +51,9 @@ class MainMenuItemWidget extends StatelessWidget {
           ),
           Text(
             nameMenu.tr(),
-            style: context.text.bodySmall!.copyWith(
-              color: context.color.onSurfaceVariant,
-              fontWeight: FontWeight.w600,
-            ),
+            style: context
+                .bodySmallW(600)
+                .copyWith(color: context.onSurfaceVariant),
             textAlign: TextAlign.center,
             overflow: TextOverflow.visible,
             maxLines: 2,

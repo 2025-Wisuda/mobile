@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:mobile/features/lab_schedule/presentation/widgets/widget.dart';
 
 class ListLabScheduleScreen extends StatelessWidget {
@@ -9,7 +12,7 @@ class ListLabScheduleScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(24),
+          preferredSize: const Size.fromHeight(25),
           child: ListLabScheduleAppBarWidget(),
         ),
       ),

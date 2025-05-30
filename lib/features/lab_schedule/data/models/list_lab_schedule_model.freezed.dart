@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ListLabScheduleModel {
 
-@JsonKey(name: 'data') List<LabScheduleModel>? get data;@JsonKey(name: 'meta') PaginationModel? get pagination;
+@JsonKey(name: 'data', includeIfNull: false) List<LabScheduleModel>? get data;@JsonKey(name: 'meta', includeIfNull: false) MetaModel? get meta;
 /// Create a copy of ListLabScheduleModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $ListLabScheduleModelCopyWith<ListLabScheduleModel> get copyWith => _$ListLabSch
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListLabScheduleModel&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.pagination, pagination) || other.pagination == pagination));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListLabScheduleModel&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),pagination);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),meta);
 
 @override
 String toString() {
-  return 'ListLabScheduleModel(data: $data, pagination: $pagination)';
+  return 'ListLabScheduleModel(data: $data, meta: $meta)';
 }
 
 
@@ -49,11 +49,11 @@ abstract mixin class $ListLabScheduleModelCopyWith<$Res>  {
   factory $ListLabScheduleModelCopyWith(ListLabScheduleModel value, $Res Function(ListLabScheduleModel) _then) = _$ListLabScheduleModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'data') List<LabScheduleModel>? data,@JsonKey(name: 'meta') PaginationModel? pagination
+@JsonKey(name: 'data', includeIfNull: false) List<LabScheduleModel>? data,@JsonKey(name: 'meta', includeIfNull: false) MetaModel? meta
 });
 
 
-$PaginationModelCopyWith<$Res>? get pagination;
+$MetaModelCopyWith<$Res>? get meta;
 
 }
 /// @nodoc
@@ -66,24 +66,24 @@ class _$ListLabScheduleModelCopyWithImpl<$Res>
 
 /// Create a copy of ListLabScheduleModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? pagination = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? meta = freezed,}) {
   return _then(_self.copyWith(
 data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<LabScheduleModel>?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as PaginationModel?,
+as List<LabScheduleModel>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaModel?,
   ));
 }
 /// Create a copy of ListLabScheduleModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PaginationModelCopyWith<$Res>? get pagination {
-    if (_self.pagination == null) {
+$MetaModelCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
     return null;
   }
 
-  return $PaginationModelCopyWith<$Res>(_self.pagination!, (value) {
-    return _then(_self.copyWith(pagination: value));
+  return $MetaModelCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }
@@ -93,11 +93,11 @@ $PaginationModelCopyWith<$Res>? get pagination {
 @JsonSerializable()
 
 class _ListLabScheduleModel implements ListLabScheduleModel {
-  const _ListLabScheduleModel({@JsonKey(name: 'data') final  List<LabScheduleModel>? data, @JsonKey(name: 'meta') this.pagination}): _data = data;
+  const _ListLabScheduleModel({@JsonKey(name: 'data', includeIfNull: false) final  List<LabScheduleModel>? data, @JsonKey(name: 'meta', includeIfNull: false) this.meta}): _data = data;
   factory _ListLabScheduleModel.fromJson(Map<String, dynamic> json) => _$ListLabScheduleModelFromJson(json);
 
  final  List<LabScheduleModel>? _data;
-@override@JsonKey(name: 'data') List<LabScheduleModel>? get data {
+@override@JsonKey(name: 'data', includeIfNull: false) List<LabScheduleModel>? get data {
   final value = _data;
   if (value == null) return null;
   if (_data is EqualUnmodifiableListView) return _data;
@@ -105,7 +105,7 @@ class _ListLabScheduleModel implements ListLabScheduleModel {
   return EqualUnmodifiableListView(value);
 }
 
-@override@JsonKey(name: 'meta') final  PaginationModel? pagination;
+@override@JsonKey(name: 'meta', includeIfNull: false) final  MetaModel? meta;
 
 /// Create a copy of ListLabScheduleModel
 /// with the given fields replaced by the non-null parameter values.
@@ -120,16 +120,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListLabScheduleModel&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.pagination, pagination) || other.pagination == pagination));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListLabScheduleModel&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),pagination);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),meta);
 
 @override
 String toString() {
-  return 'ListLabScheduleModel(data: $data, pagination: $pagination)';
+  return 'ListLabScheduleModel(data: $data, meta: $meta)';
 }
 
 
@@ -140,11 +140,11 @@ abstract mixin class _$ListLabScheduleModelCopyWith<$Res> implements $ListLabSch
   factory _$ListLabScheduleModelCopyWith(_ListLabScheduleModel value, $Res Function(_ListLabScheduleModel) _then) = __$ListLabScheduleModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'data') List<LabScheduleModel>? data,@JsonKey(name: 'meta') PaginationModel? pagination
+@JsonKey(name: 'data', includeIfNull: false) List<LabScheduleModel>? data,@JsonKey(name: 'meta', includeIfNull: false) MetaModel? meta
 });
 
 
-@override $PaginationModelCopyWith<$Res>? get pagination;
+@override $MetaModelCopyWith<$Res>? get meta;
 
 }
 /// @nodoc
@@ -157,11 +157,11 @@ class __$ListLabScheduleModelCopyWithImpl<$Res>
 
 /// Create a copy of ListLabScheduleModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? pagination = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? meta = freezed,}) {
   return _then(_ListLabScheduleModel(
 data: freezed == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<LabScheduleModel>?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as PaginationModel?,
+as List<LabScheduleModel>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaModel?,
   ));
 }
 
@@ -169,13 +169,13 @@ as PaginationModel?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PaginationModelCopyWith<$Res>? get pagination {
-    if (_self.pagination == null) {
+$MetaModelCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
     return null;
   }
 
-  return $PaginationModelCopyWith<$Res>(_self.pagination!, (value) {
-    return _then(_self.copyWith(pagination: value));
+  return $MetaModelCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }

@@ -1,6 +1,11 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:mobile/core/core.dart';
-import 'package:mobile/shared/shared.dart';
+import 'theme.dart';
+
+// Project imports:
 
 class AppTheme {
   static const _kLightThemeFont = 'Inter',
@@ -20,6 +25,9 @@ class AppTheme {
     appBarTheme: AppBarThemeData.kAppBarThemeLight,
     searchBarTheme: SearchBarThemeX.kSearchBarThemeDataLight,
     tabBarTheme: TabBarThemeDataX.kTabBarThemeLight,
+    dropdownMenuTheme: DropdownMenuThemeX.kDropdownMenuThemeDataLight,
+    iconTheme: IconThemeData(color: ColorConstant.kNeutral900),
+    scrollbarTheme: ScrollbarThemeX.kScrollbarThemeLight,
   );
 
   // Change this theme if want to use a different theme for dark theme
@@ -38,5 +46,8 @@ class AppTheme {
     appBarTheme: AppBarThemeData.kAppBarThemeDark,
     searchBarTheme: SearchBarThemeX.kSearchBarThemeDataDark,
     tabBarTheme: TabBarThemeDataX.kTabBarThemeDark,
+    dropdownMenuTheme: DropdownMenuThemeX.kDropdownMenuThemeDataDark,
+    iconTheme: IconThemeData(color: ColorConstant.kNeutral50),
+    scrollbarTheme: ScrollbarThemeX.kScrollbarThemeDark,
   );
 }

@@ -1,4 +1,7 @@
+// Dart imports:
 import 'dart:io';
+
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'update_user_profile_request_model.freezed.dart';

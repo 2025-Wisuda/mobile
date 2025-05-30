@@ -1,8 +1,12 @@
 // ignore_for_file: unused_local_variable
 
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/utils.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/features/general/splash/presentation/presentation.dart';
 
 class SplashScreen extends StatelessWidget {

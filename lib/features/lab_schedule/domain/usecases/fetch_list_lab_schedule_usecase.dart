@@ -1,8 +1,11 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
 import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/lab_schedule/data/models/lab_schedule_filter_params_model.dart';
-import 'package:mobile/features/lab_schedule/domain/entities/list_lab_schedule_entity.dart';
-import 'package:mobile/features/lab_schedule/domain/repositories/lab_schedule_repository.dart';
+import 'package:mobile/features/lab_schedule/data/models/model.dart';
+import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
+import 'package:mobile/features/lab_schedule/domain/repositories/repository.dart';
 
 class FetchListLabScheduleUsecase {
   final LabScheduleRepository labScheduleRepository;

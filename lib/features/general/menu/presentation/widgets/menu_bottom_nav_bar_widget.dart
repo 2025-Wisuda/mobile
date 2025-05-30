@@ -1,8 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
+import 'package:mobile/features/general/menu/presentation/widgets/menu_bottom_nav_bar_item_widget.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
+
 import 'package:mobile/features/general/menu/presentation/controllers/menu_controller.dart'
     as menu;
-import 'package:mobile/features/general/menu/presentation/widgets/menu_bottom_nav_bar_item_widget.dart';
 
 class MenuBottomNavBarWidget extends StatelessWidget {
   const MenuBottomNavBarWidget({super.key});
@@ -19,9 +26,9 @@ class MenuBottomNavBarWidget extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(
         () => BottomAppBar(
-          shadowColor: Theme.of(context).colorScheme.onSurface,
+          shadowColor: context.onSurface,
           clipBehavior: Clip.antiAlias,
-          surfaceTintColor: Theme.of(context).colorScheme.shadow,
+          surfaceTintColor: context.shadow,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(menuController.navMenuList.length, (index) {
@@ -34,10 +41,7 @@ class MenuBottomNavBarWidget extends StatelessWidget {
                 labelMenu: menu.nameMenu,
                 indexMenu: index,
                 isSelected: isSelected,
-                color:
-                    isSelected
-                        ? Theme.of(context).colorScheme.primary
-                        : Theme.of(context).colorScheme.onSurfaceVariant,
+                color: isSelected ? context.primary : context.onSurfaceVariant,
               );
             }),
           ),

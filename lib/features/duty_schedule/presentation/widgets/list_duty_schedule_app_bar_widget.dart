@@ -1,10 +1,13 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:mobile/features/duty_schedule/presentation/controllers/duty_schedule_controller.dart';
-import 'package:mobile/shared/widgets/app_bar/custom_app_bar_widget.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+import 'package:get/get.dart';
+
+// Project imports:
+import 'package:mobile/features/duty_schedule/presentation/controllers/controller.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class ListDutyScheduleAppBarWidget extends StatelessWidget {
   const ListDutyScheduleAppBarWidget({super.key});
@@ -20,7 +23,7 @@ class ListDutyScheduleAppBarWidget extends StatelessWidget {
         dutyScheduleController.fetchByTabIndex(0);
       },
 
-      titleAppBar: 'features.menu.dutySchedule'.tr(),
+      titleAppBar: i18n.tr('features.menu.dutySchedule'),
     );
   }
 }

@@ -1,10 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:mobile/core/enums/states/submit_state_enum.dart';
-import 'package:mobile/features/auth/presentation/controllers/auth_controller.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+import 'package:get/get.dart';
+
+// Project imports:
+import 'package:mobile/core/enums/enum.dart';
+import 'package:mobile/features/auth/presentation/controllers/controller.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
 class LoginButtonWidget extends StatelessWidget {
@@ -18,8 +22,8 @@ class LoginButtonWidget extends StatelessWidget {
       () => CustomButtonWidget(
         backgroundColor: WidgetStateProperty.all<Color>(
           authController.isFormValid.value
-              ? Theme.of(context).colorScheme.primaryFixed
-              : Theme.of(context).colorScheme.inversePrimary,
+              ? context.primaryFixed
+              : context.inversePrimary,
         ),
         onPressed:
             authController.isFormValid.value
@@ -31,14 +35,15 @@ class LoginButtonWidget extends StatelessWidget {
             authController.state.value == SubmitStateEnum.loading
                 ? customLoadingWidget
                 : Text(
-                  'features.auth.login.button.login'.tr(),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color:
-                        authController.isFormValid.value
-                            ? Theme.of(context).colorScheme.surfaceContainer
-                            : Theme.of(context).colorScheme.surface,
-                  ),
+                  i18n.tr('features.auth.login.button.login'),
+                  style: context
+                      .bodyMediumW(600)
+                      .copyWith(
+                        color:
+                            authController.isFormValid.value
+                                ? context.surfaceContainer
+                                : context.surface,
+                      ),
                 ),
       ),
     );

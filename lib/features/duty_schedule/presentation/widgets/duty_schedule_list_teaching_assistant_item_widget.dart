@@ -1,6 +1,9 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/features/duty_schedule/domain/entities/duty_schedule_entity.dart';
-import 'package:mobile/features/duty_schedule/presentation/widgets/duty_schedule_teaching_assistant_item_widget.dart';
+
+// Project imports:
+import 'package:mobile/features/duty_schedule/domain/entities/entity.dart';
+import 'package:mobile/features/duty_schedule/presentation/widgets/widget.dart';
 
 class DutyScheduleListTeachingAssistantItemWidget extends StatelessWidget {
   final List<DutyScheduleEntity> schedules;

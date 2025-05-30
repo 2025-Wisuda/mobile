@@ -12,11 +12,11 @@ _ListUserModel _$ListUserModelFromJson(Map<String, dynamic> json) =>
           (json['data'] as List<dynamic>?)
               ?.map((e) => UserModel.fromJson(e as Map<String, dynamic>))
               .toList(),
-      pagination:
+      meta:
           json['meta'] == null
               ? null
-              : PaginationModel.fromJson(json['meta'] as Map<String, dynamic>),
+              : MetaModel.fromJson(json['meta'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ListUserModelToJson(_ListUserModel instance) =>
-    <String, dynamic>{'data': instance.data, 'meta': instance.pagination};
+    <String, dynamic>{'data': instance.data, 'meta': instance.meta};

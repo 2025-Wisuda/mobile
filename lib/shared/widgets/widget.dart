@@ -3,4 +3,7 @@ export 'button/button.dart';
 export 'dialog/dialog.dart';
 export 'icon/icon.dart';
 export 'loading/loading.dart';
-export 'menu/menu.dart';
+export 'dropdown/dropdown.dart';
+export 'image/image.dart';
+export 'text/text.dart';
+export 'app_bar/app_bar.dart';

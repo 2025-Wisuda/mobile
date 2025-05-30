@@ -1,5 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/helpers/helper.dart';
+
+// Project imports:
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 
 class CustomButtonSearchNavigationWidget extends StatelessWidget {
   final String? hintText;
@@ -35,10 +38,10 @@ class CustomButtonSearchNavigationWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius ?? 8),
             border: Border.all(
-              color: borderColor ?? context.color.outlineVariant,
+              color: borderColor ?? context.outlineVariant,
               width: 1.0,
             ),
-            color: backgroundColor ?? context.color.surface,
+            color: backgroundColor ?? context.surface,
           ),
           child: Row(
             children: [
@@ -56,9 +59,8 @@ class CustomButtonSearchNavigationWidget extends StatelessWidget {
                       hintText ?? '',
                       style: context.text.bodyMedium?.copyWith(
                         color:
-                            textColor ??
-                            // ignore: deprecated_member_use
-                            context.color.onSurface.withOpacity(0.6),
+                            textColor ?? context.onSurface
+                              ..withValues(alpha: 0.6),
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),

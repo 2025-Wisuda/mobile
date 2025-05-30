@@ -1,28 +1,33 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/core/core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:mobile/features/duty_schedule/data/models/duty_schedule_filter_params_model.dart';
-import 'package:mobile/features/duty_schedule/presentation/controllers/duty_schedule_controller.dart';
-import 'package:mobile/features/duty_schedule/presentation/widgets/duty_schedule_list_teaching_assistant_item_widget.dart';
-import 'package:mobile/shared/shared.dart';
-import 'package:mobile/shared/widgets/text/error_empty_text_widget.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
+// Project imports:
+import 'package:mobile/core/core.dart';
+import 'package:mobile/features/duty_schedule/data/models/model.dart';
+import 'package:mobile/features/duty_schedule/presentation/controllers/controller.dart';
+import 'package:mobile/features/duty_schedule/presentation/widgets/widget.dart';
+import 'package:mobile/shared/helpers/helper.dart';
+import 'package:mobile/shared/routes/route.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class HomeDutyScheduleSectionWidget extends StatelessWidget {
   const HomeDutyScheduleSectionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _dutyScheduleList(context);
+    return _content(context);
   }
 
-  Widget _dutyScheduleList(BuildContext context) {
+  Widget _content(BuildContext context) {
     final dutyScheduleController = Get.find<DutyScheduleController>();
-    final dayKey = DateHelper.getCurrentEnglishDay().toLowerCase();
+    final dayKey = DateHelper.getCurrentDayInEnglish().toLowerCase();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       dutyScheduleController.fetchDutySchedule(
@@ -42,63 +47,56 @@ class HomeDutyScheduleSectionWidget extends StatelessWidget {
       final schedules =
           dutyScheduleController.listDutyScheduleEntity.value?.data ?? [];
 
-      switch (state) {
-        case FetchStateEnum.loading:
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _dutyScheduleHeader(context),
-              Skeletonizer(
-                child: DutyScheduleListTeachingAssistantItemWidget(
-                  schedules: schedules,
-                ),
-              ),
-            ],
-          );
-        case FetchStateEnum.loaded:
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _dutyScheduleHeader(context),
-              DutyScheduleListTeachingAssistantItemWidget(schedules: schedules),
-            ],
-          );
-        case FetchStateEnum.empty:
-          return Column(
-            children: [
-              errorEmptyTextWidget(
-                context,
-                message: 'features.home.dutySchedule.empty'.tr(),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.toNamed(AppRoute.dutySchedule);
-                },
-                child: Text(
-                  'features.home.dutySchedule.seeScheduleOtherDay'.tr(),
-                  style: context.text.bodyMedium!.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: context.color.primary,
-                  ),
-                ),
-              ),
-            ],
-          );
-        case FetchStateEnum.error:
-          return errorEmptyTextWidget(
-            context,
-            message: dutyScheduleController.errorMessage.value,
-          );
-        default:
-          return const SizedBox.shrink();
-      }
+      final errorMessage = dutyScheduleController.errorMessage.value;
+      final emptyMessage = i18n.tr('features.home.dutySchedule.empty');
+      final loadedWidget = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _header(context),
+          DutyScheduleListTeachingAssistantItemWidget(schedules: schedules),
+        ],
+      );
+      final loadingWidget = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _header(context),
+          Skeletonizer(
+            child: DutyScheduleListTeachingAssistantItemWidget(
+              schedules: schedules,
+            ),
+          ),
+        ],
+      );
+      final emptyWidget = Column(
+        children: [
+          errorEmptyTextWidget(context, message: emptyMessage),
+          TextButton(
+            onPressed: () {
+              Get.toNamed(AppRoute.dutySchedule);
+            },
+            child: Text(
+              i18n.tr('features.home.dutySchedule.seeScheduleOtherDay'),
+              style: context.bodyMediumW(600).copyWith(color: context.primary),
+            ),
+          ),
+        ],
+      ).py(16);
+      final errorWidget = errorEmptyTextWidget(context, message: errorMessage);
+
+      return state.toWidget(
+        loadingWidget: loadingWidget,
+        loadedWidget: loadedWidget,
+        emptyWidget: emptyWidget,
+        errorWidget: errorWidget,
+        initialWidget: loadingWidget,
+      );
     });
   }
 
-  Widget _dutyScheduleHeader(BuildContext context) {
+  Widget _header(BuildContext context) {
     return Text(
-      'features.home.dutySchedule.title'.tr(),
-      style: context.text.bodyMedium!.copyWith(fontWeight: FontWeight.w600),
+      i18n.tr('features.home.dutySchedule.title'),
+      style: context.bodyMediumW(600),
     );
   }
 }

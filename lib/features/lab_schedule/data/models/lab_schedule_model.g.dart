@@ -44,18 +44,24 @@ _LabScheduleModel _$LabScheduleModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$LabScheduleModelToJson(_LabScheduleModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'activity_type': instance.activityType,
-      'activity_type_display': instance.activityTypeDisplay,
-      'activity_description': instance.activityDescription,
-      'schedule_date': instance.scheduleDate?.toIso8601String(),
-      'start_time': instance.startTime,
-      'end_time': instance.endTime,
-      'created_by': instance.createdBy,
-      'is_active': instance.isActive,
+      if (instance.id case final value?) 'id': value,
+      if (instance.activityType case final value?) 'activity_type': value,
+      if (instance.activityTypeDisplay case final value?)
+        'activity_type_display': value,
+      if (instance.activityDescription case final value?)
+        'activity_description': value,
+      if (instance.scheduleDate?.toIso8601String() case final value?)
+        'schedule_date': value,
+      if (instance.startTime case final value?) 'start_time': value,
+      if (instance.endTime case final value?) 'end_time': value,
+      if (instance.createdBy case final value?) 'created_by': value,
+      if (instance.isActive case final value?) 'is_active': value,
       'approval_status': instance.approvalStatus,
-      'approved_by': instance.approvedBy,
-      'approval_time': instance.approvalTime?.toIso8601String(),
-      'created_at': instance.createdAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
+      if (instance.approvedBy case final value?) 'approved_by': value,
+      if (instance.approvalTime?.toIso8601String() case final value?)
+        'approval_time': value,
+      if (instance.createdAt?.toIso8601String() case final value?)
+        'created_at': value,
+      if (instance.updatedAt?.toIso8601String() case final value?)
+        'updated_at': value,
     };

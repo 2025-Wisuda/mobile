@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/features/general/home/presentation/screens/home_screen.dart';
 import 'package:mobile/features/general/menu/menu.dart';
 import 'package:mobile/features/general/profile/profile.dart';
@@ -34,11 +39,16 @@ class MenuController extends GetxController {
       Container(color: Colors.blue),
       ProfileScreen(),
     ];
-    _loadData();
+    fetchUserGroup();
+    ever<String?>(userGroup, (group) async {
+      if (group != null && group.isNotEmpty) {
+        await Future.delayed(const Duration(milliseconds: 100));
+        _loadData();
+      }
+    });
   }
 
   Future<void> _loadData() async {
-    await fetchUserGroup();
     final group = userGroup.value?.toLowerCase();
 
     final allMenus = fetchMainMenuUsecase.execute();
@@ -62,5 +72,11 @@ class MenuController extends GetxController {
   void changeMainNavIndex(int index) {
     mainNavMenuCurrentIndex.value = index;
     pageController.jumpToPage(index);
+  }
+
+  @override
+  void onClose() {
+    pageController.dispose();
+    super.onClose();
   }
 }

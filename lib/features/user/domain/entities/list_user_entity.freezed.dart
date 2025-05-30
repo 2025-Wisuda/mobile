@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ListUserEntity {
 
- List<UserEntity>? get data; PaginationEntity? get pagination;
+ List<UserEntity>? get data; MetaEntity? get meta;
 /// Create a copy of ListUserEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $ListUserEntityCopyWith<ListUserEntity> get copyWith => _$ListUserEntityCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListUserEntity&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.pagination, pagination) || other.pagination == pagination));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListUserEntity&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),pagination);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),meta);
 
 @override
 String toString() {
-  return 'ListUserEntity(data: $data, pagination: $pagination)';
+  return 'ListUserEntity(data: $data, meta: $meta)';
 }
 
 
@@ -46,11 +46,11 @@ abstract mixin class $ListUserEntityCopyWith<$Res>  {
   factory $ListUserEntityCopyWith(ListUserEntity value, $Res Function(ListUserEntity) _then) = _$ListUserEntityCopyWithImpl;
 @useResult
 $Res call({
- List<UserEntity>? data, PaginationEntity? pagination
+ List<UserEntity>? data, MetaEntity? meta
 });
 
 
-$PaginationEntityCopyWith<$Res>? get pagination;
+$MetaEntityCopyWith<$Res>? get meta;
 
 }
 /// @nodoc
@@ -63,24 +63,24 @@ class _$ListUserEntityCopyWithImpl<$Res>
 
 /// Create a copy of ListUserEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? pagination = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? meta = freezed,}) {
   return _then(_self.copyWith(
 data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<UserEntity>?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as PaginationEntity?,
+as List<UserEntity>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaEntity?,
   ));
 }
 /// Create a copy of ListUserEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PaginationEntityCopyWith<$Res>? get pagination {
-    if (_self.pagination == null) {
+$MetaEntityCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
     return null;
   }
 
-  return $PaginationEntityCopyWith<$Res>(_self.pagination!, (value) {
-    return _then(_self.copyWith(pagination: value));
+  return $MetaEntityCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }
@@ -90,7 +90,7 @@ $PaginationEntityCopyWith<$Res>? get pagination {
 
 
 class _ListUserEntity implements ListUserEntity {
-  const _ListUserEntity({required final  List<UserEntity>? data, required this.pagination}): _data = data;
+  const _ListUserEntity({required final  List<UserEntity>? data, required this.meta}): _data = data;
   
 
  final  List<UserEntity>? _data;
@@ -102,7 +102,7 @@ class _ListUserEntity implements ListUserEntity {
   return EqualUnmodifiableListView(value);
 }
 
-@override final  PaginationEntity? pagination;
+@override final  MetaEntity? meta;
 
 /// Create a copy of ListUserEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -114,16 +114,16 @@ _$ListUserEntityCopyWith<_ListUserEntity> get copyWith => __$ListUserEntityCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListUserEntity&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.pagination, pagination) || other.pagination == pagination));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListUserEntity&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),pagination);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),meta);
 
 @override
 String toString() {
-  return 'ListUserEntity(data: $data, pagination: $pagination)';
+  return 'ListUserEntity(data: $data, meta: $meta)';
 }
 
 
@@ -134,11 +134,11 @@ abstract mixin class _$ListUserEntityCopyWith<$Res> implements $ListUserEntityCo
   factory _$ListUserEntityCopyWith(_ListUserEntity value, $Res Function(_ListUserEntity) _then) = __$ListUserEntityCopyWithImpl;
 @override @useResult
 $Res call({
- List<UserEntity>? data, PaginationEntity? pagination
+ List<UserEntity>? data, MetaEntity? meta
 });
 
 
-@override $PaginationEntityCopyWith<$Res>? get pagination;
+@override $MetaEntityCopyWith<$Res>? get meta;
 
 }
 /// @nodoc
@@ -151,11 +151,11 @@ class __$ListUserEntityCopyWithImpl<$Res>
 
 /// Create a copy of ListUserEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? pagination = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? meta = freezed,}) {
   return _then(_ListUserEntity(
 data: freezed == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<UserEntity>?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as PaginationEntity?,
+as List<UserEntity>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaEntity?,
   ));
 }
 
@@ -163,13 +163,13 @@ as PaginationEntity?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PaginationEntityCopyWith<$Res>? get pagination {
-    if (_self.pagination == null) {
+$MetaEntityCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
     return null;
   }
 
-  return $PaginationEntityCopyWith<$Res>(_self.pagination!, (value) {
-    return _then(_self.copyWith(pagination: value));
+  return $MetaEntityCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }

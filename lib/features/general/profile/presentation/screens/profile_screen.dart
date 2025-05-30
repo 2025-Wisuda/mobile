@@ -1,5 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/features/general/profile/presentation/widgets/profile_wrapper_widget.dart';
+
+// Project imports:
+import 'package:mobile/features/general/profile/presentation/widgets/widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -7,8 +10,12 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(flexibleSpace: SizedBox.shrink()),
-      body: ProfileWrapperWidget(),
+      body: CustomScrollView(
+        slivers: [
+          const ProfileAppBarWidget(),
+          SliverToBoxAdapter(child: ProfileWrapperWidget()),
+        ],
+      ),
     );
   }
 }

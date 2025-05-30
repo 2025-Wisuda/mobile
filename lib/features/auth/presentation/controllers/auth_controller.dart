@@ -1,10 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/state_manager.dart';
+
+// Project imports:
 import 'package:mobile/core/enums/enum.dart';
 import 'package:mobile/features/auth/domain/usecases/usecase.dart';
-import 'package:mobile/shared/shared.dart';
+import 'package:mobile/shared/databases/database.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
+import 'package:mobile/shared/routes/app_route.dart';
 
 class AuthController extends GetxController {
   final LoginUseCase loginUseCase;
@@ -22,6 +31,8 @@ class AuthController extends GetxController {
   final obscureText = RxBool(true);
   final state = Rx<SubmitStateEnum>(SubmitStateEnum.initial);
 
+  final errorMessage = RxString('');
+
   void toggleObscureText() {
     obscureText.value = !obscureText.value;
   }
@@ -29,7 +40,7 @@ class AuthController extends GetxController {
   void validateUsername(String value) {
     usernameError.value =
         value.isEmpty
-            ? 'features.auth.login.validator.username.empty'.tr()
+            ? i18n.tr('features.auth.login.validator.username.empty')
             : '';
     validateForm();
   }
@@ -37,7 +48,7 @@ class AuthController extends GetxController {
   void validatePassword(String value) {
     passwordError.value =
         value.isEmpty
-            ? 'features.auth.login.validator.password.empty'.tr()
+            ? i18n.tr('features.auth.login.validator.password.empty')
             : '';
     validateForm();
   }
@@ -66,12 +77,8 @@ class AuthController extends GetxController {
     result.fold(
       (failure) {
         state.value = SubmitStateEnum.failure;
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return CustomDialogErrorWidget(errorText: failure.message);
-          },
-        );
+        errorMessage.value = failure.message;
+        context.showErrorSnackbar(errorMessage.value);
       },
       (response) async {
         state.value = SubmitStateEnum.success;

@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mobile/core/entities/pagination_entity.dart';
+
+// Project imports:
+import 'package:mobile/core/entities/entity.dart';
 import 'duty_schedule_entity.dart';
 
 part 'list_duty_schedule_entity.freezed.dart';
@@ -8,6 +11,6 @@ part 'list_duty_schedule_entity.freezed.dart';
 abstract class ListDutyScheduleEntity with _$ListDutyScheduleEntity {
   const factory ListDutyScheduleEntity({
     required List<DutyScheduleEntity>? data,
-    required PaginationEntity? pagination,
+    required MetaEntity? meta,
   }) = _ListDutyScheduleEntity;
 }

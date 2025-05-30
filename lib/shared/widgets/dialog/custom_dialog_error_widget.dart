@@ -1,5 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/widgets.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+
+// Project imports:
 import 'package:mobile/core/constants/illustration_constant.dart';
 import 'dialog.dart';
 
@@ -11,7 +16,7 @@ class CustomDialogErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomAlertDialogWidget(
       imageDialog: IllustrationConstant.loginIllustration,
-      titleText: 'general.error.default'.tr(),
+      titleText: i18n.tr('general.error.default'),
       descriptionText: errorText,
     );
   }

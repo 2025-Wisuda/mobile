@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ListUserModel {
 
-@JsonKey(name: 'data') List<UserModel>? get data;@JsonKey(name: 'meta') PaginationModel? get pagination;
+@JsonKey(name: 'data') List<UserModel>? get data;@JsonKey(name: 'meta') MetaModel? get meta;
 /// Create a copy of ListUserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $ListUserModelCopyWith<ListUserModel> get copyWith => _$ListUserModelCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListUserModel&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.pagination, pagination) || other.pagination == pagination));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListUserModel&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),pagination);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),meta);
 
 @override
 String toString() {
-  return 'ListUserModel(data: $data, pagination: $pagination)';
+  return 'ListUserModel(data: $data, meta: $meta)';
 }
 
 
@@ -49,11 +49,11 @@ abstract mixin class $ListUserModelCopyWith<$Res>  {
   factory $ListUserModelCopyWith(ListUserModel value, $Res Function(ListUserModel) _then) = _$ListUserModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'data') List<UserModel>? data,@JsonKey(name: 'meta') PaginationModel? pagination
+@JsonKey(name: 'data') List<UserModel>? data,@JsonKey(name: 'meta') MetaModel? meta
 });
 
 
-$PaginationModelCopyWith<$Res>? get pagination;
+$MetaModelCopyWith<$Res>? get meta;
 
 }
 /// @nodoc
@@ -66,24 +66,24 @@ class _$ListUserModelCopyWithImpl<$Res>
 
 /// Create a copy of ListUserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? pagination = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? data = freezed,Object? meta = freezed,}) {
   return _then(_self.copyWith(
 data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as List<UserModel>?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as PaginationModel?,
+as List<UserModel>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaModel?,
   ));
 }
 /// Create a copy of ListUserModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PaginationModelCopyWith<$Res>? get pagination {
-    if (_self.pagination == null) {
+$MetaModelCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
     return null;
   }
 
-  return $PaginationModelCopyWith<$Res>(_self.pagination!, (value) {
-    return _then(_self.copyWith(pagination: value));
+  return $MetaModelCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }
@@ -93,7 +93,7 @@ $PaginationModelCopyWith<$Res>? get pagination {
 @JsonSerializable()
 
 class _ListUserModel implements ListUserModel {
-  const _ListUserModel({@JsonKey(name: 'data') final  List<UserModel>? data, @JsonKey(name: 'meta') this.pagination}): _data = data;
+  const _ListUserModel({@JsonKey(name: 'data') final  List<UserModel>? data, @JsonKey(name: 'meta') this.meta}): _data = data;
   factory _ListUserModel.fromJson(Map<String, dynamic> json) => _$ListUserModelFromJson(json);
 
  final  List<UserModel>? _data;
@@ -105,7 +105,7 @@ class _ListUserModel implements ListUserModel {
   return EqualUnmodifiableListView(value);
 }
 
-@override@JsonKey(name: 'meta') final  PaginationModel? pagination;
+@override@JsonKey(name: 'meta') final  MetaModel? meta;
 
 /// Create a copy of ListUserModel
 /// with the given fields replaced by the non-null parameter values.
@@ -120,16 +120,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListUserModel&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.pagination, pagination) || other.pagination == pagination));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListUserModel&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.meta, meta) || other.meta == meta));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),pagination);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_data),meta);
 
 @override
 String toString() {
-  return 'ListUserModel(data: $data, pagination: $pagination)';
+  return 'ListUserModel(data: $data, meta: $meta)';
 }
 
 
@@ -140,11 +140,11 @@ abstract mixin class _$ListUserModelCopyWith<$Res> implements $ListUserModelCopy
   factory _$ListUserModelCopyWith(_ListUserModel value, $Res Function(_ListUserModel) _then) = __$ListUserModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'data') List<UserModel>? data,@JsonKey(name: 'meta') PaginationModel? pagination
+@JsonKey(name: 'data') List<UserModel>? data,@JsonKey(name: 'meta') MetaModel? meta
 });
 
 
-@override $PaginationModelCopyWith<$Res>? get pagination;
+@override $MetaModelCopyWith<$Res>? get meta;
 
 }
 /// @nodoc
@@ -157,11 +157,11 @@ class __$ListUserModelCopyWithImpl<$Res>
 
 /// Create a copy of ListUserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? pagination = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? meta = freezed,}) {
   return _then(_ListUserModel(
 data: freezed == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as List<UserModel>?,pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
-as PaginationModel?,
+as List<UserModel>?,meta: freezed == meta ? _self.meta : meta // ignore: cast_nullable_to_non_nullable
+as MetaModel?,
   ));
 }
 
@@ -169,13 +169,13 @@ as PaginationModel?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$PaginationModelCopyWith<$Res>? get pagination {
-    if (_self.pagination == null) {
+$MetaModelCopyWith<$Res>? get meta {
+    if (_self.meta == null) {
     return null;
   }
 
-  return $PaginationModelCopyWith<$Res>(_self.pagination!, (value) {
-    return _then(_self.copyWith(pagination: value));
+  return $MetaModelCopyWith<$Res>(_self.meta!, (value) {
+    return _then(_self.copyWith(meta: value));
   });
 }
 }

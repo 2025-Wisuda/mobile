@@ -1,9 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/core/enums/enum.dart';
-import 'package:mobile/features/duty_schedule/data/models/duty_schedule_filter_params_model.dart';
-import 'package:mobile/features/duty_schedule/domain/domain.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
 import 'package:get/state_manager.dart';
+
+// Project imports:
+import 'package:mobile/core/enums/enum.dart';
+import 'package:mobile/features/duty_schedule/data/models/model.dart';
+import 'package:mobile/features/duty_schedule/domain/domain.dart';
 import 'package:mobile/shared/helpers/date_helper.dart';
 
 class DutyScheduleController extends GetxController
@@ -15,6 +20,17 @@ class DutyScheduleController extends GetxController
     required this.fetchListDutyScheduleUsecase,
     required this.fetchDutyScheduleDetailUsecase,
   });
+
+  @override
+  void onInit() {
+    super.onInit();
+    _initDays();
+    tabController = TabController(length: days.length, vsync: this);
+    tabController.addListener(() {
+      if (tabController.indexIsChanging) return;
+      fetchByTabIndex(tabController.index);
+    });
+  }
 
   final errorMessage = RxString('');
   final fetchDutyScheduleDetailState = Rx(FetchStateEnum.initial);
@@ -38,19 +54,8 @@ class DutyScheduleController extends GetxController
   final days = RxList<String>([]);
   final dayKeyMap = <String, String>{};
 
-  @override
-  void onInit() {
-    super.onInit();
-    _initDays();
-    tabController = TabController(length: days.length, vsync: this);
-    tabController.addListener(() {
-      if (tabController.indexIsChanging) return;
-      fetchByTabIndex(tabController.index);
-    });
-  }
-
   void _initDays() {
-    final today = DateHelper.getCurrentEnglishDay();
+    final today = DateHelper.getCurrentDayInEnglish();
     final ordered = [
       ..._localizedDays.skipWhile((e) => e.key != today),
       ..._localizedDays.takeWhile((e) => e.key != today),
@@ -76,12 +81,9 @@ class DutyScheduleController extends GetxController
     required String targetDayKey,
   }) async {
     fetchDutyScheduleByDaysState[targetDayKey] = FetchStateEnum.loading;
-
     final result = await fetchListDutyScheduleUsecase.execute(
       params: scheduleFilterParamsModel,
     );
-    await Future.delayed(const Duration(milliseconds: 500));
-
     result.fold(
       (failure) {
         fetchDutyScheduleByDaysState[targetDayKey] = FetchStateEnum.error;
@@ -103,8 +105,6 @@ class DutyScheduleController extends GetxController
     final result = await fetchDutyScheduleDetailUsecase.execute(
       dutyScheduleId: dutyScheduleId,
     );
-    await Future.delayed(const Duration(milliseconds: 500));
-
     result.fold(
       (failure) {
         fetchDutyScheduleDetailState.value = FetchStateEnum.error;
@@ -115,5 +115,18 @@ class DutyScheduleController extends GetxController
         dutyScheduleEntity.value = response;
       },
     );
+  }
+
+  @override
+  void onClose() {
+    tabController.dispose();
+    fetchDutyScheduleByDaysState.clear();
+    fetchDutyScheduleDetailState.value = FetchStateEnum.initial;
+    dutyScheduleEntity.value = null;
+    listDutyScheduleEntity.value = null;
+    errorMessage.value = '';
+    days.clear();
+    dayKeyMap.clear();
+    super.onClose();
   }
 }

@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
 import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
 import 'package:mobile/features/lab_schedule/domain/repositories/repository.dart';

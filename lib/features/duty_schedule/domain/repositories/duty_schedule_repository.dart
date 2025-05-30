@@ -1,6 +1,9 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
 import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/duty_schedule/data/models/duty_schedule_filter_params_model.dart';
+import 'package:mobile/features/duty_schedule/data/models/model.dart';
 import 'package:mobile/features/duty_schedule/domain/entities/entity.dart';
 
 abstract class DutyScheduleRepository {

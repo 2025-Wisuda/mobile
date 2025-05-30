@@ -1,8 +1,15 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
+import 'package:mobile/shared/helpers/helper.dart';
+import 'package:mobile/shared/widgets/icon/custom_image_icon_widget.dart';
+
 import 'package:mobile/features/general/menu/presentation/controllers/menu_controller.dart'
     as menu;
-import 'package:mobile/shared/widgets/icon/custom_image_icon_widget.dart';
 
 Widget menuBottomNavBarItemWidget(
   BuildContext context, {
@@ -16,21 +23,18 @@ Widget menuBottomNavBarItemWidget(
     onTap: () {
       Get.find<menu.MenuController>().changeMainNavIndex(indexMenu);
     },
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          customImageIconWidget(imagePath: iconMenu, color: color),
-          if (isSelected)
-            Text(
-              labelMenu,
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-              ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        customImageIconWidget(imagePath: iconMenu, color: color),
+        if (isSelected)
+          Text(
+            labelMenu,
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              color: Theme.of(context).colorScheme.primary,
             ),
-        ],
-      ),
-    ),
+          ),
+      ],
+    ).py(8),
   );
 }

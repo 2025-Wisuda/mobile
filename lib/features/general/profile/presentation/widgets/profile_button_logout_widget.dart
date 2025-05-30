@@ -1,42 +1,38 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart' show Icons, InkWell, Theme;
-import 'package:flutter/widgets.dart';
+// Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
 import 'package:get/instance_manager.dart';
-import 'package:mobile/core/constants/border_radius_constant.dart';
+
+// Project imports:
+import 'package:mobile/core/constants/constant.dart';
 import 'package:mobile/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 
 Widget buttonLogout(BuildContext context) {
   final authController = Get.find<AuthController>();
 
-  return InkWell(
-    onTap: () async {
-      await authController.logout();
-    },
-    child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).colorScheme.outline),
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadiusConstant.kDefaultBorderRadiusCircle,
+  return SizedBox(
+    width: double.infinity,
+    child: OutlinedButton.icon(
+      onPressed: () async {
+        await authController.logout();
+      },
+      icon: Icon(Icons.logout, size: 24, color: context.error),
+      label: Text(
+        i18n.tr('features.menu.logout'),
+        style: context.bodyMediumW(600).copyWith(color: context.error),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 8,
-        children: [
-          Icon(
-            Icons.logout,
-            size: 24,
-            color: Theme.of(context).colorScheme.error,
-          ),
-          Text(
-            'features.menu.logout'.tr(),
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: Theme.of(context).colorScheme.error,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
+      style: OutlinedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        side: BorderSide(color: context.outline),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusConstant.kDefaultBorderRadiusCircle,
+        ),
+        backgroundColor: context.surface,
       ),
     ),
   );

@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mobile/core/models/pagination_model.dart';
+
+// Project imports:
+import 'package:mobile/core/models/meta_model.dart';
 import 'user_model.dart';
 
 part 'list_user_model.freezed.dart';
@@ -9,7 +12,7 @@ part 'list_user_model.g.dart';
 abstract class ListUserModel with _$ListUserModel {
   const factory ListUserModel({
     @JsonKey(name: 'data') List<UserModel>? data,
-    @JsonKey(name: 'meta') PaginationModel? pagination,
+    @JsonKey(name: 'meta') MetaModel? meta,
   }) = _ListUserModel;
 
   factory ListUserModel.fromJson(Map<String, dynamic> json) =>

@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:get/get.dart';
-import 'package:mobile/shared/routes/app_route.dart';
-import 'package:mobile/shared/databases/session_database.dart';
+
+// Project imports:
+import 'package:mobile/shared/shared.dart';
 
 class SplashController extends GetxController {
   @override

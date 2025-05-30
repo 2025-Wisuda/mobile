@@ -1,5 +1,15 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+
+// Project imports:
+import 'package:mobile/shared/helpers/helper.dart';
+
+// Project imports:
 
 class CustomTextFormFieldWidget extends StatelessWidget {
   final bool? obscureText;
@@ -18,6 +28,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   final bool requiredField;
   final bool enabled;
   final bool isColumn;
+  final Color? fillColor;
 
   const CustomTextFormFieldWidget({
     super.key,
@@ -37,6 +48,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     this.requiredField = true,
     this.enabled = true,
     this.isColumn = true,
+    this.fillColor,
   });
 
   @override
@@ -54,20 +66,14 @@ class CustomTextFormFieldWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             spacing: 4,
             children: [
-              Text(
-                labelText!,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-              ),
-
+              Text(labelText!, style: context.bodyMediumW(500)),
               if (optional == true) ...[
                 Flexible(
                   child: Text(
-                    '(${'general.note.optional'.tr()})',
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.scrim,
-                    ),
+                    '(${i18n.tr('general.note.optional')})',
+                    style: context
+                        .labelMediumW(500)
+                        .copyWith(color: context.scrim),
                   ),
                 ),
               ],
@@ -75,9 +81,9 @@ class CustomTextFormFieldWidget extends StatelessWidget {
                 Flexible(
                   child: Text(
                     '*',
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
+                    style: context
+                        .bodyMediumW(500)
+                        .copyWith(color: context.error),
                   ),
                 ),
               ],
@@ -85,6 +91,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
           ),
         ],
         TextFormField(
+          cursorColor: context.onSurface,
           enabled: enabled,
           obscureText: obscureText ?? false,
           controller: controller,
@@ -96,6 +103,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
             errorText: errorText,
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
+            fillColor: fillColor ?? context.shadow,
           ),
           onChanged: onChanged,
           onTapOutside: (PointerDownEvent event) {

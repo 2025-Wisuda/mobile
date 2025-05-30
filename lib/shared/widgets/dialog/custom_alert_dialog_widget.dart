@@ -1,8 +1,16 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
 import 'package:flutter_svg/flutter_svg.dart';
+
+// Project imports:
 import 'package:mobile/core/constants/constant.dart';
-import 'package:mobile/shared/widgets/button/custom_button_outline_widget.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
+import 'package:mobile/shared/widgets/button/button.dart';
 
 class CustomAlertDialogWidget extends StatelessWidget {
   final String? imageDialog;
@@ -22,7 +30,7 @@ class CustomAlertDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenHeight = context.sHeight;
     final double imageHeight = screenHeight * 0.2;
 
     assert(
@@ -47,14 +55,14 @@ class CustomAlertDialogWidget extends StatelessWidget {
             Image.asset(imageDialog!, height: imageHeight),
           Text(
             titleText ?? '',
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
+            style: context.text.bodyLarge!.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
           ),
           Text(
             descriptionText ?? '',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: context.bodyMediumW(500),
           ),
         ],
       ),
@@ -66,10 +74,9 @@ class CustomAlertDialogWidget extends StatelessWidget {
         actionOne ?? const SizedBox.shrink(),
         actionTwo ??
             CustomButtonOutlineWidget(
-              textButton: 'general.options.close'.tr(),
-              backgroundColor:
-                  Theme.of(context).colorScheme.surfaceContainerHigh,
-              borderColor: Theme.of(context).colorScheme.scrim,
+              textButton: i18n.tr('general.options.close'),
+              backgroundColor: context.surfaceContainerHigh,
+              borderColor: context.scrim,
             ),
       ],
     );

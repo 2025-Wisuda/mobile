@@ -1,5 +1,9 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/features/lab_schedule/lab_schedule.dart';
+
+// Project imports:
+import 'package:mobile/features/lab_schedule/domain/entities/lab_schedule_entity.dart';
+import 'package:mobile/features/lab_schedule/presentation/widgets/lab_schedule_item_widget.dart';
 
 class LabScheduleListItemWidget extends StatelessWidget {
   final List<LabScheduleEntity> schedules;
@@ -12,7 +16,7 @@ class LabScheduleListItemWidget extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: schedules.length,
-      separatorBuilder: (_, __) => const Divider(height: 16),
+      separatorBuilder: (_, __) => const SizedBox(height: 2),
       itemBuilder: (context, index) {
         return LabScheduleItemWidget(schedule: schedules[index]);
       },

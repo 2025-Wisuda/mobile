@@ -1,3 +1,4 @@
+// Project imports:
 import 'route.dart';
 
 class AppScreen {
@@ -9,5 +10,7 @@ class AppScreen {
     ...aboutUsRoute,
     ...labScheduleRoute,
     ...dutyScheduleRoute,
+    ...courseRoutes,
+    ...courseSessionRoutes,
   ];
 }

@@ -1,16 +1,22 @@
+// Dart imports:
 import 'dart:ui';
 
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/features/general/menu/data/models/menu_model.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+
+// Project imports:
 import 'package:mobile/core/constants/icon_constant.dart';
+import 'package:mobile/features/general/menu/data/models/menu_model.dart';
 
 class MainNavMenuLocalDatasource {
   List<MenuModel> fetchMainNavMenuData({Color? color, VoidCallback? onTap}) {
     return [
       MenuModel(
         iconMenu: IconConstant.homeSolidIcon,
-        nameMenu: 'features.menu.home'.tr(),
+        nameMenu: i18n.tr('features.menu.home'),
         routeName: 0,
         allowedGroup: [
           'mahasiswa',
@@ -23,7 +29,7 @@ class MainNavMenuLocalDatasource {
       ),
       MenuModel(
         iconMenu: IconConstant.dateRangeSolidIcon,
-        nameMenu: 'features.menu.schedule'.tr(),
+        nameMenu: i18n.tr('features.menu.schedule'),
         routeName: 1,
         allowedGroup: [
           'mahasiswa',
@@ -36,7 +42,7 @@ class MainNavMenuLocalDatasource {
       ),
       MenuModel(
         iconMenu: IconConstant.documentAddSolidIcon,
-        nameMenu: 'features.menu.roomBooking'.tr(),
+        nameMenu: i18n.tr('features.menu.roomBooking'),
         routeName: 2,
         allowedGroup: [
           'mahasiswa',
@@ -49,7 +55,7 @@ class MainNavMenuLocalDatasource {
       ),
       MenuModel(
         iconMenu: IconConstant.userSolidIcon,
-        nameMenu: 'features.menu.profile'.tr(),
+        nameMenu: i18n.tr('features.menu.profile'),
         routeName: 3,
         allowedGroup: [
           'mahasiswa',

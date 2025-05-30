@@ -1,6 +1,7 @@
-import 'package:mobile/features/duty_schedule/data/models/duty_schedule_model.dart';
-import 'package:mobile/features/duty_schedule/domain/entities/duty_schedule_entity.dart';
-import 'package:mobile/features/user/data/models/user_model_extension.dart';
+// Project imports:
+import 'package:mobile/features/duty_schedule/data/models/model.dart';
+import 'package:mobile/features/duty_schedule/domain/entities/entity.dart';
+import 'package:mobile/features/user/data/models/model.dart';
 
 extension DutyScheduleModelExtension on DutyScheduleModel {
   DutyScheduleEntity toEntity() {

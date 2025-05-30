@@ -1,6 +1,8 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mobile/core/entities/pagination_entity.dart';
 
+// Project imports:
+import 'package:mobile/core/entities/meta_entity.dart';
 import 'user_entity.dart';
 
 part 'list_user_entity.freezed.dart';
@@ -9,6 +11,6 @@ part 'list_user_entity.freezed.dart';
 abstract class ListUserEntity with _$ListUserEntity {
   const factory ListUserEntity({
     required List<UserEntity>? data,
-    required PaginationEntity? pagination,
+    required MetaEntity? meta,
   }) = _ListUserEntity;
 }

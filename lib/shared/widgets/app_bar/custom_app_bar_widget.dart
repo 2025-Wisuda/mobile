@@ -1,6 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/core/constants/constant.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
 class CustomUserAppBarWidget extends StatelessWidget {
@@ -18,6 +24,7 @@ class CustomUserAppBarWidget extends StatelessWidget {
   final bool showBackButton;
   final Color? backButtonBorderColor;
   final Function()? onTapBackButton;
+  final EdgeInsetsGeometry? titlePadding;
 
   const CustomUserAppBarWidget({
     super.key,
@@ -35,15 +42,17 @@ class CustomUserAppBarWidget extends StatelessWidget {
     this.showBackButton = true,
     this.backButtonBorderColor,
     this.onTapBackButton,
+    this.titlePadding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-      ).copyWith(top: 16, bottom: 16),
-      decoration: BoxDecoration(color: backgroundColor ?? Colors.transparent),
+      padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
+      decoration: BoxDecoration(
+        color: backgroundColor ?? Colors.transparent,
+        border: Border(bottom: BorderSide(color: context.shadow, width: 1)),
+      ),
       child: SafeArea(
         child: Stack(
           alignment: Alignment.center,
@@ -59,9 +68,7 @@ class CustomUserAppBarWidget extends StatelessWidget {
                       borderRadius:
                           BorderRadiusConstant.kDefaultBorderRadiusCircle,
                       border: Border.all(
-                        color:
-                            backButtonBorderColor ??
-                            Theme.of(context).colorScheme.outline,
+                        color: backButtonBorderColor ?? context.outline,
                       ),
                     ),
                     child:
@@ -80,7 +87,7 @@ class CustomUserAppBarWidget extends StatelessWidget {
                               ),
                         ),
                   ),
-                const Spacer(),
+                if (actionButton != null) const Spacer(),
                 if (showSearchButton)
                   CustomButtonBackgroundWidget(
                     iconButton: customImageIconWidget(
@@ -106,15 +113,15 @@ class CustomUserAppBarWidget extends StatelessWidget {
                 if (actionButton != null) actionButton!,
               ],
             ),
-            Center(
-              child: Text(
-                titleAppBar ?? '',
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontWeight: FontWeight.w600,
+            Padding(
+              padding: titlePadding ?? const EdgeInsets.all(0),
+              child: Center(
+                child: Text(
+                  titleAppBar ?? '',
+                  style: context.bodyLargeW(600),
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
                 ),
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
               ),
             ),
           ],

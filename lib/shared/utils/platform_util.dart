@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Project imports:
 import 'package:mobile/core/enums/platform/platform_enum.dart';
 
 PlatformType getPlatformType() {

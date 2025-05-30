@@ -1,5 +1,10 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mobile/features/user/user.dart';
+
+// Project imports:
+import 'package:mobile/features/user/domain/entities/entity.dart';
+
+// Project imports:
 
 part 'lab_schedule_entity.freezed.dart';
 

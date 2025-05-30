@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:mobile/features/general/menu/data/models/menu_model.dart';
 
 class MenuSectionModel {

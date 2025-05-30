@@ -21,4 +21,18 @@ class UserFilterParamsModel {
 
     return params;
   }
+
+  UserFilterParamsModel copyWith({
+    String? search,
+    String? group,
+    int? page,
+    int? pageSize,
+  }) {
+    return UserFilterParamsModel(
+      search: search ?? this.search,
+      group: group ?? this.group,
+      page: page ?? this.page,
+      pageSize: pageSize ?? this.pageSize,
+    );
+  }
 }

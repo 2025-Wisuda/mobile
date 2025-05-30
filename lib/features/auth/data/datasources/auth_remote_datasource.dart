@@ -1,5 +1,11 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+
+// Project imports:
 import 'package:mobile/core/errors/texts/text.dart';
 import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/auth/data/models/model.dart';
@@ -26,21 +32,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     String password,
   ) async {
     final data = {'username': username, 'password': password};
-
+    debugPrint('Login data: $data');
     try {
-      LoggerUtil.logInfo('Login request data: ${LoggerUtil.prettyJson(data)}');
-      final response = await _dio.post(BaseUrlUtil.loginUrl, data: data);
-      LoggerUtil.logInfo('Login response status: ${response.statusCode}');
-      LoggerUtil.logInfo(
-        'Login response data: ${LoggerUtil.prettyJson(response.data)}',
-      );
+      final url = BaseUrlUtil.loginUrl;
+      final response = await _dio.post(url, data: data);
       if (response.statusCode == 200) {
         return right(LoginResponseModel.fromJson(response.data));
       } else {
         return left(ServerFailure(AuthText.tryLogin(response.statusCode)));
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Login error: ${e.toString()}');
       return left(ServerFailure(AuthText.catchLogin(e)));
     }
   }
@@ -50,18 +51,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     String refreshToken,
   ) async {
     final data = {'refresh': refreshToken};
-
     try {
-      LoggerUtil.logInfo(
-        'Refresh token request data: ${LoggerUtil.prettyJson(data)}',
-      );
-      final response = await _dio.post(BaseUrlUtil.refreshTokenUrl, data: data);
-      LoggerUtil.logInfo(
-        'Refresh token response status: ${response.statusCode}',
-      );
-      LoggerUtil.logInfo(
-        'Refresh token response data: ${LoggerUtil.prettyJson(response.data)}',
-      );
+      final url = BaseUrlUtil.refreshTokenUrl;
+      final response = await _dio.post(url, data: data);
       if (response.statusCode == 200) {
         return right(RefreshTokenResponseModel.fromJson(response.data));
       } else {
@@ -70,7 +62,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Refresh token error: ${e.toString()}');
       return left(ServerFailure(AuthText.catchRefreshToken(e)));
     }
   }

@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:dio/dio.dart';
+
+// Project imports:
 import 'package:mobile/core/network/auth_interceptor_network.dart';
 import 'package:mobile/features/auth/domain/usecases/refresh_token_usecase.dart';
 import 'package:mobile/shared/utils/base_url_util.dart';

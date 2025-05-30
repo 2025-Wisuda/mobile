@@ -1,16 +1,18 @@
+// Dart imports:
 import 'dart:ui';
 
-import 'package:mobile/core/constants/icon_constant.dart';
+// Project imports:
+import 'package:mobile/core/core.dart';
 import 'package:mobile/features/general/menu/data/models/menu_model.dart';
-import 'package:mobile/shared/routes/app_route.dart';
+import 'package:mobile/shared/routes/route.dart';
 
 class MainMenuLocalDatasource {
   List<MenuModel> fetchMainMenuData({VoidCallback? onTap}) {
     return [
       MenuModel(
         iconMenu: IconConstant.classOutlineIcon,
-        nameMenu: 'features.menu.class',
-        routeName: AppRoute.home,
+        nameMenu: 'features.menu.course',
+        routeName: AppRoute.course,
         allowedGroup: [
           'mahasiswa',
           'asisten laboratorium',

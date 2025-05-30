@@ -1,9 +1,16 @@
-import 'package:easy_localization/easy_localization.dart'
-    show StringTranslateExtension;
+// Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+
+// Project imports:
 import 'package:mobile/core/core.dart';
-import 'package:mobile/features/lab_schedule/lab_schedule.dart';
-import 'package:mobile/shared/shared.dart';
+import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
+import 'package:mobile/shared/helpers/helper.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class LabScheduleDetailWidget extends StatelessWidget {
   final LabScheduleEntity schedule;
@@ -14,42 +21,37 @@ class LabScheduleDetailWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
       children: [
-        _iconText(
-          context,
-          icon: Icon(Icons.alarm, color: context.color.onSurface),
-          value: '${schedule.startTimeWibStr} - ${schedule.endTimeWibStr}',
-        ),
-        SizedBox(height: 8),
-        _iconText(
-          context,
-          icon: Icon(Icons.event, color: context.color.onSurface),
-          value: DateHelper.getFormattedFullDate(date: schedule.scheduleDate),
-        ),
-        SizedBox(height: 8),
-        _iconText(
-          context,
-          icon: Icon(
-            Icons.label_important_outline,
-            color: context.color.onSurface,
-          ),
-          value: schedule.activityTypeDisplayStr,
-        ),
-        if (schedule.activityDescription?.isNotEmpty == true)
-          Padding(
-            padding: const EdgeInsets.only(top: 4, left: 40),
-            child: Text(
-              schedule.activityDescription!,
-              style: context.text.bodySmall,
-            ),
-          ),
-        const Divider(height: 24),
-        _infoFooter(context),
+        _content(context, schedule: schedule),
+        const Divider(height: 32),
+        _footer(context),
       ],
     );
   }
 
-  Widget _iconText(
+  Widget _content(BuildContext context, {required LabScheduleEntity schedule}) {
+    final startToEndTime =
+        '${schedule.startTimeWibStr} - ${schedule.endTimeWibStr}';
+    final type = schedule.activityTypeDisplayStr;
+    final description = schedule.activityDescriptionStr;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
+      children: [
+        _icon(context, icon: Icon(Icons.alarm), value: startToEndTime),
+        _icon(
+          context,
+          icon: Icon(Icons.event),
+          value: schedule.scheduleDateFullDate,
+        ),
+        _icon(context, icon: Icon(Icons.label_important_outline), value: type),
+        Text(description, style: context.bodySmallW(500)).pl(40),
+      ],
+    );
+  }
+
+  Widget _icon(
     BuildContext context, {
     Widget? icon,
     required String value,
@@ -65,25 +67,24 @@ class LabScheduleDetailWidget extends StatelessWidget {
               width: 24,
               height: 24,
             ),
-        Expanded(child: Text(value, style: context.text.bodyMedium)),
+        Expanded(child: Text(value, style: context.bodyMediumW(500))),
       ],
     );
   }
 
-  Widget _infoFooter(BuildContext context) {
+  Widget _footer(BuildContext context) {
+    final createdBy =
+        '${i18n.tr('features.schedule.lab.form.label.createdBy')} ${schedule.createdByStr}';
+    final updatedAt =
+        '${i18n.tr('features.schedule.lab.form.label.updatedAt')} ${schedule.createdAtWithTime}';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          '${'features.schedule.lab.form.label.createdBy'.tr()} ${schedule.createdByStr}',
-          style: context.text.bodySmall,
-        ),
+        Text(createdBy, style: context.bodySmallW(500)),
         if (schedule.updatedAt != null)
           Text(
-            '${'features.schedule.lab.form.label.updatedAt'.tr()} ${DateHelper.formatCompactWithTime(schedule.updatedAt)}',
-            style: context.text.bodySmall?.copyWith(
-              color: context.color.outline,
-            ),
+            updatedAt,
+            style: context.bodyMediumW(500).copyWith(color: context.outline),
           ),
       ],
     );

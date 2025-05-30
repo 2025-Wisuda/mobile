@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/widgets.dart';
 
 class BorderRadiusConstant {
@@ -22,8 +23,8 @@ class BorderRadiusConstant {
     topRight: Radius.circular(8),
   );
   static BorderRadius kDefaultBorderRadiusBottom = BorderRadius.only(
-    bottomLeft: Radius.circular(16),
-    bottomRight: Radius.circular(16),
+    bottomLeft: Radius.circular(8),
+    bottomRight: Radius.circular(8),
   );
   static BorderRadius kDefaultBorderRadiusLeft = BorderRadius.only(
     bottomLeft: Radius.circular(8),

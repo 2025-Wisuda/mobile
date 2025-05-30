@@ -1,6 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/core/constants/border_radius_constant.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 
 class CustomButtonOutlineWidget extends StatelessWidget {
   final String textButton;
@@ -22,12 +28,8 @@ class CustomButtonOutlineWidget extends StatelessWidget {
         foregroundColor: null,
         surfaceTintColor: null,
         splashFactory: InkRipple.splashFactory,
-        backgroundColor:
-            backgroundColor ?? Theme.of(context).colorScheme.surface,
-        side: BorderSide(
-          color: borderColor ?? Theme.of(context).colorScheme.primary,
-          width: 1,
-        ),
+        backgroundColor: backgroundColor ?? context.surface,
+        side: BorderSide(color: borderColor ?? context.primary, width: 1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
         ),
@@ -35,7 +37,7 @@ class CustomButtonOutlineWidget extends StatelessWidget {
         elevation: 0,
       ),
       onPressed: onTap ?? () => Get.back(),
-      child: Text(textButton, style: Theme.of(context).textTheme.bodySmall!),
+      child: Text(textButton, style: context.text.bodySmall!),
     );
   }
 }

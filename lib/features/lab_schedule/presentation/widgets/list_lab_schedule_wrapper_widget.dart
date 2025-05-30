@@ -1,14 +1,18 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/core/core.dart';
-import 'package:mobile/features/lab_schedule/lab_schedule.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:easy_localization/easy_localization.dart'
-    show DateFormat, StringTranslateExtension;
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:mobile/shared/helpers/context_extension_helper.dart';
-import 'package:mobile/shared/widgets/text/error_empty_text_widget.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+import 'package:easy_localization/easy_localization.dart';
+import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
+// Project imports:
+import 'package:mobile/core/core.dart';
+import 'package:mobile/features/lab_schedule/data/models/model.dart';
+import 'package:mobile/features/lab_schedule/presentation/presentation.dart';
+import 'package:mobile/shared/helpers/helper.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class ListLabScheduleWrapperWidget extends StatelessWidget {
   const ListLabScheduleWrapperWidget({super.key});
@@ -30,17 +34,17 @@ class ListLabScheduleWrapperWidget extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
+        final padding = EdgeInsets.fromLTRB(16, 8, 16, 16);
+        final label = i18n.tr(
+          'features.schedule.lab.legend.status.selectedDate',
+        );
+        final borderSide = BorderSide(color: context.outline, width: 1);
+
         return SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
-
             child: Padding(
-              padding: const EdgeInsets.only(
-                top: 8,
-                left: 16,
-                right: 16,
-                bottom: 16,
-              ),
+              padding: padding,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -48,22 +52,16 @@ class ListLabScheduleWrapperWidget extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: context.color.surface,
+                      color: context.surface,
                       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
                       border: Border(
-                        top: BorderSide(color: context.color.outline, width: 1),
-                        left: BorderSide(
-                          color: context.color.outline,
-                          width: 1,
-                        ),
-                        right: BorderSide(
-                          color: context.color.outline,
-                          width: 1,
-                        ),
+                        top: borderSide,
+                        left: borderSide,
+                        right: borderSide,
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: context.color.shadow,
+                          color: context.shadow,
                           blurRadius: 4,
                           offset: const Offset(0, 2),
                         ),
@@ -73,31 +71,16 @@ class ListLabScheduleWrapperWidget extends StatelessWidget {
                       children: [
                         LabScheduleCalendarWidget(),
                         Padding(
-                          padding: const EdgeInsets.only(
-                            top: 8,
-                            left: 16,
-                            right: 16,
-                            bottom: 16,
-                          ),
+                          padding: padding,
                           child: calendarStatusLegendWidget(
                             context,
-                            label:
-                                'features.schedule.lab.legend.status.selectedDate'
-                                    .tr(),
-                            color: context.color.primary,
+                            label: label,
+                            color: context.primary,
                           ),
                         ),
                       ],
                     ),
                   ),
-
-                  //                   Center(
-                  //   child: SizedBox(
-                  //     height: 32,
-                  //     width: 32,
-                  //     child: Divider(color: context.color.outline),
-                  //   ),
-                  // ),
                   Obx(() {
                     final state =
                         labScheduleController.fetchListLabScheduleState.value;
@@ -107,30 +90,31 @@ class ListLabScheduleWrapperWidget extends StatelessWidget {
                             .value
                             ?.data ??
                         [];
-                    switch (state) {
-                      case FetchStateEnum.loading:
-                        return Skeletonizer(
-                          child: LabScheduleListItemWidget(
-                            schedules: schedules,
-                          ),
-                        );
-                      case FetchStateEnum.loaded:
-                        return LabScheduleListItemWidget(schedules: schedules);
-                      case FetchStateEnum.empty:
-                        return errorEmptyTextWidget(
-                          context,
-                          message:
-                              'features.schedule.lab.fetchListLabSchedule.empty'
-                                  .tr(),
-                        );
-                      case FetchStateEnum.error:
-                        return errorEmptyTextWidget(
-                          context,
-                          message: labScheduleController.errorMessage.value,
-                        );
-                      default:
-                        return const SizedBox.shrink();
-                    }
+                    final errorMessage =
+                        labScheduleController.errorMessage.value;
+                    final emptyMessage = i18n.tr(
+                      'features.schedule.lab.searchLabSchedule.empty',
+                    );
+                    final loadedWidget = LabScheduleListItemWidget(
+                      schedules: schedules,
+                    );
+                    final loadingWidget = Skeletonizer(child: loadedWidget);
+                    final emptyWidget = errorEmptyTextWidget(
+                      context,
+                      message: emptyMessage,
+                    );
+                    final errorWidget = errorEmptyTextWidget(
+                      context,
+                      message: errorMessage,
+                    );
+
+                    return state.toWidget(
+                      loadingWidget: loadingWidget,
+                      loadedWidget: loadedWidget,
+                      emptyWidget: emptyWidget,
+                      errorWidget: errorWidget,
+                      initialWidget: loadingWidget,
+                    );
                   }),
                 ],
               ),

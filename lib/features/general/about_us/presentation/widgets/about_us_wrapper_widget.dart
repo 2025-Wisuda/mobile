@@ -1,11 +1,20 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+
+// Project imports:
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 
 class AboutUsWrapperWidget extends StatelessWidget {
   const AboutUsWrapperWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final title = i18n.tr('features.aboutUs.title');
+    final description = i18n.tr('features.aboutUs.description');
+    final version = i18n.tr('features.menu.version');
     return Column(
       children: [
         Expanded(
@@ -14,14 +23,15 @@ class AboutUsWrapperWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'features.aboutUs.title'.tr(),
+                  title,
+                  style: context.bodyMediumW(500),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.visible,
                   maxLines: 2,
                 ),
                 Text(
-                  'features.aboutUs.description'.tr(),
-                  style: Theme.of(context).textTheme.bodySmall,
+                  description,
+                  style: context.bodySmallW(500),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.visible,
                   maxLines: 2,
@@ -30,16 +40,11 @@ class AboutUsWrapperWidget extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 36),
-          child: Text(
-            '${'features.menu.version'.tr()} 0.1.0',
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
+        Text(
+          version,
+          style: context.bodyMediumW(500).copyWith(color: context.outline),
+          overflow: TextOverflow.ellipsis,
+        ).pb(36),
       ],
     );
   }

@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/helpers/helper.dart';
+
+// Project imports:
+import 'package:mobile/shared/helpers/extensions/theme_color_extension_helper.dart';
+
+// Project imports:
 
 class CustomSearchFormWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -43,13 +48,11 @@ class CustomSearchFormWidget extends StatelessWidget {
               shape: WidgetStatePropertyAll(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(borderRadius ?? 12),
-                  side: BorderSide(
-                    color: borderColor ?? context.color.onSurface,
-                  ),
+                  side: BorderSide(color: borderColor ?? context.onSurface),
                 ),
               ),
               backgroundColor: WidgetStatePropertyAll(
-                backgroundColor ?? context.color.surface,
+                backgroundColor ?? context.surface,
               ),
               autoFocus: autoFocus,
               onTapOutside: (PointerDownEvent event) {

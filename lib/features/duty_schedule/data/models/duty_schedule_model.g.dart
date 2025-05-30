@@ -35,16 +35,21 @@ _DutyScheduleModel _$DutyScheduleModelFromJson(Map<String, dynamic> json) =>
               : DateTime.parse(json['updated_at'] as String),
     );
 
-Map<String, dynamic> _$DutyScheduleModelToJson(_DutyScheduleModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'teaching_assistants': instance.teachingAssistants,
-      'days': instance.days,
-      'start_date': instance.startDate?.toIso8601String(),
-      'end_date': instance.endDate?.toIso8601String(),
-      'start_time': instance.startTime,
-      'end_time': instance.endTime,
-      'is_active': instance.isActive,
-      'created_at': instance.createdAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
-    };
+Map<String, dynamic> _$DutyScheduleModelToJson(
+  _DutyScheduleModel instance,
+) => <String, dynamic>{
+  if (instance.id case final value?) 'id': value,
+  if (instance.teachingAssistants case final value?)
+    'teaching_assistants': value,
+  if (instance.days case final value?) 'days': value,
+  if (instance.startDate?.toIso8601String() case final value?)
+    'start_date': value,
+  if (instance.endDate?.toIso8601String() case final value?) 'end_date': value,
+  if (instance.startTime case final value?) 'start_time': value,
+  if (instance.endTime case final value?) 'end_time': value,
+  if (instance.isActive case final value?) 'is_active': value,
+  if (instance.createdAt?.toIso8601String() case final value?)
+    'created_at': value,
+  if (instance.updatedAt?.toIso8601String() case final value?)
+    'updated_at': value,
+};

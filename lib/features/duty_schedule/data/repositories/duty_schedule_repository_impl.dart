@@ -1,6 +1,10 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
 import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/duty_schedule/duty_schedule.dart';
+import 'package:mobile/features/duty_schedule/data/data.dart';
+import 'package:mobile/features/duty_schedule/domain/domain.dart';
 
 class DutyScheduleRepositoryImpl implements DutyScheduleRepository {
   final DutyScheduleRemoteDataSource dutyScheduleRemoteDataSource;

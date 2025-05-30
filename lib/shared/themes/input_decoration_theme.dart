@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:mobile/core/core.dart';
 
 class InputDecorationThemeX {
@@ -54,15 +57,18 @@ class InputDecorationThemeX {
     focusColor: ColorConstant.kNeutral900,
     hoverColor: ColorConstant.kNeutral100,
     errorBorder: OutlineInputBorder(
-      borderSide: const BorderSide(color: ColorConstant.kError500, width: 1.0),
+      borderSide: const BorderSide(color: ColorConstant.kError300, width: 1),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: const BorderSide(color: ColorConstant.kNeutral500, width: 1),
+      borderSide: const BorderSide(
+        color: ColorConstant.kNeutral700,
+        width: 1.2,
+      ),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     focusedErrorBorder: OutlineInputBorder(
-      borderSide: const BorderSide(color: ColorConstant.kError500, width: 1),
+      borderSide: const BorderSide(color: ColorConstant.kError500, width: 1.2),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     disabledBorder: OutlineInputBorder(
@@ -73,10 +79,7 @@ class InputDecorationThemeX {
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     enabledBorder: OutlineInputBorder(
-      borderSide: const BorderSide(
-        color: ColorConstant.kNeutral300,
-        width: 1.0,
-      ),
+      borderSide: const BorderSide(color: ColorConstant.kNeutral500, width: 1),
       borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
     ),
     border: OutlineInputBorder(
@@ -129,7 +132,7 @@ class InputDecorationThemeX {
       color: ColorConstant.kNeutral300,
     ),
     filled: true,
-    fillColor: ColorConstant.kNeutral700,
+    fillColor: ColorConstant.kNeutral800,
     activeIndicatorBorder: const BorderSide(
       color: ColorConstant.kNeutral50,
       width: 1,

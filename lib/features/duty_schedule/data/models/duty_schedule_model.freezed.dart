@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DutyScheduleModel {
 
-@JsonKey(name: 'id') String? get id;@JsonKey(name: 'teaching_assistants') List<UserModel>? get teachingAssistants;@JsonKey(name: 'days') String? get days;@JsonKey(name: 'start_date') DateTime? get startDate;@JsonKey(name: 'end_date') DateTime? get endDate;@JsonKey(name: 'start_time') String? get startTime;@JsonKey(name: 'end_time') String? get endTime;@JsonKey(name: 'is_active') bool? get isActive;@JsonKey(name: 'created_at') DateTime? get createdAt;@JsonKey(name: 'updated_at') DateTime? get updatedAt;
+@JsonKey(name: 'id', includeIfNull: false) String? get id;@JsonKey(name: 'teaching_assistants', includeIfNull: false) List<UserModel>? get teachingAssistants;@JsonKey(name: 'days', includeIfNull: false) String? get days;@JsonKey(name: 'start_date', includeIfNull: false) DateTime? get startDate;@JsonKey(name: 'end_date', includeIfNull: false) DateTime? get endDate;@JsonKey(name: 'start_time', includeIfNull: false) String? get startTime;@JsonKey(name: 'end_time', includeIfNull: false) String? get endTime;@JsonKey(name: 'is_active', includeIfNull: false) bool? get isActive;@JsonKey(name: 'created_at', includeIfNull: false) DateTime? get createdAt;@JsonKey(name: 'updated_at', includeIfNull: false) DateTime? get updatedAt;
 /// Create a copy of DutyScheduleModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $DutyScheduleModelCopyWith<$Res>  {
   factory $DutyScheduleModelCopyWith(DutyScheduleModel value, $Res Function(DutyScheduleModel) _then) = _$DutyScheduleModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') String? id,@JsonKey(name: 'teaching_assistants') List<UserModel>? teachingAssistants,@JsonKey(name: 'days') String? days,@JsonKey(name: 'start_date') DateTime? startDate,@JsonKey(name: 'end_date') DateTime? endDate,@JsonKey(name: 'start_time') String? startTime,@JsonKey(name: 'end_time') String? endTime,@JsonKey(name: 'is_active') bool? isActive,@JsonKey(name: 'created_at') DateTime? createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
+@JsonKey(name: 'id', includeIfNull: false) String? id,@JsonKey(name: 'teaching_assistants', includeIfNull: false) List<UserModel>? teachingAssistants,@JsonKey(name: 'days', includeIfNull: false) String? days,@JsonKey(name: 'start_date', includeIfNull: false) DateTime? startDate,@JsonKey(name: 'end_date', includeIfNull: false) DateTime? endDate,@JsonKey(name: 'start_time', includeIfNull: false) String? startTime,@JsonKey(name: 'end_time', includeIfNull: false) String? endTime,@JsonKey(name: 'is_active', includeIfNull: false) bool? isActive,@JsonKey(name: 'created_at', includeIfNull: false) DateTime? createdAt,@JsonKey(name: 'updated_at', includeIfNull: false) DateTime? updatedAt
 });
 
 
@@ -89,12 +89,12 @@ as DateTime?,
 @JsonSerializable()
 
 class _DutyScheduleModel implements DutyScheduleModel {
-  const _DutyScheduleModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'teaching_assistants') final  List<UserModel>? teachingAssistants, @JsonKey(name: 'days') this.days, @JsonKey(name: 'start_date') this.startDate, @JsonKey(name: 'end_date') this.endDate, @JsonKey(name: 'start_time') this.startTime, @JsonKey(name: 'end_time') this.endTime, @JsonKey(name: 'is_active') this.isActive, @JsonKey(name: 'created_at') this.createdAt, @JsonKey(name: 'updated_at') this.updatedAt}): _teachingAssistants = teachingAssistants;
+  const _DutyScheduleModel({@JsonKey(name: 'id', includeIfNull: false) this.id, @JsonKey(name: 'teaching_assistants', includeIfNull: false) final  List<UserModel>? teachingAssistants, @JsonKey(name: 'days', includeIfNull: false) this.days, @JsonKey(name: 'start_date', includeIfNull: false) this.startDate, @JsonKey(name: 'end_date', includeIfNull: false) this.endDate, @JsonKey(name: 'start_time', includeIfNull: false) this.startTime, @JsonKey(name: 'end_time', includeIfNull: false) this.endTime, @JsonKey(name: 'is_active', includeIfNull: false) this.isActive, @JsonKey(name: 'created_at', includeIfNull: false) this.createdAt, @JsonKey(name: 'updated_at', includeIfNull: false) this.updatedAt}): _teachingAssistants = teachingAssistants;
   factory _DutyScheduleModel.fromJson(Map<String, dynamic> json) => _$DutyScheduleModelFromJson(json);
 
-@override@JsonKey(name: 'id') final  String? id;
+@override@JsonKey(name: 'id', includeIfNull: false) final  String? id;
  final  List<UserModel>? _teachingAssistants;
-@override@JsonKey(name: 'teaching_assistants') List<UserModel>? get teachingAssistants {
+@override@JsonKey(name: 'teaching_assistants', includeIfNull: false) List<UserModel>? get teachingAssistants {
   final value = _teachingAssistants;
   if (value == null) return null;
   if (_teachingAssistants is EqualUnmodifiableListView) return _teachingAssistants;
@@ -102,14 +102,14 @@ class _DutyScheduleModel implements DutyScheduleModel {
   return EqualUnmodifiableListView(value);
 }
 
-@override@JsonKey(name: 'days') final  String? days;
-@override@JsonKey(name: 'start_date') final  DateTime? startDate;
-@override@JsonKey(name: 'end_date') final  DateTime? endDate;
-@override@JsonKey(name: 'start_time') final  String? startTime;
-@override@JsonKey(name: 'end_time') final  String? endTime;
-@override@JsonKey(name: 'is_active') final  bool? isActive;
-@override@JsonKey(name: 'created_at') final  DateTime? createdAt;
-@override@JsonKey(name: 'updated_at') final  DateTime? updatedAt;
+@override@JsonKey(name: 'days', includeIfNull: false) final  String? days;
+@override@JsonKey(name: 'start_date', includeIfNull: false) final  DateTime? startDate;
+@override@JsonKey(name: 'end_date', includeIfNull: false) final  DateTime? endDate;
+@override@JsonKey(name: 'start_time', includeIfNull: false) final  String? startTime;
+@override@JsonKey(name: 'end_time', includeIfNull: false) final  String? endTime;
+@override@JsonKey(name: 'is_active', includeIfNull: false) final  bool? isActive;
+@override@JsonKey(name: 'created_at', includeIfNull: false) final  DateTime? createdAt;
+@override@JsonKey(name: 'updated_at', includeIfNull: false) final  DateTime? updatedAt;
 
 /// Create a copy of DutyScheduleModel
 /// with the given fields replaced by the non-null parameter values.
@@ -144,7 +144,7 @@ abstract mixin class _$DutyScheduleModelCopyWith<$Res> implements $DutyScheduleM
   factory _$DutyScheduleModelCopyWith(_DutyScheduleModel value, $Res Function(_DutyScheduleModel) _then) = __$DutyScheduleModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') String? id,@JsonKey(name: 'teaching_assistants') List<UserModel>? teachingAssistants,@JsonKey(name: 'days') String? days,@JsonKey(name: 'start_date') DateTime? startDate,@JsonKey(name: 'end_date') DateTime? endDate,@JsonKey(name: 'start_time') String? startTime,@JsonKey(name: 'end_time') String? endTime,@JsonKey(name: 'is_active') bool? isActive,@JsonKey(name: 'created_at') DateTime? createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
+@JsonKey(name: 'id', includeIfNull: false) String? id,@JsonKey(name: 'teaching_assistants', includeIfNull: false) List<UserModel>? teachingAssistants,@JsonKey(name: 'days', includeIfNull: false) String? days,@JsonKey(name: 'start_date', includeIfNull: false) DateTime? startDate,@JsonKey(name: 'end_date', includeIfNull: false) DateTime? endDate,@JsonKey(name: 'start_time', includeIfNull: false) String? startTime,@JsonKey(name: 'end_time', includeIfNull: false) String? endTime,@JsonKey(name: 'is_active', includeIfNull: false) bool? isActive,@JsonKey(name: 'created_at', includeIfNull: false) DateTime? createdAt,@JsonKey(name: 'updated_at', includeIfNull: false) DateTime? updatedAt
 });
 
 

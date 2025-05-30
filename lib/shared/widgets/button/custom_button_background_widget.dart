@@ -1,4 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:mobile/shared/helpers/extensions/extension.dart';
+
+// Project imports:
 
 class CustomButtonBackgroundWidget extends StatelessWidget {
   final Widget iconButton;
@@ -19,14 +25,11 @@ class CustomButtonBackgroundWidget extends StatelessWidget {
     return IconButton(
       onPressed: onPressed,
       icon: iconButton,
-      color: Theme.of(context).colorScheme.onSurface,
-      focusColor: Theme.of(context).colorScheme.secondaryContainer,
+      color: context.onSurface,
+      focusColor: context.secondaryContainer,
       style: ButtonStyle(
         backgroundColor:
-            backgroundColor ??
-            WidgetStateProperty.all<Color?>(
-              Theme.of(context).colorScheme.outline,
-            ),
+            backgroundColor ?? WidgetStateProperty.all<Color?>(context.outline),
       ),
     );
   }

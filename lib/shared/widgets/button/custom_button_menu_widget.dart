@@ -1,5 +1,9 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/core/core.dart';
+
+// Project imports:
+import 'package:mobile/core/constants/border_radius_constant.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 
 class CustomButtonMenuWidget extends StatelessWidget {
   final void Function()? onPressed;
@@ -33,16 +37,14 @@ class CustomButtonMenuWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         enabledMouseCursor:
             isFormValid! ? SystemMouseCursors.click : SystemMouseCursors.basic,
-        overlayColor: Theme.of(context).colorScheme.primary,
-        surfaceTintColor: Theme.of(context).colorScheme.surface,
-        foregroundColor:
-            foregroundColor ?? Theme.of(context).colorScheme.primary,
+        overlayColor: context.primary,
+        surfaceTintColor: context.surface,
+        foregroundColor: foregroundColor ?? context.primary,
         shadowColor: shadowColor ?? Colors.transparent,
         minimumSize: Size(width, height),
         maximumSize: Size(width, height),
         fixedSize: Size(width, height),
-        backgroundColor:
-            backgroundColor ?? Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: backgroundColor ?? context.primaryContainer,
         padding: padding ?? const EdgeInsets.all(2),
         shape: RoundedRectangleBorder(
           borderRadius:

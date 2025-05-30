@@ -1,20 +1,23 @@
+// Dart imports:
 import 'dart:ui';
 
-import 'package:easy_localization/easy_localization.dart';
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+
+// Project imports:
 import 'package:mobile/core/constants/icon_constant.dart';
-import 'package:mobile/features/general/menu/data/models/menu_model.dart';
-import 'package:mobile/features/general/menu/data/models/menu_section_model.dart';
-import 'package:mobile/shared/routes/app_route.dart';
+import 'package:mobile/features/general/menu/data/models/model.dart';
+import 'package:mobile/shared/routes/route.dart';
 
 class ProfileMenuLocalDatasource {
   List<MenuSectionModel> fetchProfileMenuData({VoidCallback? onTap}) {
     return [
       MenuSectionModel(
-        title: 'features.menu.personalInfo'.tr(),
+        title: i18n.tr('features.menu.personalInfo'),
         menus: [
           MenuModel(
             iconMenu: IconConstant.userOutlineIcon,
-            nameMenu: 'features.menu.accountInfo'.tr(),
+            nameMenu: i18n.tr('features.menu.accountInfo'),
             routeName: AppRoute.home,
             allowedGroup: [
               'mahasiswa',
@@ -27,7 +30,7 @@ class ProfileMenuLocalDatasource {
           ),
           MenuModel(
             iconMenu: IconConstant.keyOutlineIcon,
-            nameMenu: 'features.menu.changePassword'.tr(),
+            nameMenu: i18n.tr('features.menu.changePassword'),
             routeName: AppRoute.home,
             allowedGroup: [
               'mahasiswa',
@@ -41,11 +44,11 @@ class ProfileMenuLocalDatasource {
         ],
       ),
       MenuSectionModel(
-        title: 'features.menu.setting'.tr(),
+        title: i18n.tr('features.menu.setting'),
         menus: [
           MenuModel(
             iconMenu: IconConstant.translateOutlineIcon,
-            nameMenu: 'features.menu.language'.tr(),
+            nameMenu: i18n.tr('features.menu.language'),
             routeName: AppRoute.home,
             allowedGroup: [
               'mahasiswa',
@@ -58,7 +61,7 @@ class ProfileMenuLocalDatasource {
           ),
           MenuModel(
             iconMenu: IconConstant.sunOutlineIcon,
-            nameMenu: 'features.menu.darkMode'.tr(),
+            nameMenu: i18n.tr('features.menu.darkMode'),
             routeName: AppRoute.home,
             allowedGroup: [
               'mahasiswa',
@@ -72,11 +75,11 @@ class ProfileMenuLocalDatasource {
         ],
       ),
       MenuSectionModel(
-        title: 'features.menu.about'.tr(),
+        title: i18n.tr('features.menu.about'),
         menus: [
           MenuModel(
             iconMenu: IconConstant.codeOutlineIcon,
-            nameMenu: 'features.menu.aboutUs'.tr(),
+            nameMenu: i18n.tr('features.menu.aboutUs'),
             routeName: AppRoute.aboutUs,
             allowedGroup: [
               'mahasiswa',

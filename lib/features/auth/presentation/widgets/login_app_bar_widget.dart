@@ -1,6 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/core/core.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+
+// Project imports:
+import 'package:mobile/core/constants/illustration_constant.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 
 class LoginAppBarWidget extends StatelessWidget {
   const LoginAppBarWidget({super.key});
@@ -13,17 +19,12 @@ class LoginAppBarWidget extends StatelessWidget {
         spacing: 8,
         children: [
           Text(
-            'features.auth.login.welcomeTitle'.tr(),
-            style: Theme.of(
-              context,
-            ).textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.w600),
+            i18n.tr('features.auth.login.welcomeTitle'),
+            style: context.headlineMediumW(600),
           ),
           Text(
-            'features.auth.login.welcomeDescription'.tr(),
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.scrim,
-            ),
+            i18n.tr('features.auth.login.welcomeDescription'),
+            style: context.bodyMediumW(600).copyWith(color: context.scrim),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 36),

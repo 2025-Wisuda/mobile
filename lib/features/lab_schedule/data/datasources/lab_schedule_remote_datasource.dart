@@ -1,7 +1,10 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:mobile/core/errors/types/type.dart';
+
+// Project imports:
 import 'package:mobile/core/errors/texts/text.dart';
+import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/lab_schedule/data/models/model.dart';
 import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
 import 'package:mobile/shared/utils/util.dart';
@@ -13,15 +16,8 @@ abstract class LabScheduleRemoteDataSource {
   Future<Either<Failure, LabScheduleModel>> fetchLabScheduleDetail({
     required String labScheduleId,
   });
-  Future<Either<Failure, LabScheduleModel>> updateLabSchedule({
-    required UpdateLabScheduleRequestEntity data,
-    required String labScheduleId,
-  });
   Future<Either<Failure, LabScheduleModel>> approveLabSchedule({
     required ApprovalLabScheduleRequestEntity data,
-    required String labScheduleId,
-  });
-  Future<Either<Failure, LabScheduleModel>> deleteLabSchedule({
     required String labScheduleId,
   });
 }
@@ -35,26 +31,12 @@ class LabScheduleRemoteDataSourceImpl implements LabScheduleRemoteDataSource {
     LabScheduleFilterParamsModel? params,
   }) async {
     try {
-      LoggerUtil.logInfo('Fetch all lab schedules request');
-
       final queryParams = params?.toQueryParameters() ?? {};
       final stringParams = queryParams.map(
         (key, value) => MapEntry(key, value.toString()),
       );
-      final uri = Uri.parse(
-        BaseUrlUtil.labScheduleUrl,
-      ).replace(queryParameters: stringParams);
-      LoggerUtil.logInfo('GET ${uri.toString()}');
-
-      final response = await _dio.get(
-        BaseUrlUtil.labScheduleUrl,
-        queryParameters: stringParams,
-      );
-
-      LoggerUtil.logInfo(
-        'Fetch list lab schedules response: ${LoggerUtil.prettyJson(response.data)}',
-      );
-
+      final url = BaseUrlUtil.labScheduleUrl;
+      final response = await _dio.get(url, queryParameters: stringParams);
       if (response.statusCode == 200) {
         return right(ListLabScheduleModel.fromJson(response.data));
       } else {
@@ -65,7 +47,6 @@ class LabScheduleRemoteDataSourceImpl implements LabScheduleRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Fetch all lab schedules error: ${e.toString()}');
       return left(ServerFailure(LabScheduleText.catchFetchListLabSchedule(e)));
     }
   }
@@ -75,14 +56,8 @@ class LabScheduleRemoteDataSourceImpl implements LabScheduleRemoteDataSource {
     required String labScheduleId,
   }) async {
     try {
-      LoggerUtil.logInfo('Fetch lab schedule detail request: $labScheduleId');
-      LoggerUtil.logInfo('GET ${BaseUrlUtil.labScheduleUrl}/$labScheduleId');
-      final response = await _dio.get(
-        '${BaseUrlUtil.labScheduleUrl}/$labScheduleId',
-      );
-      LoggerUtil.logInfo(
-        'Fetch lab schedule detail response: ${LoggerUtil.prettyJson(response.data)}',
-      );
+      final url = '${BaseUrlUtil.labScheduleUrl}/$labScheduleId';
+      final response = await _dio.get(url);
       if (response.statusCode == 200) {
         return right(LabScheduleModel.fromJson(response.data));
       } else {
@@ -93,42 +68,9 @@ class LabScheduleRemoteDataSourceImpl implements LabScheduleRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Fetch lab schedule detail error: ${e.toString()}');
       return left(
         ServerFailure(LabScheduleText.catchFetchLabScheduleDetail(e)),
       );
-    }
-  }
-
-  @override
-  Future<Either<Failure, LabScheduleModel>> updateLabSchedule({
-    UpdateLabScheduleRequestEntity? data,
-    required String labScheduleId,
-  }) async {
-    try {
-      final model = UpdateLabScheduleRequestModelExtension.fromEntity(data!);
-      LoggerUtil.logInfo(
-        'Update lab schedule request: ${LoggerUtil.prettyJson(model.toJson())}',
-      );
-      final response = await _dio.put(
-        '${BaseUrlUtil.labScheduleUrl}/$labScheduleId',
-        data: model.toJson(),
-      );
-      LoggerUtil.logInfo(
-        'Update lab schedule response: ${LoggerUtil.prettyJson(response.data)}',
-      );
-      if (response.statusCode == 200) {
-        return right(LabScheduleModel.fromJson(response.data));
-      } else {
-        return left(
-          ServerFailure(
-            LabScheduleText.tryUpdateLabSchedule(response.statusCode),
-          ),
-        );
-      }
-    } on DioException catch (e) {
-      LoggerUtil.logError('Update lab schedule error: ${e.toString()}');
-      return left(ServerFailure(LabScheduleText.catchUpdateLabSchedule(e)));
     }
   }
 
@@ -139,14 +81,8 @@ class LabScheduleRemoteDataSourceImpl implements LabScheduleRemoteDataSource {
   }) async {
     try {
       final model = ApprovalLabScheduleRequestModelExtension.fromEntity(data!);
-      LoggerUtil.logInfo(
-        'Approve lab schedule request: ${LoggerUtil.prettyJson(model.toJson())}',
-      );
       final url = '${BaseUrlUtil.labScheduleUrl}/$labScheduleId/approval';
       final response = await _dio.put(url, data: model.toJson());
-      LoggerUtil.logInfo(
-        'Approve lab schedule response: ${LoggerUtil.prettyJson(response.data)}',
-      );
       if (response.statusCode == 200) {
         return right(LabScheduleModel.fromJson(response.data));
       } else {
@@ -157,34 +93,7 @@ class LabScheduleRemoteDataSourceImpl implements LabScheduleRemoteDataSource {
         );
       }
     } on DioException catch (e) {
-      LoggerUtil.logError('Approve lab schedule error: ${e.toString()}');
       return left(ServerFailure(LabScheduleText.catchApproveLabSchedule(e)));
-    }
-  }
-
-  @override
-  Future<Either<Failure, LabScheduleModel>> deleteLabSchedule({
-    required String labScheduleId,
-  }) async {
-    try {
-      final response = await _dio.delete(
-        '${BaseUrlUtil.labScheduleUrl}/$labScheduleId',
-      );
-      LoggerUtil.logInfo(
-        'Delete lab schedule response: ${LoggerUtil.prettyJson(response.data)}',
-      );
-      if (response.statusCode == 200) {
-        return right(LabScheduleModel.fromJson(response.data));
-      } else {
-        return left(
-          ServerFailure(
-            LabScheduleText.tryDeleteLabSchedule(response.statusCode),
-          ),
-        );
-      }
-    } on DioException catch (e) {
-      LoggerUtil.logError('Delete lab schedule error: ${e.toString()}');
-      return left(ServerFailure(LabScheduleText.catchDeleteLabSchedule(e)));
     }
   }
 }

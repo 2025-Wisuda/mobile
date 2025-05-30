@@ -95,7 +95,7 @@ as DateTime?,
 
 
 class _UserEntity implements UserEntity {
-  const _UserEntity({required this.id, required this.password, required this.lastLogin, required this.isSuperuser, required this.username, required this.studentId, required this.employeeId, required this.firstName, required this.lastName, required this.email, required this.isActive, required this.isStaff, required this.dateJoined, required this.faceImage, required this.faceUploaded, required this.avatar, required this.group, required this.createdAt, required this.updatedAt});
+  const _UserEntity({this.id, this.password, this.lastLogin, this.isSuperuser, this.username, this.studentId, this.employeeId, this.firstName, this.lastName, this.email, this.isActive, this.isStaff, this.dateJoined, this.faceImage, this.faceUploaded, this.avatar, this.group, this.createdAt, this.updatedAt});
   
 
 @override final  String? id;

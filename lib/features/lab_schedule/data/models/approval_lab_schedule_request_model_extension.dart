@@ -1,5 +1,6 @@
-import 'package:mobile/features/lab_schedule/data/models/approval_lab_schedule_request_model.dart';
-import 'package:mobile/features/lab_schedule/domain/entities/approval_lab_schedule_request_entity.dart';
+// Project imports:
+import 'package:mobile/features/lab_schedule/data/models/model.dart';
+import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
 
 extension ApprovalLabScheduleRequestModelExtension
     on ApprovalLabScheduleRequestModel {

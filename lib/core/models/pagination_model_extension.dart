@@ -1,5 +1,6 @@
-import 'package:mobile/core/models/pagination_model.dart';
+// Project imports:
 import 'package:mobile/core/entities/pagination_entity.dart';
+import 'package:mobile/core/models/pagination_model.dart';
 
 extension PaginationModelExtension on PaginationModel {
   PaginationEntity toEntity() {

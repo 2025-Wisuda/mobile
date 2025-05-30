@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:mobile/core/constants/color_constant.dart';
 
 class ColorSchemeX {
@@ -20,7 +23,7 @@ class ColorSchemeX {
     onSecondaryFixed: ColorConstant.kNeutral900,
     onSecondaryFixedVariant: ColorConstant.kNeutral900,
     tertiary: ColorConstant.kSuccess500,
-    onTertiary: ColorConstant.kNeutral900,
+    onTertiary: ColorConstant.kNeutral50,
     tertiaryContainer: ColorConstant.kSuccess100,
     onTertiaryContainer: ColorConstant.kNeutral900,
     tertiaryFixed: ColorConstant.kSuccess200,
@@ -28,7 +31,7 @@ class ColorSchemeX {
     onTertiaryFixed: ColorConstant.kNeutral900,
     onTertiaryFixedVariant: ColorConstant.kNeutral900,
     error: ColorConstant.kError500,
-    onError: ColorConstant.kNeutral900,
+    onError: ColorConstant.kNeutral50,
     errorContainer: ColorConstant.kError500,
     onErrorContainer: ColorConstant.kNeutral900,
     surface: ColorConstant.kNeutral50,

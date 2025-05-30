@@ -1,5 +1,7 @@
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/features/general/splash/presentation/controllers/splash_controller.dart';
 
 Bindings splashBinding() {

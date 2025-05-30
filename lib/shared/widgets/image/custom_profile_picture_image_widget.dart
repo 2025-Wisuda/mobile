@@ -1,6 +1,15 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/shared/shared.dart';
+
+// Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
+
+// Project imports:
+import 'package:mobile/shared/helpers/helper.dart';
+
+// Project imports:
 
 class CustomProfilePictureImageWidget extends StatelessWidget {
   final String imageUrl;
@@ -18,82 +27,68 @@ class CustomProfilePictureImageWidget extends StatelessWidget {
     required this.username,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    final defaultSize = 44.0;
-    final double radius = radiusImage ?? defaultSize;
-
-    String displayText = '';
+  String _getInitials() {
     final fn = firstName.trim();
     final ln = lastName.trim();
     final un = username.trim();
+    String result;
 
     if (fn.isNotEmpty && ln.isNotEmpty) {
-      displayText = '${fn[0]}${ln[0]}'.toUpperCase();
+      result = '${fn[0]}${ln[0]}';
     } else if (fn.length >= 2) {
-      displayText = fn.substring(0, 2).toUpperCase();
+      result = fn.substring(0, 2);
     } else if (fn.isNotEmpty) {
-      displayText = fn[0].toUpperCase();
+      result = fn[0];
     } else if (un.length >= 2) {
-      displayText = un.substring(0, 2).toUpperCase();
+      result = un.substring(0, 2);
     } else if (un.isNotEmpty) {
-      displayText = un[0].toUpperCase();
+      result = un[0];
+    } else {
+      result = '';
     }
 
-    return Container(
-      padding: const EdgeInsets.all(4),
+    return result.toUpperCase();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final double radius = radiusImage ?? 44.0;
+    final displayText = _getInitials();
+
+    return SizedBox(
       width: radius,
       height: radius,
-      decoration: const BoxDecoration(shape: BoxShape.circle),
-      child: Center(
-        child: ClipOval(
-          child:
-              imageUrl.isNotEmpty
-                  ? CachedNetworkImage(
-                    cacheKey: imageUrl,
-                    imageUrl: imageUrl,
-                    width: radius,
-                    height: radius,
-                    fit: BoxFit.cover,
-                    placeholder:
-                        (context, url) => CircleAvatar(
-                          radius: radius,
-                          backgroundColor: Theme.of(context).colorScheme.shadow,
-                        ),
-                    errorWidget:
-                        (context, url, error) => Container(
-                          width: radius,
-                          height: radius,
-                          alignment: Alignment.center,
-                          color: Theme.of(context).colorScheme.shadow,
-                          child: Text(
-                            displayText,
-                            style: context.text.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              fontSize: radius * 0.4,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                  )
-                  : Container(
-                    padding: radius > 0 ? const EdgeInsets.all(2) : null,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).colorScheme.shadow,
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      displayText,
-                      style: context.text.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        fontSize: radius * 0.4,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-        ),
+      child: ClipOval(
+        child:
+            imageUrl.isNotEmpty
+                ? CachedNetworkImage(
+                  cacheKey: imageUrl,
+                  imageUrl: imageUrl,
+                  fit: BoxFit.cover,
+                  placeholder:
+                      (context, url) => _buildPlaceholder(context, radius),
+                  errorWidget:
+                      (context, url, error) =>
+                          _buildInitials(context, radius, displayText),
+                )
+                : _buildInitials(context, radius, displayText),
       ),
     );
+  }
+
+  Widget _buildInitials(BuildContext context, double radius, String text) {
+    return Container(
+      alignment: Alignment.center,
+      color: context.shadow,
+      child: Text(
+        text,
+        style: context.bodyMediumW(700).copyWith(fontSize: radius * 0.4),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Widget _buildPlaceholder(BuildContext context, double radius) {
+    return Container(color: context.shadow);
   }
 }

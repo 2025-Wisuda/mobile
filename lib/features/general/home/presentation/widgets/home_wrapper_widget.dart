@@ -1,5 +1,9 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:mobile/features/general/home/presentation/widgets/widget.dart';
+import 'package:mobile/shared/helpers/helper.dart';
 
 class HomeWrapperWidget extends StatelessWidget {
   const HomeWrapperWidget({super.key});
@@ -7,27 +11,15 @@ class HomeWrapperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 16),
-            HomeLabScheduleSectionWidget(),
-            SizedBox(height: 16),
-            HomeMenuSectionWidget(),
-            Center(
-              child: SizedBox(
-                height: 32,
-                width: 32,
-                child: Divider(color: Theme.of(context).colorScheme.primary),
-              ),
-            ),
-            const HomeDutyScheduleSectionWidget(),
-          ],
-        ),
-      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 8,
+        children: [
+          HomeLabScheduleSectionWidget(),
+          HomeMenuSectionWidget(),
+          const HomeDutyScheduleSectionWidget(),
+        ],
+      ).px(16),
     );
   }
 }

@@ -1,15 +1,21 @@
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/core/core.dart';
-import 'package:mobile/features/lab_schedule/lab_schedule.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:mobile/shared/shared.dart';
-import 'package:mobile/shared/widgets/text/error_empty_text_widget.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-import 'package:mobile/features/general/menu/presentation/controllers/menu_controller.dart'
+import 'package:get/get.dart';
+// Project imports:
+import 'package:mobile/core/constants/border_radius_constant.dart';
+// Project imports:
+import 'package:mobile/features/general/menu/presentation/controllers/controller.dart'
     as menu;
+import 'package:mobile/features/lab_schedule/data/models/model.dart';
+import 'package:mobile/features/lab_schedule/presentation/controllers/controller.dart';
+import 'package:mobile/features/lab_schedule/presentation/widgets/expandable_lab_schedule_list_widget.dart';
+import 'package:mobile/shared/helpers/helper.dart';
+import 'package:mobile/shared/widgets/widget.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeLabScheduleSectionWidget extends StatelessWidget {
   const HomeLabScheduleSectionWidget({super.key});
@@ -23,37 +29,33 @@ class HomeLabScheduleSectionWidget extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      child: Container(
-        padding: EdgeInsets.only(
-          top: isEmpty ? 16 : 4,
-          left: 16,
-          right: 16,
-          bottom: 16,
-        ),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: context.color.surface,
-              blurRadius: 10,
-              offset: const Offset(0, 10),
-            ),
-          ],
+      child: Card(
+        margin: const EdgeInsets.only(top: 16, bottom: 16),
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
-          border: Border.all(color: context.color.outline, width: 0.5),
         ),
-        child: _labScheduleList(context),
+        elevation: 1,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: isEmpty ? 16 : 4,
+            left: 16,
+            right: 16,
+            bottom: 16,
+          ),
+          child: _content(context),
+        ),
       ),
     );
   }
 
-  Widget _labScheduleList(BuildContext context) {
+  Widget _content(BuildContext context) {
     final labScheduleController = Get.find<LabScheduleController>();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       labScheduleController.fetchListLabSchedule(
         scheduleFilterParamsModel: LabScheduleFilterParamsModel(
           page: 1,
           pageSize: 10,
-          scheduleDate: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+          scheduleDate: DateHelper.formatIsoDate(),
         ),
         stateTarget: labScheduleController.fetchListLabScheduleState,
       );
@@ -64,84 +66,71 @@ class HomeLabScheduleSectionWidget extends StatelessWidget {
       final state = labScheduleController.fetchListLabScheduleState.value;
       final schedules =
           labScheduleController.listLabScheduleEntity.value?.data ?? [];
+      final errorMessage = labScheduleController.errorMessage.value;
+      final emptyMessage = i18n.tr('features.home.labSchedule.empty');
+      final button = i18n.tr('features.home.labSchedule.seeScheduleOtherDay');
 
-      switch (state) {
-        case FetchStateEnum.loading:
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _labScheduleHeader(context),
-              Skeletonizer(
-                child: LabScheduleListItemWidget(schedules: schedules),
-              ),
-            ],
-          );
-        case FetchStateEnum.loaded:
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _labScheduleHeader(context),
-              LabScheduleListItemWidget(schedules: schedules),
-            ],
-          );
-        case FetchStateEnum.empty:
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16),
-                child: errorEmptyTextWidget(
-                  context,
-                  message: 'features.home.labSchedule.empty'.tr(),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  menuController.pageController.jumpToPage(3);
-                },
-                child: Text(
-                  'features.home.labSchedule.seeScheduleOtherDay'.tr(),
-                  style: context.text.bodyMedium!.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: context.color.primary,
-                  ),
-                ),
-              ),
-            ],
-          );
-        case FetchStateEnum.error:
-          return errorEmptyTextWidget(
-            context,
-            message: labScheduleController.errorMessage.value,
-          );
-        default:
-          return const SizedBox.shrink();
-      }
+      final loadedWidget = Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _labScheduleHeader(context),
+          ExpandableLabScheduleListWidget(schedules: schedules),
+        ],
+      );
+      final loadingWidget = Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _labScheduleHeader(context),
+          Skeletonizer(
+            child: ExpandableLabScheduleListWidget(schedules: schedules),
+          ),
+        ],
+      );
+      final emptyWidget = Column(
+        children: [
+          errorEmptyTextWidget(context, message: emptyMessage).pt(16),
+          TextButton(
+            onPressed: () {
+              menuController.pageController.jumpToPage(1);
+            },
+            child: Text(
+              button,
+              style: context.bodyMediumW(600).copyWith(color: context.primary),
+            ),
+          ),
+        ],
+      );
+      final errorWidget = errorEmptyTextWidget(context, message: errorMessage);
+
+      return state.toWidget(
+        loadingWidget: loadingWidget,
+        loadedWidget: loadedWidget,
+        emptyWidget: emptyWidget,
+        errorWidget: errorWidget,
+        initialWidget: loadingWidget,
+      );
     });
   }
 
   Widget _labScheduleHeader(BuildContext context) {
     final menuController = Get.find<menu.MenuController>();
+    final text = i18n.tr('features.home.labSchedule.title');
+    final button = i18n.tr('features.home.labSchedule.seeScheduleOtherDay');
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       spacing: 8,
       children: [
-        Text(
-          'features.home.labSchedule.title'.tr(),
-          style: context.text.bodyMedium!.copyWith(fontWeight: FontWeight.w600),
-        ),
+        Text(text, style: context.bodyMediumW(600)),
         TextButton(
           onPressed: () {
             menuController.pageController.jumpToPage(1);
           },
           child: Text(
-            'features.home.labSchedule.more'.tr(),
-            style: context.text.bodyMedium!.copyWith(
-              fontWeight: FontWeight.w600,
-              color: context.color.primary,
-            ),
+            button,
+            style: context.bodyMediumW(600).copyWith(color: context.primary),
           ),
         ),
       ],

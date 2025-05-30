@@ -1,5 +1,8 @@
+// Package imports:
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:mobile/features/lab_schedule/lab_schedule.dart';
 
 class LabScheduleBinding extends Bindings {
@@ -18,23 +21,15 @@ class LabScheduleBinding extends Bindings {
     Get.lazyPut<FetchLabScheduleDetailUsecase>(
       () => FetchLabScheduleDetailUsecase(Get.find<LabScheduleRepository>()),
     );
-    Get.lazyPut<UpdateLabScheduleUsecase>(
-      () => UpdateLabScheduleUsecase(Get.find<LabScheduleRepository>()),
-    );
     Get.lazyPut<ApproveLabScheduleUsecase>(
       () => ApproveLabScheduleUsecase(Get.find<LabScheduleRepository>()),
-    );
-    Get.lazyPut<DeleteLabScheduleUsecase>(
-      () => DeleteLabScheduleUsecase(Get.find<LabScheduleRepository>()),
     );
     Get.lazyPut<LabScheduleController>(
       () => LabScheduleController(
         fetchListLabScheduleUsecase: Get.find<FetchListLabScheduleUsecase>(),
         fetchLabScheduleDetailUsecase:
             Get.find<FetchLabScheduleDetailUsecase>(),
-        updateLabScheduleUsecase: Get.find<UpdateLabScheduleUsecase>(),
         approveLabScheduleUsecase: Get.find<ApproveLabScheduleUsecase>(),
-        deleteLabScheduleUsecase: Get.find<DeleteLabScheduleUsecase>(),
       ),
     );
   }

@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:dartz/dartz.dart';
+
+// Project imports:
 import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/user/data/datasources/datasource.dart';
 import 'package:mobile/features/user/data/models/model.dart';

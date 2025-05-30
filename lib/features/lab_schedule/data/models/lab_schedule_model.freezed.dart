@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LabScheduleModel {
 
-@JsonKey(name: 'id') String? get id;@JsonKey(name: 'activity_type') String? get activityType;@JsonKey(name: 'activity_type_display') String? get activityTypeDisplay;@JsonKey(name: 'activity_description') String? get activityDescription;@JsonKey(name: 'schedule_date') DateTime? get scheduleDate;@JsonKey(name: 'start_time') String? get startTime;@JsonKey(name: 'end_time') String? get endTime;@JsonKey(name: 'created_by') UserModel? get createdBy;@JsonKey(name: 'is_active') bool? get isActive;@JsonKey(name: 'approval_status') String? get approvalStatus;@JsonKey(name: 'approved_by') UserModel? get approvedBy;@JsonKey(name: 'approval_time') DateTime? get approvalTime;@JsonKey(name: 'created_at') DateTime? get createdAt;@JsonKey(name: 'updated_at') DateTime? get updatedAt;
+@JsonKey(name: 'id', includeIfNull: false) String? get id;@JsonKey(name: 'activity_type', includeIfNull: false) String? get activityType;@JsonKey(name: 'activity_type_display', includeIfNull: false) String? get activityTypeDisplay;@JsonKey(name: 'activity_description', includeIfNull: false) String? get activityDescription;@JsonKey(name: 'schedule_date', includeIfNull: false) DateTime? get scheduleDate;@JsonKey(name: 'start_time', includeIfNull: false) String? get startTime;@JsonKey(name: 'end_time', includeIfNull: false) String? get endTime;@JsonKey(name: 'created_by', includeIfNull: false) UserModel? get createdBy;@JsonKey(name: 'is_active', includeIfNull: false) bool? get isActive;@JsonKey(name: 'approval_status') String? get approvalStatus;@JsonKey(name: 'approved_by', includeIfNull: false) UserModel? get approvedBy;@JsonKey(name: 'approval_time', includeIfNull: false) DateTime? get approvalTime;@JsonKey(name: 'created_at', includeIfNull: false) DateTime? get createdAt;@JsonKey(name: 'updated_at', includeIfNull: false) DateTime? get updatedAt;
 /// Create a copy of LabScheduleModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $LabScheduleModelCopyWith<$Res>  {
   factory $LabScheduleModelCopyWith(LabScheduleModel value, $Res Function(LabScheduleModel) _then) = _$LabScheduleModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') String? id,@JsonKey(name: 'activity_type') String? activityType,@JsonKey(name: 'activity_type_display') String? activityTypeDisplay,@JsonKey(name: 'activity_description') String? activityDescription,@JsonKey(name: 'schedule_date') DateTime? scheduleDate,@JsonKey(name: 'start_time') String? startTime,@JsonKey(name: 'end_time') String? endTime,@JsonKey(name: 'created_by') UserModel? createdBy,@JsonKey(name: 'is_active') bool? isActive,@JsonKey(name: 'approval_status') String? approvalStatus,@JsonKey(name: 'approved_by') UserModel? approvedBy,@JsonKey(name: 'approval_time') DateTime? approvalTime,@JsonKey(name: 'created_at') DateTime? createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
+@JsonKey(name: 'id', includeIfNull: false) String? id,@JsonKey(name: 'activity_type', includeIfNull: false) String? activityType,@JsonKey(name: 'activity_type_display', includeIfNull: false) String? activityTypeDisplay,@JsonKey(name: 'activity_description', includeIfNull: false) String? activityDescription,@JsonKey(name: 'schedule_date', includeIfNull: false) DateTime? scheduleDate,@JsonKey(name: 'start_time', includeIfNull: false) String? startTime,@JsonKey(name: 'end_time', includeIfNull: false) String? endTime,@JsonKey(name: 'created_by', includeIfNull: false) UserModel? createdBy,@JsonKey(name: 'is_active', includeIfNull: false) bool? isActive,@JsonKey(name: 'approval_status') String? approvalStatus,@JsonKey(name: 'approved_by', includeIfNull: false) UserModel? approvedBy,@JsonKey(name: 'approval_time', includeIfNull: false) DateTime? approvalTime,@JsonKey(name: 'created_at', includeIfNull: false) DateTime? createdAt,@JsonKey(name: 'updated_at', includeIfNull: false) DateTime? updatedAt
 });
 
 
@@ -117,23 +117,23 @@ $UserModelCopyWith<$Res>? get approvedBy {
 @JsonSerializable()
 
 class _LabScheduleModel implements LabScheduleModel {
-  const _LabScheduleModel({@JsonKey(name: 'id') this.id, @JsonKey(name: 'activity_type') this.activityType, @JsonKey(name: 'activity_type_display') this.activityTypeDisplay, @JsonKey(name: 'activity_description') this.activityDescription, @JsonKey(name: 'schedule_date') this.scheduleDate, @JsonKey(name: 'start_time') this.startTime, @JsonKey(name: 'end_time') this.endTime, @JsonKey(name: 'created_by') this.createdBy, @JsonKey(name: 'is_active') this.isActive, @JsonKey(name: 'approval_status') this.approvalStatus, @JsonKey(name: 'approved_by') this.approvedBy, @JsonKey(name: 'approval_time') this.approvalTime, @JsonKey(name: 'created_at') this.createdAt, @JsonKey(name: 'updated_at') this.updatedAt});
+  const _LabScheduleModel({@JsonKey(name: 'id', includeIfNull: false) this.id, @JsonKey(name: 'activity_type', includeIfNull: false) this.activityType, @JsonKey(name: 'activity_type_display', includeIfNull: false) this.activityTypeDisplay, @JsonKey(name: 'activity_description', includeIfNull: false) this.activityDescription, @JsonKey(name: 'schedule_date', includeIfNull: false) this.scheduleDate, @JsonKey(name: 'start_time', includeIfNull: false) this.startTime, @JsonKey(name: 'end_time', includeIfNull: false) this.endTime, @JsonKey(name: 'created_by', includeIfNull: false) this.createdBy, @JsonKey(name: 'is_active', includeIfNull: false) this.isActive, @JsonKey(name: 'approval_status') this.approvalStatus, @JsonKey(name: 'approved_by', includeIfNull: false) this.approvedBy, @JsonKey(name: 'approval_time', includeIfNull: false) this.approvalTime, @JsonKey(name: 'created_at', includeIfNull: false) this.createdAt, @JsonKey(name: 'updated_at', includeIfNull: false) this.updatedAt});
   factory _LabScheduleModel.fromJson(Map<String, dynamic> json) => _$LabScheduleModelFromJson(json);
 
-@override@JsonKey(name: 'id') final  String? id;
-@override@JsonKey(name: 'activity_type') final  String? activityType;
-@override@JsonKey(name: 'activity_type_display') final  String? activityTypeDisplay;
-@override@JsonKey(name: 'activity_description') final  String? activityDescription;
-@override@JsonKey(name: 'schedule_date') final  DateTime? scheduleDate;
-@override@JsonKey(name: 'start_time') final  String? startTime;
-@override@JsonKey(name: 'end_time') final  String? endTime;
-@override@JsonKey(name: 'created_by') final  UserModel? createdBy;
-@override@JsonKey(name: 'is_active') final  bool? isActive;
+@override@JsonKey(name: 'id', includeIfNull: false) final  String? id;
+@override@JsonKey(name: 'activity_type', includeIfNull: false) final  String? activityType;
+@override@JsonKey(name: 'activity_type_display', includeIfNull: false) final  String? activityTypeDisplay;
+@override@JsonKey(name: 'activity_description', includeIfNull: false) final  String? activityDescription;
+@override@JsonKey(name: 'schedule_date', includeIfNull: false) final  DateTime? scheduleDate;
+@override@JsonKey(name: 'start_time', includeIfNull: false) final  String? startTime;
+@override@JsonKey(name: 'end_time', includeIfNull: false) final  String? endTime;
+@override@JsonKey(name: 'created_by', includeIfNull: false) final  UserModel? createdBy;
+@override@JsonKey(name: 'is_active', includeIfNull: false) final  bool? isActive;
 @override@JsonKey(name: 'approval_status') final  String? approvalStatus;
-@override@JsonKey(name: 'approved_by') final  UserModel? approvedBy;
-@override@JsonKey(name: 'approval_time') final  DateTime? approvalTime;
-@override@JsonKey(name: 'created_at') final  DateTime? createdAt;
-@override@JsonKey(name: 'updated_at') final  DateTime? updatedAt;
+@override@JsonKey(name: 'approved_by', includeIfNull: false) final  UserModel? approvedBy;
+@override@JsonKey(name: 'approval_time', includeIfNull: false) final  DateTime? approvalTime;
+@override@JsonKey(name: 'created_at', includeIfNull: false) final  DateTime? createdAt;
+@override@JsonKey(name: 'updated_at', includeIfNull: false) final  DateTime? updatedAt;
 
 /// Create a copy of LabScheduleModel
 /// with the given fields replaced by the non-null parameter values.
@@ -168,7 +168,7 @@ abstract mixin class _$LabScheduleModelCopyWith<$Res> implements $LabScheduleMod
   factory _$LabScheduleModelCopyWith(_LabScheduleModel value, $Res Function(_LabScheduleModel) _then) = __$LabScheduleModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') String? id,@JsonKey(name: 'activity_type') String? activityType,@JsonKey(name: 'activity_type_display') String? activityTypeDisplay,@JsonKey(name: 'activity_description') String? activityDescription,@JsonKey(name: 'schedule_date') DateTime? scheduleDate,@JsonKey(name: 'start_time') String? startTime,@JsonKey(name: 'end_time') String? endTime,@JsonKey(name: 'created_by') UserModel? createdBy,@JsonKey(name: 'is_active') bool? isActive,@JsonKey(name: 'approval_status') String? approvalStatus,@JsonKey(name: 'approved_by') UserModel? approvedBy,@JsonKey(name: 'approval_time') DateTime? approvalTime,@JsonKey(name: 'created_at') DateTime? createdAt,@JsonKey(name: 'updated_at') DateTime? updatedAt
+@JsonKey(name: 'id', includeIfNull: false) String? id,@JsonKey(name: 'activity_type', includeIfNull: false) String? activityType,@JsonKey(name: 'activity_type_display', includeIfNull: false) String? activityTypeDisplay,@JsonKey(name: 'activity_description', includeIfNull: false) String? activityDescription,@JsonKey(name: 'schedule_date', includeIfNull: false) DateTime? scheduleDate,@JsonKey(name: 'start_time', includeIfNull: false) String? startTime,@JsonKey(name: 'end_time', includeIfNull: false) String? endTime,@JsonKey(name: 'created_by', includeIfNull: false) UserModel? createdBy,@JsonKey(name: 'is_active', includeIfNull: false) bool? isActive,@JsonKey(name: 'approval_status') String? approvalStatus,@JsonKey(name: 'approved_by', includeIfNull: false) UserModel? approvedBy,@JsonKey(name: 'approval_time', includeIfNull: false) DateTime? approvalTime,@JsonKey(name: 'created_at', includeIfNull: false) DateTime? createdAt,@JsonKey(name: 'updated_at', includeIfNull: false) DateTime? updatedAt
 });
 
 

@@ -1,79 +1,70 @@
+// Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:mobile/features/lab_schedule/data/models/lab_schedule_filter_params_model.dart';
-import 'package:mobile/features/lab_schedule/presentation/controllers/lab_schedule_controller.dart';
-import 'package:get/get.dart';
+
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:mobile/shared/helpers/context_extension_helper.dart';
+import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+// Project imports:
+import 'package:mobile/features/lab_schedule/data/models/lab_schedule_filter_params_model.dart';
+import 'package:mobile/features/lab_schedule/presentation/controllers/controller.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 
 class LabScheduleCalendarWidget extends StatelessWidget {
   const LabScheduleCalendarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<LabScheduleController>();
+    final labController = Get.find<LabScheduleController>();
     final todayDate = DateTime.now();
     final sixMonthsLater = todayDate.add(const Duration(days: 180));
+    final state = labController.fetchListLabScheduleState;
+    final firstDay = todayDate.subtract(Duration(days: todayDate.day - 1));
 
     return Obx(
       () => TableCalendar(
         locale: 'id_ID',
-        firstDay: todayDate,
+        firstDay: firstDay,
         lastDay: sixMonthsLater,
-        focusedDay: controller.focusedDate.value,
+        focusedDay: labController.focusedDate.value,
         selectedDayPredicate:
-            (day) => isSameDay(controller.selectedDate.value, day),
+            (day) => isSameDay(labController.selectedDate.value, day),
         onDaySelected: (selectedDay, focusedDay) {
-          controller.selectedDate.value = selectedDay;
-          controller.focusedDate.value = focusedDay;
-
-          controller.fetchListLabSchedule(
+          labController.selectedDate.value = selectedDay;
+          labController.focusedDate.value = focusedDay;
+          labController.fetchListLabSchedule(
             scheduleFilterParamsModel: LabScheduleFilterParamsModel(
               page: 1,
               pageSize: 10,
               scheduleDate: DateFormat('yyyy-MM-dd').format(selectedDay),
             ),
-            stateTarget: controller.fetchListLabScheduleState,
+            stateTarget: state,
           );
         },
         calendarStyle: CalendarStyle(
           todayDecoration: BoxDecoration(
-            color: context.color.primaryContainer,
+            color: context.primaryContainer,
             shape: BoxShape.circle,
           ),
-          todayTextStyle: TextStyle(
-            color: context.color.onSurface,
-            fontWeight: FontWeight.bold,
-          ),
+          todayTextStyle: context.bodyMediumW(600),
           selectedDecoration: BoxDecoration(
-            color: context.color.primary,
+            color: context.primary,
             shape: BoxShape.circle,
           ),
-          selectedTextStyle: context.text.bodyMedium!.copyWith(
-            color: context.color.surface,
-            fontWeight: FontWeight.w600,
-          ),
-          defaultTextStyle: context.text.bodyMedium!.copyWith(
-            color: context.color.onSurface,
-          ),
-          weekendTextStyle: context.text.bodyMedium!.copyWith(
-            color: context.color.onSurface,
-          ),
+          selectedTextStyle: context
+              .bodyMediumW(600)
+              .copyWith(color: context.onPrimary),
+          defaultTextStyle: context.bodyMediumW(500),
+          weekendTextStyle: context.bodyMediumW(500),
         ),
         headerStyle: HeaderStyle(
           formatButtonVisible: false,
           titleCentered: true,
-          titleTextStyle: context.text.bodyLarge!,
-          // decoration: BoxDecoration(
-
-          //   border: Border(bottom: BorderSide(
-          //     color: context.color.outline,
-          //     width: 1,
-          //   )),
-          // ),
-          // headerMargin: const EdgeInsets.only(bottom: 16),
+          titleTextStyle: context.bodyLargeW(500),
         ),
-
         weekendDays: const [DateTime.saturday, DateTime.sunday],
         startingDayOfWeek: StartingDayOfWeek.monday,
       ),

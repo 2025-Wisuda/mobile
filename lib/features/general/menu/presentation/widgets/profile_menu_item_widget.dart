@@ -1,7 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
-import 'package:mobile/core/constants/icon_constant.dart';
+
+// Project imports:
+import 'package:mobile/core/constants/constant.dart';
+import 'package:mobile/shared/helpers/extensions/text_style_extension_helper.dart';
 import 'package:mobile/shared/widgets/icon/icon.dart';
 
 class ProfileMenuItemWidget extends StatelessWidget {
@@ -34,13 +40,13 @@ class ProfileMenuItemWidget extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: backgroundColor,
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
             ),
             child: iconMenu,
           ),
           Text(
             nameMenu,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: context.bodyMediumW(500),
             textAlign: TextAlign.start,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,

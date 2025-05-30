@@ -1,10 +1,17 @@
+// Dart imports:
 import 'dart:io';
-import 'package:easy_localization/easy_localization.dart';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart' as i18n;
+import 'package:get/state_manager.dart';
+
+// Project imports:
 import 'package:mobile/core/enums/enum.dart';
 import 'package:mobile/features/user/data/models/user_filter_params_model.dart';
 import 'package:mobile/features/user/domain/domain.dart';
-import 'package:get/state_manager.dart';
 import 'package:mobile/shared/databases/user_database.dart';
 
 class UserController extends GetxController {
@@ -87,6 +94,10 @@ class UserController extends GetxController {
 
   final userGroup = RxString('');
 
+  final isLoadingMore = RxBool(false);
+  final currentPage = RxInt(1);
+  final isLastPage = RxBool(false);
+
   void clearSearch() {
     searchUserController.value.clear();
     isSearchActive.value = false;
@@ -121,7 +132,9 @@ class UserController extends GetxController {
   void validateOldPassword(String value) {
     oldPasswordError.value =
         value.isEmpty
-            ? 'features.user.changePassword.validator.oldPassword.empty'.tr()
+            ? i18n.tr(
+              'features.user.changePassword.validator.oldPassword.empty',
+            )
             : '';
     validateChangePassword();
   }
@@ -129,17 +142,21 @@ class UserController extends GetxController {
   void validateNewPassword(String value) {
     newPasswordError.value =
         value.isEmpty
-            ? 'features.user.changePassword.validator.newPassword.empty'.tr()
+            ? i18n.tr(
+              'features.user.changePassword.validator.newPassword.empty',
+            )
             : '';
     if (value.length < 8) {
-      newPasswordError.value =
-          'features.user.changePassword.validator.newPassword.regex'.tr();
+      newPasswordError.value = i18n.tr(
+        'features.user.changePassword.validator.newPassword.regex',
+      );
     }
     if (!RegExp(
       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$',
     ).hasMatch(value)) {
-      newPasswordError.value =
-          'features.user.changePassword.validator.newPassword.regex'.tr();
+      newPasswordError.value = i18n.tr(
+        'features.user.changePassword.validator.newPassword.regex',
+      );
     }
     validateChangePassword();
   }
@@ -175,21 +192,61 @@ class UserController extends GetxController {
 
   Future<void> fetchAllUser({
     required UserFilterParamsModel userFilterParamsModel,
+    bool isLoadMore = false,
     required Rx<FetchStateEnum> stateTarget,
   }) async {
-    final result = await fetchListUserUsecase.execute();
-    stateTarget.value = FetchStateEnum.loading;
+    if (isLoadMore &&
+        (isLoadingMore.value ||
+            stateTarget.value == FetchStateEnum.loading ||
+            currentPage.value >=
+                (listUserEntity.value?.meta?.pagination?.totalPages ?? 1))) {
+      return;
+    }
+
+    if (isLoadMore) {
+      isLoadingMore.value = true;
+      currentPage.value += 1;
+    } else {
+      stateTarget.value = FetchStateEnum.loading;
+      currentPage.value = 1;
+      isLastPage.value = false;
+    }
+
+    final result = await fetchListUserUsecase.execute(
+      params: userFilterParamsModel.copyWith(page: currentPage.value),
+    );
+
+    if (isLoadMore) {
+      isLoadingMore.value = false;
+    }
+
     result.fold(
       (failure) {
-        stateTarget.value = FetchStateEnum.error;
+        if (isLoadMore) {
+          currentPage.value -= 1;
+        } else {
+          stateTarget.value = FetchStateEnum.error;
+        }
         errorMessage.value = failure.message;
       },
-      (response) async {
-        if (response.data!.isEmpty) {
-          stateTarget.value = FetchStateEnum.empty;
+      (response) {
+        if (isLoadMore) {
+          final currentData = listUserEntity.value?.data ?? [];
+          listUserEntity.value = listUserEntity.value?.copyWith(
+            data: [...currentData, ...response.data!],
+          );
         } else {
-          stateTarget.value = FetchStateEnum.loaded;
-          listUserEntity.value = response;
+          if (response.data!.isEmpty) {
+            stateTarget.value = FetchStateEnum.empty;
+          } else {
+            stateTarget.value = FetchStateEnum.loaded;
+            listUserEntity.value = response;
+          }
+        }
+
+        if (response.meta?.pagination?.currentPage ==
+            response.meta?.pagination?.totalPages) {
+          isLastPage.value = true;
         }
       },
     );
@@ -225,6 +282,9 @@ class UserController extends GetxController {
       (response) async {
         fetchUserProfileState.value = FetchStateEnum.loaded;
         userEntity.value = response;
+        if (response.id != null) {
+          await UserDatabase.saveUserId(response.id!);
+        }
         if (response.group != null) {
           await UserDatabase.saveUserGroup(response.group!);
           if (lastGroup != null && lastGroup != response.group) {
@@ -285,5 +345,26 @@ class UserController extends GetxController {
         userEntity.value = response;
       },
     );
+  }
+
+  @override
+  void onClose() {
+    studentIdController.value.dispose();
+    employeeIdController.value.dispose();
+    emailController.value.dispose();
+    faceImage.value = null;
+    avatar.value = null;
+    oldPasswordController.value.dispose();
+    newPasswordController.value.dispose();
+    confirmPassword.value.dispose();
+    searchUserController.value.dispose();
+    studentIdFocusNode.value.dispose();
+    employeeIdFocusNode.value.dispose();
+    emailFocusNode.value.dispose();
+    passwordFocusNode.value.dispose();
+    newPasswordFocusNode.value.dispose();
+    confirmPasswordFocusNode.value.dispose();
+    searchUserFocusNode.value.dispose();
+    super.onClose();
   }
 }

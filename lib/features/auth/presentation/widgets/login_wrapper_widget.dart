@@ -1,5 +1,9 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:mobile/features/auth/presentation/widgets/widget.dart';
+import 'package:mobile/shared/helpers/extensions/extension.dart';
 
 class LoginWrapperWidget extends StatelessWidget {
   const LoginWrapperWidget({super.key});
@@ -7,22 +11,17 @@ class LoginWrapperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 8,
-          children: [
-            LoginAppBarWidget(),
-            LoginFormUsernameWidget(),
-            const SizedBox(height: 8),
-            LoginFormPasswordWidget(),
-            SizedBox(height: 48),
-            LoginButtonWidget(),
-          ],
-        ),
-      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 8,
+        children: [
+          LoginAppBarWidget(),
+          LoginFormUsernameWidget(),
+          LoginFormPasswordWidget().pt(8),
+          LoginButtonWidget().pt(36),
+        ],
+      ).p(24),
     );
   }
 }
