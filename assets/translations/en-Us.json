@@ -1,34 +1,72 @@
 {
   "appName": "Laboratory",
+  "common": {
+    "noInternet": "No internet connection"
+  },
+  "validator": {
+    "required": "{field} is required",
+    "requiredGeneric": "This field is required",
+    "email": {
+      "invalid": "Please enter a valid email address",
+      "required": "Email is required"
+    },
+    "password": {
+      "required": "Password is required",
+      "minLength": "Password must be at least {length} characters long",
+      "minLegth": "Password must be at least {length} characters long",
+      "regex": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+      "weak": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+    },
+    "passwordConfirmation": {
+      "required": "Password confirmation is required",
+      "notMatch": "Password confirmation does not match the password"
+    },
+    "confirmPassword": {
+      "required": "Confirm password is required",
+      "notMatch": "Confirm password does not match the password"
+    },
+    "minLength": "{field} must be at least {length} characters long",
+    "minLengthGeneric": "Must be at least {length} characters long",
+    "maxLength": "{field} must not exceed {length} characters",
+    "maxLengthGeneric": "Must not exceed {length} characters",
+    "phone": {
+      "required": "Phone number is required",
+      "invalid": "Please enter a valid phone number"
+    },
+    "date": {
+      "required": "Date is required",
+      "invalid": "Please enter a valid date"
+    },
+    "dateRange": {
+      "required": "Both start and end dates are required",
+      "invalid": "Start date must be before end date",
+      "parseError": "Invalid date format"
+    },
+    "numeric": {
+      "required": "{field} must be a number",
+      "requiredGeneric": "This field must be a number",
+      "invalid": "Please enter a valid number"
+    },
+    "positiveNumber": {
+      "invalid": "Number must be greater than zero"
+    }
+  },
   "features": {
     "auth": {
-      "login": {
-        "welcomeTitle": "Login to your account",
-        "welcomeDescription": "Please log in to your account",
-        "form": {
-          "label": {
-            "username": "Username",
-            "password": "Password"
-          },
-          "hint": {
-            "username": "Enter your username",
-            "password": "Enter your password"
-          }
+      "form": {
+        "label": {
+          "username": "Username",
+          "password": "Password",
+          "currentPassword": "Current Password",
+          "newPassword": "New Password",
+          "confirmPassword": "Confirm Password"
         },
-        "button": {
-          "login": "Login"
-        },
-        "error": {
-          "400": "Invalid username or password, please try again",
-          "401": "Unauthorized access, please log in",
-          "403": "You do not have permission to access this resource, please contact your administrator",
-          "404": "We could not find the requested resource, please check the URL",
-          "408": "Request timed out, please try again later",
-          "409": "There was a conflict with the request. Please try again or contact support.",
-          "422": "The request was understood, but could not be processed. Please check your input and try again.",
-          "429": "You’ve made too many requests in a short period. Please try again later.",
-          "500": "We’re having trouble on our end. Please try again later.",
-          "default": "Oops! Something went wrong. Please try again later."
+        "hint": {
+          "username": "Enter your username",
+          "password": "Enter your password",
+          "currentPassword": "Enter your current password",
+          "newPassword": "Enter your new password",
+          "confirmPassword": "Re-enter your new password"
         },
         "validator": {
           "username": {
@@ -37,6 +75,34 @@
           "password": {
             "empty": "Password cannot be empty"
           }
+        }
+      },
+      "text": {
+        "login": "Login",
+        "welcomeTitle": "Login to your account",
+        "welcomeSubtitle": "Please log in to your account",
+        "changePassword": "Change Password",
+        "passwordMinLength": "Password must be at least 8 characters long",
+        "passwordUppercase": "Password must contain at least one uppercase letter",
+        "passwordLowercase": "Password must contain at least one lowercase letter",
+        "passwordNumber": "Password must contain at least one number",
+        "passwordSpecialChar": "Password must contain at least one special character"
+      },
+      "login": {
+        "error": {
+          "400": "Invalid username or password, please try again",
+          "401": "Wrong username or password, please try again",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "success": {
+          "default": "Login successful, redirecting..."
         }
       },
       "refreshToken": {
@@ -50,7 +116,24 @@
           "422": "The request was understood, but could not be processed. Please check your input and try again.",
           "429": "You’ve made too many requests in a short period. Please try again later.",
           "500": "We’re having trouble on our end. Please try again later.",
-          "default": "Oops! Something went wrong. Please try again later."
+          "default": "Oops! Something went wrong, please try again later."
+        }
+      },
+      "changePassword": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "success": {
+          "default": "Password changed successfully."
         }
       }
     },
@@ -82,7 +165,11 @@
       "setting": "Setting",
       "aboutUs": "About Us",
       "personalInfo": "Personal Information",
-      "accountInfo": "Account Information"
+      "accountInfo": "Account Information",
+      "labSchedule": "Laboratory Schedule",
+      "dutySchedule": "Assistant Duty Schedule",
+      "course": "Practicum",
+      "courseSession": "Course Session"
     },
     "home": {
       "appBar": {
@@ -95,16 +182,19 @@
         "username": "Username"
       },
       "menu": "Menu",
-      "schedule": {
-        "title": "Schedule for Today",
-        "empty": "No laboratory scheduled for today",
-        "more": "See more"
+      "labSchedule": {
+        "title": "Lab Schedule Today",
+        "empty": "No lab schedule today",
+        "more": "View more",
+        "seeScheduleOtherDay": "See other days",
+        "loading": "Loading lab schedule..."
       },
-      "duty": {
-        "title": "Duty Schedule for Today",
-        "empty": "No duty schedule for today",
+      "dutySchedule": {
+        "title": "Assistant On Duty",
+        "empty": "No assistant on duty today",
         "more": "See more",
-        "time": "08:00 - 17:00"
+        "time": "08:00 - 17:00",
+        "seeScheduleOtherDay": "See assistant schedule for other days"
       }
     },
     "user": {
@@ -113,8 +203,8 @@
           "password": "Password",
           "last_login": "Last Login",
           "username": "Username",
-          "studentId": "Student ID",
-          "employeeId": "Employee ID",
+          "studentNumber": "Student ID",
+          "employeeNumber": "Employee ID",
           "firstName": "First Name",
           "lastName": "Last Name",
           "email": "Email",
@@ -134,8 +224,8 @@
           "password": "Enter your password",
           "last_login": "Last login date",
           "username": "Enter your username",
-          "studentId": "Enter your student ID",
-          "employeeId": "Enter your employee ID",
+          "studentNumber": "Enter your student ID",
+          "employeeNumber": "Enter your employee ID",
           "firstName": "Enter your first name",
           "lastName": "Enter your last name",
           "email": "Enter your email address",
@@ -152,14 +242,16 @@
           "fullName": "Enter your full name"
         }
       },
-      "button": {
+      "text": {
         "saveChanges": "Save Changes",
         "changePassword": "Change Password",
         "upload": "Upload",
         "delete": "Delete",
         "confirm": "Confirm",
         "cancel": "Cancel",
-        "logout": "Logout"
+        "logout": "Logout",
+        "updateProfile": "Update Profile",
+        "tapToChangeAvatar": "Tap to change avatar"
       },
       "fetchListUser": {
         "error": {
@@ -172,8 +264,9 @@
           "422": "The request was understood, but could not be processed. Please check your input and try again.",
           "429": "You’ve made too many requests in a short period. Please try again later.",
           "500": "We’re having trouble on our end. Please try again later.",
-          "default": "Oops! Something went wrong. Please try again later."
-        }
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "empty": "No users found"
       },
       "fetchUserDetail": {
         "error": {
@@ -186,7 +279,7 @@
           "422": "The request was understood, but could not be processed. Please check your input and try again.",
           "429": "You’ve made too many requests in a short period. Please try again later.",
           "500": "We’re having trouble on our end. Please try again later.",
-          "default": "Oops! Something went wrong. Please try again later."
+          "default": "Oops! Something went wrong, please try again later."
         }
       },
       "fetchProfile": {
@@ -200,7 +293,7 @@
           "422": "The request was understood, but could not be processed. Please check your input and try again.",
           "429": "You’ve made too many requests in a short period. Please try again later.",
           "500": "We’re having trouble on our end. Please try again later.",
-          "default": "Oops! Something went wrong. Please try again later."
+          "default": "Oops! Something went wrong, please try again later."
         }
       },
       "updateProfile": {
@@ -214,7 +307,7 @@
           "422": "The request was understood, but could not be processed. Please check your input and try again.",
           "429": "You’ve made too many requests in a short period. Please try again later.",
           "500": "We’re having trouble on our end. Please try again later.",
-          "default": "Oops! Something went wrong. Please try again later."
+          "default": "Oops! Something went wrong, please try again later."
         }
       },
       "changePassword": {
@@ -228,7 +321,7 @@
           "422": "The request was understood, but could not be processed. Please check your input and try again.",
           "429": "You’ve made too many requests in a short period. Please try again later.",
           "500": "We’re having trouble on our end. Please try again later.",
-          "default": "Oops! Something went wrong. Please try again later."
+          "default": "Oops! Something went wrong, please try again later."
         },
         "validator": {
           "oldPassword": {
@@ -245,19 +338,511 @@
         }
       }
     },
+    "schedule": {
+      "lab": {
+        "form": {
+          "label": {
+            "activityType": "Activity Type",
+            "activityDescription": "Activity Description",
+            "scheduleDate": "Schedule Date",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "createdBy": "Created By",
+            "isActive": "Is Active",
+            "approvalStatus": "Approval Status",
+            "approvedBy": "Approved By",
+            "approvalTime": "Approval Time",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At"
+          },
+          "hint": {
+            "activityType": "Select activity type",
+            "activityDescription": "Enter activity description",
+            "scheduleDate": "Select schedule date",
+            "startTime": "Select start time",
+            "endTime": "Select end time",
+            "createdBy": "Enter creator's name",
+            "isActive": "Is this schedule active?",
+            "approvalStatus": "Select approval status",
+            "approvedBy": "Enter approver's name",
+            "approvalTime": "Select approval time",
+            "createdAt": "Date the record was created",
+            "updatedAt": "Date the record was last updated"
+          }
+        },
+        "button": {
+          "saveChanges": "Save Changes",
+          "delete": "Delete",
+          "confirm": "Confirm",
+          "cancel": "Cancel"
+        },
+        "fetchListLabSchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong, please try again later."
+          },
+          "empty": "No laboratory schedule found"
+        },
+        "fetchLabScheduleDetail": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong, please try again later."
+          },
+          "empty": "Cant find laboratory schedule"
+        },
+        "updateLabSchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong, please try again later."
+          }
+        },
+        "approveLabSchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong, please try again later."
+          }
+        },
+        "deleteLabSchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong, please try again later."
+          }
+        },
+        "searchLabSchedule": {
+          "placeholder": "Search lab schedule...",
+          "empty": "No results found",
+          "loading": "Loading results..."
+        },
+        "legend": {
+          "status": {
+            "selectedDate": "Selected date"
+          }
+        }
+      },
+      "duty": {
+        "form": {
+          "label": {
+            "teachingAssistant": "Teaching Assistant",
+            "days": "Days",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "isActive": "Is Active",
+            "createdAt": "Created At",
+            "updatedAt": "Updated At"
+          },
+          "hint": {
+            "teachingAssistant": "Select teaching assistant",
+            "days": "Select days",
+            "startDate": "Select start date",
+            "endDate": "Select end date",
+            "startTime": "Select start time",
+            "endTime": "Select end time",
+            "isActive": "Is this schedule active?",
+            "createdAt": "Date the record was created",
+            "updatedAt": "Date the record was last updated"
+          }
+        },
+        "button": {
+          "saveChanges": "Save Changes",
+          "delete": "Delete",
+          "confirm": "Confirm",
+          "cancel": "Cancel"
+        },
+        "fetchListDutySchedule": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong, please try again later."
+          },
+          "empty": "No duty schedule found"
+        },
+        "fetchDutyScheduleDetail": {
+          "error": {
+            "400": "Invalid request, please try again",
+            "401": "Unauthorized access, please log in",
+            "403": "You do not have permission to access this resource, please contact your administrator",
+            "404": "We could not find the requested resource, please check the URL",
+            "408": "Request timed out, please try again later",
+            "409": "There was a conflict with the request. Please try again or contact support.",
+            "422": "The request was understood, but could not be processed. Please check your input and try again.",
+            "429": "You’ve made too many requests in a short period. Please try again later.",
+            "500": "We’re having trouble on our end. Please try again later.",
+            "default": "Oops! Something went wrong, please try again later."
+          }
+        },
+        "days": {
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "sunday": "Sunday"
+        }
+      }
+    },
     "aboutUs": {
       "title": "Computer Engineering Laboratory",
       "description": "Lampung University",
       "allRightsReserved": "All rights reserved"
+    },
+    "course": {
+      "form": {
+        "label": {
+          "title": "Title",
+          "description": "Description",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "students": "Students",
+          "teachingAssistants": "Teaching Assistants",
+          "enrollKey": "Enroll Key",
+          "createdBy": "Created By",
+          "createdAt": "Created At",
+          "updatedAt": "Updated At",
+          "image": "Image"
+        },
+        "hint": {
+          "title": "Enter practicum title",
+          "description": "Enter practicum description",
+          "startDate": "Select start date",
+          "endDate": "Select end date",
+          "students": "Search students",
+          "teachingAssistants": "Search teaching assistants",
+          "enrollKey": "Enter enroll key",
+          "createdBy": "Enter creator's name",
+          "createdAt": "Date the record was created",
+          "updatedAt": "Date the record was last updated",
+          "image": "Select image"
+        }
+      },
+      "validator": {
+        "title": {
+          "empty": "Title cannot be empty"
+        },
+        "description": {
+          "empty": "Description cannot be empty"
+        },
+        "startDate": {
+          "empty": "Start date cannot be empty"
+        },
+        "endDate": {
+          "empty": "End date cannot be empty"
+        },
+        "students": {
+          "empty": "Students cannot be empty"
+        },
+        "teachingAssistants": {
+          "empty": "Teaching assistants cannot be empty"
+        },
+        "enrollKey": {
+          "empty": "Enroll key cannot be empty"
+        }
+      },
+      "text": {
+        "letsEnrollNewCourse": "Let's enroll in a new Practicum",
+        "courseYouEnrolled": "Practicum You Enrolled",
+        "youDidntEnrollCourse": "You didn't enroll in any Practicum",
+        "detailCourse": "Practicum Detail",
+        "totalParticipants": "Participants",
+        "totalStudents": "Students",
+        "totalTeachingAssistants": "Teaching Assistants",
+        "enrollRequired": "Enroll required",
+        "yourMustBeEnrolled": "You must be enrolled in this practicum to access it, lets enroll now!",
+        "createNewCourse": "Create New Practicum",
+        "updateCourse": "Update Practicum",
+        "selectedImagePath": "Selected image path"
+      },
+      "button": {
+        "saveChanges": "Save Changes",
+        "delete": "Delete",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "seeAll": "See All",
+        "enroll": "Enroll",
+        "create": "Create"
+      },
+      "fetchListCourse": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "empty": "No courses found"
+      },
+      "fetchCourseDetail": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "empty": "Cant find practicum"
+      },
+      "createCourse": {
+        "error": {
+          "400": "Practicum already exists, please use a different title",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "success": {
+          "default": "Practicum created successfully"
+        },
+        "section": {
+          "required": "This section is required",
+          "optional": "This section is recommended for a better experience",
+          "additional": "This section is optional, fill it in if needed",
+          "courseInfo": "Practicum Details",
+          "courseAdditionalInfo": "Additional Practicum Information",
+          "courseParticipantsInfo": "Practicum Participants Data",
+          "selectStudents": "Select Practicum Participant",
+          "selectTeachingAssistants": "Select Teaching Assistant"
+        }
+      },
+      "updateCourse": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "success": {
+          "default": "Practicum updated successfully"
+        }
+      },
+      "deleteCourse": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        }
+      },
+      "enrollCourse": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "Enroll key is incorrect, please check and try again",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "success": {
+          "default": "Enrolled successfully",
+          "alreadyEnrolled": "You are already enrolled in this practicum"
+        }
+      },
+      "searchCourse": {
+        "placeholder": "Search practicum...",
+        "empty": "No results found",
+        "loading": "Loading results..."
+      }
+    },
+    "courseSession": {
+      "form": {
+        "label": {
+          "title": "Title",
+          "course": "Course",
+          "sessionDate": "Session Date",
+          "startTime": "Start Time",
+          "endTime": "End Time",
+          "status": "Status",
+          "teachingAssistants": "Teaching Assistants",
+          "createdBy": "Created By",
+          "createdAt": "Created At",
+          "updatedAt": "Updated At"
+        },
+        "hint": {
+          "title": "Enter session title",
+          "course": "Select course",
+          "sessionDate": "Select session date",
+          "startTime": "Select start time",
+          "endTime": "Select end time",
+          "status": "Select session status",
+          "teachingAssistants": "Select teaching assistants",
+          "createdBy": "Enter creator's name",
+          "createdAt": "Date the record was created",
+          "updatedAt": "Date the record was last updated"
+        }
+      },
+      "button": {
+        "saveChanges": "Save Changes",
+        "delete": "Delete",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      },
+      "fetchListCourseSession": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        },
+        "empty": "No course sessions found"
+      },
+      "fetchCourseSessionDetail": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        }
+      },
+      "createCourseSession": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        }
+      },
+      "updateCourseSession": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        }
+      },
+      "deleteCourseSession": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "We could not find the requested resource, please check the URL",
+          "408": "Request timed out, please try again later",
+          "409": "There was a conflict with the request. Please try again or contact support.",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "429": "You’ve made too many requests in a short period. Please try again later.",
+          "500": "We’re having trouble on our end. Please try again later.",
+          "default": "Oops! Something went wrong, please try again later."
+        }
+      }
     }
   },
   "general": {
-    "options": {
+    "button": {
       "save": "Save",
       "cancel": "Cancel",
       "delete": "Delete",
       "edit": "Edit",
-      "close": "Close"
+      "close": "Close",
+      "chooseDate": "Choose Date",
+      "dateRange": "Date Range",
+      "reset": "Reset",
+      "apply": "Apply",
+      "next": "Next",
+      "previous": "Previous",
+      "submit": "Submit",
+      "create": "Create"
     },
     "note": {
       "optional": "Optional"
@@ -265,9 +850,25 @@
     "error": {
       "default": "Something went wrong"
     },
+    "success": {
+      "default": "Success",
+      "create": "Created successfully",
+      "save": "Changes saved successfully",
+      "delete": "Deleted successfully",
+      "update": "Updated successfully"
+    },
     "yes": "Yes",
     "no": "No",
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "undefined": "Undefined",
+    "searching": "Searching...",
+    "filter": "Filter",
+    "start": "Start",
+    "end": "End",
+    "clear": "Clear",
+    "to": "-",
+    "notSelected": "Not Selected",
+    "select": "Select"
   }
 }

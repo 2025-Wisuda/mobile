@@ -1,18 +1,20 @@
-import 'package:dartz/dartz.dart';
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/user/data/models/user_filter_params_model.dart';
+import 'package:fpdart/fpdart.dart';
+
+import 'package:mobile/core/errors/error.dart';
+import 'package:mobile/features/user/data/models/model.dart';
 import 'package:mobile/features/user/domain/entities/entity.dart';
 
 abstract class UserRepository {
-  Future<Either<Failure, ListUserEntity>> fetchListUser({
+  Future<Either<Failure, ListUserResponseEntity>> fetchListUser({
     UserFilterParamsModel? params,
   });
-  Future<Either<Failure, UserEntity>> fetchUserDetail(String userId);
-  Future<Either<Failure, UserEntity>> fetchUserProfile();
-  Future<Either<Failure, UserEntity>> updateUserProfile(
-    UpdateUserProfileRequestEntity data,
-  );
-  Future<Either<Failure, UserEntity>> changePassword({
-    ChangeUserPasswordRequestEntity data,
+  Future<Either<Failure, UserResponseEntity>> fetchUserDetail(String userId);
+  Future<Either<Failure, UserResponseEntity>> fetchUserProfile();
+  Future<Either<Failure, UserResponseEntity>> updateUserProfile({
+    required UserModel data,
   });
+
+  Future<Either<Failure, void>> saveUserProfile(UserEntity user);
+  Future<Either<Failure, UserEntity?>> getUserProfile();
+  Future<Either<Failure, void>> clearUserData();
 }

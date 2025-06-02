@@ -80,7 +80,7 @@ as String?,
 @JsonSerializable()
 
 class _RefreshTokenResponseModel implements RefreshTokenResponseModel {
-  const _RefreshTokenResponseModel({@JsonKey(name: 'access') required this.accessToken});
+  const _RefreshTokenResponseModel({@JsonKey(name: 'access') this.accessToken});
   factory _RefreshTokenResponseModel.fromJson(Map<String, dynamic> json) => _$RefreshTokenResponseModelFromJson(json);
 
 @override@JsonKey(name: 'access') final  String? accessToken;

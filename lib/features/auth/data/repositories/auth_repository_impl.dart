@@ -1,23 +1,23 @@
-import 'package:dartz/dartz.dart';
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/auth/data/datasources/datasource.dart';
-import 'package:mobile/features/auth/data/models/model.dart';
-import 'package:mobile/features/auth/domain/domain.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 
+import 'package:mobile/core/core.dart';
+import 'package:mobile/features/auth/data/data.dart';
+import 'package:mobile/features/auth/domain/entities/entity.dart';
+import 'package:mobile/features/auth/domain/repositories/auth_repository.dart';
+
+@Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   AuthRepositoryImpl(this.remoteDataSource);
+
   @override
-  Future<Either<Failure, LoginResponseEntity>> login(
-    String username,
-    String password,
-  ) async {
-    final response = await remoteDataSource.login(username, password);
-    return response.fold(
-      (failure) => left(failure),
-      (loginResponseModel) => right(loginResponseModel.toEntity()),
-    );
+  Future<Either<Failure, LoginResponseEntity>> login({
+    required LoginRequestEntity data,
+  }) async {
+    final response = await remoteDataSource.login(data: data.toModel());
+    return response.map((model) => model.toEntity());
   }
 
   @override
@@ -25,10 +25,16 @@ class AuthRepositoryImpl implements AuthRepository {
     String refreshToken,
   ) async {
     final response = await remoteDataSource.refreshToken(refreshToken);
-    return response.fold(
-      (failure) => left(failure),
-      (refreshTokenResponseModel) =>
-          right(refreshTokenResponseModel.toEntity()),
+    return response.map((model) => model.toEntity());
+  }
+
+  @override
+  Future<Either<Failure, void>> changePassword({
+    required ChangePasswordRequestEntity data,
+  }) async {
+    final response = await remoteDataSource.changePassword(
+      data: data.toModel(),
     );
+    return response.fold((failure) => left(failure), (_) => right(null));
   }
 }

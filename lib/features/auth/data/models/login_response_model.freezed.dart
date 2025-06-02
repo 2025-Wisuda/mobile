@@ -81,7 +81,7 @@ as String?,
 @JsonSerializable()
 
 class _LoginResponseModel implements LoginResponseModel {
-  const _LoginResponseModel({@JsonKey(name: 'refresh') required this.refreshToken, @JsonKey(name: 'access') required this.accessToken});
+  const _LoginResponseModel({@JsonKey(name: 'refresh') this.refreshToken, @JsonKey(name: 'access') this.accessToken});
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) => _$LoginResponseModelFromJson(json);
 
 @override@JsonKey(name: 'refresh') final  String? refreshToken;

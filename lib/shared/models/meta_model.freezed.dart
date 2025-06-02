@@ -1,0 +1,172 @@
+// dart format width=80
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'meta_model.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+// dart format off
+T _$identity<T>(T value) => value;
+
+/// @nodoc
+mixin _$MetaModel {
+
+@JsonKey(name: 'pagination') PaginationModel? get pagination;
+/// Create a copy of MetaModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MetaModelCopyWith<MetaModel> get copyWith => _$MetaModelCopyWithImpl<MetaModel>(this as MetaModel, _$identity);
+
+  /// Serializes this MetaModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MetaModel&&(identical(other.pagination, pagination) || other.pagination == pagination));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,pagination);
+
+@override
+String toString() {
+  return 'MetaModel(pagination: $pagination)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MetaModelCopyWith<$Res>  {
+  factory $MetaModelCopyWith(MetaModel value, $Res Function(MetaModel) _then) = _$MetaModelCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'pagination') PaginationModel? pagination
+});
+
+
+$PaginationModelCopyWith<$Res>? get pagination;
+
+}
+/// @nodoc
+class _$MetaModelCopyWithImpl<$Res>
+    implements $MetaModelCopyWith<$Res> {
+  _$MetaModelCopyWithImpl(this._self, this._then);
+
+  final MetaModel _self;
+  final $Res Function(MetaModel) _then;
+
+/// Create a copy of MetaModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? pagination = freezed,}) {
+  return _then(_self.copyWith(
+pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
+as PaginationModel?,
+  ));
+}
+/// Create a copy of MetaModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PaginationModelCopyWith<$Res>? get pagination {
+    if (_self.pagination == null) {
+    return null;
+  }
+
+  return $PaginationModelCopyWith<$Res>(_self.pagination!, (value) {
+    return _then(_self.copyWith(pagination: value));
+  });
+}
+}
+
+
+/// @nodoc
+@JsonSerializable()
+
+class _MetaModel implements MetaModel {
+  const _MetaModel({@JsonKey(name: 'pagination') this.pagination});
+  factory _MetaModel.fromJson(Map<String, dynamic> json) => _$MetaModelFromJson(json);
+
+@override@JsonKey(name: 'pagination') final  PaginationModel? pagination;
+
+/// Create a copy of MetaModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MetaModelCopyWith<_MetaModel> get copyWith => __$MetaModelCopyWithImpl<_MetaModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MetaModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MetaModel&&(identical(other.pagination, pagination) || other.pagination == pagination));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,pagination);
+
+@override
+String toString() {
+  return 'MetaModel(pagination: $pagination)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MetaModelCopyWith<$Res> implements $MetaModelCopyWith<$Res> {
+  factory _$MetaModelCopyWith(_MetaModel value, $Res Function(_MetaModel) _then) = __$MetaModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'pagination') PaginationModel? pagination
+});
+
+
+@override $PaginationModelCopyWith<$Res>? get pagination;
+
+}
+/// @nodoc
+class __$MetaModelCopyWithImpl<$Res>
+    implements _$MetaModelCopyWith<$Res> {
+  __$MetaModelCopyWithImpl(this._self, this._then);
+
+  final _MetaModel _self;
+  final $Res Function(_MetaModel) _then;
+
+/// Create a copy of MetaModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? pagination = freezed,}) {
+  return _then(_MetaModel(
+pagination: freezed == pagination ? _self.pagination : pagination // ignore: cast_nullable_to_non_nullable
+as PaginationModel?,
+  ));
+}
+
+/// Create a copy of MetaModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PaginationModelCopyWith<$Res>? get pagination {
+    if (_self.pagination == null) {
+    return null;
+  }
+
+  return $PaginationModelCopyWith<$Res>(_self.pagination!, (value) {
+    return _then(_self.copyWith(pagination: value));
+  });
+}
+}
+
+// dart format on

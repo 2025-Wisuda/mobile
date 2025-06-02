@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart';
-import 'package:mobile/core/injections/injection.dart';
-import 'shared/routes/route.dart';
-import 'shared/themes/theme.dart';
+
+import 'package:mobile/core/routes/app_router.dart';
+import 'package:mobile/core/themes/theme.dart';
+import 'package:mobile/di/injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  Injection.init();
+
+  configureDependencies();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('id', 'ID')],
@@ -16,7 +18,10 @@ void main() async {
       fallbackLocale: const Locale('en', 'US'),
       child: Builder(
         builder: (context) {
-          return GetMaterialApp(
+          final appRouter = getIt<AppRouter>();
+          return MaterialApp.router(
+            routerDelegate: appRouter.delegate(),
+            routeInformationParser: appRouter.defaultRouteParser(),
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
@@ -24,8 +29,6 @@ void main() async {
             theme: AppTheme.kLightTheme,
             darkTheme: AppTheme.kDarkTheme,
             themeMode: ThemeMode.system,
-            initialRoute: AppRoute.home,
-            getPages: AppScreen.routes,
           );
         },
       ),

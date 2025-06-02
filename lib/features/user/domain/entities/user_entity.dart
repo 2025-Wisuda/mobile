@@ -1,28 +1,32 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:mobile/features/user/domain/entities/entity.dart';
+import 'package:mobile/shared/helpers/helper.dart';
+
 part 'user_entity.freezed.dart';
+part 'user_entity_extension.dart';
 
 @freezed
 abstract class UserEntity with _$UserEntity {
   const factory UserEntity({
-    required String? id,
-    required String? password,
-    required DateTime? lastLogin,
-    required bool? isSuperuser,
-    required String? username,
-    required String? studentId,
-    required String? employeeId,
-    required String? firstName,
-    required String? lastName,
-    required String? email,
-    required bool? isActive,
-    required bool? isStaff,
-    required DateTime? dateJoined,
-    required String? faceImage,
-    required bool? faceUploaded,
-    required String? avatar,
-    required String? group,
-    required DateTime? createdAt,
-    required DateTime? updatedAt,
+    String? id,
+    String? username,
+    String? email,
+    String? firstName,
+    String? lastName,
+    String? studentNumber,
+    String? employeeNumber,
+    String? faceImageUrl,
+    bool? faceUploaded,
+    String? avatarUrl,
+    bool? isActive,
+    bool? isStaff,
+    DateTime? dateJoined,
+    DateTime? lastLogin,
+    String? createdBy,
+    DateTime? createdAt,
+    String? updatedBy,
+    DateTime? updatedAt,
+    String? group,
   }) = _UserEntity;
 }

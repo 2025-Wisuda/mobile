@@ -1,16 +1,18 @@
-import 'package:dartz/dartz.dart';
-import 'package:mobile/core/errors/types/type.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
+
+import 'package:mobile/core/errors/error.dart';
 import 'package:mobile/features/auth/auth.dart';
 
-class LoginUseCase {
+@injectable
+class LoginUsecase {
   final AuthRepository repository;
 
-  LoginUseCase(this.repository);
+  LoginUsecase(this.repository);
 
-  Future<Either<Failure, LoginResponseEntity>> execute(
-    String username,
-    String password,
-  ) {
-    return repository.login(username, password);
+  Future<Either<Failure, LoginResponseEntity>> execute({
+    required LoginRequestEntity data,
+  }) {
+    return repository.login(data: data);
   }
 }

@@ -1,22 +1,27 @@
+import 'package:flutter/widgets.dart';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:get/get.dart';
-import 'package:mobile/shared/routes/app_route.dart';
-import 'package:mobile/shared/databases/session_database.dart';
+import 'package:injectable/injectable.dart';
 
+import 'package:mobile/core/routes/app_router.dart';
+import 'package:mobile/shared/services/session_service.dart';
+
+@lazySingleton
 class SplashController extends GetxController {
-  @override
-  void onInit() {
-    super.onInit();
-    _checkToken();
-  }
+  final AppRouter appRouter;
 
-  Future<void> _checkToken() async {
-    final accessToken = await SessionDatabase.getAccessToken();
-    await Future.delayed(const Duration(seconds: 2), () {
+  SplashController(this.appRouter);
+
+  Future<void> checkTokenAndNavigate(BuildContext context) async {
+    final accessToken = await SessionService.getAccessToken();
+    await Future.delayed(const Duration(seconds: 2));
+    if (context.mounted) {
       if (accessToken != null) {
-        Get.offAllNamed(AppRoute.home);
+        context.replaceRoute(const MainWrapperRoute());
       } else {
-        Get.offAllNamed(AppRoute.login);
+        context.replaceRoute(const LoginRoute());
       }
-    });
+    }
   }
 }

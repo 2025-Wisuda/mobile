@@ -1,2 +1,2 @@
-export 'texts/text.dart';
-export 'types/type.dart';
+export 'failure.dart';
+export 'text_erorr.dart';

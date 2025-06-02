@@ -14,7 +14,7 @@ dependencies:
   flutter_svg: ^2.1.0
   easy_localization: ^3.0.7+1
   shared_preferences: ^2.5.3
-  dartz: ^0.10.1
+  fpdart: ^1.1.0
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   equatable: ^2.0.7
@@ -22,6 +22,19 @@ dependencies:
   envied: ^1.1.1
   loading_indicator: ^3.1.1
   cached_network_image: ^3.4.1
+  skeletonizer: ^1.4.3
+  table_calendar: ^3.1.3
+  image_picker: ^1.1.2
+  retrofit: ^4.4.2
+  connectivity_plus: ^6.1.4
+  auto_route: ^10.1.0
+  injectable: ^2.5.0
+  get_it: ^8.0.3
+  flutter_secure_storage: ^9.2.4
+  path_provider: ^2.1.5
+  path: ^1.9.0
+  drift: ^2.14.0
+  sqlite3_flutter_libs: any
 
 dev_dependencies:
   flutter_test:
@@ -31,7 +44,11 @@ dev_dependencies:
   json_serializable: ^6.9.5
   build_runner: ^2.4.15
   envied_generator: ^1.1.1
-
+  import_sorter: ^4.6.0
+  retrofit_generator: ^9.2.0
+  auto_route_generator: ^10.1.0
+  injectable_generator: ^2.7.0
+  drift_dev: ^2.14.0
 
 flutter:
   uses-material-design: true
@@ -62,3 +79,7 @@ flutter:
     - assets/translations/id-ID.json
     - assets/images/illustrations/
     - assets/icons/
+
+import_sorter:
+  emojis: true
+  comments: false

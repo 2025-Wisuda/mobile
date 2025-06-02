@@ -1,3 +1,5 @@
+part of 'user_model.dart';
+
 class UserFilterParamsModel {
   final String? search;
   final String? group;
@@ -20,5 +22,19 @@ class UserFilterParamsModel {
     params['page_size'] = pageSize;
 
     return params;
+  }
+
+  UserFilterParamsModel copyWith({
+    String? search,
+    String? group,
+    int? page,
+    int? pageSize,
+  }) {
+    return UserFilterParamsModel(
+      search: search ?? this.search,
+      group: group ?? this.group,
+      page: page ?? this.page,
+      pageSize: pageSize ?? this.pageSize,
+    );
   }
 }
