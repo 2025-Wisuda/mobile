@@ -1,4 +1,3 @@
-// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_response_entity.freezed.dart';

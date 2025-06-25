@@ -1,0 +1,12 @@
+export 'about_us_route.dart';
+export 'app_route.dart';
+export 'app_screen.dart';
+export 'auth_route.dart';
+export 'course_route.dart';
+export 'duty_schedule_route.dart';
+export 'guest_visit_route.dart';
+export 'lab_schedule_route.dart';
+export 'menu_route.dart';
+export 'room_booking_route.dart';
+export 'splash_route.dart';
+export 'user_route.dart';

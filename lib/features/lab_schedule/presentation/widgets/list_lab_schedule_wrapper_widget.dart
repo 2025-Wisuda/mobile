@@ -1,127 +1,128 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:easy_localization/easy_localization.dart' as i18n;
-import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:table_calendar/table_calendar.dart';
 
-// Project imports:
-import 'package:mobile/core/core.dart';
-import 'package:mobile/features/lab_schedule/data/models/model.dart';
-import 'package:mobile/features/lab_schedule/presentation/presentation.dart';
-import 'package:mobile/shared/helpers/helper.dart';
+import 'package:mobile/core/routes/route.dart';
+import 'package:mobile/features/lab_schedule/presentation/controllers/controller.dart';
+import 'package:mobile/features/lab_schedule/presentation/widgets/widget.dart';
+import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
 class ListLabScheduleWrapperWidget extends StatelessWidget {
-  const ListLabScheduleWrapperWidget({super.key});
+  final LabScheduleWrapperController c;
+  const ListLabScheduleWrapperWidget({super.key, required this.c});
 
   @override
   Widget build(BuildContext context) {
-    final labScheduleController = Get.find<LabScheduleController>();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      labScheduleController.fetchListLabSchedule(
-        scheduleFilterParamsModel: LabScheduleFilterParamsModel(
-          page: 1,
-          pageSize: 10,
-          scheduleDate: DateFormat('yyyy-MM-dd').format(DateTime.now()),
-        ),
-        stateTarget: labScheduleController.fetchListLabScheduleState,
-      );
-    });
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final padding = EdgeInsets.fromLTRB(16, 8, 16, 16);
-        final label = i18n.tr(
-          'features.schedule.lab.legend.status.selectedDate',
-        );
-        final borderSide = BorderSide(color: context.outline, width: 1);
-
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Padding(
-              padding: padding,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                spacing: 16,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: context.surface,
-                      borderRadius: BorderRadiusConstant.kDefaultBorderRadius,
-                      border: Border(
-                        top: borderSide,
-                        left: borderSide,
-                        right: borderSide,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: context.shadow,
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        LabScheduleCalendarWidget(),
-                        Padding(
-                          padding: padding,
-                          child: calendarStatusLegendWidget(
-                            context,
-                            label: label,
-                            color: context.primary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Obx(() {
-                    final state =
-                        labScheduleController.fetchListLabScheduleState.value;
-                    final schedules =
-                        labScheduleController
-                            .listLabScheduleEntity
-                            .value
-                            ?.data ??
-                        [];
-                    final errorMessage =
-                        labScheduleController.errorMessage.value;
-                    final emptyMessage = i18n.tr(
-                      'features.schedule.lab.searchLabSchedule.empty',
-                    );
-                    final loadedWidget = LabScheduleListItemWidget(
-                      schedules: schedules,
-                    );
-                    final loadingWidget = Skeletonizer(child: loadedWidget);
-                    final emptyWidget = errorEmptyTextWidget(
-                      context,
-                      message: emptyMessage,
-                    );
-                    final errorWidget = errorEmptyTextWidget(
-                      context,
-                      message: errorMessage,
-                    );
-
-                    return state.toWidget(
-                      loadingWidget: loadingWidget,
-                      loadedWidget: loadedWidget,
-                      emptyWidget: emptyWidget,
-                      errorWidget: errorWidget,
-                      initialWidget: loadingWidget,
-                    );
-                  }),
-                ],
-              ),
+    return SliverList(
+      delegate: SliverChildListDelegate.fixed(
+        [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: CustomSearchNavigationWidget(
+              hintText: 'labSchedule'.message('searchPlaceholder'),
+              onTap: () {
+                Get.toNamed(
+                  AppRoute.searchLabSchedule,
+                );
+              },
+              leading: const Icon(Icons.search),
             ),
           ),
-        );
-      },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            child: Obx(() {
+              final hasSchedules = c.hasSchedules;
+              final isExpanded = c.isCalendarExpanded.value;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildCalendarContainer(context, c),
+                  if (isExpanded)
+                    CustomDashedLineWidget(color: context.onSurfaceVariant),
+                  CustomCardItemWidget(
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                    backgroundColor: context.surface,
+                    mainContent: LabSchedulePaginatedListWidget(
+                      key: c.paginationKey.value,
+                      isMySchedule: c.isMySchedule.value,
+                      searchQuery: '',
+                      tag: 'list',
+                    ),
+                  ),
+                  if (hasSchedules) ...[
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: context.surfaceContainerLowest,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Wrap(
+                        spacing: 16,
+                        runSpacing: 8,
+                        children: [
+                          customLegendWidget(
+                            context,
+                            color: context.tertiary,
+                            label: 'labSchedule'.message('legend.ongoing'),
+                          ),
+                          customLegendWidget(
+                            context,
+                            color: context.primary,
+                            label: 'labSchedule'.message('legend.upcoming'),
+                          ),
+                          customLegendWidget(
+                            context,
+                            color: context.onSurface,
+                            label: 'labSchedule'.message('legend.finished'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ],
+              );
+            }),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCalendarContainer(
+      BuildContext context, LabScheduleWrapperController c) {
+    return Container(
+      decoration: BoxDecoration(
+        color: context.surface,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        children: [
+          LabScheduleCalendarHeaderWidget(
+            isCalendarExpanded: c.isCalendarExpanded.value,
+            calendarFormat: c.calendarFormat.value,
+            selectedDate: c.selectedDate.value,
+            onToggleExpansion: () => c.toggleCalendarExpansion(),
+            onFormatChanged: (format) => c.updateCalendarFormat(format),
+          ),
+          if (c.isCalendarExpanded.value) ...[
+            SizedBox(
+              height: c.calendarFormat.value == CalendarFormat.week ? 140 : 400,
+              child: LabScheduleCalendarWidget(
+                calendarFormat: c.calendarFormat.value,
+                selectedDate: c.selectedDate.value,
+                focusedDate: c.focusedDate.value,
+                onFormatChanged: (format) => c.updateCalendarFormat(format),
+                onDaySelected: (selectedDay, focusedDay) =>
+                    c.onDaySelected(selectedDay, focusedDay),
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

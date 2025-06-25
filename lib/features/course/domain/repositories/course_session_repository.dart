@@ -1,35 +1,31 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/course/data/models/course_session_filter_params_model.dart';
 import 'package:mobile/features/course/domain/entities/entity.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 abstract class CourseSessionRepository {
-  Future<Either<Failure, ListCourseSessionEntity>> fetchListCourseSession({
-    CourseSessionFilterParamsModel? params,
-  });
-
-  Future<Either<Failure, CourseSessionEntity>> fetchCourseSessionDetail({
+  Future<Either<Failure, BaseResponseEntity<CourseSessionEntity>>>
+      fetchCourseSessionDetail({
+    required String courseId,
     required String courseSessionId,
   });
 
-  Future<Either<Failure, CourseSessionEntity>> createCourseSession({
+  Future<Either<Failure, BaseResponseEntity<CourseSessionEntity>>>
+      createCourseSession({
+    required String courseId,
     required SaveCourseSessionRequestEntity data,
   });
 
-  Future<Either<Failure, CourseSessionEntity>> updateCourseSession({
+  Future<Either<Failure, BaseResponseEntity<CourseSessionEntity>>>
+      partialUpdateCourseSession({
+    required String courseId,
     required SaveCourseSessionRequestEntity data,
-    required String courseSessionId,
-  });
-
-  Future<Either<Failure, CourseSessionEntity>> partialUpdateCourseSession({
-    required Map<String, dynamic> data,
     required String courseSessionId,
   });
 
   Future<Either<Failure, void>> deleteCourseSession({
+    required String courseId,
     required String courseSessionId,
   });
 }

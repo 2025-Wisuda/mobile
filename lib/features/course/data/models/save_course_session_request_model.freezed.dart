@@ -15,47 +15,91 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$SaveCourseSessionRequestModel {
+  @JsonKey(name: 'title', includeIfNull: false)
+  String? get title;
+  @JsonKey(name: 'description', includeIfNull: false)
+  String? get description;
+  @JsonKey(name: 'type', includeIfNull: false)
+  String? get type;
+  @JsonKey(name: 'date', includeIfNull: false)
+  String? get date;
+  @JsonKey(name: 'start_time', includeIfNull: false)
+  String? get startTime;
+  @JsonKey(name: 'end_time', includeIfNull: false)
+  String? get endTime;
+  @JsonKey(name: 'status', includeIfNull: false)
+  String? get status;
+  @JsonKey(name: 'teaching_assistant_ids', includeIfNull: false)
+  List<String>? get teachingAssistants;
 
-@JsonKey(name: 'title') String? get title;@JsonKey(name: 'course') dynamic get course;@JsonKey(name: 'session_date') DateTime? get sessionDate;@JsonKey(name: 'start_time') String? get startTime;@JsonKey(name: 'end_time') String? get endTime;@JsonKey(name: 'status') String? get status;@JsonKey(name: 'teaching_assistants') List<String>? get teachingAssistants;
-/// Create a copy of SaveCourseSessionRequestModel
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SaveCourseSessionRequestModelCopyWith<SaveCourseSessionRequestModel> get copyWith => _$SaveCourseSessionRequestModelCopyWithImpl<SaveCourseSessionRequestModel>(this as SaveCourseSessionRequestModel, _$identity);
+  /// Create a copy of SaveCourseSessionRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SaveCourseSessionRequestModelCopyWith<SaveCourseSessionRequestModel>
+      get copyWith => _$SaveCourseSessionRequestModelCopyWithImpl<
+              SaveCourseSessionRequestModel>(
+          this as SaveCourseSessionRequestModel, _$identity);
 
   /// Serializes this SaveCourseSessionRequestModel to a JSON map.
   Map<String, dynamic> toJson();
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SaveCourseSessionRequestModel &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.startTime, startTime) ||
+                other.startTime == startTime) &&
+            (identical(other.endTime, endTime) || other.endTime == endTime) &&
+            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality()
+                .equals(other.teachingAssistants, teachingAssistants));
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SaveCourseSessionRequestModel&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.course, course)&&(identical(other.sessionDate, sessionDate) || other.sessionDate == sessionDate)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.endTime, endTime) || other.endTime == endTime)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.teachingAssistants, teachingAssistants));
-}
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      description,
+      type,
+      date,
+      startTime,
+      endTime,
+      status,
+      const DeepCollectionEquality().hash(teachingAssistants));
 
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,const DeepCollectionEquality().hash(course),sessionDate,startTime,endTime,status,const DeepCollectionEquality().hash(teachingAssistants));
-
-@override
-String toString() {
-  return 'SaveCourseSessionRequestModel(title: $title, course: $course, sessionDate: $sessionDate, startTime: $startTime, endTime: $endTime, status: $status, teachingAssistants: $teachingAssistants)';
-}
-
-
+  @override
+  String toString() {
+    return 'SaveCourseSessionRequestModel(title: $title, description: $description, type: $type, date: $date, startTime: $startTime, endTime: $endTime, status: $status, teachingAssistants: $teachingAssistants)';
+  }
 }
 
 /// @nodoc
-abstract mixin class $SaveCourseSessionRequestModelCopyWith<$Res>  {
-  factory $SaveCourseSessionRequestModelCopyWith(SaveCourseSessionRequestModel value, $Res Function(SaveCourseSessionRequestModel) _then) = _$SaveCourseSessionRequestModelCopyWithImpl;
-@useResult
-$Res call({
-@JsonKey(name: 'title') String? title,@JsonKey(name: 'course') dynamic course,@JsonKey(name: 'session_date') DateTime? sessionDate,@JsonKey(name: 'start_time') String? startTime,@JsonKey(name: 'end_time') String? endTime,@JsonKey(name: 'status') String? status,@JsonKey(name: 'teaching_assistants') List<String>? teachingAssistants
-});
-
-
-
-
+abstract mixin class $SaveCourseSessionRequestModelCopyWith<$Res> {
+  factory $SaveCourseSessionRequestModelCopyWith(
+          SaveCourseSessionRequestModel value,
+          $Res Function(SaveCourseSessionRequestModel) _then) =
+      _$SaveCourseSessionRequestModelCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'title', includeIfNull: false) String? title,
+      @JsonKey(name: 'description', includeIfNull: false) String? description,
+      @JsonKey(name: 'type', includeIfNull: false) String? type,
+      @JsonKey(name: 'date', includeIfNull: false) String? date,
+      @JsonKey(name: 'start_time', includeIfNull: false) String? startTime,
+      @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
+      @JsonKey(name: 'status', includeIfNull: false) String? status,
+      @JsonKey(name: 'teaching_assistant_ids', includeIfNull: false)
+      List<String>? teachingAssistants});
 }
+
 /// @nodoc
 class _$SaveCourseSessionRequestModelCopyWithImpl<$Res>
     implements $SaveCourseSessionRequestModelCopyWith<$Res> {
@@ -64,87 +108,181 @@ class _$SaveCourseSessionRequestModelCopyWithImpl<$Res>
   final SaveCourseSessionRequestModel _self;
   final $Res Function(SaveCourseSessionRequestModel) _then;
 
-/// Create a copy of SaveCourseSessionRequestModel
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = freezed,Object? course = freezed,Object? sessionDate = freezed,Object? startTime = freezed,Object? endTime = freezed,Object? status = freezed,Object? teachingAssistants = freezed,}) {
-  return _then(_self.copyWith(
-title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String?,course: freezed == course ? _self.course : course // ignore: cast_nullable_to_non_nullable
-as dynamic,sessionDate: freezed == sessionDate ? _self.sessionDate : sessionDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,startTime: freezed == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
-as String?,endTime: freezed == endTime ? _self.endTime : endTime // ignore: cast_nullable_to_non_nullable
-as String?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as String?,teachingAssistants: freezed == teachingAssistants ? _self.teachingAssistants : teachingAssistants // ignore: cast_nullable_to_non_nullable
-as List<String>?,
-  ));
+  /// Create a copy of SaveCourseSessionRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? type = freezed,
+    Object? date = freezed,
+    Object? startTime = freezed,
+    Object? endTime = freezed,
+    Object? status = freezed,
+    Object? teachingAssistants = freezed,
+  }) {
+    return _then(_self.copyWith(
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startTime: freezed == startTime
+          ? _self.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endTime: freezed == endTime
+          ? _self.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teachingAssistants: freezed == teachingAssistants
+          ? _self.teachingAssistants
+          : teachingAssistants // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
 }
-
-}
-
 
 /// @nodoc
 @JsonSerializable()
-
 class _SaveCourseSessionRequestModel implements SaveCourseSessionRequestModel {
-  const _SaveCourseSessionRequestModel({@JsonKey(name: 'title') this.title, @JsonKey(name: 'course') this.course, @JsonKey(name: 'session_date') this.sessionDate, @JsonKey(name: 'start_time') this.startTime, @JsonKey(name: 'end_time') this.endTime, @JsonKey(name: 'status') this.status, @JsonKey(name: 'teaching_assistants') final  List<String>? teachingAssistants}): _teachingAssistants = teachingAssistants;
-  factory _SaveCourseSessionRequestModel.fromJson(Map<String, dynamic> json) => _$SaveCourseSessionRequestModelFromJson(json);
+  const _SaveCourseSessionRequestModel(
+      {@JsonKey(name: 'title', includeIfNull: false) this.title,
+      @JsonKey(name: 'description', includeIfNull: false) this.description,
+      @JsonKey(name: 'type', includeIfNull: false) this.type,
+      @JsonKey(name: 'date', includeIfNull: false) this.date,
+      @JsonKey(name: 'start_time', includeIfNull: false) this.startTime,
+      @JsonKey(name: 'end_time', includeIfNull: false) this.endTime,
+      @JsonKey(name: 'status', includeIfNull: false) this.status,
+      @JsonKey(name: 'teaching_assistant_ids', includeIfNull: false)
+      final List<String>? teachingAssistants})
+      : _teachingAssistants = teachingAssistants;
+  factory _SaveCourseSessionRequestModel.fromJson(Map<String, dynamic> json) =>
+      _$SaveCourseSessionRequestModelFromJson(json);
 
-@override@JsonKey(name: 'title') final  String? title;
-@override@JsonKey(name: 'course') final  dynamic course;
-@override@JsonKey(name: 'session_date') final  DateTime? sessionDate;
-@override@JsonKey(name: 'start_time') final  String? startTime;
-@override@JsonKey(name: 'end_time') final  String? endTime;
-@override@JsonKey(name: 'status') final  String? status;
- final  List<String>? _teachingAssistants;
-@override@JsonKey(name: 'teaching_assistants') List<String>? get teachingAssistants {
-  final value = _teachingAssistants;
-  if (value == null) return null;
-  if (_teachingAssistants is EqualUnmodifiableListView) return _teachingAssistants;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
+  @override
+  @JsonKey(name: 'title', includeIfNull: false)
+  final String? title;
+  @override
+  @JsonKey(name: 'description', includeIfNull: false)
+  final String? description;
+  @override
+  @JsonKey(name: 'type', includeIfNull: false)
+  final String? type;
+  @override
+  @JsonKey(name: 'date', includeIfNull: false)
+  final String? date;
+  @override
+  @JsonKey(name: 'start_time', includeIfNull: false)
+  final String? startTime;
+  @override
+  @JsonKey(name: 'end_time', includeIfNull: false)
+  final String? endTime;
+  @override
+  @JsonKey(name: 'status', includeIfNull: false)
+  final String? status;
+  final List<String>? _teachingAssistants;
+  @override
+  @JsonKey(name: 'teaching_assistant_ids', includeIfNull: false)
+  List<String>? get teachingAssistants {
+    final value = _teachingAssistants;
+    if (value == null) return null;
+    if (_teachingAssistants is EqualUnmodifiableListView)
+      return _teachingAssistants;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
+  /// Create a copy of SaveCourseSessionRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SaveCourseSessionRequestModelCopyWith<_SaveCourseSessionRequestModel>
+      get copyWith => __$SaveCourseSessionRequestModelCopyWithImpl<
+          _SaveCourseSessionRequestModel>(this, _$identity);
 
-/// Create a copy of SaveCourseSessionRequestModel
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$SaveCourseSessionRequestModelCopyWith<_SaveCourseSessionRequestModel> get copyWith => __$SaveCourseSessionRequestModelCopyWithImpl<_SaveCourseSessionRequestModel>(this, _$identity);
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SaveCourseSessionRequestModelToJson(
+      this,
+    );
+  }
 
-@override
-Map<String, dynamic> toJson() {
-  return _$SaveCourseSessionRequestModelToJson(this, );
-}
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SaveCourseSessionRequestModel &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.startTime, startTime) ||
+                other.startTime == startTime) &&
+            (identical(other.endTime, endTime) || other.endTime == endTime) &&
+            (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality()
+                .equals(other._teachingAssistants, _teachingAssistants));
+  }
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SaveCourseSessionRequestModel&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.course, course)&&(identical(other.sessionDate, sessionDate) || other.sessionDate == sessionDate)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.endTime, endTime) || other.endTime == endTime)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._teachingAssistants, _teachingAssistants));
-}
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      description,
+      type,
+      date,
+      startTime,
+      endTime,
+      status,
+      const DeepCollectionEquality().hash(_teachingAssistants));
 
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,title,const DeepCollectionEquality().hash(course),sessionDate,startTime,endTime,status,const DeepCollectionEquality().hash(_teachingAssistants));
-
-@override
-String toString() {
-  return 'SaveCourseSessionRequestModel(title: $title, course: $course, sessionDate: $sessionDate, startTime: $startTime, endTime: $endTime, status: $status, teachingAssistants: $teachingAssistants)';
-}
-
-
+  @override
+  String toString() {
+    return 'SaveCourseSessionRequestModel(title: $title, description: $description, type: $type, date: $date, startTime: $startTime, endTime: $endTime, status: $status, teachingAssistants: $teachingAssistants)';
+  }
 }
 
 /// @nodoc
-abstract mixin class _$SaveCourseSessionRequestModelCopyWith<$Res> implements $SaveCourseSessionRequestModelCopyWith<$Res> {
-  factory _$SaveCourseSessionRequestModelCopyWith(_SaveCourseSessionRequestModel value, $Res Function(_SaveCourseSessionRequestModel) _then) = __$SaveCourseSessionRequestModelCopyWithImpl;
-@override @useResult
-$Res call({
-@JsonKey(name: 'title') String? title,@JsonKey(name: 'course') dynamic course,@JsonKey(name: 'session_date') DateTime? sessionDate,@JsonKey(name: 'start_time') String? startTime,@JsonKey(name: 'end_time') String? endTime,@JsonKey(name: 'status') String? status,@JsonKey(name: 'teaching_assistants') List<String>? teachingAssistants
-});
-
-
-
-
+abstract mixin class _$SaveCourseSessionRequestModelCopyWith<$Res>
+    implements $SaveCourseSessionRequestModelCopyWith<$Res> {
+  factory _$SaveCourseSessionRequestModelCopyWith(
+          _SaveCourseSessionRequestModel value,
+          $Res Function(_SaveCourseSessionRequestModel) _then) =
+      __$SaveCourseSessionRequestModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'title', includeIfNull: false) String? title,
+      @JsonKey(name: 'description', includeIfNull: false) String? description,
+      @JsonKey(name: 'type', includeIfNull: false) String? type,
+      @JsonKey(name: 'date', includeIfNull: false) String? date,
+      @JsonKey(name: 'start_time', includeIfNull: false) String? startTime,
+      @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
+      @JsonKey(name: 'status', includeIfNull: false) String? status,
+      @JsonKey(name: 'teaching_assistant_ids', includeIfNull: false)
+      List<String>? teachingAssistants});
 }
+
 /// @nodoc
 class __$SaveCourseSessionRequestModelCopyWithImpl<$Res>
     implements _$SaveCourseSessionRequestModelCopyWith<$Res> {
@@ -153,22 +291,55 @@ class __$SaveCourseSessionRequestModelCopyWithImpl<$Res>
   final _SaveCourseSessionRequestModel _self;
   final $Res Function(_SaveCourseSessionRequestModel) _then;
 
-/// Create a copy of SaveCourseSessionRequestModel
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = freezed,Object? course = freezed,Object? sessionDate = freezed,Object? startTime = freezed,Object? endTime = freezed,Object? status = freezed,Object? teachingAssistants = freezed,}) {
-  return _then(_SaveCourseSessionRequestModel(
-title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String?,course: freezed == course ? _self.course : course // ignore: cast_nullable_to_non_nullable
-as dynamic,sessionDate: freezed == sessionDate ? _self.sessionDate : sessionDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,startTime: freezed == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
-as String?,endTime: freezed == endTime ? _self.endTime : endTime // ignore: cast_nullable_to_non_nullable
-as String?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as String?,teachingAssistants: freezed == teachingAssistants ? _self._teachingAssistants : teachingAssistants // ignore: cast_nullable_to_non_nullable
-as List<String>?,
-  ));
-}
-
-
+  /// Create a copy of SaveCourseSessionRequestModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? type = freezed,
+    Object? date = freezed,
+    Object? startTime = freezed,
+    Object? endTime = freezed,
+    Object? status = freezed,
+    Object? teachingAssistants = freezed,
+  }) {
+    return _then(_SaveCourseSessionRequestModel(
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type: freezed == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: freezed == date
+          ? _self.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startTime: freezed == startTime
+          ? _self.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      endTime: freezed == endTime
+          ? _self.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teachingAssistants: freezed == teachingAssistants
+          ? _self._teachingAssistants
+          : teachingAssistants // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+    ));
+  }
 }
 
 // dart format on

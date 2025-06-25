@@ -1,18 +1,19 @@
-// Project imports:
-import 'package:mobile/features/course/data/models/save_course_session_request_model.dart';
-import 'package:mobile/features/course/domain/entities/save_course_session_request_entity.dart';
+part of 'save_course_session_request_entity.dart';
 
 extension SaveCourseSessionRequestEntityExtension
     on SaveCourseSessionRequestEntity {
   SaveCourseSessionRequestModel toModel() {
-    return SaveCourseSessionRequestModel(
+    final model = SaveCourseSessionRequestModel(
       title: title,
-      course: course,
-      sessionDate: sessionDate,
+      description: description,
+      type: type,
+      date: date,
       startTime: startTime,
       endTime: endTime,
       status: status,
       teachingAssistants: teachingAssistants,
     );
+
+    return model;
   }
 }

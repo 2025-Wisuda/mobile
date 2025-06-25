@@ -4,7 +4,7 @@ class CourseSessionFilterParamsModel {
   final int page;
   final int pageSize;
   final String? search;
-  final String? sessionDate;
+  final String? date;
   final String? status;
   final String? title;
 
@@ -14,7 +14,7 @@ class CourseSessionFilterParamsModel {
     this.page = 1,
     this.pageSize = 10,
     this.search,
-    this.sessionDate,
+    this.date,
     this.status,
     this.title,
   });
@@ -31,8 +31,8 @@ class CourseSessionFilterParamsModel {
     if (search != null && search!.isNotEmpty) {
       params['search'] = search;
     }
-    if (sessionDate != null && sessionDate!.isNotEmpty) {
-      params['session_date'] = sessionDate;
+    if (date != null && date!.isNotEmpty) {
+      params['session_date'] = date;
     }
     if (status != null && status!.isNotEmpty) {
       params['status'] = status;

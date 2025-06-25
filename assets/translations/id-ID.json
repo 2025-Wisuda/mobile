@@ -1,42 +1,140 @@
 {
-  "appName": "Laboratorium",
+  "common": {
+    "noInternet": "Tidak ada koneksi internet",
+    "unknown": "Tidak Diketahui",
+    "optional": "Opsional",
+    "today": "Hari Ini",
+    "tomorrow": "Besok",
+    "yesterday": "Kemarin",
+    "monday": "Senin",
+    "tuesday": "Selasa",
+    "wednesday": "Rabu",
+    "thursday": "Kamis",
+    "friday": "Jumat",
+    "saturday": "Sabtu",
+    "sunday": "Minggu",
+    "text": {
+      "noInternet": "Tidak Ada Koneksi Internet",
+      "readLess": "Baca Lebih Sedikit",
+      "readMore": "Baca Lebih Banyak"
+    },
+    "form": {
+      "error": {
+        "controllerNotFound": "Controller untuk field \"{fieldName}\" tidak ditemukan. Pastikan untuk memanggil initializeControllers() terlebih dahulu."
+      },
+      "validation": {
+        "username": {
+          "minLength": "Username harus minimal 3 karakter",
+          "maxLength": "Username tidak boleh melebihi 20 karakter",
+          "invalidCharacters": "Username hanya boleh berisi huruf, angka, dan underscore"
+        },
+        "password": {
+          "minLength": "Password harus minimal 8 karakter",
+          "requiresUppercase": "Password harus mengandung minimal satu huruf besar",
+          "requiresLowercase": "Password harus mengandung minimal satu huruf kecil",
+          "requiresNumber": "Password harus mengandung minimal satu angka",
+          "requiresSpecialChar": "Password harus mengandung minimal satu karakter khusus",
+          "noMatch": "Password tidak cocok"
+        },
+        "email": {
+          "invalid": "Masukkan alamat email yang valid"
+        },
+        "field": {
+          "minLength": "{fieldName} harus minimal {minLength} karakter",
+          "maxLength": "{fieldName} tidak boleh melebihi {maxLength} karakter",
+          "required": "{fieldName} wajib diisi"
+        },
+        "date": {
+          "beforeOther": "{startFieldName} harus sebelum {endFieldName}",
+          "notPast": "{fieldName} tidak boleh di masa lalu",
+          "mustBeFuture": "{fieldName} harus di masa depan",
+          "afterMin": "{fieldName} harus setelah {minDate}",
+          "beforeMax": "{fieldName} harus sebelum {maxDate}"
+        },
+        "time": {
+          "conflictsWithBookings": "Waktu yang dipilih bertentangan dengan pemesanan yang ada",
+          "noAvailableSlots": "Tidak ada slot waktu yang tersedia untuk tanggal yang dipilih",
+          "conflictsWithPeriod": "Waktu bertentangan dengan periode yang sudah dipesan: {periods}",
+          "notAvailable": "Waktu yang dipilih tidak tersedia"
+        }
+      }
+    }
+  },
   "features": {
+    "aboutUs": {
+      "text": {
+        "title": "Laboratorium Teknik Komputer",
+        "version": "Versi 1.0.0",
+        "description": "2025 Wisuda Team, Semua Hak Dilindungi"
+      }
+    },
+    "approval": {
+      "text": {
+        "approvalActions": "Aksi Persetujuan",
+        "approvalNotes": "Catatan Persetujuan (Opsional)",
+        "approvalNotesHint": "Tambahkan catatan untuk persetujuan/penolakan...",
+        "reject": "Tolak",
+        "approve": "Setujui",
+        "pending": "Menunggu",
+        "approved": "Disetujui",
+        "rejected": "Ditolak",
+        "cancelled": "Dibatalkan",
+        "completed": "Selesai",
+        "expired": "Kedaluwarsa",
+        "inProgress": "Sedang Berlangsung"
+      }
+    },
     "auth": {
-      "login": {
-        "welcomeTitle": "Masuk ke akun Anda",
-        "welcomeDescription": "Silakan masuk ke akun Anda",
-        "form": {
-          "label": {
-            "username": "Username",
-            "password": "Password"
+      "changePassword": {
+        "error": {
+          "400": "Password kamu saat ini tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil mengubah password"
+        }
+      },
+      "form": {
+        "hint": {
+          "confirmPassword": "Ulangi password baru Anda",
+          "currentPassword": "Masukkan password saat ini Anda",
+          "newPassword": "Masukkan password baru Anda",
+          "password": "Masukkan password",
+          "username": "Masukkan username Anda"
+        },
+        "label": {
+          "confirmPassword": "Konfirmasi Password",
+          "currentPassword": "Password Saat Ini",
+          "newPassword": "Password Baru",
+          "password": "Password",
+          "username": "Username"
+        },
+        "validator": {
+          "password": {
+            "empty": "Tidak ada data"
           },
-          "hint": {
-            "username": "Masukkan username Anda",
-            "password": "Masukkan password Anda"
+          "username": {
+            "empty": "Tidak ada pengguna"
           }
-        },
-        "button": {
-          "login": "Masuk"
-        },
+        }
+      },
+      "login": {
         "error": {
           "400": "Username atau password tidak valid, coba lagi",
           "401": "Username atau password salah, coba lagi",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
           "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
-          "408": "Waktu permintaan habis, coba lagi nanti",
-          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
           "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
-          "default": "Ups! Cek koneksi dan coba lagi."
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
-        "validator": {
-          "username": {
-            "empty": "Username tidak boleh kosong"
-          },
-          "password": {
-            "empty": "Password tidak boleh kosong"
-          }
+        "success": {
+          "default": "Berhasil masuk"
         }
       },
       "refreshToken": {
@@ -45,558 +143,100 @@
           "401": "Akses tidak sah, harap masuk terlebih dahulu",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
           "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
-          "408": "Waktu permintaan habis, coba lagi nanti",
-          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
           "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
-          "default": "Ups! Cek koneksi dan coba lagi."
-        }
-      }
-    },
-    "menu": {
-      "home": "Beranda",
-      "settings": "Pengaturan",
-      "class": "Kelas",
-      "assistantAttendance": "Absensi Asisten",
-      "practicumAttendance": "Absensi Praktikum",
-      "guestVisit": "Kunjungan Tamu",
-      "roomBooking": "Peminjaman Ruangan",
-      "schedule": "Jadwal",
-      "profile": "Profil",
-      "logout": "Keluar",
-      "about": "Tentang",
-      "help": "Bantuan",
-      "contact": "Kontak",
-      "privacyPolicy": "Kebijakan Privasi",
-      "termsOfService": "Syarat dan Ketentuan",
-      "feedback": "Umpan Balik",
-      "language": "Bahasa",
-      "darkMode": "Mode Gelap",
-      "lightMode": "Mode Terang",
-      "notifications": "Notifikasi",
-      "update": "Pembaruan",
-      "version": "Versi",
-      "checkForUpdates": "Periksa Pembaruan",
-      "changePassword": "Ubah Password",
-      "setting": "Pengaturan",
-      "aboutUs": "Tentang Kami",
-      "personalInfo": "Informasi Pribadi",
-      "accountInfo": "Informasi Akun",
-      "labSchedule": "Jadwal Laboratorium",
-      "dutySchedule": "Jadwal Piket Asisten",
-      "course": "Praktikum",
-      "courseSession": "Pertemuan Praktikum"
-    },
-    "home": {
-      "appBar": {
-        "greeting": {
-          "morning": "Selamat Pagi",
-          "afternoon": "Selamat Siang",
-          "evening": "Selamat Malam",
-          "night": "Selamat Malam"
-        },
-        "username": "Nama Pengguna"
-      },
-      "menu": "Menu",
-      "labSchedule": {
-        "title": "Jadwal Lab Hari Ini",
-        "empty": "Tidak ada jadwal lab hari ini",
-        "more": "Lihat lainnya",
-        "seeScheduleOtherDay": "Lihat hari lain",
-        "loading": "Memuat jadwal lab..."
-      },
-      "dutySchedule": {
-        "title": "Asisten Laboratorium Yang Bertugas",
-        "empty": "Tidak ada  asisten laboratorium yang bertugas hari ini",
-        "more": "Lihat semua",
-        "time": "08:00 - 17:00",
-        "seeScheduleOtherDay": "Lihat jadwal asisten di hari lain"
-      }
-    },
-    "user": {
-      "form": {
-        "label": {
-          "password": "Password",
-          "last_login": "Login Terakhir",
-          "username": "Nama Pengguna",
-          "studentId": "NIM",
-          "employeeId": "NIP",
-          "firstName": "Nama Depan",
-          "lastName": "Nama Belakang",
-          "email": "Email",
-          "isStaff": "Staf",
-          "isSuperuser": "Superuser",
-          "isActive": "Aktif",
-          "dateJoined": "Tanggal Bergabung",
-          "faceImage": "Gambar Wajah",
-          "faceUploaded": "Status Gambar Wajah",
-          "avatar": "Avatar",
-          "group": "Grup",
-          "createdAt": "Tanggal Dibuat",
-          "updatedAt": "Tanggal Diperbarui",
-          "fullName": "Nama Lengkap"
-        },
-        "hint": {
-          "password": "Masukkan password Anda",
-          "last_login": "Tanggal login terakhir",
-          "username": "Masukkan username Anda",
-          "studentId": "Masukkan NIM Anda",
-          "employeeId": "Masukkan NIP Anda",
-          "firstName": "Masukkan nama depan Anda",
-          "lastName": "Masukkan nama belakang Anda",
-          "email": "Masukkan alamat email Anda",
-          "isStaff": "Apakah pengguna ini seorang staf?",
-          "isSuperuser": "Apakah pengguna ini seorang superuser?",
-          "isActive": "Apakah pengguna ini aktif?",
-          "dateJoined": "Tanggal pengguna bergabung",
-          "faceImage": "Unggah gambar wajah",
-          "faceUploaded": "Status unggah gambar wajah",
-          "avatar": "Unggah gambar avatar",
-          "group": "Pilih grup",
-          "createdAt": "Tanggal data dibuat",
-          "updatedAt": "Tanggal data diperbarui",
-          "fullName": "Nama Lengkap"
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         }
       },
-      "button": {
-        "saveChanges": "Simpan Perubahan",
-        "changePassword": "Ubah Password",
-        "upload": "Unggah",
-        "delete": "Hapus",
-        "confirm": "Konfirmasi",
-        "cancel": "Batal",
-        "logout": "Keluar"
-      },
-      "fetchListUser": {
+      "logout": {
         "error": {
           "400": "Permintaan tidak valid, coba lagi",
           "401": "Akses tidak sah, harap masuk terlebih dahulu",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
           "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
-          "408": "Waktu permintaan habis, coba lagi nanti",
-          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
           "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
-          "default": "Ups! Cek koneksi dan coba lagi."
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
-        "empty": "Tidak ada pengguna yang ditemukan"
-      },
-      "fetchUserDetail": {
-        "error": {
-          "400": "Permintaan tidak valid, coba lagi",
-          "401": "Akses tidak sah, harap masuk terlebih dahulu",
-          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
-          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
-          "408": "Waktu permintaan habis, coba lagi nanti",
-          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
-          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
-          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
-          "default": "Ups! Cek koneksi dan coba lagi."
-        }
-      },
-      "fetchProfile": {
-        "error": {
-          "400": "Permintaan tidak valid, coba lagi",
-          "401": "Akses tidak sah, harap masuk terlebih dahulu",
-          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
-          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
-          "408": "Waktu permintaan habis, coba lagi nanti",
-          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
-          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
-          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
-          "default": "Ups! Cek koneksi dan coba lagi."
-        }
-      },
-      "updateProfile": {
-        "error": {
-          "400": "Permintaan tidak valid, coba lagi",
-          "401": "Akses tidak sah, harap masuk terlebih dahulu",
-          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
-          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
-          "408": "Waktu permintaan habis, coba lagi nanti",
-          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
-          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
-          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
-          "default": "Ups! Cek koneksi dan coba lagi."
-        }
-      },
-      "changePassword": {
-        "error": {
-          "400": "Permintaan tidak valid, coba lagi",
-          "401": "Akses tidak sah, harap masuk terlebih dahulu",
-          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
-          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
-          "408": "Waktu permintaan habis, coba lagi nanti",
-          "409": "Terjadi konflik dengan permintaan. Silakan coba lagi atau hubungi dukungan.",
-          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Anda telah membuat terlalu banyak permintaan dalam waktu singkat. Coba lagi nanti.",
-          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
-          "default": "Ups! Cek koneksi dan coba lagi."
-        },
-        "validator": {
-          "oldPassword": {
-            "empty": "Password lama tidak boleh kosong"
-          },
-          "newPassword": {
-            "empty": "Password baru tidak boleh kosong",
-            "regex": "Password baru harus terdiri dari minimal 8 karakter, termasuk huruf besar, huruf kecil, angka, dan simbol"
-          },
-          "confirmPassword": {
-            "empty": "Konfirmasi password tidak boleh kosong",
-            "notMatch": "Konfirmasi password tidak cocok"
-          }
-        }
-      }
-    },
-    "schedule": {
-      "lab": {
-        "form": {
-          "label": {
-            "activityType": "Jenis Aktivitas",
-            "activityDescription": "Deskripsi Aktivitas",
-            "scheduleDate": "Tanggal Jadwal",
-            "startTime": "Waktu Mulai",
-            "endTime": "Waktu Selesai",
-            "createdBy": "Dibuat Oleh",
-            "isActive": "Aktif",
-            "approvalStatus": "Status Persetujuan",
-            "approvedBy": "Disetujui Oleh",
-            "approvalTime": "Waktu Persetujuan",
-            "createdAt": "Dibuat Pada",
-            "updatedAt": "Diperbarui Pada"
-          },
-          "hint": {
-            "activityType": "Pilih jenis aktivitas",
-            "activityDescription": "Masukkan deskripsi aktivitas",
-            "scheduleDate": "Pilih tanggal jadwal",
-            "startTime": "Pilih waktu mulai",
-            "endTime": "Pilih waktu selesai",
-            "createdBy": "Masukkan nama pembuat",
-            "isActive": "Apakah jadwal ini aktif?",
-            "approvalStatus": "Pilih status persetujuan",
-            "approvedBy": "Masukkan nama penyetuju",
-            "approvalTime": "Pilih waktu persetujuan",
-            "createdAt": "Tanggal data dibuat",
-            "updatedAt": "Tanggal data terakhir diperbarui"
-          }
-        },
-        "button": {
-          "saveChanges": "Simpan Perubahan",
-          "delete": "Hapus",
-          "confirm": "Konfirmasi",
-          "cancel": "Batal"
-        },
-        "fetchListLabSchedule": {
-          "error": {
-            "400": "Permintaan tidak valid, silakan coba lagi",
-            "401": "Akses tidak sah, silakan login",
-            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-            "408": "Permintaan habis waktu, silakan coba lagi nanti",
-            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
-            "default": "Ups! Cek koneksi dan coba lagi."
-          },
-          "empty": "Tidak ada jadwal yang ditemukan"
-        },
-        "fetchLabScheduleDetail": {
-          "error": {
-            "400": "Permintaan tidak valid, silakan coba lagi",
-            "401": "Akses tidak sah, silakan login",
-            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-            "408": "Permintaan habis waktu, silakan coba lagi nanti",
-            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
-            "default": "Ups! Cek koneksi dan coba lagi."
-          },
-          "empty": "Tidak dapat menemukan detail jadwal"
-        },
-        "updateLabSchedule": {
-          "error": {
-            "400": "Permintaan tidak valid, silakan coba lagi",
-            "401": "Akses tidak sah, silakan login",
-            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-            "408": "Permintaan habis waktu, silakan coba lagi nanti",
-            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
-            "default": "Ups! Cek koneksi dan coba lagi."
-          }
-        },
-        "approveLabSchedule": {
-          "error": {
-            "400": "Permintaan tidak valid, silakan coba lagi",
-            "401": "Akses tidak sah, silakan login",
-            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-            "408": "Permintaan habis waktu, silakan coba lagi nanti",
-            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
-            "default": "Ups! Cek koneksi dan coba lagi."
-          }
-        },
-        "deleteLabSchedule": {
-          "error": {
-            "400": "Permintaan tidak valid, silakan coba lagi",
-            "401": "Akses tidak sah, silakan login",
-            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-            "408": "Permintaan habis waktu, silakan coba lagi nanti",
-            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
-            "default": "Ups! Cek koneksi dan coba lagi."
-          }
-        },
-        "searchLabSchedule": {
-          "placeholder": "Cari jadwal Laboratorium...",
-          "empty": "Tidak ada hasil ditemukan untuk pencarian Anda",
-          "loading": "Memuat hasil pencarian..."
-        },
-        "legend": {
-          "status": {
-            "selectedDate": "Tanggal yang dipilih"
-          }
-        }
-      },
-      "duty": {
-        "form": {
-          "label": {
-            "teachingAssistant": "Asisten Laboratorium",
-            "days": "Hari",
-            "startDate": "Tanggal Mulai",
-            "endDate": "Tanggal Selesai",
-            "startTime": "Waktu Mulai",
-            "endTime": "Waktu Selesai",
-            "isActive": "Aktif",
-            "createdAt": "Dibuat Pada",
-            "updatedAt": "Diperbarui Pada"
-          },
-          "hint": {
-            "teachingAssistant": "Pilih asisten laboratorium",
-            "days": "Pilih hari",
-            "startDate": "Pilih tanggal mulai",
-            "endDate": "Pilih tanggal selesai",
-            "startTime": "Pilih waktu mulai",
-            "endTime": "Pilih waktu selesai",
-            "isActive": "Apakah jadwal ini aktif?",
-            "createdAt": "Tanggal data dibuat",
-            "updatedAt": "Tanggal data terakhir diperbarui"
-          }
-        },
-        "button": {
-          "saveChanges": "Simpan Perubahan",
-          "delete": "Hapus",
-          "confirm": "Konfirmasi",
-          "cancel": "Batal"
-        },
-        "fetchListDutySchedule": {
-          "error": {
-            "400": "Permintaan tidak valid, silakan coba lagi",
-            "401": "Akses tidak sah, silakan login",
-            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-            "408": "Permintaan habis waktu, silakan coba lagi nanti",
-            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
-            "default": "Ups! Cek koneksi dan coba lagi."
-          },
-          "empty": "Tidak ada jadwal yang ditemukan"
-        },
-        "fetchDutyScheduleDetail": {
-          "error": {
-            "400": "Permintaan tidak valid, silakan coba lagi",
-            "401": "Akses tidak sah, silakan login",
-            "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-            "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-            "408": "Permintaan habis waktu, silakan coba lagi nanti",
-            "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-            "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-            "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-            "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
-            "default": "Ups! Cek koneksi dan coba lagi."
-          }
-        },
-        "days": {
-          "monday": "Senin",
-          "tuesday": "Selasa",
-          "wednesday": "Rabu",
-          "thursday": "Kamis",
-          "friday": "Jumat",
-          "saturday": "Sabtu",
-          "sunday": "Minggu"
-        }
-      }
-    },
-    "aboutUs": {
-      "title": "Laboratorium Teknik Komputer",
-      "description": "Universitas Lampung",
-      "allRightsReserved": "Hak Cipta Dilindungi"
-    },
-    "course": {
-      "form": {
-        "label": {
-          "title": "Judul",
-          "description": "Deskripsi",
-          "startDate": "Tanggal Mulai",
-          "endDate": "Tanggal Selesai",
-          "students": "Praktikan",
-          "teachingAssistants": "Asisten Laboratorium",
-          "enrollKey": "Enroll Key",
-          "createdBy": "Dibuat Oleh",
-          "createdAt": "Dibuat Pada",
-          "updatedAt": "Diperbarui Pada",
-          "image": "Gambar"
-        },
-        "hint": {
-          "title": "Masukkan judul praktikum",
-          "description": "Masukkan deskripsi praktikum",
-          "startDate": "Pilih tanggal mulai",
-          "endDate": "Pilih tanggal selesai",
-          "students": "Cari praktikan",
-          "teachingAssistants": "Cari asisten laboratorium",
-          "enrollKey": "Masukkan enroll key",
-          "createdBy": "Masukkan nama pembuat",
-          "createdAt": "Tanggal data dibuat",
-          "updatedAt": "Tanggal data terakhir diperbarui",
-          "image": "Pilih gambar"
-        }
-      },
-      "validator": {
-        "title": {
-          "empty": "Judul tidak boleh kosong"
-        },
-        "description": {
-          "empty": "Deskripsi tidak boleh kosong"
-        },
-        "startDate": {
-          "empty": "Tanggal mulai tidak boleh kosong"
-        },
-        "endDate": {
-          "empty": "Tanggal selesai tidak boleh kosong"
-        },
-        "students": {
-          "empty": "Praktikan tidak boleh kosong"
-        },
-        "teachingAssistants": {
-          "empty": "Asisten pengajar tidak boleh kosong"
-        },
-        "enrollKey": {
-          "empty": "Enroll key tidak boleh kosong"
+        "success": {
+          "default": "Berhasil keluar"
         }
       },
       "text": {
-        "letsEnrollNewCourse": "Yuk, Daftar Praktikum Baru",
-        "courseYouEnrolled": "Praktikum yang Kamu Ikuti",
-        "youDidntEnrollCourse": "Kamu Belum Mendaftar Praktikum",
-        "detailCourse": "Detail Praktikum",
-        "totalParticipants": "Peserta",
-        "totalStudents": "Praktikan",
-        "totalTeachingAssistants": "Asisten Praktikum",
-        "enrollRequired": "Enroll Key Diperlukan",
-        "yourMustBeEnrolled": "Kamu harus terdaftar terlebih dahulu untuk mengakses praktikum ini, Yuk daftar!",
-        "createNewCourse": "Buat Praktikum Baru",
-        "updateCourse": "Perbarui Praktikum",
-        "selectedImagePath": "Gambar yang dipilih"
-      },
-      "button": {
-        "saveChanges": "Simpan Perubahan",
+        "changePassword": "Ubah Password",
+        "login": "Masuk",
+        "passwordLowercase": "Harus mengandung huruf kecil",
+        "passwordMinLength": "Harus minimal 8 karakter",
+        "passwordNumber": "Harus mengandung angka",
+        "passwordSpecialChar": "Harus mengandung karakter khusus",
+        "passwordUppercase": "Harus mengandung huruf besar",
+        "welcomeSubtitle": "Silakan masuk ke akun Anda",
+        "welcomeTitle": "Masuk ke akun Anda",
+        "logout": "Keluar",
+        "logoutConfirmation": "Apakah Anda yakin ingin keluar?",
+        "logoutConfirmationTitle": "Konfirmasi Keluar",
+        "logoutConfirmationMessage": "Anda akan keluar dari akun Anda. Apakah Anda yakin ingin melanjutkan?",
+        "loggingOut": "Berhasil Keluar, harap tunggu...",
+        "loggingIn": "Berhasil Masuk, harap tunggu...",
+        "passwordMatch": "Password dan konfirmasi password harus cocok"
+      }
+    },
+    "common": {
+      "text": {
+        "noInternet": "Tidak Ada Koneksi Internet",
+        "cancel": "Batalkan",
+        "underDevelopment": "Fitur ini sedang dalam pengembangan",
+        "underDevelopmentTitle": "Dalam Pengembangan",
+        "underDevelopmentMessage": "Fitur ini saat ini sedang dalam pengembangan dan akan segera tersedia.",
+        "changeLanguageLoading": "Mengubah bahasa, harap tunggu...",
+        "pickFromGallery": "Pilih dari Galeri",
+        "takePhoto": "Ambil Foto",
+        "error": "Kesalahan",
+        "success": "Berhasil",
+        "warning": "Peringatan",
+        "info": "Informasi",
+        "me": "Saya",
+        "all": "Semua",
+        "retry": "Coba Lagi",
+        "readLess": "Baca Lebih Sedikit",
+        "readMore": "Baca Lebih Banyak",
+        "available": "Tersedia",
+        "selected": "Dipilih",
+        "booked": "Terpesan",
+        "disabled": "Tidak Tersedia",
+        "showLess": "Lihat Lebih Sedikit",
+        "showMore": "Lihat Lebih Banyak",
+        "selectedTimeRange": "{startTime} - {endTime}",
+        "selectStart": "Pilih waktu mulai",
+        "selectEnd": "Pilih waktu selesai",
+        "notAvailable": "Tidak Tersedia",
+        "editable": "Dapat Diedit",
+        "readOnly": "Hanya Baca",
+        "edit": "Edit",
         "delete": "Hapus",
-        "confirm": "Konfirmasi",
-        "cancel": "Batal",
-        "seeAll": "Lihat Semua",
-        "enroll": "Daftar",
-        "create": "Buat"
-      },
-      "fetchListCourse": {
-        "error": {
-          "400": "Permintaan tidak valid, silakan coba lagi",
-          "401": "Akses tidak sah, silakan login",
-          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
-          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        "timeRange": "{startTime} - {endTime}",
+        "timeAgo": {
+          "minutes": "{minutes} menit yang lalu",
+          "hours": "{hours} jam yang lalu"
         },
-        "empty": "Tidak ada praktikum yang ditemukan"
-      },
-      "fetchCourseDetail": {
-        "error": {
-          "400": "Permintaan tidak valid, silakan coba lagi",
-          "401": "Akses tidak sah, silakan login",
-          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
-          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
-        },
-        "empty": "Tidak dapat menemukan detail praktikum"
-      },
+        "clear": "Hapus",
+        "reset": "Reset",
+        "tapToSelectTimeSlots": "Ketuk slot waktu untuk memilih waktu mulai dan selesai"
+      }
+    },
+    "course": {
       "createCourse": {
         "error": {
           "400": "Praktikum dengan judul ini sudah ada, silakan gunakan judul lain",
           "401": "Akses tidak sah, silakan login",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
           "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
           "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
         "success": {
-          "default": "Berhasil membuat praktikum baru"
-        },
-        "section": {
-          "required": "Bagian ini harus diisi",
-          "optional": "Bagian ini disarankan untuk diisi",
-          "additional": "Bagian ini boleh diisi jika diperlukan",
-          "courseInfo": "Detail Praktikum",
-          "courseAdditionalInfo": "Informasi Tambahan Terkait Praktikum",
-          "courseParticipantsInfo": "Data Peserta Praktikum",
-          "selectStudents": "Pilih Praktikan",
-          "selectTeachingAssistants": "Pilih Asisten Praktikum"
-        }
-      },
-      "updateCourse": {
-        "error": {
-          "400": "Permintaan tidak valid, silakan coba lagi",
-          "401": "Akses tidak sah, silakan login",
-          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
-          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
-          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
-        },
-        "success": {
-          "default": "Berhasil memperbarui praktikum"
+          "default": "Berhasil membuat praktikum"
         }
       },
       "deleteCourse": {
@@ -605,85 +245,49 @@
           "401": "Akses tidak sah, silakan login",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
           "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
-          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
-          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
-        }
-      },
-      "enrollCourse": {
-        "error": {
-          "400": "Permintaan tidak valid, silakan coba lagi",
-          "401": "Akses tidak sah, silakan login",
-          "403": "Enroll key tidak valid, silakan coba lagi",
-          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
-          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
           "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
         "success": {
-          "default": "Berhasil mendaftar praktikum",
-          "alreadyEnrolled": "Anda sudah terdaftar di praktikum ini"
+          "default": "Berhasil menghapus praktikum"
         }
       },
-      "searchCourse": {
-        "placeholder": "Cari praktikum...",
-        "empty": "Tidak ada hasil ditemukan untuk pencarian Anda",
-        "loading": "Memuat hasil pencarian..."
-      }
-    },
-    "courseSession": {
-      "form": {
-        "label": {
-          "title": "Judul",
-          "course": "Praktikum",
-          "sessionDate": "Tanggal Sesi",
-          "startTime": "Waktu Mulai",
-          "endTime": "Waktu Selesai",
-          "status": "Status",
-          "teachingAssistants": "Asisten Pengajar",
-          "createdBy": "Dibuat Oleh",
-          "createdAt": "Dibuat Pada",
-          "updatedAt": "Diperbarui Pada"
+      "enrollCourse": {
+        "error": {
+          "400": "Enroll Key tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Enroll key tidak valid, silakan coba lagi",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
-        "hint": {
-          "title": "Masukkan judul sesi",
-          "course": "Pilih praktikum",
-          "sessionDate": "Pilih tanggal sesi",
-          "startTime": "Pilih waktu mulai",
-          "endTime": "Pilih waktu selesai",
-          "status": "Pilih status sesi",
-          "teachingAssistants": "Pilih asisten pengajar",
-          "createdBy": "Masukkan nama pembuat",
-          "createdAt": "Tanggal data dibuat",
-          "updatedAt": "Tanggal data terakhir diperbarui"
+        "success": {
+          "default": "Berhasil mendaftar praktikum"
         }
       },
-      "button": {
-        "saveChanges": "Simpan Perubahan",
-        "delete": "Hapus",
-        "confirm": "Konfirmasi",
-        "cancel": "Batal"
-      },
-      "fetchListCourseSession": {
+      "fetchCourseDetail": {
         "error": {
           "400": "Permintaan tidak valid, silakan coba lagi",
           "401": "Akses tidak sah, silakan login",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
           "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
           "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
-        },
-        "empty": "Tidak ada sesi praktikum yang ditemukan"
+        }
+      },
+      "fetchListCourse": {
+        "error": {
+          "400": "Permintaan tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        }
       },
       "fetchCourseSessionDetail": {
         "error": {
@@ -691,10 +295,7 @@
           "401": "Akses tidak sah, silakan login",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
           "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
           "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         }
@@ -705,12 +306,12 @@
           "401": "Akses tidak sah, silakan login",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
           "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
           "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil membuat pertemuan praktikum"
         }
       },
       "updateCourseSession": {
@@ -719,12 +320,12 @@
           "401": "Akses tidak sah, silakan login",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
           "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
           "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil memperbarui pertemuan praktikum"
         }
       },
       "deleteCourseSession": {
@@ -733,57 +334,778 @@
           "401": "Akses tidak sah, silakan login",
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
           "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
-          "408": "Permintaan habis waktu, silakan coba lagi nanti",
-          "409": "Terjadi konflik dalam permintaan. Silakan coba lagi atau hubungi dukungan.",
           "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "429": "Terlalu banyak permintaan dalam waktu singkat. Silakan coba lagi nanti.",
           "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil menghapus pertemuan praktikum"
         }
+      },
+      "form": {
+        "hint": {
+          "description": "Masukkan deskripsi praktikum",
+          "endDate": "Pilih tanggal selesai",
+          "enroll": "Masukkan enroll key untuk mendaftar",
+          "image": "Pilih gambar",
+          "startDate": "Pilih tanggal mulai",
+          "students": "Cari praktikan",
+          "teachingAssistants": "Cari asisten laboratorium",
+          "title": "Judul",
+          "enrollKey": "Masukkan Enroll Key",
+          "sessionType": "Pilih jenis pertemuan",
+          "sessionDate": "Pilih tanggal pertemuan",
+          "sessionStartTime": "Pilih waktu mulai pertemuan",
+          "sessionEndTime": "Pilih waktu selesai pertemuan",
+          "sessionStats": "Pilih status pertemuan",
+          "sessionDescription": "Masukkan deskripsi pertemuan",
+          "date": "Pilih tanggal",
+          "sessionTimeRange": "Pilih waktu pertemuan"
+        },
+        "label": {
+          "description": "Deskripsi",
+          "endDate": "Tanggal Selesai",
+          "image": "Gambar",
+          "students": "Praktikan",
+          "teachingAssistants": "Asisten Praktikum",
+          "more": "Selengkapnya",
+          "startDate": "Tanggal Mulai",
+          "title": "Judul",
+          "enroll": "Enroll Key",
+          "enrollKey": "Enroll Key",
+          "sessionType": "Jenis Pertemuan",
+          "sessionDate": "Tanggal Pertemuan",
+          "sessionStartTime": "Waktu Mulai Pertemuan",
+          "sessionEndTime": "Waktu Selesai Pertemuan",
+          "sessionStats": "Status Pertemuan",
+          "sessionDescription": "Deskripsi Pertemuan",
+          "date": "Tanggal",
+          "sessionTimeRange": "Waktu Pertemuan"
+        },
+        "validator": {
+          "enrollKey": {
+            "empty": "Enroll key wajib diisi"
+          },
+          "time": {
+            "required": "Waktu wajib diisi",
+            "invalidFormat": "Format waktu tidak valid (HH:mm)",
+            "outsideLabHours": "Waktu harus dalam jam operasional lab (07:30 - 18:00)",
+            "endBeforeStart": "Waktu selesai harus setelah waktu mulai"
+          },
+          "date": {
+            "outsideRange": "Tanggal pertemuan harus dalam rentang tanggal kursus",
+            "invalid": "Tanggal tidak valid"
+          }
+        }
+      },
+      "text": {
+        "createNewCourse": "Buat Praktikum Baru",
+        "detailCourse": "Detail Praktikum",
+        "enroll": "Daftar Praktikum",
+        "enrollCourse": "Daftar Praktikum",
+        "enrollKeyHelp": "Enroll key adalah kunci yang diperlukan untuk mendaftar praktikum. Dapatkan dari asisten praktikum.",
+        "fetchCourseDetail": {
+          "empty": "Kosong"
+        },
+        "letsEnrollNewCourse": "Yuk, Daftar Praktikum Baru",
+        "searchCourse": {
+          "empty": "Tidak ada praktikum yang ditemukan",
+          "placeholder": "Cari praktikum..."
+        },
+        "selectedImagePath": "Gambar yang dipilih",
+        "totalParticipants": "Peserta",
+        "totalSessions": "Pertemuan",
+        "updateCourse": "Perbarui Praktikum",
+        "youDidntEnrollCourse": "Kamu Belum Mendaftar Praktikum",
+        "more": "Lihat Semua",
+        "courseInfo": "Informasi Praktikum",
+        "courseAdditionalInfo": "Informasi Tambahan",
+        "courseParticipantsInfo": "Informasi Peserta",
+        "required": "Wajib",
+        "optional": "Opsional",
+        "selectParticipants": "Pilih Peserta",
+        "selectTeachingAssistants": "Pilih Asisten Praktikum",
+        "selectStudents": "Pilih Praktikan",
+        "deleteCourse": "Hapus Praktikum",
+        "deleteCourseConfirmation": "Seluruh data praktikum akan dihapus. Apakah Anda yakin ingin menghapus praktikum ini?",
+        "cancel": "Batalkan",
+        "thisActionCannotBeUndone": "Tindakan ini tidak dapat dibatalkan",
+        "areYouSureYouWantToDelete": "Apakah Anda yakin ingin menghapus praktikum ini?",
+        "areYouSureYouWantToDeleteCourseSession": "Apakah Anda yakin ingin menghapus sesi praktikum ini?",
+        "deleteSession": "Hapus Pertemuan",
+        "delete": "Hapus",
+        "modifyCourse": "Ubah Detail Praktikum",
+        "yesDelete": "Ya, Hapus",
+        "detailCourseSession": "Detail Pertemuan Praktikum",
+        "createNewCourseSession": "Buat Pertemuan",
+        "courseSessionInfo": "Informasi Pertemuan Praktikum",
+        "courseSessionAdditionalInfo": "Informasi Tambahan",
+        "courseSessionTeachingAssistants": "Asisten Praktikum",
+        "updateCourseSession": "Ubah Sesi Praktikum",
+        "deleteCourseSession": "Hapus Sesi Praktikum",
+        "deletingCourseSession": "Menghapus sesi praktikum...",
+        "viewCourse": "Lihat Praktikum",
+        "loadMyCourses": "Memuat praktikum saya...",
+        "searchingCourses": "Mencari praktikum...",
+        "loadAllCourses": "Memuat semua praktikum...",
+        "noCoursesFound": "Tidak ada praktikum yang ditemukan",
+        "searchPlaceholder": "Cari praktikum...",
+        "searchTryDifferentKeywords": "Coba gunakan judul yang berbeda",
+        "searchInitialTitle": "Cari Praktikum",
+        "searchInitialSubtitle": "Masukkan judul untuk mencari praktikum tertentu",
+        "empty": {
+          "myCourse": "Kamu belum mendaftar praktikum",
+          "allCourse": "Tidak ada praktikum yang ditemukan"
+        },
+        "startDateNewest": "Tanggal Mulai (Terbaru)",
+        "startDateOldest": "Tanggal Mulai (Terlama)",
+        "endDateNewest": "Tanggal Selesai (Terbaru)",
+        "endDateOldest": "Tanggal Selesai (Terlama)",
+        "newest": "Terbaru",
+        "oldest": "Terlama",
+        "ordering": "Pengurutan",
+        "course": {
+          "loading": "Memuat praktikum..."
+        }
+      },
+      "updateCourse": {
+        "error": {
+          "400": "Permintaan tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil memperbarui praktikum"
+        }
+      }
+    },
+    "general": {
+      "form": {
+        "label": {
+          "apply": "Apply",
+          "create": "Create",
+          "next": "Next",
+          "previous": "Previous",
+          "reset": "Reset",
+          "save": "Save"
+        }
+      },
+      "text": {
+        "end": "End",
+        "filter": "Filter",
+        "notSelected": "Belum Dipilih",
+        "start": "Start",
+        "switchToList": "Tampilkan List",
+        "switchToGrid": "Tampilkan Grid"
+      }
+    },
+    "home": {
+      "appBar": {
+        "greeting": {
+          "morning": "Selamat Pagi",
+          "afternoon": "Selamat Siang",
+          "night": "Selamat Malam",
+          "evening": "Selamat Sore"
+        }
+      },
+      "text": {
+        "dutySchedule": {
+          "empty": "Tidak ada jadwal piket asisten untuk hari ini",
+          "more": "Lihat Semua",
+          "seeScheduleOtherDay": "Lihat Jadwal Hari Lain",
+          "title": "Jadwal Piket Asisten"
+        },
+        "labSchedule": {
+          "empty": "Kamu tidak memiliki jadwal hari ini",
+          "more": "Lihat Semua",
+          "seeLess": "Lihat Lebih Sedikit",
+          "seeMore": "Lihat Lebih Banyak",
+          "seeScheduleOtherDay": "Lihat Jadwal Hari Lain",
+          "title": "Jadwal Kamu Hari Ini"
+        },
+        "menu": "Menu"
+      }
+    },
+    "labSchedule": {
+      "form": {
+        "label": {
+          "date": "Tanggal",
+          "startTime": "Waktu Mulai",
+          "endTime": "Waktu Selesai",
+          "type": "Jenis Jadwal",
+          "detail": "Detail",
+          "createdBy": "Dibuat Oleh",
+          "updatedAt": "Diperbarui Pada"
+        },
+        "hint": {
+          "date": "Pilih tanggal untuk jadwal lab",
+          "startTime": "Masukkan waktu mulai (contoh: 08:00)",
+          "endTime": "Masukkan waktu selesai (contoh: 10:00)",
+          "type": "Pilih jenis jadwal lab",
+          "detail": "Masukkan detail atau keterangan tambahan",
+          "createdBy": "Masukkan nama pembuat jadwal",
+          "updatedAt": "Tanggal terakhir jadwal diperbarui"
+        }
+      },
+
+      "text": {
+        "mySchedule": "Jadwal Saya",
+        "allSchedule": "Semua Jadwal",
+        "legend": {
+          "title": "Status Jadwal",
+          "ongoing": "Berlangsung",
+          "upcoming": "Akan Datang",
+          "finished": "Selesai",
+          "selectedDate": "Tanggal yang dipilih"
+        },
+        "loadingMySchedule": "Sedang memuat jadwal saya...",
+        "loadingAllSchedule": "Sedang memuat semua jadwal...",
+        "noScheduleFound": "Tidak ada jadwal yang ditemukan",
+        "searchPlaceholder": "Cari jadwal",
+        "searchEmpty": "Tidak ada hasil ditemukan untuk pencarian Anda",
+        "searchTryDifferentKeywords": "Coba gunakan kata kunci yang berbeda",
+        "myScheduleEmpty": "Kamu tidak memiliki jadwal pada hari ini",
+        "allScheduleEmpty": "Tidak ada jadwal untuk hari ini",
+        "searchInitialTitle": "Cari Jadwal Laboratorium",
+        "searchInitialSubtitle": "Masukkan kata kunci untuk mencari jadwal lab tertentu",
+        "itemCount": {
+          "my": "jadwal saya",
+          "all": "semua jadwal",
+          "single": "jadwal",
+          "multiple": "jadwal"
+        },
+        "selectDateTime": "Pilih Tanggal & Waktu",
+        "selectDate": "Pilih Tanggal",
+        "selectTimeSlot": "Slot Waktu Tersedia",
+        "loadingAvailableTimeSlots": "Memuat slot waktu tersedia...",
+        "noAvailableEndTimesForSelectedStartTime": "Tidak ada slot waktu selesai yang tersedia untuk waktu mulai yang dipilih",
+        "noAvailableStartTimesForSelectedDate": "Tidak ada slot waktu mulai yang tersedia untuk tanggal yang dipilih",
+        "noAvailableTimeSlotsForSelectedDate": "Tidak ada slot waktu yang tersedia untuk tanggal yang dipilih",
+        "pleaseSelectStartTimeFirst": "Silakan pilih waktu mulai terlebih dahulu",
+        "failedToLoadAvailableStartTimes": "Gagal memuat slot waktu mulai",
+        "failedToLoadAvailableEndTimes": "Gagal memuat slot waktu selesai"
+      },
+      "fetchListLabSchedule": {
+        "error": {
+          "400": "Permintaan tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        }
+      },
+      "fetchLabScheduleDetail": {
+        "error": {
+          "400": "Permintaan tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "empty": "Tidak dapat menemukan detail jadwal"
+      },
+      "fetchMyLabSchedule": {
+        "error": {
+          "400": "Permintaan tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        }
+      },
+      "searchLabSchedule": {
+        "emptyStateTitle": "Mulai ketik untuk mencari jadwal",
+        "emptyStateSubtitle": "Cari berdasarkan jenis atau detail jadwal.",
+        "placeholder": "Cari jadwal laboratorium...",
+        "empty": "Tidak ada hasil ditemukan untuk pencarian Anda",
+        "tryDifferentKeywords": "Coba gunakan kata kunci yang berbeda",
+        "loading": "Sedang mencari jadwal...",
+        "error": {
+          "400": "Permintaan tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti",
+          "noDetailFound": "Detail booking ruangan tidak ditemukan"
+        }
+      }
+    },
+    
+    "dutySchedule": {
+      "text": {
+        "present": "Hadir",
+        "absent": "Tidak Hadir",
+        "notYetPresent": "Belum Hadir",
+        "monday": "Senin",
+        "tuesday": "Selasa",
+        "wednesday": "Rabu",
+        "thursday": "Kamis",
+        "friday": "Jumat",
+        "saturday": "Sabtu",
+        "sunday": "Minggu",
+        "tryDifferentDay": "Coba gunakan hari lain",
+        "dutySchedule": {
+          "empty": "Tidak ada jadwal piket asisten untuk hari ini"
+        }
+      },
+      "fetchDutyScheduleForToday": {
+        "error": {
+          "400": "Permintaan tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "empty": "Tidak ada jadwal piket asisten untuk hari ini"
+      },
+      "fetchListDutySchedule": {
+        "error": {
+          "400": "Permintaan tidak valid, silakan coba lagi",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, silakan hubungi administrator",
+          "404": "Sumber daya yang diminta tidak ditemukan, silakan periksa URL",
+          "422": "Permintaan dipahami, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Terjadi masalah pada server kami. Silakan coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "empty": "Tidak ada jadwal piket asisten yang ditemukan"
+      }
+    },
+    "menu": {
+      "about": "Tentang",
+      "aboutUs": "Tentang Kami",
+      "accountInfo": "Info Akun",
+      "assistantAttendance": "Absensi Asisten",
+      "changePassword": "Ubah Password",
+      "course": "Praktikum",
+      "courseSession": "Pertemuan Praktikum",
+      "darkMode": "Mode Gelap",
+      "dutySchedule": "Jadwal Piket Asisten",
+      "guestVisit": "Kunjungan Tamu",
+      "home": "Beranda",
+      "labSchedule": "Jadwal Laboratorium",
+      "language": "Bahasa",
+      "logout": "Keluar",
+      "personalInfo": "Info Personal",
+      "practicumAttendance": "Absensi Praktikum",
+      "profile": "Profil",
+      "roomBooking": "Peminjaman Ruangan",
+      "schedule": "Jadwal",
+      "setting": "Pengaturan",
+      "version": "Versi",
+      "myCourse": "Praktikum Saya",
+      "bookingHistory": "Riwayat Peminjaman",
+      "createBooking": "Ajukan Peminjaman Ruangan"
+    },
+    "roomBooking": {
+      "form": {
+        "label": {
+          "selectDate": "Pilih Tanggal",
+          "selectTimeSlot": "Pilih Slot Waktu",
+          "bookingType": "Jenis Pemesanan",
+          "purpose": "Tujuan",
+          "startTime": "Waktu Mulai",
+          "endTime": "Waktu Selesai",
+          "seminarType": "Jenis Seminar",
+          "researchTitle": "Judul Penelitian",
+          "supervisorMain": "Pembimbing Utama",
+          "supervisorSecondary": "Pembimbing Kedua",
+          "examiner": "Penguji",
+          "documentProof": "Bukti Dokumen",
+          "submitBooking": "Ajukan Pemesanan",
+          "date": "Tanggal",
+          "booker": "Pemesan",
+          "bookerIdentifier": "NPM",
+          "mainSupervisor": "Pembimbing Utama",
+          "secondarySupervisor": "Pembimbing Kedua"
+        },
+        "hint": {
+          "selectDate": "Pilih tanggal pemesanan",
+          "selectTimeSlot": "Pilih slot waktu",
+          "bookingType": "Pilih jenis pemesanan",
+          "purpose": "Masukkan tujuan pemesanan",
+          "startTime": "Pilih waktu mulai",
+          "endTime": "Pilih waktu selesai",
+          "seminarType": "Pilih jenis seminar",
+          "researchTitle": "Masukkan judul penelitian",
+          "supervisorMain": "Masukkan nama pembimbing utama",
+          "supervisorSecondary": "Masukkan nama pembimbing kedua",
+          "examiner": "Masukkan nama penguji",
+          "documentProof": "Pilih file bukti dokumen",
+          "submitBooking": "Klik untuk mengajukan pemesanan",
+          "date": "Pilih tanggal",
+          "booker": "Nama pemesan",
+          "bookerIdentifier": "Masukkan NPM",
+          "mainSupervisor": "Masukkan nama pembimbing utama",
+          "secondarySupervisor": "Masukkan nama pembimbing kedua"
+        }
+      },
+      "text": {
+        "title": "Pemesanan Ruangan",
+        "historyTitle": "Riwayat Pemesanan",
+        "createTitle": "Buat Pemesanan Ruangan",
+        "updateTitle": "Perbarui Pemesanan Ruangan",
+        "detailTitle": "Detail Pemesanan",
+        "searchHint": "Cari pemesanan...",
+        "filterTitle": "Opsi Filter",
+        "availableSlots": "Slot Tersedia",
+        "bookedSlots": "Slot Terpesan",
+        "selectedSlots": "Slot Terpilih",
+        "disabledSlots": "Slot Tidak Tersedia",
+        "pendingBookings": "Menunggu",
+        "approvedBookings": "Disetujui",
+        "rejectedBookings": "Ditolak",
+        "noBookingsTitle": "Tidak Ada Pemesanan",
+        "noBookingsSubtitle": "Tidak ada pemesanan ruangan saat ini",
+        "noPendingBookingsTitle": "Tidak Ada Pemesanan Menunggu",
+        "noPendingBookingsSubtitle": "Semua pemesanan telah diproses",
+        "noApprovedBookingsTitle": "Tidak Ada Pemesanan Disetujui",
+        "noApprovedBookingsSubtitle": "Tidak ada pemesanan yang disetujui",
+        "noRejectedBookingsTitle": "Tidak Ada Pemesanan Ditolak",
+        "noRejectedBookingsSubtitle": "Tidak ada pemesanan yang ditolak",
+        "submitBooking": "Ajukan Pemesanan",
+        "updateBooking": "Perbarui Pemesanan",
+        "deleteBooking": "Hapus Pemesanan",
+        "approve": "Setuju",
+        "reject": "Tolak",
+        "cancel": "Batal",
+        "edit": "Edit",
+        "delete": "Hapus",
+        "approved": "Disetujui",
+        "rejected": "Ditolak",
+        "pending": "Menunggu",
+        "cancelled": "Dibatalkan",
+        "completed": "Selesai",
+        "expired": "Kedaluwarsa",
+        "inProgress": "Berlangsung",
+        "success": "Berhasil",
+        "error": "Error",
+        "approveTitle": "Setujui Pemesanan",
+        "approveMessage": "Apakah Anda yakin ingin menyetujui pemesanan ini?",
+        "rejectTitle": "Tolak Pemesanan",
+        "rejectMessage": "Apakah Anda yakin ingin menolak pemesanan ini?",
+        "deleteTitle": "Hapus Pemesanan",
+        "deleteMessage": "Apakah Anda yakin ingin menghapus pemesanan ini? Tindakan ini tidak dapat dibatalkan.",
+        "errorTitle": "Terjadi kesalahan",
+        "viewDetails": "Lihat Detail",
+        "bookingInfo": "Informasi Pemesanan",
+        "scheduleInfo": "Informasi Jadwal",
+        "seminarInfo": "Informasi Seminar",
+        "approvalInfo": "Informasi Persetujuan",
+        "bookerInfo": "Informasi Pemesan",
+        "expandDetails": "Perluas Detail",
+        "collapseDetails": "Tutup Detail",
+        "bookingDate": "Tanggal Pemesanan",
+        "timeSlot": "Slot Waktu",
+        "booker": "Pemesan",
+        "approvalStatus": "Status Persetujuan",
+        "approvedBy": "Disetujui Oleh",
+        "approvalTimestamp": "Waktu Persetujuan",
+        "approvalNotes": "Catatan Persetujuan",
+        "createdAt": "Dibuat Pada",
+        "updatedAt": "Diperbarui Pada",
+        "confirm": "Konfirmasi",
+        "confirmation": {
+          "title": "Konfirmasi",
+          "message": "Apakah Anda yakin ingin melanjutkan tindakan ini?",
+          "confirm": "Konfirmasi",
+          "cancel": "Batal"
+        },
+        "selectTimeInstruction": "Pilih waktu mulai dan waktu selesai terlebih dahulu, kemudian Anda akan dibawa ke halaman pemesanan ruangan",
+        "timeSlotDisabled": "Slot waktu tidak tersedia",
+        "timeSlotBooked": "Slot waktu sudah terpesan",
+        "searchPlaceholder": "Cari pemesanan...",
+        "basicInformation": "Informasi Dasar",
+        "scheduleInformation": "Informasi Jadwal",
+        "showSeminarDetails": "Tampilkan Detail Seminar",
+        "hideSeminarDetails": "Tutup Detail Seminar",
+        "proposal": "Proposal",
+        "result": "Hasil",
+        "internship": "Kerja Praktik"
+      },
+      "validation": {
+        "dateRequired": "Tanggal harus diisi",
+        "startTimeRequired": "Waktu mulai harus diisi",
+        "endTimeRequired": "Waktu selesai harus diisi",
+        "bookingTypeRequired": "Jenis pemesanan harus diisi",
+        "purposeRequired": "Tujuan harus diisi",
+        "seminarTypeRequired": "Jenis seminar harus diisi untuk pemesanan seminar",
+        "researchTitleRequired": "Judul penelitian harus diisi untuk pemesanan seminar",
+        "supervisorMainRequired": "Pembimbing utama harus diisi untuk pemesanan seminar",
+        "examinerRequired": "Penguji harus diisi untuk pemesanan seminar",
+        "documentProofRequired": "Bukti dokumen harus diisi untuk pemesanan seminar",
+        "timeSlotRequired": "Silakan pilih slot waktu",
+        "endTimeAfterStartTime": "Waktu selesai harus setelah waktu mulai",
+        "minimumDuration": "Durasi minimum pemesanan adalah 30 menit"
+      },
+      "error": {
+        "failedToCreate": "Gagal membuat pemesanan ruangan",
+        "failedToUpdate": "Gagal memperbarui pemesanan ruangan",
+        "failedToDelete": "Gagal menghapus pemesanan ruangan",
+        "failedToApprove": "Gagal menyetujui pemesanan ruangan",
+        "failedToReject": "Gagal menolak pemesanan ruangan",
+        "failedToFetch": "Gagal mengambil data pemesanan ruangan",
+        "failedToFetchDetail": "Gagal mengambil detail pemesanan",
+        "networkError": "Terjadi kesalahan jaringan",
+        "serverError": "Terjadi kesalahan server",
+        "timeSlotUnavailable": "Slot waktu yang dipilih tidak tersedia lagi",
+        "accessDenied": "Anda tidak memiliki izin untuk melakukan tindakan ini"
+      },
+      "fetchListRoomBooking": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        }
+      },
+      "fetchRoomBookingDetail": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        }
+      },
+      "createRoomBooking": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil membuat pemesanan ruangan"
+        }
+      },
+      "updateRoomBooking": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil memperbarui pemesanan ruangan"
+        }
+      },
+      "deleteRoomBooking": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.", 
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil menghapus pemesanan ruangan"
+        }
+      }
+    },
+    "guestVisit": {
+      "form": {
+        "label": {
+          "visitor": "Pengunjung Terdaftar",
+          "name": "Nama Pengunjung",
+          "identityType": "Jenis Identitas",
+          "identityNumber": "Nomor Identitas",
+          "date": "Tanggal Kunjungan",
+          "startTime": "Waktu Mulai",
+          "endTime": "Waktu Selesai",
+          "purpose": "Tujuan Kunjungan",
+          "paraf": "Paraf",
+          "staff": "Staff Pendamping",
+          "createdBy": "Dibuat Oleh",
+          "createdAt": "Dibuat Pada",
+          "updatedAt": "Diperbarui Pada"
+        },
+        "hint": {
+          "visitor": "Pilih pengunjung yang sudah terdaftar",
+          "name": "Masukkan nama pengunjung manual",
+          "identityType": "Pilih jenis identitas (NIM, NIP, KTP, SIM, Passport, Lainnya)",
+          "identityNumber": "Masukkan nomor identitas",
+          "date": "Pilih tanggal kunjungan",
+          "startTime": "Pilih waktu mulai kunjungan",
+          "endTime": "Pilih waktu selesai kunjungan (opsional)",
+          "purpose": "Masukkan tujuan kunjungan",
+          "paraf": "Masukkan paraf atau catatan (opsional)",
+          "staff": "Pilih staff pendamping",
+          "createdBy": "Nama pembuat",
+          "createdAt": "Waktu pembuatan",
+          "updatedAt": "Waktu pembaruan terakhir"
+        }
+      },
+      "text": {
+        "unknownVisitor": "Pengunjung Tidak Dikenal",
+        "title": "Kunjungan Tamu",
+        "createTitle": "Daftarkan Kunjungan Tamu",
+        "updateTitle": "Perbarui Kunjungan Tamu",
+        "detailTitle": "Detail Kunjungan Tamu",
+        "visitorMode": "Mode Pengunjung",
+        "registeredVisitor": "Pengunjung Terdaftar",
+        "manualEntry": "Input Manual",
+        "identityTypes": {
+          "nim": "NIM",
+          "nip": "NIP", 
+          "ktp": "KTP",
+          "sim": "SIM",
+          "passport": "Passport",
+          "other": "Lainnya"
+        }
+      }
+    },
+    "user": {
+      "fetchListUser": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        }
+      },
+      "fetchUserDetail": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        }
+      },
+      "fetchUserProfile": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        }
+      },
+      "updateUserProfile": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil memperbarui profil"
+        }
+      },
+      "form": {
+        "hint": {
+          "email": "Masukkan alamat email Anda",
+          "employeeNumber": "Masukkan NIP Anda",
+          "firstName": "Masukkan nama depan Anda",
+          "group": "Pilih grup",
+          "lastName": "Masukkan nama belakang Anda",
+          "studentNumber": "Masukkan NPM Anda",
+          "username": "Masukkan username Anda"
+        },
+        "label": {
+          "dateJoined": "Bergabung Sejak",
+          "email": "Email",
+          "employeeNumber": "NIP",
+          "firstName": "Nama Depan",
+          "group": "Grup",
+          "lastName": "Nama Belakang",
+          "studentNumber": "NPM",
+          "username": "Nama Pengguna"
+        }
+      },
+      "text": {
+        "fetchListUser": {
+          "empty": "Kosong"
+        },
+        "tapToChangeAvatar": "Ketuk untuk mengubah avatar",
+        "updateProfile": "Perbarui Profil",
+        "accountInformation": "Informasi Akun",
+        "personalInformation": "Informasi Pribadi",
+        "accountStatus": "Status Akun",
+        "fields": "3 Kolom"
       }
     }
   },
   "general": {
-    "button": {
-      "save": "Simpan",
-      "cancel": "Batal",
-      "delete": "Hapus",
-      "edit": "Edit",
-      "close": "Tutup",
-        "chooseDate": "Pilih Tanggal",
-    "dateRange": "Rentang Tanggal",
-    "reset": "Reset",
-    "apply": "Terapkan",
-    "next": "Selanjutnya",
-    "previous": "Sebelumnya",
-    "submit": "Kirim",
-    "create": "Buat"
+    "actions": {
+      "loadMore": "Muat Lebih Banyak"
     },
     "note": {
       "optional": "Opsional"
+    }
+  },
+  "validator": {
+    "date": {
+      "invalid": "Silakan masukkan tanggal yang valid",
+      "required": "Tanggal wajib diisi"
     },
-    "error": {
-      "default": "Terjadi kesalahan"
+    "dateRange": {
+      "invalid": "Tanggal mulai harus sebelum tanggal selesai",
+      "parseError": "Format tanggal tidak valid",
+      "required": "Tanggal mulai dan selesai wajib diisi"
     },
-    "success": {
-      "default": "Berhasil",
-      "create": "Berhasil membuat",
-      "save": "Berhasil menyimpan",
-      "update": "Berhasil memperbarui",
-      "delete": "Berhasil menghapus"
+    "email": {
+      "invalid": "Silakan masukkan alamat email yang valid",
+      "required": "Email wajib diisi"
     },
-    "yes": "Ya",
-    "no": "Tidak",
-    "active": "Aktif",
-    "inactive": "Tidak Aktif",
-    "undefined": "Tidak Ditentukan",
-    "searching": "Mencari...",
-    "filter": "Filter",
-    "start": "Mulai",
-    "end": "Selesai",
-    "clear": "Bersihkan",
-    "to": "-",
-    "notSelected": "Belum dipilih",
-    "select": "Pilih"
+    "numeric": {
+      "invalid": "Silakan masukkan angka yang valid",
+      "requiredGeneric": "Kolom ini harus berupa angka"
+    },
+    "password": {
+      "required": "Password wajib diisi",
+      "weak": "Password harus mengandung setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu karakter khusus"
+    },
+    "passwordConfirmation": {
+      "notMatch": "Konfirmasi password tidak sesuai dengan password",
+      "required": "Konfirmasi password wajib diisi"
+    },
+    "phone": {
+      "invalid": "Silakan masukkan nomor telepon yang valid",
+      "required": "Nomor telepon wajib diisi"
+    },
+    "positiveNumber": {
+      "invalid": "Angka harus lebih besar dari nol"
+    },
+    "requiredGeneric": "Kolom ini wajib diisi",
+    "required": "Field ini wajib diisi"
   }
 }

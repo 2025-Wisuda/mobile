@@ -1,18 +1,17 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/lab_schedule/data/models/model.dart';
 import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
 import 'package:mobile/features/lab_schedule/domain/repositories/repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class FetchListLabScheduleUsecase {
   final LabScheduleRepository labScheduleRepository;
 
   FetchListLabScheduleUsecase(this.labScheduleRepository);
 
-  Future<Either<Failure, ListLabScheduleEntity>> execute({
+  Future<Either<Failure, BaseListResponseEntity<LabScheduleEntity>>> execute({
     LabScheduleFilterParamsModel? params,
   }) {
     return labScheduleRepository.fetchListLabSchedule(params: params);

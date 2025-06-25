@@ -1,16 +1,19 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/auth/domain/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, LoginResponseEntity>> login(
-    String username,
-    String password,
-  );
+  Future<Either<Failure, LoginResponseEntity>> login({
+    required LoginRequestEntity data,
+  });
   Future<Either<Failure, RefreshTokenResponseEntity>> refreshToken(
     String refreshToken,
   );
+
+  Future<Either<Failure, void>> changePassword({
+    required ChangePasswordRequestEntity data,
+  });
+
+  Future<Either<Failure, void>> logout({required LogoutRequestEntity data});
 }

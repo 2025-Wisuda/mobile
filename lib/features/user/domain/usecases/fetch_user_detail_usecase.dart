@@ -1,17 +1,18 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/user/domain/entities/entity.dart';
 import 'package:mobile/features/user/domain/repositories/repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class FetchUserDetailUsecase {
-  final UserRepository userRepository;
+  final UserRepository _userRepository;
 
-  FetchUserDetailUsecase(this.userRepository);
+  FetchUserDetailUsecase(this._userRepository);
 
-  Future<Either<Failure, UserEntity>> execute(String userId) {
-    return userRepository.fetchUserDetail(userId);
+  Future<Either<Failure, BaseResponseEntity<UserEntity>>> execute(
+    String userId,
+  ) {
+    return _userRepository.fetchUserDetail(userId);
   }
 }

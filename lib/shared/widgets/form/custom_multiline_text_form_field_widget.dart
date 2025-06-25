@@ -1,12 +1,70 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:easy_localization/easy_localization.dart' as i18n;
+import 'package:mobile/shared/widgets/form/form.dart';
 
-// Project imports:
-import 'package:mobile/shared/helpers/helper.dart';
-
+/// A customizable multiline TextFormField with modern clean design and flexible styling.
+///
+/// This widget is designed for multi-line text input (e.g. description, notes) with
+/// clean modern aesthetics. Features ultra-thin borders, improved readability,
+/// and full parameter-based configuration for various use cases.
+///
+/// ## Basic Usage:
+/// ```dart
+/// CustomMultilineTextFormFieldWidget(
+///   controller: controller,
+///   focusNode: focusNode,
+///   hintText: "Enter description...",
+///   keyboardType: TextInputType.multiline,
+/// )
+/// ```
+///
+/// ## With Label & Validation:
+/// ```dart
+/// CustomMultilineTextFormFieldWidget(
+///   controller: controller,
+///   focusNode: focusNode,
+///   labelText: "Description",
+///   hintText: "Enter details",
+///   validator: (value) => value?.isEmpty == true ? "Required" : null,
+///   requiredField: true,
+///   maxLines: 5,
+/// )
+/// ```
+///
+/// ## With Custom Styling:
+/// ```dart
+/// CustomMultilineTextFormFieldWidget(
+///   controller: controller,
+///   focusNode: focusNode,
+///   hintText: "Type here...",
+///   fillColor: Colors.grey[100],
+///   prefixIcon: Icon(Icons.notes),
+///   suffixIcon: Icon(Icons.check),
+///   enabled: false,
+///   maxLines: 8,
+///   maxLength: 500,
+/// )
+/// ```
+///
+/// ## Parameters:
+/// - [controller]: TextEditingController for the field (required)
+/// - [focusNode]: FocusNode for the field (required)
+/// - [keyboardType]: Keyboard type (required)
+/// - [hintText]: Hint text inside the field (required)
+/// - [labelText]: Optional label above the field
+/// - [errorText]: Error text below the field
+/// - [prefixIcon], [suffixIcon]: Optional icons
+/// - [onChanged]: Value change callback
+/// - [validator]: Validation callback
+/// - [colorEnabledBorder]: Border color when enabled
+/// - [optional]: Show 'optional' label
+/// - [requiredField]: Show required indicator
+/// - [enabled]: Enable/disable input
+/// - [fillColor]: Field background color
+/// - [maxLines]: Max lines for input
+/// - [maxLength]: Max character count
+/// - [obscureText]: Obscure input (e.g. for passwords)
+///
 class CustomMultilineTextFormFieldWidget extends StatelessWidget {
   final bool? obscureText;
   final TextEditingController controller;
@@ -60,34 +118,10 @@ class CustomMultilineTextFormFieldWidget extends StatelessWidget {
       spacing: 4,
       children: [
         if (labelText != null && labelText!.isNotEmpty) ...[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            spacing: 4,
-            children: [
-              Text(labelText!, style: context.bodyMediumW(500)),
-              if (optional == true) ...[
-                Flexible(
-                  child: Text(
-                    '(${i18n.tr('general.note.optional')})',
-                    style: context
-                        .labelMediumW(500)
-                        .copyWith(color: context.scrim),
-                  ),
-                ),
-              ],
-              if (requiredField == true) ...[
-                Flexible(
-                  child: Text(
-                    '*',
-                    style: context
-                        .bodyMediumW(500)
-                        .copyWith(color: context.error),
-                  ),
-                ),
-              ],
-            ],
+          CustomFormLabelWidget(
+            label: labelText!,
+            optional: optional,
+            requiredField: requiredField,
           ),
         ],
         TextFormField(
@@ -96,7 +130,7 @@ class CustomMultilineTextFormFieldWidget extends StatelessWidget {
           controller: controller,
           focusNode: focusNode,
           keyboardType: keyboardType,
-          textInputAction: TextInputAction.next,
+          textInputAction: TextInputAction.newline,
           maxLines: maxLines,
           maxLength: maxLength,
           decoration: InputDecoration(
@@ -104,7 +138,12 @@ class CustomMultilineTextFormFieldWidget extends StatelessWidget {
             errorText: errorText,
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
-            fillColor: fillColor ?? context.shadow,
+            fillColor: fillColor,
+            enabledBorder: colorEnabledBorder != null
+                ? OutlineInputBorder(
+                    borderSide: BorderSide(color: colorEnabledBorder!),
+                  )
+                : null,
           ),
           onChanged: onChanged,
           onTapOutside: (PointerDownEvent event) {

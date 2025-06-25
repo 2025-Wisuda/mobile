@@ -1,0 +1,1 @@
+enum LogoutType { local, remote }

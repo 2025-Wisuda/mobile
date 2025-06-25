@@ -1,26 +1,36 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:easy_localization/easy_localization.dart' as i18n;
-
-// Project imports:
-import 'package:mobile/features/lab_schedule/presentation/presentation.dart';
-import 'package:mobile/shared/widgets/app_bar/custom_app_bar_widget.dart';
+import 'package:mobile/shared/extensions/extension.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class ListLabScheduleAppBarWidget extends StatelessWidget {
-  const ListLabScheduleAppBarWidget({super.key});
+  final bool isMySchedule;
+  final VoidCallback onToggle;
+  const ListLabScheduleAppBarWidget({
+    super.key,
+    required this.isMySchedule,
+    required this.onToggle,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return CustomUserAppBarWidget(
+    return CustomSliverAppBarWithBorder(
+      centerTitle: false,
+      toolbarHeight: 76,
+      pinned: true,
       showBackButton: false,
-      showQrButton: false,
-      showTrailing: false,
-      showSearchButton: false,
-      backgroundColor: Colors.transparent,
-      actionButton: const ButtonSearchLabScheduleNavigationWidget(),
-      titleAppBar: i18n.tr('features.menu.labSchedule'),
+      title: 'labSchedule'.menu(),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+          child: CustomTertiaryToggleWidget(
+            firstOption: 'common'.message('me'),
+            secondOption: 'common'.message('all'),
+            isFirstSelected: isMySchedule,
+            onToggle: onToggle,
+          ),
+        ),
+      ],
     );
   }
 }

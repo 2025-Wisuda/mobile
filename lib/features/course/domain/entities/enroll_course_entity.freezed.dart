@@ -12,47 +12,46 @@ part of 'enroll_course_entity.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$EnrollCourseEntity {
+  String? get enrollKey;
 
- String? get enrollKey;
-/// Create a copy of EnrollCourseEntity
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$EnrollCourseEntityCopyWith<EnrollCourseEntity> get copyWith => _$EnrollCourseEntityCopyWithImpl<EnrollCourseEntity>(this as EnrollCourseEntity, _$identity);
+  /// Create a copy of EnrollCourseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $EnrollCourseEntityCopyWith<EnrollCourseEntity> get copyWith =>
+      _$EnrollCourseEntityCopyWithImpl<EnrollCourseEntity>(
+          this as EnrollCourseEntity, _$identity);
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is EnrollCourseEntity &&
+            (identical(other.enrollKey, enrollKey) ||
+                other.enrollKey == enrollKey));
+  }
 
+  @override
+  int get hashCode => Object.hash(runtimeType, enrollKey);
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EnrollCourseEntity&&(identical(other.enrollKey, enrollKey) || other.enrollKey == enrollKey));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,enrollKey);
-
-@override
-String toString() {
-  return 'EnrollCourseEntity(enrollKey: $enrollKey)';
-}
-
-
+  @override
+  String toString() {
+    return 'EnrollCourseEntity(enrollKey: $enrollKey)';
+  }
 }
 
 /// @nodoc
-abstract mixin class $EnrollCourseEntityCopyWith<$Res>  {
-  factory $EnrollCourseEntityCopyWith(EnrollCourseEntity value, $Res Function(EnrollCourseEntity) _then) = _$EnrollCourseEntityCopyWithImpl;
-@useResult
-$Res call({
- String? enrollKey
-});
-
-
-
-
+abstract mixin class $EnrollCourseEntityCopyWith<$Res> {
+  factory $EnrollCourseEntityCopyWith(
+          EnrollCourseEntity value, $Res Function(EnrollCourseEntity) _then) =
+      _$EnrollCourseEntityCopyWithImpl;
+  @useResult
+  $Res call({String? enrollKey});
 }
+
 /// @nodoc
 class _$EnrollCourseEntityCopyWithImpl<$Res>
     implements $EnrollCourseEntityCopyWith<$Res> {
@@ -61,64 +60,67 @@ class _$EnrollCourseEntityCopyWithImpl<$Res>
   final EnrollCourseEntity _self;
   final $Res Function(EnrollCourseEntity) _then;
 
-/// Create a copy of EnrollCourseEntity
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? enrollKey = freezed,}) {
-  return _then(_self.copyWith(
-enrollKey: freezed == enrollKey ? _self.enrollKey : enrollKey // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
+  /// Create a copy of EnrollCourseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? enrollKey = freezed,
+  }) {
+    return _then(_self.copyWith(
+      enrollKey: freezed == enrollKey
+          ? _self.enrollKey
+          : enrollKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
-
-}
-
 
 /// @nodoc
-
 
 class _EnrollCourseEntity implements EnrollCourseEntity {
   const _EnrollCourseEntity({this.enrollKey});
-  
 
-@override final  String? enrollKey;
+  @override
+  final String? enrollKey;
 
-/// Create a copy of EnrollCourseEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$EnrollCourseEntityCopyWith<_EnrollCourseEntity> get copyWith => __$EnrollCourseEntityCopyWithImpl<_EnrollCourseEntity>(this, _$identity);
+  /// Create a copy of EnrollCourseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$EnrollCourseEntityCopyWith<_EnrollCourseEntity> get copyWith =>
+      __$EnrollCourseEntityCopyWithImpl<_EnrollCourseEntity>(this, _$identity);
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _EnrollCourseEntity &&
+            (identical(other.enrollKey, enrollKey) ||
+                other.enrollKey == enrollKey));
+  }
 
+  @override
+  int get hashCode => Object.hash(runtimeType, enrollKey);
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EnrollCourseEntity&&(identical(other.enrollKey, enrollKey) || other.enrollKey == enrollKey));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,enrollKey);
-
-@override
-String toString() {
-  return 'EnrollCourseEntity(enrollKey: $enrollKey)';
-}
-
-
+  @override
+  String toString() {
+    return 'EnrollCourseEntity(enrollKey: $enrollKey)';
+  }
 }
 
 /// @nodoc
-abstract mixin class _$EnrollCourseEntityCopyWith<$Res> implements $EnrollCourseEntityCopyWith<$Res> {
-  factory _$EnrollCourseEntityCopyWith(_EnrollCourseEntity value, $Res Function(_EnrollCourseEntity) _then) = __$EnrollCourseEntityCopyWithImpl;
-@override @useResult
-$Res call({
- String? enrollKey
-});
-
-
-
-
+abstract mixin class _$EnrollCourseEntityCopyWith<$Res>
+    implements $EnrollCourseEntityCopyWith<$Res> {
+  factory _$EnrollCourseEntityCopyWith(
+          _EnrollCourseEntity value, $Res Function(_EnrollCourseEntity) _then) =
+      __$EnrollCourseEntityCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? enrollKey});
 }
+
 /// @nodoc
 class __$EnrollCourseEntityCopyWithImpl<$Res>
     implements _$EnrollCourseEntityCopyWith<$Res> {
@@ -127,16 +129,20 @@ class __$EnrollCourseEntityCopyWithImpl<$Res>
   final _EnrollCourseEntity _self;
   final $Res Function(_EnrollCourseEntity) _then;
 
-/// Create a copy of EnrollCourseEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? enrollKey = freezed,}) {
-  return _then(_EnrollCourseEntity(
-enrollKey: freezed == enrollKey ? _self.enrollKey : enrollKey // ignore: cast_nullable_to_non_nullable
-as String?,
-  ));
-}
-
-
+  /// Create a copy of EnrollCourseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? enrollKey = freezed,
+  }) {
+    return _then(_EnrollCourseEntity(
+      enrollKey: freezed == enrollKey
+          ? _self.enrollKey
+          : enrollKey // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 // dart format on

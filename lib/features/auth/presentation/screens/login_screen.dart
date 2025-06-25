@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:mobile/features/auth/presentation/widgets/widget.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -9,6 +7,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: LoginWrapperWidget());
+    return const Scaffold(body: LoginWrapperWidget());
   }
 }

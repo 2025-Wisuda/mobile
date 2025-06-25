@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
-import 'package:mobile/shared/helpers/extensions/extension.dart';
+import 'package:mobile/shared/extensions/extension.dart';
 
 class CustomButtonSearchNavigationWidget extends StatelessWidget {
   final String? hintText;
@@ -29,8 +27,8 @@ class CustomButtonSearchNavigationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 44,
       width: 44,
+      height: 44,
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -38,12 +36,13 @@ class CustomButtonSearchNavigationWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius ?? 8),
             border: Border.all(
-              color: borderColor ?? context.outlineVariant,
-              width: 1.0,
+              color: borderColor ?? context.outline.withValues(alpha: 0.3),
+              width: 0.5,
             ),
             color: backgroundColor ?? context.surface,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (leadingIcon != null)
                 SizedBox(
@@ -51,18 +50,18 @@ class CustomButtonSearchNavigationWidget extends StatelessWidget {
                   width: 24,
                   child: Center(child: leadingIcon),
                 ),
-              if (showHintText)
+              if (showHintText && hintText != null && hintText!.isNotEmpty)
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: const EdgeInsets.only(left: 4),
                     child: Text(
-                      hintText ?? '',
-                      style: context.text.bodyMedium?.copyWith(
-                        color:
-                            textColor ?? context.onSurface
-                              ..withValues(alpha: 0.6),
-                      ),
+                      hintText!,
+                      style: context.bodySmall().copyWith(
+                            color: textColor ??
+                                context.onSurface.withValues(alpha: 0.6),
+                          ),
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                   ),
                 ),

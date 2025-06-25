@@ -1,37 +1,45 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/auth/data/datasources/datasource.dart';
-import 'package:mobile/features/auth/data/models/model.dart';
-import 'package:mobile/features/auth/domain/domain.dart';
+import 'package:mobile/features/auth/data/data.dart';
+import 'package:mobile/features/auth/domain/entities/entity.dart';
+import 'package:mobile/features/auth/domain/repositories/auth_repository.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDataSource remoteDataSource;
+  final AuthRemoteDataSource _authRemoteDataSource;
 
-  AuthRepositoryImpl(this.remoteDataSource);
+  AuthRepositoryImpl(this._authRemoteDataSource);
   @override
-  Future<Either<Failure, LoginResponseEntity>> login(
-    String username,
-    String password,
-  ) async {
-    final response = await remoteDataSource.login(username, password);
-    return response.fold(
-      (failure) => left(failure),
-      (loginResponseModel) => right(loginResponseModel.toEntity()),
-    );
+  Future<Either<Failure, LoginResponseEntity>> login({
+    required LoginRequestEntity data,
+  }) async {
+    final response = await _authRemoteDataSource.login(data: data.toModel());
+    return response.map((model) => model.toEntity());
   }
 
   @override
   Future<Either<Failure, RefreshTokenResponseEntity>> refreshToken(
     String refreshToken,
   ) async {
-    final response = await remoteDataSource.refreshToken(refreshToken);
-    return response.fold(
-      (failure) => left(failure),
-      (refreshTokenResponseModel) =>
-          right(refreshTokenResponseModel.toEntity()),
+    final response = await _authRemoteDataSource.refreshToken(refreshToken);
+    return response.map((model) => model.toEntity());
+  }
+
+  @override
+  Future<Either<Failure, void>> changePassword({
+    required ChangePasswordRequestEntity data,
+  }) async {
+    final response = await _authRemoteDataSource.changePassword(
+      data: data.toModel(),
     );
+    return response.fold((failure) => left(failure), (_) => right(null));
+  }
+
+  @override
+  Future<Either<Failure, void>> logout({
+    required LogoutRequestEntity data,
+  }) async {
+    final response = await _authRemoteDataSource.logout(data: data.toModel());
+    return response.fold((failure) => left(failure), (_) => right(null));
   }
 }

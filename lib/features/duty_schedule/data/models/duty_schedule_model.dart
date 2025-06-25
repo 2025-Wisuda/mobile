@@ -1,26 +1,19 @@
-// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
-import 'package:mobile/features/user/data/models/model.dart';
+import 'package:mobile/features/duty_schedule/domain/entities/entity.dart';
 
 part 'duty_schedule_model.freezed.dart';
 part 'duty_schedule_model.g.dart';
+part 'duty_schedule_model_extension.dart';
 
 @freezed
 abstract class DutyScheduleModel with _$DutyScheduleModel {
   const factory DutyScheduleModel({
-    @JsonKey(name: 'id', includeIfNull: false) String? id,
-    @JsonKey(name: 'teaching_assistants', includeIfNull: false)
-    List<UserModel>? teachingAssistants,
-    @JsonKey(name: 'days', includeIfNull: false) String? days,
-    @JsonKey(name: 'start_date', includeIfNull: false) DateTime? startDate,
-    @JsonKey(name: 'end_date', includeIfNull: false) DateTime? endDate,
-    @JsonKey(name: 'start_time', includeIfNull: false) String? startTime,
-    @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
-    @JsonKey(name: 'is_active', includeIfNull: false) bool? isActive,
-    @JsonKey(name: 'created_at', includeIfNull: false) DateTime? createdAt,
-    @JsonKey(name: 'updated_at', includeIfNull: false) DateTime? updatedAt,
+    @JsonKey(name: 'avatar', includeIfNull: false) String? avatar,
+    @JsonKey(name: 'name', includeIfNull: false) String? name,
+    @JsonKey(name: 'student_number', includeIfNull: false)
+    String? studentNumber,
+    @JsonKey(name: 'status', includeIfNull: false) String? status,
   }) = _DutyScheduleModel;
 
   factory DutyScheduleModel.fromJson(Map<String, dynamic> json) =>

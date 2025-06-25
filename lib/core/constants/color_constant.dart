@@ -1,4 +1,3 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 class ColorConstant {
@@ -8,24 +7,24 @@ class ColorConstant {
   static const Color kPrimary300 = Color(0xFF78BCFF);
   static const Color kPrimary400 = Color(0xFF4BA6FF);
   static const Color kPrimary500 = Color(0xFF1E90FF);
-  static const Color kSecondary50 = Color(0xFFFFFBE6);
-  static const Color kSecondary100 = Color(0xFFFFF7CC);
-  static const Color kSecondary200 = Color(0xFFFFEF99);
-  static const Color kSecondary300 = Color(0xFFD5B032);
-  static const Color kSecondary400 = Color(0xFFFFDF33);
-  static const Color kSecondary500 = Color(0xFFFFD700);
-  static const Color kSuccess50 = Color(0xFFEDF7EE);
-  static const Color kSuccess100 = Color(0xFFDBEFDC);
-  static const Color kSuccess200 = Color(0xFFB7DFB9);
-  static const Color kSuccess300 = Color(0xFF94CF96);
-  static const Color kSuccess400 = Color(0xFF70BF73);
-  static const Color kSuccess500 = Color(0xFF4CAF50);
-  static const Color kError50 = Color(0xFFFEECEB);
-  static const Color kError100 = Color(0xFFFDD9D7);
-  static const Color kError200 = Color(0xFFFBB4AF);
-  static const Color kError300 = Color(0xFFF88E86);
-  static const Color kError400 = Color(0xFFF6695E);
-  static const Color kError500 = Color(0xFFF44336);
+  static const Color kSecondary50 = Color(0xFFFAFAFA);
+  static const Color kSecondary100 = Color(0xFFF5F5F5);
+  static const Color kSecondary200 = Color(0xFFE5E5E5);
+  static const Color kSecondary300 = Color(0xFFD4D4D4);
+  static const Color kSecondary400 = Color(0xFFA3A3A3);
+  static const Color kSecondary500 = Color(0xFF8E8E93);
+  static const Color kSuccess50 = Color(0xFFF0FDF4);
+  static const Color kSuccess100 = Color(0xFFDCFCE7);
+  static const Color kSuccess200 = Color(0xFFBBF7D0);
+  static const Color kSuccess300 = Color(0xFF86EFAC);
+  static const Color kSuccess400 = Color(0xFF4ADE80);
+  static const Color kSuccess500 = Color(0xFF34C759);
+  static const Color kError50 = Color(0xFFFEF2F2);
+  static const Color kError100 = Color(0xFFFEE2E2);
+  static const Color kError200 = Color(0xFFFECACA);
+  static const Color kError300 = Color(0xFFFCA5A5);
+  static const Color kError400 = Color(0xFFF87171);
+  static const Color kError500 = Color(0xFFFF3B30);
   static const Color kInfo50 = Color(0xFFE9F5FE);
   static const Color kInfo100 = Color(0xFFD3EAFD);
   static const Color kInfo200 = Color(0xFFA6D5FA);
@@ -33,13 +32,13 @@ class ColorConstant {
   static const Color kInfo400 = Color(0xFF4DABF5);
   static const Color kInfo500 = Color(0xFF2196F3);
   static const Color kNeutral50 = Color(0xFFFFFFFF);
-  static const Color kNeutral100 = Color(0xFFF5F5F5);
-  static const Color kNeutral200 = Color(0xFFEDEDED);
-  static const Color kNeutral300 = Color(0xFFD6D6D6);
-  static const Color kNeutral400 = Color(0xFFC2C2C2);
-  static const Color kNeutral500 = Color(0xFF878787);
-  static const Color kNeutral600 = Color(0xFF606060);
-  static const Color kNeutral700 = Color(0xFF383838);
-  static const Color kNeutral800 = Color(0xFF403A3A);
-  static const Color kNeutral900 = Color(0xFF101010);
+  static const Color kNeutral100 = Color(0xFFF5F5F7);
+  static const Color kNeutral200 = Color(0xFFE5E5EA);
+  static const Color kNeutral300 = Color(0xFFD1D1D6);
+  static const Color kNeutral400 = Color(0xFFBCBCC0);
+  static const Color kNeutral500 = Color(0xFF8E8E93);
+  static const Color kNeutral600 = Color(0xFF636366);
+  static const Color kNeutral700 = Color(0xFF48484A);
+  static const Color kNeutral800 = Color(0xFF3A3A3C);
+  static const Color kNeutral900 = Color(0xFF1C1C1E);
 }

@@ -1,76 +1,71 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:easy_localization/easy_localization.dart' as i18n;
 import 'package:get/get.dart';
 
-// Project imports:
-import 'package:mobile/features/lab_schedule/lab_schedule.dart';
-import 'package:mobile/shared/helpers/extensions/extension.dart';
+import 'package:mobile/features/lab_schedule/presentation/controllers/controller.dart';
+import 'package:mobile/features/lab_schedule/presentation/widgets/widget.dart';
+import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
 class SearchLabScheduleWrapperWidget extends StatelessWidget {
-  const SearchLabScheduleWrapperWidget({super.key});
+  final LabScheduleWrapperController c;
+  const SearchLabScheduleWrapperWidget({super.key, required this.c});
 
   @override
   Widget build(BuildContext context) {
-    final labScheduleController = Get.find<LabScheduleController>();
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
-              child: Obx(() {
-                final state =
-                    labScheduleController.searchLabScheduleState.value;
-                final schedules =
-                    labScheduleController.listLabScheduleEntity.value?.data ??
-                    [];
-                final errorMessage = labScheduleController.errorMessage.value;
-                final emptyMessage = i18n.tr(
-                  'features.schedule.lab.fetchLabScheduleDetail.empty',
-                );
-                final loadedWidget = LabScheduleListItemWidget(
-                  schedules: schedules,
-                );
-                final emptyWidget = errorEmptyTextWidget(
-                  context,
-                  message: emptyMessage,
-                );
-                final errorWidget = errorEmptyTextWidget(
-                  context,
-                  message: errorMessage,
-                );
-
-                return state.toWidget(
-                  loadingWidget: _loadingStateWidget(context),
-                  loadedWidget: loadedWidget,
-                  emptyWidget: emptyWidget,
-                  errorWidget: errorWidget,
-                  initialWidget: SizedBox.shrink(),
-                );
-              }),
-            ),
+    return SliverList(
+      delegate: SliverChildListDelegate.fixed(
+        [
+          Row(
+            children: [
+              Expanded(
+                child: CustomDashedLineWidget(
+                  color: context.onSurface.withValues(alpha: 0.2),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Obx(
+                  () => CustomTertiaryToggleWidget(
+                    firstOption: 'common'.message('me'),
+                    secondOption: 'common'.message('all'),
+                    isFirstSelected: c.isMySchedule.value,
+                    onToggle: () => c.isMySchedule.value
+                        ? c.switchToAllSchedule()
+                        : c.switchToMySchedule(),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: CustomDashedLineWidget(
+                  color: context.onSurface.withValues(alpha: 0.2),
+                ),
+              ),
+            ],
           ),
-        );
-      },
-    );
-  }
+          Obx(
+            () {
+              final isMySchedule = c.isMySchedule.value;
+              final controller = isMySchedule
+                  ? Get.find<MyLabScheduleController>(tag: 'search')
+                  : Get.find<ListLabScheduleController>(tag: 'search');
 
-  Widget _loadingStateWidget(BuildContext context) {
-    final text = i18n.tr('features.schedule.lab.searchLabSchedule.loading');
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 4,
-        children: [
-          Text(text, style: context.bodyMediumW(500)),
-          customLoadingWidget,
+              final searchKey = '${controller.baseStateKey}SearchController';
+              final searchQuery = controller.getControllerValue(searchKey);
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: LabSchedulePaginatedListWidget(
+                  key: c.paginationKey.value,
+                  isMySchedule: c.isMySchedule.value,
+                  searchQuery: searchQuery,
+                  isShowDate: true,
+                  isShowDuration: true,
+                  tag: 'search',
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

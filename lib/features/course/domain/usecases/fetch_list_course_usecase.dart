@@ -1,18 +1,17 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/course/data/models/course_filter_params_model.dart';
+import 'package:mobile/features/course/data/models/model.dart';
 import 'package:mobile/features/course/domain/entities/entity.dart';
-import 'package:mobile/features/course/domain/repositories/course_repository.dart';
+import 'package:mobile/features/course/domain/repositories/repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class FetchListCourseUsecase {
   final CourseRepository courseRepository;
 
   FetchListCourseUsecase(this.courseRepository);
 
-  Future<Either<Failure, ListCourseEntity>> execute({
+  Future<Either<Failure, BaseListResponseEntity<CourseEntity>>> execute({
     CourseFilterParamsModel? params,
   }) {
     return courseRepository.fetchListCourse(params: params);

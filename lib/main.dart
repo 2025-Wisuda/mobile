@@ -1,24 +1,31 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:easy_localization/easy_localization.dart';
 import 'package:get/get.dart';
 
-// Project imports:
-import 'package:mobile/core/injections/injection.dart';
-import 'shared/routes/route.dart';
-import 'shared/themes/theme.dart';
+import 'core/config/language.dart';
+import 'core/routes/route.dart';
+import 'core/themes/theme.dart';
+import 'shared/utils/simple_logger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  Injection.init();
+
+  SimpleLogger.configure(
+    enabled: true,
+    showTimestamp: true,
+    showLocation: false,
+  );
+
+  final savedLocale = await LanguageConfig.loadLanguage();
+
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en', 'US'), Locale('id', 'ID')],
+      supportedLocales: LanguageConfig.supportedLocales,
       path: 'assets/translations',
-      fallbackLocale: const Locale('en', 'US'),
+      fallbackLocale: LanguageConfig.defaultLocale,
+      startLocale: savedLocale,
       child: Builder(
         builder: (context) {
           return GetMaterialApp(
@@ -28,7 +35,7 @@ void main() async {
             debugShowCheckedModeBanner: false,
             theme: AppTheme.kLightTheme,
             darkTheme: AppTheme.kDarkTheme,
-            themeMode: ThemeMode.system,
+            themeMode: ThemeMode.light,
             initialRoute: AppRoute.splash,
             getPages: AppScreen.routes,
           );

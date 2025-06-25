@@ -1,19 +1,18 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/user/domain/entities/entity.dart';
 import 'package:mobile/features/user/domain/repositories/repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class UpdateUserProfileUsecase {
-  final UserRepository userRepository;
+  final UserRepository _userRepository;
 
-  UpdateUserProfileUsecase(this.userRepository);
+  UpdateUserProfileUsecase(this._userRepository);
 
-  Future<Either<Failure, UserEntity>> execute(
-    UpdateUserProfileRequestEntity data,
-  ) {
-    return userRepository.updateUserProfile(data);
+  Future<Either<Failure, BaseResponseEntity<UserEntity>>> execute({
+    required UserEntity data,
+  }) async {
+    return await _userRepository.updateUserProfile(data: data);
   }
 }

@@ -10,43 +10,31 @@ _CourseSessionModel _$CourseSessionModelFromJson(Map<String, dynamic> json) =>
     _CourseSessionModel(
       id: json['id'] as String?,
       title: json['title'] as String?,
-      course: json['course'],
-      sessionDate:
-          json['session_date'] == null
-              ? null
-              : DateTime.parse(json['session_date'] as String),
+      description: json['description'] as String?,
+      type: json['type'] as String?,
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
       startTime: json['start_time'] as String?,
       endTime: json['end_time'] as String?,
       status: json['status'] as String?,
-      teachingAssistants:
-          (json['teaching_assistants'] as List<dynamic>?)
-              ?.map((e) => UserModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      createdBy:
-          json['created_by'] == null
-              ? null
-              : UserModel.fromJson(json['created_by'] as Map<String, dynamic>),
-      createdAt:
-          json['created_at'] == null
-              ? null
-              : DateTime.parse(json['created_at'] as String),
-      updatedAt:
-          json['updated_at'] == null
-              ? null
-              : DateTime.parse(json['updated_at'] as String),
+      teachingAssistants: (json['teaching_assistants'] as List<dynamic>?)
+          ?.map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      teachingAssistantIds: (json['teaching_assistant_ids'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$CourseSessionModelToJson(_CourseSessionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'course': instance.course,
-      'session_date': instance.sessionDate?.toIso8601String(),
+      'description': instance.description,
+      'type': instance.type,
+      'date': instance.date?.toIso8601String(),
       'start_time': instance.startTime,
       'end_time': instance.endTime,
       'status': instance.status,
       'teaching_assistants': instance.teachingAssistants,
-      'created_by': instance.createdBy,
-      'created_at': instance.createdAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
+      'teaching_assistant_ids': instance.teachingAssistantIds,
     };

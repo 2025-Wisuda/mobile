@@ -1,29 +1,47 @@
-// Package imports:
-
-// Project imports:
+import 'package:mobile/features/course/data/models/model.dart';
 import 'package:mobile/features/course/domain/entities/course_session_entity.dart';
+import 'package:mobile/features/user/domain/entities/entity.dart';
 import 'package:mobile/shared/helpers/helper.dart';
 
 extension CourseSessionEntityExtension on CourseSessionEntity {
+  CourseSessionModel toModel() {
+    return CourseSessionModel(
+      id: id,
+      title: title,
+      description: description,
+      type: type,
+      date: date,
+      startTime: startTime,
+      endTime: endTime,
+      status: status,
+      teachingAssistants: teachingAssistants?.map((e) => e.toModel()).toList(),
+      teachingAssistantIds: teachingAssistantIds,
+    );
+  }
+
   String get idStr => id ?? '';
   String get titleStr => title ?? '';
-  String get courseStr => course ?? '';
-  String get sessionDateStr => sessionDate?.toIso8601String() ?? '';
+  String get descriptionStr => description ?? '';
+  String get typeStr => type ?? '';
+  String get dateStr => date?.toIso8601String() ?? '';
   String get startTimeStr => startTime ?? '';
   String get endTimeStr => endTime ?? '';
   String get statusStr => status ?? '';
-  String get createdByStr =>
-      '${createdBy?.firstName ?? ''} ${createdBy?.lastName ?? ''}';
-  String get createdAtStr => DateHelper.formatFullDate(date: createdAt);
-  String get updatedAtStr => DateHelper.formatFullDate(date: updatedAt);
-  String get startTimeWibStr => DateHelper.formatTime(startTime);
-  String get endTimeWibStr => DateHelper.formatTime(endTime);
+  String get teachingAssistantIdsStr => (teachingAssistantIds ?? []).join(', ');
 
   String get titleUpperStr {
     return titleStr.toUpperCase();
   }
 
-  String get sessionDateFullDate {
-    return DateHelper.formatFullDate(date: sessionDate);
+  String get dateFullDate {
+    return DateHelper.formatFullDate(date: date);
+  }
+
+  String get startTimeFormatted {
+    return DateHelper.formatTime(startTime);
+  }
+
+  String get endTimeFormatted {
+    return DateHelper.formatTime(endTime);
   }
 }

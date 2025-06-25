@@ -1,93 +1,89 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/course/data/data.dart';
+import 'package:mobile/features/course/data/datasources/course_session_remote_datasource.dart';
+import 'package:mobile/features/course/data/models/model.dart';
 import 'package:mobile/features/course/domain/entities/entity.dart';
 import 'package:mobile/features/course/domain/repositories/course_session_repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
+import 'package:mobile/shared/models/model.dart';
 
 class CourseSessionRepositoryImpl implements CourseSessionRepository {
-  final CourseSessionRemoteDataSource courseSessionRemoteDataSource;
+  final CourseSessionRemoteDataSource _courseSessionRemoteDataSource;
 
-  CourseSessionRepositoryImpl(this.courseSessionRemoteDataSource);
-
-  @override
-  Future<Either<Failure, ListCourseSessionEntity>> fetchListCourseSession({
-    CourseSessionFilterParamsModel? params,
-  }) async {
-    final response = await courseSessionRemoteDataSource.fetchListCourseSession(
-      params: params,
-    );
-    return response.fold(
-      (failure) => left(failure),
-      (model) => right(model.toEntity()),
-    );
-  }
+  CourseSessionRepositoryImpl(this._courseSessionRemoteDataSource);
 
   @override
-  Future<Either<Failure, CourseSessionEntity>> fetchCourseSessionDetail({
+  Future<Either<Failure, BaseResponseEntity<CourseSessionEntity>>>
+      fetchCourseSessionDetail({
+    required String courseId,
     required String courseSessionId,
   }) async {
-    final response = await courseSessionRemoteDataSource
-        .fetchCourseSessionDetail(courseSessionId: courseSessionId);
-    return response.fold(
+    final result =
+        await _courseSessionRemoteDataSource.fetchCourseSessionDetail(
+      courseId: courseId,
+      courseSessionId: courseSessionId,
+    );
+
+    return result.fold(
       (failure) => left(failure),
-      (model) => right(model.toEntity()),
+      (model) =>
+          right(model.toEntity((courseSession) => courseSession.toEntity())),
     );
   }
 
   @override
-  Future<Either<Failure, CourseSessionEntity>> createCourseSession({
+  Future<Either<Failure, BaseResponseEntity<CourseSessionEntity>>>
+      createCourseSession({
+    required String courseId,
     required SaveCourseSessionRequestEntity data,
   }) async {
-    final response = await courseSessionRemoteDataSource.createCourseSession(
+    final result = await _courseSessionRemoteDataSource.createCourseSession(
+      courseId: courseId,
       data: data.toModel(),
     );
-    return response.fold(
+
+    return result.fold(
       (failure) => left(failure),
-      (model) => right(model.toEntity()),
+      (model) =>
+          right(model.toEntity((courseSession) => courseSession.toEntity())),
     );
   }
 
   @override
-  Future<Either<Failure, CourseSessionEntity>> updateCourseSession({
+  Future<Either<Failure, BaseResponseEntity<CourseSessionEntity>>>
+      partialUpdateCourseSession({
+    required String courseId,
     required SaveCourseSessionRequestEntity data,
     required String courseSessionId,
   }) async {
-    final response = await courseSessionRemoteDataSource.updateCourseSession(
+    final result =
+        await _courseSessionRemoteDataSource.partialUpdateCourseSession(
+      courseId: courseId,
       data: data.toModel(),
       courseSessionId: courseSessionId,
     );
-    return response.fold(
-      (failure) => left(failure),
-      (model) => right(model.toEntity()),
-    );
-  }
 
-  @override
-  Future<Either<Failure, CourseSessionEntity>> partialUpdateCourseSession({
-    required Map<String, dynamic> data,
-    required String courseSessionId,
-  }) async {
-    final response = await courseSessionRemoteDataSource
-        .partialUpdateCourseSession(
-          data: data,
-          courseSessionId: courseSessionId,
-        );
-    return response.fold(
+    return result.fold(
       (failure) => left(failure),
-      (model) => right(model.toEntity()),
+      (model) =>
+          right(model.toEntity((courseSession) => courseSession.toEntity())),
     );
   }
 
   @override
   Future<Either<Failure, void>> deleteCourseSession({
+    required String courseId,
     required String courseSessionId,
   }) async {
-    final response = await courseSessionRemoteDataSource.deleteCourseSession(
-      courseSessionId: courseSessionId,
-    );
-    return response.fold((failure) => left(failure), (_) => right(null));
+    try {
+      await _courseSessionRemoteDataSource.deleteCourseSession(
+        courseId: courseId,
+        courseSessionId: courseSessionId,
+      );
+      return right(null);
+    } catch (e) {
+      return left(ServerFailure('Failed to delete course session'));
+    }
   }
 }

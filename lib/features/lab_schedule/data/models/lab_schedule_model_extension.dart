@@ -1,24 +1,15 @@
-// Project imports:
-import 'package:mobile/features/lab_schedule/data/models/model.dart';
-import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
-import 'package:mobile/features/user/data/models/model.dart';
+part of 'lab_schedule_model.dart';
 
 extension LabScheduleModelExtension on LabScheduleModel {
   LabScheduleEntity toEntity() {
     return LabScheduleEntity(
       id: id,
-      activityType: activityType,
-      activityTypeDisplay: activityTypeDisplay,
-      activityDescription: activityDescription,
-      scheduleDate: scheduleDate,
+      date: date,
       startTime: startTime,
       endTime: endTime,
-      createdBy: createdBy?.toEntity(),
-      isActive: isActive,
-      approvalStatus: approvalStatus,
-      approvedBy: approvedBy?.toEntity(),
-      approvalTime: approvalTime,
-      createdAt: createdAt,
+      type: type,
+      detail: detail,
+      createdBy: createdBy,
       updatedAt: updatedAt,
     );
   }

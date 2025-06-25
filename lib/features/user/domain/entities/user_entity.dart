@@ -1,29 +1,29 @@
-// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:mobile/features/user/data/models/user_model.dart';
+import 'package:mobile/shared/helpers/helper.dart';
+
 part 'user_entity.freezed.dart';
+part 'user_entity_extension.dart';
 
 @freezed
 abstract class UserEntity with _$UserEntity {
   const factory UserEntity({
     String? id,
-    String? password,
-    DateTime? lastLogin,
-    bool? isSuperuser,
     String? username,
-    String? studentId,
-    String? employeeId,
+    String? email,
     String? firstName,
     String? lastName,
-    String? email,
-    bool? isActive,
-    bool? isStaff,
-    DateTime? dateJoined,
+    String? studentNumber,
+    String? employeeNumber,
     String? faceImage,
     bool? faceUploaded,
     String? avatar,
-    String? group,
-    DateTime? createdAt,
+    bool? isActive,
+    bool? isStaff,
+    DateTime? dateJoined,
+    DateTime? lastLogin,
     DateTime? updatedAt,
+    String? group,
   }) = _UserEntity;
 }

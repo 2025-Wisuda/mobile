@@ -1,19 +1,16 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/auth/auth.dart';
+import 'package:mobile/shared/errors/error.dart';
 
-class LoginUseCase {
-  final AuthRepository repository;
+class LoginUsecase {
+  final AuthRepository _authRepository;
 
-  LoginUseCase(this.repository);
+  LoginUsecase(this._authRepository);
 
-  Future<Either<Failure, LoginResponseEntity>> execute(
-    String username,
-    String password,
-  ) {
-    return repository.login(username, password);
+  Future<Either<Failure, LoginResponseEntity>> execute({
+    required LoginRequestEntity data,
+  }) {
+    return _authRepository.login(data: data);
   }
 }

@@ -1,0 +1,12 @@
+export 'auth_binding.dart';
+export 'core_binding.dart';
+export 'course_binding.dart';
+export 'duty_schedule_binding.dart';
+export 'guest_visit_binding.dart';
+export 'home_binding.dart';
+export 'lab_schedule_binding.dart';
+export 'menu_binding.dart';
+export 'notification_binding.dart';
+export 'room_booking_binding.dart';
+export 'splash_binding.dart';
+export 'user_binding.dart';

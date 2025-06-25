@@ -1,19 +1,22 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/course/domain/entities/entity.dart';
-import 'package:mobile/features/course/domain/repositories/course_session_repository.dart';
+import 'package:mobile/features/course/domain/repositories/repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class CreateCourseSessionUsecase {
   final CourseSessionRepository courseSessionRepository;
 
   CreateCourseSessionUsecase(this.courseSessionRepository);
 
-  Future<Either<Failure, CourseSessionEntity>> execute({
+  Future<Either<Failure, BaseResponseEntity<CourseSessionEntity>>> execute({
+    required String courseId,
     required SaveCourseSessionRequestEntity data,
   }) {
-    return courseSessionRepository.createCourseSession(data: data);
+    return courseSessionRepository.createCourseSession(
+      courseId: courseId,
+      data: data,
+    );
   }
 }

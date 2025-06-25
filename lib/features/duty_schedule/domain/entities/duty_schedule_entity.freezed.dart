@@ -12,47 +12,54 @@ part of 'duty_schedule_entity.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$DutyScheduleEntity {
+  String? get avatar;
+  String? get name;
+  String? get studentNumber;
+  String? get status;
 
- String? get id; List<UserEntity>? get teachingAssistants; String? get days; DateTime? get startDate; DateTime? get endDate; String? get startTime; String? get endTime; bool? get isActive; DateTime? get createdAt; DateTime? get updatedAt;
-/// Create a copy of DutyScheduleEntity
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$DutyScheduleEntityCopyWith<DutyScheduleEntity> get copyWith => _$DutyScheduleEntityCopyWithImpl<DutyScheduleEntity>(this as DutyScheduleEntity, _$identity);
+  /// Create a copy of DutyScheduleEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DutyScheduleEntityCopyWith<DutyScheduleEntity> get copyWith =>
+      _$DutyScheduleEntityCopyWithImpl<DutyScheduleEntity>(
+          this as DutyScheduleEntity, _$identity);
 
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DutyScheduleEntity &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.studentNumber, studentNumber) ||
+                other.studentNumber == studentNumber) &&
+            (identical(other.status, status) || other.status == status));
+  }
 
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, avatar, name, studentNumber, status);
 
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DutyScheduleEntity&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.teachingAssistants, teachingAssistants)&&(identical(other.days, days) || other.days == days)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.endTime, endTime) || other.endTime == endTime)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(teachingAssistants),days,startDate,endDate,startTime,endTime,isActive,createdAt,updatedAt);
-
-@override
-String toString() {
-  return 'DutyScheduleEntity(id: $id, teachingAssistants: $teachingAssistants, days: $days, startDate: $startDate, endDate: $endDate, startTime: $startTime, endTime: $endTime, isActive: $isActive, createdAt: $createdAt, updatedAt: $updatedAt)';
-}
-
-
+  @override
+  String toString() {
+    return 'DutyScheduleEntity(avatar: $avatar, name: $name, studentNumber: $studentNumber, status: $status)';
+  }
 }
 
 /// @nodoc
-abstract mixin class $DutyScheduleEntityCopyWith<$Res>  {
-  factory $DutyScheduleEntityCopyWith(DutyScheduleEntity value, $Res Function(DutyScheduleEntity) _then) = _$DutyScheduleEntityCopyWithImpl;
-@useResult
-$Res call({
- String? id, List<UserEntity>? teachingAssistants, String? days, DateTime? startDate, DateTime? endDate, String? startTime, String? endTime, bool? isActive, DateTime? createdAt, DateTime? updatedAt
-});
-
-
-
-
+abstract mixin class $DutyScheduleEntityCopyWith<$Res> {
+  factory $DutyScheduleEntityCopyWith(
+          DutyScheduleEntity value, $Res Function(DutyScheduleEntity) _then) =
+      _$DutyScheduleEntityCopyWithImpl;
+  @useResult
+  $Res call(
+      {String? avatar, String? name, String? studentNumber, String? status});
 }
+
 /// @nodoc
 class _$DutyScheduleEntityCopyWithImpl<$Res>
     implements $DutyScheduleEntityCopyWith<$Res> {
@@ -61,90 +68,94 @@ class _$DutyScheduleEntityCopyWithImpl<$Res>
   final DutyScheduleEntity _self;
   final $Res Function(DutyScheduleEntity) _then;
 
-/// Create a copy of DutyScheduleEntity
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? teachingAssistants = freezed,Object? days = freezed,Object? startDate = freezed,Object? endDate = freezed,Object? startTime = freezed,Object? endTime = freezed,Object? isActive = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
-  return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,teachingAssistants: freezed == teachingAssistants ? _self.teachingAssistants : teachingAssistants // ignore: cast_nullable_to_non_nullable
-as List<UserEntity>?,days: freezed == days ? _self.days : days // ignore: cast_nullable_to_non_nullable
-as String?,startDate: freezed == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,endDate: freezed == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,startTime: freezed == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
-as String?,endTime: freezed == endTime ? _self.endTime : endTime // ignore: cast_nullable_to_non_nullable
-as String?,isActive: freezed == isActive ? _self.isActive : isActive // ignore: cast_nullable_to_non_nullable
-as bool?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
-  ));
+  /// Create a copy of DutyScheduleEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? avatar = freezed,
+    Object? name = freezed,
+    Object? studentNumber = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_self.copyWith(
+      avatar: freezed == avatar
+          ? _self.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentNumber: freezed == studentNumber
+          ? _self.studentNumber
+          : studentNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
-
-}
-
 
 /// @nodoc
-
 
 class _DutyScheduleEntity implements DutyScheduleEntity {
-  const _DutyScheduleEntity({this.id, final  List<UserEntity>? teachingAssistants, this.days, this.startDate, this.endDate, this.startTime, this.endTime, this.isActive, this.createdAt, this.updatedAt}): _teachingAssistants = teachingAssistants;
-  
+  const _DutyScheduleEntity(
+      {this.avatar, this.name, this.studentNumber, this.status});
 
-@override final  String? id;
- final  List<UserEntity>? _teachingAssistants;
-@override List<UserEntity>? get teachingAssistants {
-  final value = _teachingAssistants;
-  if (value == null) return null;
-  if (_teachingAssistants is EqualUnmodifiableListView) return _teachingAssistants;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
-}
+  @override
+  final String? avatar;
+  @override
+  final String? name;
+  @override
+  final String? studentNumber;
+  @override
+  final String? status;
 
-@override final  String? days;
-@override final  DateTime? startDate;
-@override final  DateTime? endDate;
-@override final  String? startTime;
-@override final  String? endTime;
-@override final  bool? isActive;
-@override final  DateTime? createdAt;
-@override final  DateTime? updatedAt;
+  /// Create a copy of DutyScheduleEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DutyScheduleEntityCopyWith<_DutyScheduleEntity> get copyWith =>
+      __$DutyScheduleEntityCopyWithImpl<_DutyScheduleEntity>(this, _$identity);
 
-/// Create a copy of DutyScheduleEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$DutyScheduleEntityCopyWith<_DutyScheduleEntity> get copyWith => __$DutyScheduleEntityCopyWithImpl<_DutyScheduleEntity>(this, _$identity);
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _DutyScheduleEntity &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.studentNumber, studentNumber) ||
+                other.studentNumber == studentNumber) &&
+            (identical(other.status, status) || other.status == status));
+  }
 
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, avatar, name, studentNumber, status);
 
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DutyScheduleEntity&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._teachingAssistants, _teachingAssistants)&&(identical(other.days, days) || other.days == days)&&(identical(other.startDate, startDate) || other.startDate == startDate)&&(identical(other.endDate, endDate) || other.endDate == endDate)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.endTime, endTime) || other.endTime == endTime)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_teachingAssistants),days,startDate,endDate,startTime,endTime,isActive,createdAt,updatedAt);
-
-@override
-String toString() {
-  return 'DutyScheduleEntity(id: $id, teachingAssistants: $teachingAssistants, days: $days, startDate: $startDate, endDate: $endDate, startTime: $startTime, endTime: $endTime, isActive: $isActive, createdAt: $createdAt, updatedAt: $updatedAt)';
-}
-
-
+  @override
+  String toString() {
+    return 'DutyScheduleEntity(avatar: $avatar, name: $name, studentNumber: $studentNumber, status: $status)';
+  }
 }
 
 /// @nodoc
-abstract mixin class _$DutyScheduleEntityCopyWith<$Res> implements $DutyScheduleEntityCopyWith<$Res> {
-  factory _$DutyScheduleEntityCopyWith(_DutyScheduleEntity value, $Res Function(_DutyScheduleEntity) _then) = __$DutyScheduleEntityCopyWithImpl;
-@override @useResult
-$Res call({
- String? id, List<UserEntity>? teachingAssistants, String? days, DateTime? startDate, DateTime? endDate, String? startTime, String? endTime, bool? isActive, DateTime? createdAt, DateTime? updatedAt
-});
-
-
-
-
+abstract mixin class _$DutyScheduleEntityCopyWith<$Res>
+    implements $DutyScheduleEntityCopyWith<$Res> {
+  factory _$DutyScheduleEntityCopyWith(
+          _DutyScheduleEntity value, $Res Function(_DutyScheduleEntity) _then) =
+      __$DutyScheduleEntityCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String? avatar, String? name, String? studentNumber, String? status});
 }
+
 /// @nodoc
 class __$DutyScheduleEntityCopyWithImpl<$Res>
     implements _$DutyScheduleEntityCopyWith<$Res> {
@@ -153,25 +164,35 @@ class __$DutyScheduleEntityCopyWithImpl<$Res>
   final _DutyScheduleEntity _self;
   final $Res Function(_DutyScheduleEntity) _then;
 
-/// Create a copy of DutyScheduleEntity
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? teachingAssistants = freezed,Object? days = freezed,Object? startDate = freezed,Object? endDate = freezed,Object? startTime = freezed,Object? endTime = freezed,Object? isActive = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
-  return _then(_DutyScheduleEntity(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,teachingAssistants: freezed == teachingAssistants ? _self._teachingAssistants : teachingAssistants // ignore: cast_nullable_to_non_nullable
-as List<UserEntity>?,days: freezed == days ? _self.days : days // ignore: cast_nullable_to_non_nullable
-as String?,startDate: freezed == startDate ? _self.startDate : startDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,endDate: freezed == endDate ? _self.endDate : endDate // ignore: cast_nullable_to_non_nullable
-as DateTime?,startTime: freezed == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
-as String?,endTime: freezed == endTime ? _self.endTime : endTime // ignore: cast_nullable_to_non_nullable
-as String?,isActive: freezed == isActive ? _self.isActive : isActive // ignore: cast_nullable_to_non_nullable
-as bool?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
-  ));
-}
-
-
+  /// Create a copy of DutyScheduleEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? avatar = freezed,
+    Object? name = freezed,
+    Object? studentNumber = freezed,
+    Object? status = freezed,
+  }) {
+    return _then(_DutyScheduleEntity(
+      avatar: freezed == avatar
+          ? _self.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentNumber: freezed == studentNumber
+          ? _self.studentNumber
+          : studentNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 // dart format on

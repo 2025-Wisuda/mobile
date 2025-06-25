@@ -1,11 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart';
 
-// Project imports:
 import 'package:mobile/core/core.dart';
 import 'package:mobile/shared/shared.dart';
 

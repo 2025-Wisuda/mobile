@@ -1,15 +1,13 @@
-// Dart imports:
-import 'dart:io';
-
-// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:mobile/features/course/data/models/model.dart';
+
 part 'save_course_request_entity.freezed.dart';
+part 'save_course_request_entity_extension.dart';
 
 @freezed
 abstract class SaveCourseRequestEntity with _$SaveCourseRequestEntity {
   const factory SaveCourseRequestEntity({
-    File? image,
     String? title,
     String? description,
     String? startDate,
@@ -17,5 +15,6 @@ abstract class SaveCourseRequestEntity with _$SaveCourseRequestEntity {
     List<String>? students,
     List<String>? teachingAssistants,
     String? enrollKey,
+    String? image,
   }) = _SaveCourseRequestEntity;
 }

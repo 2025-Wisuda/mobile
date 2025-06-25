@@ -1,20 +1,19 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/user/data/models/user_filter_params_model.dart';
+import 'package:mobile/features/user/data/models/model.dart';
 import 'package:mobile/features/user/domain/entities/entity.dart';
 import 'package:mobile/features/user/domain/repositories/repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class FetchListUserUsecase {
-  final UserRepository userRepository;
+  final UserRepository _userRepository;
 
-  FetchListUserUsecase(this.userRepository);
+  FetchListUserUsecase(this._userRepository);
 
-  Future<Either<Failure, ListUserEntity>> execute({
+  Future<Either<Failure, BaseListResponseEntity<UserEntity>>> execute({
     UserFilterParamsModel? params,
   }) {
-    return userRepository.fetchListUser(params: params);
+    return _userRepository.fetchListUser(params: params);
   }
 }

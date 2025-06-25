@@ -1,16 +1,14 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/duty_schedule/data/models/model.dart';
 import 'package:mobile/features/duty_schedule/domain/entities/entity.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 abstract class DutyScheduleRepository {
-  Future<Either<Failure, ListDutyScheduleEntity>> fetchListDutySchedule({
-    DutyScheduleFilterParamsModel? params,
-  });
-  Future<Either<Failure, DutyScheduleEntity>> fetchDutyScheduleDetail({
-    required String dutyScheduleId,
-  });
+  Future<Either<Failure, BaseListResponseEntity<DutyScheduleListEntity>>>
+      fetchListDutySchedule({DutyScheduleFilterParamsModel? params});
+  Future<Either<Failure, BaseListResponseEntity<DutyScheduleEntity>>>
+      fetchDutyScheduleForToday(
+          {required DutyScheduleFilterParamsModel params});
 }

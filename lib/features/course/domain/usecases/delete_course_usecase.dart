@@ -1,9 +1,7 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/course/domain/repositories/course_repository.dart';
+import 'package:mobile/features/course/domain/repositories/repository.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class DeleteCourseUsecase {
   final CourseRepository courseRepository;

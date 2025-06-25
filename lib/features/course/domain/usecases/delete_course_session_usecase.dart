@@ -1,17 +1,19 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
-import 'package:mobile/features/course/domain/repositories/course_session_repository.dart';
+import 'package:mobile/features/course/domain/repositories/repository.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class DeleteCourseSessionUsecase {
   final CourseSessionRepository courseSessionRepository;
 
   DeleteCourseSessionUsecase(this.courseSessionRepository);
 
-  Future<Either<Failure, void>> execute({required String courseSessionId}) {
+  Future<Either<Failure, void>> execute({
+    required String courseId,
+    required String courseSessionId,
+  }) {
     return courseSessionRepository.deleteCourseSession(
+      courseId: courseId,
       courseSessionId: courseSessionId,
     );
   }

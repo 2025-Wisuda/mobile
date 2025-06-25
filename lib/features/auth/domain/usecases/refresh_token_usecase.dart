@@ -1,18 +1,16 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/auth/auth.dart';
+import 'package:mobile/shared/errors/error.dart';
 
-class RefreshTokenUseCase {
-  final AuthRepository repository;
+class RefreshTokenUsecase {
+  final AuthRepository _authRepository;
 
-  RefreshTokenUseCase(this.repository);
+  RefreshTokenUsecase(this._authRepository);
 
   Future<Either<Failure, RefreshTokenResponseEntity>> execute(
     String refreshToken,
   ) {
-    return repository.refreshToken(refreshToken);
+    return _authRepository.refreshToken(refreshToken);
   }
 }

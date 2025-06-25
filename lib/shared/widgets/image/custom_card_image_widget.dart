@@ -1,7 +1,6 @@
-// Flutter imports:
-// Package imports:
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CustomCardImageWidget extends StatelessWidget {
   final String imageUrl;
@@ -25,17 +24,32 @@ class CustomCardImageWidget extends StatelessWidget {
     final BorderRadiusGeometry effectiveBorderRadius =
         borderRadius ?? BorderRadius.circular(size * 0.2);
 
+    if (imageUrl.isEmpty) {
+      return SizedBox(
+        width: width,
+        height: height,
+        child: ClipRRect(
+          borderRadius: effectiveBorderRadius,
+          child: _buildErrorIcon(context, size),
+        ),
+      );
+    }
+
     return SizedBox(
       width: width,
       height: height,
       child: ClipRRect(
         borderRadius: effectiveBorderRadius,
-        child: CachedNetworkImage(
-          cacheKey: imageUrl,
-          imageUrl: imageUrl,
-          fit: BoxFit.cover,
-          placeholder: (context, url) => _buildPlaceholder(context),
-          errorWidget: (context, url, error) => _buildErrorIcon(context, size),
+        child: Hero(
+          tag: imageUrl,
+          child: CachedNetworkImage(
+            cacheKey: imageUrl,
+            imageUrl: imageUrl,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => _buildPlaceholder(context),
+            errorWidget: (context, url, error) =>
+                _buildErrorIcon(context, size),
+          ),
         ),
       ),
     );

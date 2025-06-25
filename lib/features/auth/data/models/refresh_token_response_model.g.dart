@@ -7,9 +7,13 @@ part of 'refresh_token_response_model.dart';
 // **************************************************************************
 
 _RefreshTokenResponseModel _$RefreshTokenResponseModelFromJson(
-  Map<String, dynamic> json,
-) => _RefreshTokenResponseModel(accessToken: json['access'] as String?);
+        Map<String, dynamic> json) =>
+    _RefreshTokenResponseModel(
+      accessToken: json['access'] as String?,
+    );
 
 Map<String, dynamic> _$RefreshTokenResponseModelToJson(
-  _RefreshTokenResponseModel instance,
-) => <String, dynamic>{'access': instance.accessToken};
+        _RefreshTokenResponseModel instance) =>
+    <String, dynamic>{
+      'access': instance.accessToken,
+    };

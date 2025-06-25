@@ -1,21 +1,22 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/course/domain/entities/entity.dart';
-import 'package:mobile/features/course/domain/repositories/course_session_repository.dart';
+import 'package:mobile/features/course/domain/repositories/repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class PartialUpdateCourseSessionUsecase {
   final CourseSessionRepository courseSessionRepository;
 
   PartialUpdateCourseSessionUsecase(this.courseSessionRepository);
 
-  Future<Either<Failure, CourseSessionEntity>> execute({
-    required Map<String, dynamic> data,
+  Future<Either<Failure, BaseResponseEntity<CourseSessionEntity>>> execute({
+    required String courseId,
+    required SaveCourseSessionRequestEntity data,
     required String courseSessionId,
   }) {
     return courseSessionRepository.partialUpdateCourseSession(
+      courseId: courseId,
       data: data,
       courseSessionId: courseSessionId,
     );

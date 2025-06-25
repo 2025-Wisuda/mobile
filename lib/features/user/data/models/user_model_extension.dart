@@ -1,29 +1,24 @@
-// Project imports:
-import 'package:mobile/features/user/data/models/model.dart';
-import 'package:mobile/features/user/domain/entities/entity.dart';
+part of 'user_model.dart';
 
 extension UserModelExtension on UserModel {
   UserEntity toEntity() {
     return UserEntity(
       id: id,
-      password: password,
-      lastLogin: lastLogin,
-      isSuperuser: isSuperuser,
       username: username,
-      studentId: studentId,
-      employeeId: employeeId,
+      email: email,
       firstName: firstName,
       lastName: lastName,
-      email: email,
-      isActive: isActive,
-      isStaff: isStaff,
-      dateJoined: dateJoined,
+      studentNumber: studentNumber,
+      employeeNumber: employeeNumber,
       faceImage: faceImage,
       faceUploaded: faceUploaded,
       avatar: avatar,
-      group: group,
-      createdAt: createdAt,
+      isActive: isActive,
+      isStaff: isStaff,
+      dateJoined: dateJoined,
+      lastLogin: lastLogin,
       updatedAt: updatedAt,
+      group: group,
     );
   }
 }

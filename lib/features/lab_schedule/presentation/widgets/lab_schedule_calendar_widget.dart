@@ -1,49 +1,75 @@
-// Flutter imports:
-
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-// Project imports:
-import 'package:mobile/features/lab_schedule/data/models/lab_schedule_filter_params_model.dart';
-import 'package:mobile/features/lab_schedule/presentation/controllers/controller.dart';
-import 'package:mobile/shared/helpers/extensions/extension.dart';
+import 'package:mobile/shared/extensions/extension.dart';
 
 class LabScheduleCalendarWidget extends StatelessWidget {
-  const LabScheduleCalendarWidget({super.key});
+  final CalendarFormat calendarFormat;
+  final DateTime selectedDate;
+  final DateTime focusedDate;
+  final Function(CalendarFormat) onFormatChanged;
+  final Function(DateTime, DateTime) onDaySelected;
+  final bool showAllDays;
+  final bool Function(DateTime)? isDateAvailable;
+  final List<int>? weekendDays;
+  final Map<CalendarFormat, String>? availableCalendarFormats;
+  final bool formatButtonVisible;
+  final StartingDayOfWeek? startingDayOfWeek;
+  final String? locale;
+  final DateTime? firstDay;
+  final DateTime? lastDay;
+
+  const LabScheduleCalendarWidget({
+    super.key,
+    required this.calendarFormat,
+    required this.selectedDate,
+    required this.focusedDate,
+    required this.onFormatChanged,
+    required this.onDaySelected,
+    this.showAllDays = true,
+    this.isDateAvailable,
+    this.weekendDays,
+    this.availableCalendarFormats,
+    this.formatButtonVisible = false,
+    this.startingDayOfWeek,
+    this.locale = 'id_ID',
+    this.firstDay,
+    this.lastDay,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final labController = Get.find<LabScheduleController>();
     final todayDate = DateTime.now();
-    final sixMonthsLater = todayDate.add(const Duration(days: 180));
-    final state = labController.fetchListLabScheduleState;
-    final firstDay = todayDate.subtract(Duration(days: todayDate.day - 1));
+    final effectiveFirstDay =
+        firstDay ?? todayDate.subtract(Duration(days: todayDate.day - 1));
+    final effectiveLastDay =
+        lastDay ?? todayDate.add(const Duration(days: 180));
+    final effectiveWeekendDays = showAllDays
+        ? (weekendDays ?? [DateTime.saturday, DateTime.sunday])
+        : <int>[];
+    final effectiveStartingDay = startingDayOfWeek ?? StartingDayOfWeek.monday;
+    final effectiveFormats = availableCalendarFormats ??
+        {
+          CalendarFormat.month: 'Month',
+          CalendarFormat.week: 'Week',
+        };
 
-    return Obx(
-      () => TableCalendar(
-        locale: 'id_ID',
-        firstDay: firstDay,
-        lastDay: sixMonthsLater,
-        focusedDay: labController.focusedDate.value,
-        selectedDayPredicate:
-            (day) => isSameDay(labController.selectedDate.value, day),
-        onDaySelected: (selectedDay, focusedDay) {
-          labController.selectedDate.value = selectedDay;
-          labController.focusedDate.value = focusedDay;
-          labController.fetchListLabSchedule(
-            scheduleFilterParamsModel: LabScheduleFilterParamsModel(
-              page: 1,
-              pageSize: 10,
-              scheduleDate: DateFormat('yyyy-MM-dd').format(selectedDay),
-            ),
-            stateTarget: state,
-          );
-        },
+    return SingleChildScrollView(
+      physics: const NeverScrollableScrollPhysics(),
+      child: TableCalendar(
+        locale: locale,
+        firstDay: effectiveFirstDay,
+        lastDay: effectiveLastDay,
+        focusedDay: focusedDate,
+        calendarFormat: calendarFormat,
+        availableCalendarFormats: effectiveFormats,
+        onFormatChanged: onFormatChanged,
+        selectedDayPredicate: (day) => isSameDay(selectedDate, day),
+        onDaySelected: _handleDaySelected,
+        enabledDayPredicate: isDateAvailable != null
+            ? (day) => _isValidDay(day) && isDateAvailable!(day)
+            : _isValidDay,
         calendarStyle: CalendarStyle(
           todayDecoration: BoxDecoration(
             color: context.primaryContainer,
@@ -54,20 +80,55 @@ class LabScheduleCalendarWidget extends StatelessWidget {
             color: context.primary,
             shape: BoxShape.circle,
           ),
-          selectedTextStyle: context
-              .bodyMediumW(600)
-              .copyWith(color: context.onPrimary),
+          selectedTextStyle:
+              context.bodyMediumW(600).copyWith(color: context.surface),
           defaultTextStyle: context.bodyMediumW(500),
           weekendTextStyle: context.bodyMediumW(500),
+          disabledTextStyle: context.bodyMediumW(500).copyWith(
+                color: context.onSurface.withValues(alpha: 0.3),
+              ),
         ),
         headerStyle: HeaderStyle(
-          formatButtonVisible: false,
+          formatButtonVisible: formatButtonVisible,
           titleCentered: true,
-          titleTextStyle: context.bodyLargeW(500),
+          titleTextStyle: context.bodyLargeW(600),
         ),
-        weekendDays: const [DateTime.saturday, DateTime.sunday],
-        startingDayOfWeek: StartingDayOfWeek.monday,
+        weekendDays: effectiveWeekendDays,
+        startingDayOfWeek: effectiveStartingDay,
+        pageJumpingEnabled: true,
+        pageAnimationEnabled: true,
+        sixWeekMonthsEnforced: false,
+        shouldFillViewport: false,
+        calendarBuilders: CalendarBuilders(
+          outsideBuilder: (context, day, focusedDay) => Container(),
+        ),
       ),
     );
+  }
+
+  bool _isValidDay(DateTime day) {
+    if (showAllDays) return true;
+
+    return day.weekday >= DateTime.monday && day.weekday <= DateTime.friday;
+  }
+
+  void _handleDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    if (!showAllDays && _isWeekend(selectedDay)) {
+      final nextMonday = _getNextMonday(selectedDay);
+      onDaySelected(nextMonday, nextMonday);
+    } else {
+      onDaySelected(selectedDay, focusedDay);
+    }
+  }
+
+  bool _isWeekend(DateTime day) {
+    return day.weekday == DateTime.saturday || day.weekday == DateTime.sunday;
+  }
+
+  DateTime _getNextMonday(DateTime date) {
+    final daysUntilMonday = DateTime.monday - date.weekday;
+    final daysToAdd =
+        daysUntilMonday <= 0 ? daysUntilMonday + 7 : daysUntilMonday;
+    return date.add(Duration(days: daysToAdd));
   }
 }

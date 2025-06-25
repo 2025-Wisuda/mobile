@@ -1,20 +1,18 @@
-// Package imports:
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
-// Project imports:
-import 'package:mobile/core/errors/types/type.dart';
 import 'package:mobile/features/duty_schedule/data/models/model.dart';
 import 'package:mobile/features/duty_schedule/domain/entities/entity.dart';
 import 'package:mobile/features/duty_schedule/domain/repositories/repository.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/errors/error.dart';
 
 class FetchListDutyScheduleUsecase {
-  final DutyScheduleRepository dutyScheduleRepository;
+  final DutyScheduleRepository _dutyScheduleRepository;
 
-  FetchListDutyScheduleUsecase(this.dutyScheduleRepository);
+  FetchListDutyScheduleUsecase(this._dutyScheduleRepository);
 
-  Future<Either<Failure, ListDutyScheduleEntity>> execute({
-    DutyScheduleFilterParamsModel? params,
-  }) {
-    return dutyScheduleRepository.fetchListDutySchedule(params: params);
+  Future<Either<Failure, BaseListResponseEntity<DutyScheduleListEntity>>>
+      execute({DutyScheduleFilterParamsModel? params}) {
+    return _dutyScheduleRepository.fetchListDutySchedule(params: params);
   }
 }
