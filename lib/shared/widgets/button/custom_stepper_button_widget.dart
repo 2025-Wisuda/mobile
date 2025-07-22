@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:mobile/features/course/presentation/widgets/course/course_stepper_widget.dart';
+import 'package:mobile/features/course/presentation/widgets/base/course_stepper_widget.dart';
 import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 

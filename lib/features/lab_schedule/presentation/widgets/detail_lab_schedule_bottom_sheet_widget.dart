@@ -8,11 +8,8 @@ import 'package:mobile/features/lab_schedule/presentation/widgets/widget.dart';
 void detailLabScheduleBottomSheetWidget(
   BuildContext context,
   String labScheduleId,
+  DetailLabScheduleController controller,
 ) {
-  final c = Get.find<DetailLabScheduleController>();
-
-  c.clearEntity();
-
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -32,6 +29,7 @@ void detailLabScheduleBottomSheetWidget(
             child: SingleChildScrollView(
               child: DetailLabScheduleWrapperWidget(
                 labScheduleId: labScheduleId,
+                controller: controller,
               ),
             ),
           ),
@@ -41,7 +39,7 @@ void detailLabScheduleBottomSheetWidget(
             child: IconButton(
               onPressed: () {
                 Get.back();
-                c.clearEntity();
+                controller.clearEntity();
               },
               icon: const Icon(Icons.close),
             ),

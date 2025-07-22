@@ -21,7 +21,8 @@ extension TimeSlotStatusExtension on TimeSlotStatus {
     }
   }
 
-  bool get isSelectable => this == TimeSlotStatus.available;
+  bool get isSelectable =>
+      this == TimeSlotStatus.available && this != TimeSlotStatus.disabled;
 
   Color getSlotColor(BuildContext context, bool isSelected, bool isInRange) {
     if (isSelected) {

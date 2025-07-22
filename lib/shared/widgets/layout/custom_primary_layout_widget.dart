@@ -19,7 +19,7 @@ class CustomPrimaryLayoutWidget extends StatelessWidget {
     return SingleChildScrollView(
       padding: padding,
       scrollDirection: scrollDirection,
-      physics: physics ?? const BouncingScrollPhysics(),
+      physics: physics ?? const ClampingScrollPhysics(),
       child: child,
     );
   }

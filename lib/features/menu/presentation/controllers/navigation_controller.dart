@@ -60,8 +60,9 @@ class NavigationController extends GetxController with FetchStateMixin {
 
   void changeIndex(int index) {
     if (index >= 0 && index < navMenuList.length) {
-      currentIndex.value = index;
       _initializeBinding(index);
+
+      currentIndex.value = index;
     }
   }
 
@@ -96,6 +97,12 @@ class NavigationController extends GetxController with FetchStateMixin {
   void _initializeHomeBinding() {
     final homeBinding = HomeBinding();
     homeBinding.dependencies();
+
+    final dutyScheduleBinding = FetchDutyScheduleForTodayBinding();
+    dutyScheduleBinding.dependencies();
+
+    final labScheduleBinding = FetchMyLabScheduleBinding();
+    labScheduleBinding.dependencies();
   }
 
   void _initializeLabScheduleBinding() {
@@ -116,6 +123,13 @@ class NavigationController extends GetxController with FetchStateMixin {
             LabAvailabilityController(Get.find<FetchLabAvailabilityUsecase>()),
         tag: 'room_booking_availability',
       );
+
+      if (Get.isRegistered<LabAvailabilityController>(
+          tag: 'room_booking_availability')) {
+        final availabilityController = Get.find<LabAvailabilityController>(
+            tag: 'room_booking_availability');
+        availabilityController.resetTimeSelection();
+      }
     }
   }
 

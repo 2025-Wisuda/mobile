@@ -1,12 +1,18 @@
 import 'package:get/get.dart';
 
 import 'package:mobile/core/bindings/core_binding.dart';
-import 'package:mobile/features/duty_schedule/duty_schedule.dart';
+import 'package:mobile/features/duty/duty.dart';
 import 'package:mobile/shared/databases/database.dart';
 
 enum DutyScheduleControllerType {
   fetchListDutySchedule,
   fetchDutyScheduleForToday,
+  validateOtp,
+  myAttendanceRecords,
+  manualOverrideAttendance,
+  listAttendanceRecords,
+  detailAttendanceRecords,
+  dutyAttendanceStatistics,
 }
 
 class DutyScheduleBinding extends Bindings {
@@ -26,28 +32,55 @@ class DutyScheduleBinding extends Bindings {
     }
 
     if (!Get.isRegistered<DutyScheduleApiClient>()) {
-      Get.lazyPut<DutyScheduleApiClient>(
-          () => DutyScheduleApiClient(Get.find()));
+      Get.put<DutyScheduleApiClient>(
+        DutyScheduleApiClient(Get.find()),
+        permanent: true,
+      );
     }
 
     if (!Get.isRegistered<DutyScheduleRemoteDatasource>()) {
-      Get.lazyPut<DutyScheduleRemoteDatasource>(
-        () => DutyScheduleRemoteDatasourceImpl(
+      Get.put<DutyScheduleRemoteDatasource>(
+        DutyScheduleRemoteDatasourceImpl(
             Get.find<DutyScheduleApiClient>(), Get.find(), Get.find()),
+        permanent: true,
       );
     }
 
     if (!Get.isRegistered<DutyScheduleLocalDatasource>()) {
-      Get.lazyPut<DutyScheduleLocalDatasource>(
-        () => DutyScheduleLocalDatasourceImpl(Get.find()),
+      Get.put<DutyScheduleLocalDatasource>(
+        DutyScheduleLocalDatasourceImpl(Get.find()),
+        permanent: true,
       );
     }
 
     if (!Get.isRegistered<DutyScheduleRepository>()) {
-      Get.lazyPut<DutyScheduleRepository>(
-        () => DutyScheduleRepositoryImpl(
-            Get.find<DutyScheduleRemoteDatasource>(),
+      Get.put<DutyScheduleRepository>(
+        DutyScheduleRepositoryImpl(Get.find<DutyScheduleRemoteDatasource>(),
             Get.find<DutyScheduleLocalDatasource>()),
+        permanent: true,
+      );
+    }
+
+    if (!Get.isRegistered<DutyAttendanceApiClient>()) {
+      Get.put<DutyAttendanceApiClient>(
+        DutyAttendanceApiClient(Get.find()),
+        permanent: true,
+      );
+    }
+
+    if (!Get.isRegistered<DutyAttendanceRemoteDatasource>()) {
+      Get.put<DutyAttendanceRemoteDatasource>(
+        DutyAttendanceRemoteDatasourceImpl(
+            Get.find<DutyAttendanceApiClient>(), Get.find(), Get.find()),
+        permanent: true,
+      );
+    }
+
+    if (!Get.isRegistered<DutyAttendanceRepository>()) {
+      Get.put<DutyAttendanceRepository>(
+        DutyAttendanceRepositoryImpl(
+            Get.find<DutyAttendanceRemoteDatasource>()),
+        permanent: true,
       );
     }
   }
@@ -66,6 +99,21 @@ class DutyScheduleBinding extends Bindings {
     }
   }
 
+  void registerFetchListDutyScheduleWithTag(String tag) {
+    if (!Get.isRegistered<FetchListDutyScheduleUsecase>()) {
+      Get.lazyPut<FetchListDutyScheduleUsecase>(
+        () => FetchListDutyScheduleUsecase(Get.find<DutyScheduleRepository>()),
+      );
+    }
+    if (!Get.isRegistered<ListDutyScheduleController>(tag: tag)) {
+      Get.lazyPut<ListDutyScheduleController>(
+        () => ListDutyScheduleController(
+            Get.find<FetchListDutyScheduleUsecase>()),
+        tag: tag,
+      );
+    }
+  }
+
   void registerFetchDutyScheduleForToday() {
     if (!Get.isRegistered<FetchDutyScheduleForTodayUsecase>()) {
       Get.lazyPut<FetchDutyScheduleForTodayUsecase>(
@@ -74,16 +122,100 @@ class DutyScheduleBinding extends Bindings {
       );
     }
     if (!Get.isRegistered<DutyScheduleForTodayController>()) {
-      Get.lazyPut<DutyScheduleForTodayController>(
-        () => DutyScheduleForTodayController(
+      Get.put<DutyScheduleForTodayController>(
+        DutyScheduleForTodayController(
             Get.find<FetchDutyScheduleForTodayUsecase>()),
+        permanent: true,
       );
     }
   }
 
-  void registerAllDutySchedule() {
-    registerFetchListDutySchedule();
-    registerFetchDutyScheduleForToday();
+  void registerValidateOtp() {
+    if (!Get.isRegistered<ValidateOtpUsecase>()) {
+      Get.lazyPut<ValidateOtpUsecase>(
+        () => ValidateOtpUsecase(Get.find<DutyAttendanceRepository>()),
+      );
+    }
+    if (!Get.isRegistered<ValidateOtpController>()) {
+      Get.lazyPut<ValidateOtpController>(
+        () => ValidateOtpController(Get.find<ValidateOtpUsecase>()),
+      );
+    }
+  }
+
+  void registerMyAttendanceRecords() {
+    if (!Get.isRegistered<FetchMyAttendanceRecordsUsecase>()) {
+      Get.lazyPut<FetchMyAttendanceRecordsUsecase>(
+        () => FetchMyAttendanceRecordsUsecase(
+            Get.find<DutyAttendanceRepository>()),
+      );
+    }
+    if (!Get.isRegistered<MyAttendanceRecordsController>()) {
+      Get.lazyPut<MyAttendanceRecordsController>(
+        () => MyAttendanceRecordsController(
+            Get.find<FetchMyAttendanceRecordsUsecase>()),
+      );
+    }
+  }
+
+  void registerManualOverrideAttendance() {
+    if (!Get.isRegistered<ManualOverrideAttendanceUsecase>()) {
+      Get.lazyPut<ManualOverrideAttendanceUsecase>(
+        () => ManualOverrideAttendanceUsecase(
+            Get.find<DutyAttendanceRepository>()),
+      );
+    }
+    if (!Get.isRegistered<ManualOverrideAttendanceController>()) {
+      Get.lazyPut<ManualOverrideAttendanceController>(
+        () => ManualOverrideAttendanceController(
+            Get.find<ManualOverrideAttendanceUsecase>()),
+      );
+    }
+  }
+
+  void registerListAttendanceRecords() {
+    if (!Get.isRegistered<FetchListAttendanceRecordsUsecase>()) {
+      Get.lazyPut<FetchListAttendanceRecordsUsecase>(
+        () => FetchListAttendanceRecordsUsecase(
+            Get.find<DutyAttendanceRepository>()),
+      );
+    }
+    if (!Get.isRegistered<ListAttendanceRecordsController>()) {
+      Get.lazyPut<ListAttendanceRecordsController>(
+        () => ListAttendanceRecordsController(
+            Get.find<FetchListAttendanceRecordsUsecase>()),
+      );
+    }
+  }
+
+  void registerDetailAttendanceRecords() {
+    if (!Get.isRegistered<FetchDetailAttendanceRecordsUsecase>()) {
+      Get.lazyPut<FetchDetailAttendanceRecordsUsecase>(
+        () => FetchDetailAttendanceRecordsUsecase(
+            Get.find<DutyAttendanceRepository>()),
+      );
+    }
+    if (!Get.isRegistered<DetailDutyAttendanceController>()) {
+      Get.lazyPut<DetailDutyAttendanceController>(
+        () => DetailDutyAttendanceController(
+            Get.find<FetchDetailAttendanceRecordsUsecase>()),
+      );
+    }
+  }
+
+  void registerDutyAttendanceStatistics() {
+    if (!Get.isRegistered<FetchAttendanceStatisticsUseCase>()) {
+      Get.lazyPut<FetchAttendanceStatisticsUseCase>(
+        () => FetchAttendanceStatisticsUseCase(
+            Get.find<DutyAttendanceRepository>()),
+      );
+    }
+    if (!Get.isRegistered<DutyAttendanceStatisticsController>()) {
+      Get.lazyPut<DutyAttendanceStatisticsController>(
+        () => DutyAttendanceStatisticsController(
+            Get.find<FetchAttendanceStatisticsUseCase>()),
+      );
+    }
   }
 }
 
@@ -103,6 +235,47 @@ class FetchDutyScheduleForTodayBinding extends DutyScheduleBinding {
   }
 }
 
+class ValidateOtpBinding extends DutyScheduleBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerValidateOtp();
+  }
+}
+
+class MyAttendanceRecordsBinding extends DutyScheduleBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerMyAttendanceRecords();
+  }
+}
+
+class ManualOverrideAttendanceBinding extends DutyScheduleBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerManualOverrideAttendance();
+  }
+}
+
+class ListAttendanceRecordsBinding extends DutyScheduleBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerListAttendanceRecords();
+    registerDetailAttendanceRecords();
+  }
+}
+
+class DetailDutyAttendanceBinding extends DutyScheduleBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerDetailAttendanceRecords();
+  }
+}
+
 class MultiDutyScheduleBinding extends DutyScheduleBinding {
   final List<DutyScheduleControllerType> controllers;
 
@@ -119,6 +292,24 @@ class MultiDutyScheduleBinding extends DutyScheduleBinding {
           break;
         case DutyScheduleControllerType.fetchDutyScheduleForToday:
           registerFetchDutyScheduleForToday();
+          break;
+        case DutyScheduleControllerType.validateOtp:
+          registerValidateOtp();
+          break;
+        case DutyScheduleControllerType.myAttendanceRecords:
+          registerMyAttendanceRecords();
+          break;
+        case DutyScheduleControllerType.manualOverrideAttendance:
+          registerManualOverrideAttendance();
+          break;
+        case DutyScheduleControllerType.listAttendanceRecords:
+          registerListAttendanceRecords();
+          break;
+        case DutyScheduleControllerType.detailAttendanceRecords:
+          registerDetailAttendanceRecords();
+          break;
+        case DutyScheduleControllerType.dutyAttendanceStatistics:
+          registerDutyAttendanceStatistics();
           break;
       }
     }

@@ -2,7 +2,7 @@ export 'course_session_form_widget.dart';
 export 'custom_date_field_widget.dart';
 export 'custom_description_field_widget.dart';
 export 'custom_dropdown_field_widget.dart';
-export 'custom_email_field_widget .dart';
+export 'custom_email_field_widget.dart';
 export 'custom_employee_number_field_widget.dart';
 export 'custom_first_name_field_widget.dart';
 export 'custom_group_field_widget.dart';

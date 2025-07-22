@@ -36,6 +36,9 @@ mixin FetchStateMixin on GetxController {
   final RxMap<String, FetchStateEnum> _fetchStates =
       <String, FetchStateEnum>{}.obs;
 
+  /// Map to store error messages for different operations
+  final RxMap<String, String> _errorMessages = <String, String>{}.obs;
+
   /// Default state key for operations that don't specify a key
   static const String defaultStateKey = 'default';
 
@@ -44,13 +47,21 @@ mixin FetchStateMixin on GetxController {
   /// Parameters:
   /// - [key]: The operation key (e.g., 'userList', 'userProfile', 'courseList')
   /// - [state]: The new state to set
+  /// - [errorMessage]: Optional error message to store with the state
   ///
   /// Example:
   /// ```dart
   /// setFetchState('userList', FetchStateEnum.loading);
+  /// setFetchState('userList', FetchStateEnum.failure, errorMessage: 'Server error');
   /// ```
-  void setFetchState(String key, FetchStateEnum state) {
+  void setFetchState(String key, FetchStateEnum state, {String? errorMessage}) {
     _fetchStates[key] = state;
+    if (errorMessage != null) {
+      _errorMessages[key] = errorMessage;
+    } else if (state != FetchStateEnum.failure) {
+      // Clear error message when state is not failure
+      _errorMessages.remove(key);
+    }
   }
 
   /// Gets the current fetch state for a specific operation key.
@@ -186,9 +197,17 @@ mixin FetchStateMixin on GetxController {
   /// Parameters:
   /// - [key]: The operation key
   ///
-  /// Returns a human-readable description of the current state.
+  /// Returns a human-readable description of the current state or actual error message if available.
   String getOperationStateDescription(String key) {
-    return getFetchState(key).description;
+    final state = getFetchState(key);
+
+    // Return actual error message if it's a failure state and we have stored message
+    if (state == FetchStateEnum.failure && _errorMessages.containsKey(key)) {
+      return _errorMessages[key]!;
+    }
+
+    // Fallback to enum description
+    return state.description;
   }
 
   /// Resets the fetch state for a specific operation to initial.
@@ -674,7 +693,8 @@ mixin FetchStateMixin on GetxController {
         },
       );
     } catch (error) {
-      setFetchState(key, FetchStateEnum.failure);
+      setFetchState(key, FetchStateEnum.failure,
+          errorMessage: error.toString());
       final genericFailure = GenericFailure(error.toString());
 
       if (onFailure != null) {
@@ -733,7 +753,8 @@ mixin FetchStateMixin on GetxController {
       if (!hasConnection) {
         final noInternetFailure =
             NoConnectionFailure('common'.message('noInternet'));
-        setFetchState(key, FetchStateEnum.failure);
+        setFetchState(key, FetchStateEnum.failure,
+            errorMessage: noInternetFailure.message);
 
         if (onFailure != null) {
           onFailure(noInternetFailure);
@@ -755,7 +776,8 @@ mixin FetchStateMixin on GetxController {
 
       result.fold(
         (failure) {
-          setFetchState(key, FetchStateEnum.failure);
+          setFetchState(key, FetchStateEnum.failure,
+              errorMessage: failure.message);
           if (onFailure != null) {
             onFailure(failure);
           }
@@ -779,7 +801,8 @@ mixin FetchStateMixin on GetxController {
         },
       );
     } catch (error) {
-      setFetchState(key, FetchStateEnum.failure);
+      setFetchState(key, FetchStateEnum.failure,
+          errorMessage: error.toString());
       final genericFailure = GenericFailure(error.toString());
 
       if (onFailure != null) {

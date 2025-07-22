@@ -177,6 +177,9 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   /// If null, uses theme's contentPadding
   final EdgeInsetsGeometry? contentPadding;
 
+  /// Optional autovalidate mode for this field
+  final AutovalidateMode? autovalidateMode;
+
   const CustomTextFormFieldWidget({
     super.key,
     // Core properties
@@ -221,6 +224,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     this.errorBorderColor,
     this.borderWidth = 0.5,
     this.contentPadding,
+    this.autovalidateMode,
   });
 
   @override
@@ -266,6 +270,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
 
           // Validation
           validator: validator,
+          autovalidateMode: autovalidateMode,
         ),
       ],
     );

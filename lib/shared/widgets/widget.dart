@@ -1,3 +1,4 @@
+export 'notification_badge_widget.dart';
 export 'app_bar/app_bar.dart';
 export 'bottom_bar/bottom_bar.dart';
 export 'button/button.dart';

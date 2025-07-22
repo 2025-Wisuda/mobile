@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 /// A helper class for formatting dates and times.
 ///
@@ -64,9 +65,54 @@ class DateHelper {
   static String formatTime(String? time) {
     if (time == null || time.isEmpty) return '';
     try {
-      final parsed = DateFormat("HH:mm:ss").parse(time);
-      return DateFormat.Hm().format(parsed);
+      // Parse the full ISO 8601 string.
+      final utcDateTime = DateTime.parse(time);
+
+      // Get the Jakarta location (timezone data already initialized in main.dart).
+      final jakarta = tz.getLocation('Asia/Jakarta');
+
+      // Convert the DateTime to a timezone-aware DateTime in Jakarta's timezone.
+      final jakartaDateTime = tz.TZDateTime.from(utcDateTime, jakarta);
+
+      // Format the timezone-aware DateTime.
+      return DateFormat.Hm().format(jakartaDateTime);
     } catch (_) {
+      // Fallback for older, simple time-only strings (e.g., "14:30:00").
+      try {
+        final parsed = DateFormat("HH:mm:ss").parse(time);
+        return DateFormat.Hm().format(parsed);
+      } catch (e) {
+        // If all parsing fails, return an empty string.
+        return '';
+      }
+    }
+  }
+
+  /// Formats a date and time string into "20 Juni 2025 (14:30)" format.
+  ///
+  /// - [dateTime]: The date and time string to format. Returns an empty string if null or invalid.
+  static String formatDateTime(String? dateTime) {
+    if (dateTime == null || dateTime.isEmpty) return '';
+    try {
+      // Parse the full ISO 8601 string.
+      final utcDateTime = DateTime.parse(dateTime);
+
+      // Get the Jakarta location (timezone data already initialized in main.dart).
+      final jakarta = tz.getLocation('Asia/Jakarta');
+
+      // Convert the DateTime to a timezone-aware DateTime in Jakarta's timezone.
+      final jakartaDateTime = tz.TZDateTime.from(utcDateTime, jakarta);
+
+      // Format the date and time in Indonesian format.
+      final dateFormat = DateFormat('d MMMM yyyy', 'id_ID');
+      final timeFormat = DateFormat.Hm();
+
+      final date = dateFormat.format(jakartaDateTime);
+      final time = timeFormat.format(jakartaDateTime);
+
+      return '$date ($time)';
+    } catch (e) {
+      // If parsing fails, return an empty string.
       return '';
     }
   }
@@ -218,5 +264,96 @@ class DateHelper {
   /// ```
   static String formatTimeString(DateTime time) {
     return "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
+  }
+
+  /// Checks if a given date and optional end time is in the past.
+  ///
+  /// - [date]: The date to check.
+  /// - [endTime]: Optional end time in "HH:mm" format.
+  ///
+  /// Returns true if the date (with end time if provided) is in the past.
+  /// If endTime is provided, compares the full datetime.
+  /// If endTime is null or empty, only compares the date.
+  ///
+  /// ### Example:
+  /// ```dart
+  /// final isPast1 = DateHelper.isPastDateTime(DateTime(2024, 1, 1), "10:30"); // true if past
+  /// final isPast2 = DateHelper.isPastDateTime(DateTime(2024, 1, 1)); // true if date is before today
+  /// ```
+  static bool isPastDateTime(DateTime date, [String? endTime]) {
+    final now = DateTime.now();
+
+    if (endTime != null && endTime.isNotEmpty) {
+      try {
+        final endTimeParts = endTime.split(':');
+        final endHour = int.parse(endTimeParts[0]);
+        final endMinute = int.parse(endTimeParts[1]);
+
+        final endDateTime = DateTime(
+          date.year,
+          date.month,
+          date.day,
+          endHour,
+          endMinute,
+        );
+
+        return now.isAfter(endDateTime);
+      } catch (e) {
+        // Fallback to date-only comparison if time parsing fails
+        final dateOnly = DateTime(date.year, date.month, date.day);
+        final todayDate = DateTime(now.year, now.month, now.day);
+        return dateOnly.isBefore(todayDate);
+      }
+    }
+
+    // Compare date only
+    final dateOnly = DateTime(date.year, date.month, date.day);
+    final todayDate = DateTime(now.year, now.month, now.day);
+    return dateOnly.isBefore(todayDate);
+  }
+
+  /// Checks if a given date string and optional end time is in the past.
+  ///
+  /// - [dateString]: The date string to check (e.g., "2024-01-01", "2024/01/01", "01-01-2024").
+  /// - [endTime]: Optional end time in "HH:mm" format.
+  ///
+  /// Returns true if the date (with end time if provided) is in the past.
+  /// Returns false if the date string cannot be parsed.
+  ///
+  /// ### Example:
+  /// ```dart
+  /// final isPast1 = DateHelper.isPastDateTimeFromString("2024-01-01", "10:30"); // true if past
+  /// final isPast2 = DateHelper.isPastDateTimeFromString("2024-01-01"); // true if date is before today
+  /// ```
+  static bool isPastDateTimeFromString(String dateString, [String? endTime]) {
+    try {
+      final date = DateTime.parse(dateString);
+      return isPastDateTime(date, endTime);
+    } catch (e) {
+      // If parsing fails, return false as we can't determine
+      return false;
+    }
+  }
+
+  /// Returns true if the given date is today.
+  static bool isToday(DateTime? date) {
+    if (date == null) return false;
+    final now = DateTime.now();
+    return date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day;
+  }
+
+  /// Formats a date into "d MMM" format (e.g., "12 Jan").
+  ///
+  /// - [date]: The date to format. Returns an empty string if null.
+  ///
+  /// ### Example:
+  /// ```dart
+  /// final result = DateHelper.formatDayMonth(DateTime(2024, 1, 12)); // "12 Jan"
+  /// ```
+  static String formatDayMonth({DateTime? date}) {
+    if (date == null) return '';
+    return DateFormat('d MMM', 'id').format(date);
   }
 }

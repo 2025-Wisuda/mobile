@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "877796664281",
+    "project_id": "simplelab-ced4d",
+    "storage_bucket": "simplelab-ced4d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877796664281:android:605a90f11868c43cfbafc8",
+        "android_client_info": {
+          "package_name": "com.example.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcfotS3UeRCRqil3UPbKlapj0R3c1Wbeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

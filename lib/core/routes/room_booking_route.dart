@@ -44,17 +44,8 @@ final roomBookingRoutes = [
     ),
   ),
   GetPage(
-    name: AppRoute.detailRoomBooking,
-    page: () {
-      final bookingId = Get.parameters['bookingId'] ?? '';
-      return DetailRoomBookingScreen(bookingId: bookingId);
-    },
-    binding: MultiRoomBookingBinding(
-      controllers: [
-        RoomBookingControllerType.fetchRoomBookingDetail,
-        RoomBookingControllerType.deleteRoomBooking,
-        RoomBookingControllerType.approveRoomBooking,
-      ],
-    ),
+    name: AppRoute.bookingConfirmationCountdown,
+    page: () => const BookingConfirmationCountdownScreen(),
+    binding: RoomBookingBinding(),
   ),
 ];

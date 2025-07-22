@@ -13,7 +13,7 @@ class MainMenuLocalDatasource {
         nameMenu: 'course'.menu(),
         routeName: '/courses/me',
         allowedGroup:
-            GroupEnum.level3AccessGroups.map((e) => e.toLowerCase).toList(),
+            GroupEnum.level5AccessGroups.map((e) => e.toLowerCase).toList(),
         onTap: onTap,
       ),
       MenuModel(
@@ -24,14 +24,14 @@ class MainMenuLocalDatasource {
             GroupEnum.level2AccessGroups.map((e) => e.toLowerCase).toList(),
         onTap: onTap,
       ),
-      MenuModel(
-        iconMenu: IconConstant.practicumAttendanceOutlineIcon,
-        nameMenu: 'practicumAttendance'.menu(),
-        routeName: '/practicum-attendance',
-        allowedGroup:
-            GroupEnum.level1AccessGroups.map((e) => e.toLowerCase).toList(),
-        onTap: onTap,
-      ),
+      // MenuModel(
+      //   iconMenu: IconConstant.practicumAttendanceOutlineIcon,
+      //   nameMenu: 'practicumAttendance'.menu(),
+      //   routeName: '/practicum-attendance',
+      //   allowedGroup:
+      //       GroupEnum.level1AccessGroups.map((e) => e.toLowerCase).toList(),
+      //   onTap: onTap,
+      // ),
       MenuModel(
         iconMenu: IconConstant.guestVisitOutlineIcon,
         nameMenu: 'guestVisit'.menu(),

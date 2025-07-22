@@ -4,27 +4,27 @@ import 'package:mobile/features/user/presentation/controllers/controller.dart';
 import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/widgets/form/form.dart';
 
-List<Widget> accountInfoSection(UserProfileFormController c) {
+List<Widget> accountInfoSection(UserProfileFormController controller) {
   return [
     CustomUsernameFieldWidget(
-      controller: c.getController('username'),
-      focusNode: c.getFocusNode('username'),
-      onFieldSubmitted: (_) => c.getFocusNode('email').requestFocus(),
+      controller: controller.getController('username'),
+      focusNode: controller.getFocusNode('username'),
+      onFieldSubmitted: (_) => controller.getFocusNode('email').requestFocus(),
       textInputAction: TextInputAction.next,
       feature: 'user',
       isRequired: false,
       showPersonIcon: false,
     ),
     CustomEmailFieldWidget(
-      controller: c.getController('email'),
-      focusNode: c.getFocusNode('email'),
-      onFieldSubmitted: (_) => c.unfocusAll(),
+      controller: controller.getController('email'),
+      focusNode: controller.getFocusNode('email'),
+      onFieldSubmitted: (_) => controller.unfocusAll(),
       textInputAction: TextInputAction.done,
       feature: 'user',
     ),
     CustomGroupFieldWidget(
-      controller: c.getController('group'),
-      focusNode: c.getFocusNode('group'),
+      controller: controller.getController('group'),
+      focusNode: controller.getFocusNode('group'),
       feature: 'user',
       enable: false,
     ),
@@ -32,39 +32,40 @@ List<Widget> accountInfoSection(UserProfileFormController c) {
 }
 
 List<Widget> personalInfoSection(
-  UserProfileFormController c,
+  UserProfileFormController controller,
   GroupEnum userGroup,
 ) {
   return [
     CustomFirstNameFieldWidget(
-      controller: c.getController('firstName'),
-      focusNode: c.getFocusNode('firstName'),
+      controller: controller.getController('firstName'),
+      focusNode: controller.getFocusNode('firstName'),
       feature: 'user',
       enable: false,
     ),
     CustomLastNameFieldWidget(
-      controller: c.getController('lastName'),
-      focusNode: c.getFocusNode('lastName'),
+      controller: controller.getController('lastName'),
+      focusNode: controller.getFocusNode('lastName'),
       enable: false,
       feature: 'user',
     ),
-    _buildNumberField(c, userGroup),
+    _buildNumberField(controller, userGroup),
   ];
 }
 
-Widget _buildNumberField(UserProfileFormController c, GroupEnum userGroup) {
+Widget _buildNumberField(
+    UserProfileFormController controller, GroupEnum userGroup) {
   if (userGroup == GroupEnum.student ||
       userGroup == GroupEnum.laboratoryAssistant) {
     return CustomStudentNumberFieldWidget(
-      controller: c.getController('studentNumber'),
-      focusNode: c.getFocusNode('studentNumber'),
+      controller: controller.getController('studentNumber'),
+      focusNode: controller.getFocusNode('studentNumber'),
       feature: 'user',
       enable: false,
     );
   } else {
     return CustomEmployeeNumberFieldWidget(
-      controller: c.getController('employeeNumber'),
-      focusNode: c.getFocusNode('employeeNumber'),
+      controller: controller.getController('employeeNumber'),
+      focusNode: controller.getFocusNode('employeeNumber'),
       feature: 'user',
       enable: false,
     );

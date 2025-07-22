@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -23,16 +22,14 @@ mixin _$SaveGuestVisitRequestModel {
   String? get identityType;
   @JsonKey(name: 'identity_number', includeIfNull: false)
   String? get identityNumber;
-  @JsonKey(name: 'date')
+  @JsonKey(name: 'date', includeIfNull: false)
   String? get date;
-  @JsonKey(name: 'start_time')
+  @JsonKey(name: 'start_time', includeIfNull: false)
   String? get startTime;
   @JsonKey(name: 'end_time', includeIfNull: false)
   String? get endTime;
-  @JsonKey(name: 'purpose')
+  @JsonKey(name: 'purpose', includeIfNull: false)
   String? get purpose;
-  @JsonKey(name: 'paraf', includeIfNull: false)
-  String? get paraf;
 
   /// Create a copy of SaveGuestVisitRequestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -61,18 +58,17 @@ mixin _$SaveGuestVisitRequestModel {
             (identical(other.startTime, startTime) ||
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
-            (identical(other.purpose, purpose) || other.purpose == purpose) &&
-            (identical(other.paraf, paraf) || other.paraf == paraf));
+            (identical(other.purpose, purpose) || other.purpose == purpose));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, visitor, name, identityType,
-      identityNumber, date, startTime, endTime, purpose, paraf);
+      identityNumber, date, startTime, endTime, purpose);
 
   @override
   String toString() {
-    return 'SaveGuestVisitRequestModel(visitor: $visitor, name: $name, identityType: $identityType, identityNumber: $identityNumber, date: $date, startTime: $startTime, endTime: $endTime, purpose: $purpose, paraf: $paraf)';
+    return 'SaveGuestVisitRequestModel(visitor: $visitor, name: $name, identityType: $identityType, identityNumber: $identityNumber, date: $date, startTime: $startTime, endTime: $endTime, purpose: $purpose)';
   }
 }
 
@@ -89,11 +85,10 @@ abstract mixin class $SaveGuestVisitRequestModelCopyWith<$Res> {
       String? identityType,
       @JsonKey(name: 'identity_number', includeIfNull: false)
       String? identityNumber,
-      @JsonKey(name: 'date') String? date,
-      @JsonKey(name: 'start_time') String? startTime,
+      @JsonKey(name: 'date', includeIfNull: false) String? date,
+      @JsonKey(name: 'start_time', includeIfNull: false) String? startTime,
       @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
-      @JsonKey(name: 'purpose') String? purpose,
-      @JsonKey(name: 'paraf', includeIfNull: false) String? paraf});
+      @JsonKey(name: 'purpose', includeIfNull: false) String? purpose});
 }
 
 /// @nodoc
@@ -117,7 +112,6 @@ class _$SaveGuestVisitRequestModelCopyWithImpl<$Res>
     Object? startTime = freezed,
     Object? endTime = freezed,
     Object? purpose = freezed,
-    Object? paraf = freezed,
   }) {
     return _then(_self.copyWith(
       visitor: freezed == visitor
@@ -152,11 +146,224 @@ class _$SaveGuestVisitRequestModelCopyWithImpl<$Res>
           ? _self.purpose
           : purpose // ignore: cast_nullable_to_non_nullable
               as String?,
-      paraf: freezed == paraf
-          ? _self.paraf
-          : paraf // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [SaveGuestVisitRequestModel].
+extension SaveGuestVisitRequestModelPatterns on SaveGuestVisitRequestModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SaveGuestVisitRequestModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SaveGuestVisitRequestModel() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SaveGuestVisitRequestModel value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SaveGuestVisitRequestModel():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SaveGuestVisitRequestModel value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SaveGuestVisitRequestModel() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'visitor', includeIfNull: false) String? visitor,
+            @JsonKey(name: 'name', includeIfNull: false) String? name,
+            @JsonKey(name: 'identity_type', includeIfNull: false)
+            String? identityType,
+            @JsonKey(name: 'identity_number', includeIfNull: false)
+            String? identityNumber,
+            @JsonKey(name: 'date', includeIfNull: false) String? date,
+            @JsonKey(name: 'start_time', includeIfNull: false)
+            String? startTime,
+            @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
+            @JsonKey(name: 'purpose', includeIfNull: false) String? purpose)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SaveGuestVisitRequestModel() when $default != null:
+        return $default(
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'visitor', includeIfNull: false) String? visitor,
+            @JsonKey(name: 'name', includeIfNull: false) String? name,
+            @JsonKey(name: 'identity_type', includeIfNull: false)
+            String? identityType,
+            @JsonKey(name: 'identity_number', includeIfNull: false)
+            String? identityNumber,
+            @JsonKey(name: 'date', includeIfNull: false) String? date,
+            @JsonKey(name: 'start_time', includeIfNull: false)
+            String? startTime,
+            @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
+            @JsonKey(name: 'purpose', includeIfNull: false) String? purpose)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SaveGuestVisitRequestModel():
+        return $default(
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'visitor', includeIfNull: false) String? visitor,
+            @JsonKey(name: 'name', includeIfNull: false) String? name,
+            @JsonKey(name: 'identity_type', includeIfNull: false)
+            String? identityType,
+            @JsonKey(name: 'identity_number', includeIfNull: false)
+            String? identityNumber,
+            @JsonKey(name: 'date', includeIfNull: false) String? date,
+            @JsonKey(name: 'start_time', includeIfNull: false)
+            String? startTime,
+            @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
+            @JsonKey(name: 'purpose', includeIfNull: false) String? purpose)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SaveGuestVisitRequestModel() when $default != null:
+        return $default(
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose);
+      case _:
+        return null;
+    }
   }
 }
 
@@ -169,11 +376,10 @@ class _SaveGuestVisitRequestModel implements SaveGuestVisitRequestModel {
       @JsonKey(name: 'identity_type', includeIfNull: false) this.identityType,
       @JsonKey(name: 'identity_number', includeIfNull: false)
       this.identityNumber,
-      @JsonKey(name: 'date') this.date,
-      @JsonKey(name: 'start_time') this.startTime,
+      @JsonKey(name: 'date', includeIfNull: false) this.date,
+      @JsonKey(name: 'start_time', includeIfNull: false) this.startTime,
       @JsonKey(name: 'end_time', includeIfNull: false) this.endTime,
-      @JsonKey(name: 'purpose') this.purpose,
-      @JsonKey(name: 'paraf', includeIfNull: false) this.paraf});
+      @JsonKey(name: 'purpose', includeIfNull: false) this.purpose});
   factory _SaveGuestVisitRequestModel.fromJson(Map<String, dynamic> json) =>
       _$SaveGuestVisitRequestModelFromJson(json);
 
@@ -190,20 +396,17 @@ class _SaveGuestVisitRequestModel implements SaveGuestVisitRequestModel {
   @JsonKey(name: 'identity_number', includeIfNull: false)
   final String? identityNumber;
   @override
-  @JsonKey(name: 'date')
+  @JsonKey(name: 'date', includeIfNull: false)
   final String? date;
   @override
-  @JsonKey(name: 'start_time')
+  @JsonKey(name: 'start_time', includeIfNull: false)
   final String? startTime;
   @override
   @JsonKey(name: 'end_time', includeIfNull: false)
   final String? endTime;
   @override
-  @JsonKey(name: 'purpose')
+  @JsonKey(name: 'purpose', includeIfNull: false)
   final String? purpose;
-  @override
-  @JsonKey(name: 'paraf', includeIfNull: false)
-  final String? paraf;
 
   /// Create a copy of SaveGuestVisitRequestModel
   /// with the given fields replaced by the non-null parameter values.
@@ -236,18 +439,17 @@ class _SaveGuestVisitRequestModel implements SaveGuestVisitRequestModel {
             (identical(other.startTime, startTime) ||
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
-            (identical(other.purpose, purpose) || other.purpose == purpose) &&
-            (identical(other.paraf, paraf) || other.paraf == paraf));
+            (identical(other.purpose, purpose) || other.purpose == purpose));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, visitor, name, identityType,
-      identityNumber, date, startTime, endTime, purpose, paraf);
+      identityNumber, date, startTime, endTime, purpose);
 
   @override
   String toString() {
-    return 'SaveGuestVisitRequestModel(visitor: $visitor, name: $name, identityType: $identityType, identityNumber: $identityNumber, date: $date, startTime: $startTime, endTime: $endTime, purpose: $purpose, paraf: $paraf)';
+    return 'SaveGuestVisitRequestModel(visitor: $visitor, name: $name, identityType: $identityType, identityNumber: $identityNumber, date: $date, startTime: $startTime, endTime: $endTime, purpose: $purpose)';
   }
 }
 
@@ -267,11 +469,10 @@ abstract mixin class _$SaveGuestVisitRequestModelCopyWith<$Res>
       String? identityType,
       @JsonKey(name: 'identity_number', includeIfNull: false)
       String? identityNumber,
-      @JsonKey(name: 'date') String? date,
-      @JsonKey(name: 'start_time') String? startTime,
+      @JsonKey(name: 'date', includeIfNull: false) String? date,
+      @JsonKey(name: 'start_time', includeIfNull: false) String? startTime,
       @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
-      @JsonKey(name: 'purpose') String? purpose,
-      @JsonKey(name: 'paraf', includeIfNull: false) String? paraf});
+      @JsonKey(name: 'purpose', includeIfNull: false) String? purpose});
 }
 
 /// @nodoc
@@ -295,7 +496,6 @@ class __$SaveGuestVisitRequestModelCopyWithImpl<$Res>
     Object? startTime = freezed,
     Object? endTime = freezed,
     Object? purpose = freezed,
-    Object? paraf = freezed,
   }) {
     return _then(_SaveGuestVisitRequestModel(
       visitor: freezed == visitor
@@ -329,10 +529,6 @@ class __$SaveGuestVisitRequestModelCopyWithImpl<$Res>
       purpose: freezed == purpose
           ? _self.purpose
           : purpose // ignore: cast_nullable_to_non_nullable
-              as String?,
-      paraf: freezed == paraf
-          ? _self.paraf
-          : paraf // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

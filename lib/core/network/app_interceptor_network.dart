@@ -55,6 +55,7 @@ class AppInterceptorNetwork extends Interceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     final res = err.response;
     final isUnauthorized = res?.statusCode == 401;
+    final isLogoutRequest = err.requestOptions.path.contains('/auth/logout');
 
     SimpleLogger.httpError(
       err.requestOptions.method,
@@ -63,6 +64,14 @@ class AppInterceptorNetwork extends Interceptor {
       err.message ?? 'Unknown error',
       serverResponse: res?.data,
     );
+
+    // For logout requests, don't try to refresh token - just let it fail
+    if (isUnauthorized && isLogoutRequest) {
+      SimpleLogger.info(
+          '🔓 Logout request with expired token - allowing to proceed');
+      handler.reject(err);
+      return;
+    }
 
     if (isUnauthorized) {
       final existingAccessToken = await Session.getAccessToken();

@@ -1,10 +1,11 @@
 import 'package:fpdart/fpdart.dart';
 
 import 'package:mobile/features/room_booking/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_delete_controller.dart';
+import 'package:mobile/shared/controllers/controller.dart';
 import 'package:mobile/shared/errors/error.dart';
 
-class DeleteRoomBookingController extends BaseDeleteController<String, void> {
+class DeleteRoomBookingController
+    extends GetBaseDeleteController<String, void> {
   final DeleteRoomBookingUsecase _deleteRoomBookingUsecase;
 
   DeleteRoomBookingController(this._deleteRoomBookingUsecase);
@@ -16,9 +17,5 @@ class DeleteRoomBookingController extends BaseDeleteController<String, void> {
   Future<Either<Failure, void>> executeUsecase(String roomBookingId) async {
     return await _deleteRoomBookingUsecase.execute(
         roomBookingId: roomBookingId);
-  }
-
-  Future<void> deleteRoomBooking(String roomBookingId) async {
-    await deleteItem(roomBookingId);
   }
 }

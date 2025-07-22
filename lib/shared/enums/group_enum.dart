@@ -97,6 +97,13 @@ enum GroupEnum {
   static List<GroupEnum> get level4AccessGroups {
     return GroupEnum.values;
   }
+
+  static List<GroupEnum> get level5AccessGroups {
+    return [
+      GroupEnum.student,
+      GroupEnum.laboratoryAssistant,
+    ];
+  }
 }
 
 extension GroupEnumExtension on String? {

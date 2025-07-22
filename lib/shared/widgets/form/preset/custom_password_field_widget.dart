@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-
 import 'package:mobile/shared/enums/password_type_enum.dart';
 import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
@@ -173,11 +171,10 @@ class CustomPasswordFieldWidget extends StatelessWidget {
   /// Examples: regular, confirm, new, current
   final PasswordTypeEnum passwordType;
 
-  /// Reactive boolean for controlling text visibility
+  /// Whether to obscure the password text (controlled by parent, usually via Obx)
   ///
-  /// Uses GetX RxBool for automatic UI updates when visibility changes.
-  /// Should be toggled via onToggleVisibility callback.
-  final RxBool obscureText;
+  /// Pass a bool value. For reactivity, wrap this widget with Obx in the parent and pass controller.rx.value.
+  final bool obscureText;
 
   /// Callback fired when visibility toggle button is pressed
   ///
@@ -209,6 +206,9 @@ class CustomPasswordFieldWidget extends StatelessWidget {
   /// Note: Uses nullable bool for backward compatibility.
   final bool isRequired;
 
+  /// Optional autovalidate mode for this field
+  final AutovalidateMode? autovalidateMode;
+
   const CustomPasswordFieldWidget({
     super.key,
     required this.controller,
@@ -224,30 +224,29 @@ class CustomPasswordFieldWidget extends StatelessWidget {
     this.showLockIcon = true,
     this.showVisibilityToggle = true,
     this.isRequired = false,
+    this.autovalidateMode,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final isObscure = obscureText.value;
-      return CustomTextFormFieldWidget(
-        controller: controller,
-        focusNode: focusNode,
-        onChanged: onChanged,
-        validator: validator,
-        labelText: feature.label(passwordType.labelKey),
-        hintText: feature.hint(passwordType.hintKey),
-        keyboardType: TextInputType.visiblePassword,
-        textInputAction: textInputAction,
-        obscureText: isObscure,
-        prefixIcon: showLockIcon ? _buildLockIcon(isObscure) : null,
-        suffixIcon:
-            showVisibilityToggle ? _buildVisibilityToggle(isObscure) : null,
-        onFieldSubmitted: onFieldSubmitted,
-        requiredField: isRequired,
-        reserveErrorSpace: passwordType == PasswordTypeEnum.confirmation,
-      );
-    });
+    return CustomTextFormFieldWidget(
+      controller: controller,
+      focusNode: focusNode,
+      onChanged: onChanged,
+      validator: validator,
+      labelText: feature.label(passwordType.labelKey),
+      hintText: feature.hint(passwordType.hintKey),
+      keyboardType: TextInputType.visiblePassword,
+      textInputAction: textInputAction,
+      obscureText: obscureText,
+      prefixIcon: showLockIcon ? _buildLockIcon(obscureText) : null,
+      suffixIcon:
+          showVisibilityToggle ? _buildVisibilityToggle(obscureText) : null,
+      onFieldSubmitted: onFieldSubmitted,
+      requiredField: isRequired,
+      reserveErrorSpace: passwordType == PasswordTypeEnum.confirmation,
+      autovalidateMode: autovalidateMode,
+    );
   }
 
   /// Builds the lock icon that reflects current visibility state

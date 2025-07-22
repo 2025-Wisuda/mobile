@@ -8,7 +8,6 @@ enum GuestVisitControllerType {
   fetchGuestVisitDetail,
   deleteGuestVisit,
   guestVisitForm,
-  guestVisitWrapper,
   detailGuestVisit,
 }
 
@@ -100,20 +99,11 @@ class GuestVisitBinding extends Bindings {
     }
   }
 
-  void registerGuestVisitWrapper() {
-    if (!Get.isRegistered<GuestVisitWrapperController>()) {
-      Get.lazyPut<GuestVisitWrapperController>(
-        () => GuestVisitWrapperController(),
-      );
-    }
-  }
-
   void registerAllGuestVisit() {
     registerFetchListGuestVisit();
     registerFetchGuestVisitDetail();
     registerDeleteGuestVisit();
     registerGuestVisitForm();
-    registerGuestVisitWrapper();
   }
 }
 
@@ -195,9 +185,6 @@ class MultiGuestVisitBinding extends GuestVisitBinding {
           break;
         case GuestVisitControllerType.guestVisitForm:
           registerGuestVisitForm();
-          break;
-        case GuestVisitControllerType.guestVisitWrapper:
-          registerGuestVisitWrapper();
           break;
         case GuestVisitControllerType.detailGuestVisit:
           registerFetchGuestVisitDetail();

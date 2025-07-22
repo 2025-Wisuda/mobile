@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobile/features/guest_visit/presentation/controllers/controller.dart';
 import 'package:mobile/features/guest_visit/presentation/widgets/widget.dart';
 import 'package:mobile/shared/extensions/extension.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class UpdateGuestVisitScreen extends StatefulWidget {
   const UpdateGuestVisitScreen({super.key});
@@ -14,42 +15,41 @@ class UpdateGuestVisitScreen extends StatefulWidget {
 }
 
 class _UpdateGuestVisitScreenState extends State<UpdateGuestVisitScreen> {
-  late final GuestVisitFormController formController;
+  late GuestVisitFormController controller;
+  late dynamic guestVisit;
 
   @override
   void initState() {
     super.initState();
-    formController = Get.find<GuestVisitFormController>();
-
-    // Get guest visit data from arguments
+    controller = Get.find<GuestVisitFormController>();
     final arguments = Get.arguments as Map<String, dynamic>?;
-    final guestVisit = arguments?['guestVisit'];
-
+    guestVisit = arguments?['guestVisit'];
     if (guestVisit != null) {
-      _loadInitialData(guestVisit);
+      controller.loadGuestVisitForUpdate(guestVisit);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Update Guest Visit'),
-        backgroundColor: context.surface,
-        elevation: 0,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(52),
+        child: _buildAppBar(context),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: CreateGuestVisitWrapperWidget(c: formController),
-      ),
+      body: SaveGuestVisitWrapperWidget(controller: controller),
     );
   }
 
-  void _loadInitialData(dynamic guestVisit) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        formController.loadGuestVisitForUpdate(guestVisit);
-      }
-    });
+  Widget _buildAppBar(BuildContext context) {
+    return CustomAppBarWithBorder(
+      title: 'updateGuestVisit'.menu(),
+      onBackPressed: () {
+        Get.back();
+        Future.microtask(() {
+          controller.clearForm();
+          controller.resetState();
+        });
+      },
+    );
   }
 }

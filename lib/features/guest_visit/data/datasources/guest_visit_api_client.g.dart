@@ -6,7 +6,7 @@ part of 'guest_visit_api_client.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
 
 class _GuestVisitApiClient implements GuestVisitApiClient {
   _GuestVisitApiClient(this._dio, {this.baseUrl, this.errorLogger});
@@ -30,7 +30,7 @@ class _GuestVisitApiClient implements GuestVisitApiClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/guest_visits/',
+            '/guest-visits',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -62,7 +62,7 @@ class _GuestVisitApiClient implements GuestVisitApiClient {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/guest_visits/${id}/',
+            '/guest-visits/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -84,17 +84,18 @@ class _GuestVisitApiClient implements GuestVisitApiClient {
 
   @override
   Future<BaseResponseModel<GuestVisitModel>> createGuestVisit(
-    SaveGuestVisitRequestModel data,
+    Map<String, dynamic> data,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = data;
+    final _data = <String, dynamic>{};
+    _data.addAll(data);
     final _options = _setStreamType<BaseResponseModel<GuestVisitModel>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/guest_visits/',
+            '/guest-visits',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -117,17 +118,18 @@ class _GuestVisitApiClient implements GuestVisitApiClient {
   @override
   Future<BaseResponseModel<GuestVisitModel>> updateGuestVisit(
     String id,
-    SaveGuestVisitRequestModel data,
+    Map<String, dynamic> data,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = data;
+    final _data = <String, dynamic>{};
+    _data.addAll(data);
     final _options = _setStreamType<BaseResponseModel<GuestVisitModel>>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/guest_visits/${id}/',
+            '/guest-visits/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -157,7 +159,7 @@ class _GuestVisitApiClient implements GuestVisitApiClient {
       Options(method: 'DELETE', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/guest_visits/${id}/',
+            '/guest-visits/${id}',
             queryParameters: queryParameters,
             data: _data,
           )

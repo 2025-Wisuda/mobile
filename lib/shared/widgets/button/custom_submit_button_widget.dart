@@ -71,7 +71,7 @@ enum CustomButtonType {
 ///   textButton: "Save Changes",
 ///   isFormValid: true,
 ///   buttonType: CustomButtonType.elevated,
-///   backgroundColor: Colors.green,
+///   backgroundColor: context.surface,
 ///   borderRadius: 12.0,
 ///   customLoadingWidget: CircularProgressIndicator(strokeWidth: 2),
 /// )

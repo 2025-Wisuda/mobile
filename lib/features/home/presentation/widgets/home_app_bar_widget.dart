@@ -1,27 +1,23 @@
-import 'package:flutter/material.dart';
-
 import 'package:easy_localization/easy_localization.dart' as i18n;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:mobile/core/constants/constant.dart';
+import 'package:mobile/core/routes/route.dart';
 import 'package:mobile/features/menu/presentation/controllers/controller.dart';
 import 'package:mobile/features/user/domain/entities/entity.dart';
 import 'package:mobile/features/user/presentation/controllers/controller.dart';
 import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
-class HomeAppBarWidget extends StatelessWidget {
+class HomeAppBarWidget extends GetView<UserProfileController> {
   const HomeAppBarWidget({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final userProfileController = Get.find<UserProfileController>();
-    final navigationController = Get.find<NavigationController>();
-
     return Obx(() {
-      final user = userProfileController.userProfile;
+      final user = controller.userProfile;
 
       return SliverAppBar(
         automaticallyImplyLeading: false,
@@ -33,7 +29,7 @@ class HomeAppBarWidget extends StatelessWidget {
             spacing: 8,
             children: [
               CustomProfilePictureWidget(
-                onTap: () => navigationController.changeIndex(3),
+                onTap: () => Get.find<NavigationController>().changeIndex(3),
                 imageUrl: user?.avatar ?? '',
                 radiusImage: 52,
                 firstName: user?.firstName ?? '',
@@ -56,11 +52,9 @@ class HomeAppBarWidget extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              IconButton(
-                onPressed: () {},
-                icon: customImageIconWidget(
-                  imagePath: IconConstant.bellOutlineIcon,
-                ),
+              NotificationBadgeWidget(
+                onTap: () => Get.toNamed(AppRoute.notificationList),
+                imagePath: IconConstant.bellOutlineIcon,
               ),
             ],
           ),

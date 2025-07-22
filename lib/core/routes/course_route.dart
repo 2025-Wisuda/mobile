@@ -98,6 +98,7 @@ final courseRoutes = [
         CourseControllerType.courseSessionForm,
         CourseControllerType.partialUpdateCourseSession,
         CourseControllerType.deleteCourseSession,
+        CourseControllerType.fetchMyCourseSessionAttendance,
       ],
       userControllers: [
         UserControllerType.fetchUserProfile,
@@ -135,4 +136,36 @@ final courseRoutes = [
       userControllers: [UserControllerType.fetchListUser],
     ),
   ),
+  GetPage(
+    name: AppRoute.courseSessionAttendanceList,
+    page: () {
+      return CourseSessionAttendanceScreen();
+    },
+    binding: MultiCourseBinding(
+      controllers: [
+        CourseControllerType.fetchListCourseSessionAttendance,
+        CourseControllerType.fetchCourseSessionAttendanceDetail,
+      ],
+    ),
+  ),
+
+  // GetPage(
+  //   name: AppRoute.manualOverrideCourseSessionAttendance,
+  //   page: () {
+  //     final courseId = Get.parameters['courseId'] ?? '';
+  //     final courseSessionId = Get.parameters['courseSessionId'] ?? '';
+  //     final attendanceId = Get.parameters['attendanceId'] ?? '';
+  //     return ManualOverrideCourseSessionAttendanceScreen(
+  //       courseId: courseId,
+  //       courseSessionId: courseSessionId,
+  //       attendanceId: attendanceId,
+  //     );
+  //   },
+  //   binding: MultiCourseBinding(
+  //     controllers: [
+  //       CourseControllerType.manualOverrideAttendance,
+  //       CourseControllerType.fetchCourseSessionAttendanceDetail,
+  //     ],
+  //   ),
+  // ),
 ];

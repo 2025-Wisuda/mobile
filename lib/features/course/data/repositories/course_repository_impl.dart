@@ -1,9 +1,9 @@
 import 'package:fpdart/fpdart.dart';
 
-import 'package:mobile/features/course/data/datasources/course_local_datasource.dart';
-import 'package:mobile/features/course/data/datasources/course_remote_datasource.dart';
-import 'package:mobile/features/course/data/models/course_filter_params_model.dart';
-import 'package:mobile/features/course/data/models/course_model_extension.dart';
+import 'package:mobile/features/course/data/datasources/base/course_local_datasource.dart';
+import 'package:mobile/features/course/data/datasources/base/course_remote_datasource.dart';
+import 'package:mobile/features/course/data/models/base/course_filter_params_model.dart';
+import 'package:mobile/features/course/data/models/base/course_model_extension.dart';
 import 'package:mobile/features/course/domain/entities/entity.dart';
 import 'package:mobile/features/course/domain/repositories/course_repository.dart';
 import 'package:mobile/shared/entities/entity.dart';

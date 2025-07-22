@@ -46,7 +46,7 @@ class _ExpandableMyLabScheduleWidgetState
               ),
               child: Text(
                 expanded ? seeLess : '$seeMore (${widget.schedules.length})',
-                style: context.bodyMediumW(500),
+                style: context.bodySmallW(500),
               ),
             ),
           ),

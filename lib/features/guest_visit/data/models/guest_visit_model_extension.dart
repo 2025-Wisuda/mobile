@@ -4,16 +4,14 @@ extension GuestVisitModelExtension on GuestVisitModel {
   GuestVisitEntity toEntity() {
     return GuestVisitEntity(
       id: id,
-      visitor: visitor?.toEntity(),
+      visitor: visitor,
       name: name,
       identityType: identityType,
       identityNumber: identityNumber,
-      date: date != null ? DateTime.tryParse(date!) : null,
+      date: date,
       startTime: startTime,
       endTime: endTime,
       purpose: purpose,
-      paraf: paraf,
-      staff: staff?.toEntity(),
       nameDisplay: nameDisplay,
       identityDisplay: identityDisplay,
       canEdit: _calculateCanEdit(),
@@ -35,7 +33,6 @@ extension GuestVisitModelExtension on GuestVisitModel {
       }
     }
 
-    // If no createdAt, trust backend flag or default to true for new items
     return canEdit ?? true;
   }
 }

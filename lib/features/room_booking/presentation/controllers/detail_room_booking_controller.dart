@@ -7,7 +7,7 @@ import 'package:mobile/shared/entities/entity.dart';
 import 'package:mobile/shared/errors/error.dart';
 
 class DetailRoomBookingController
-    extends BaseDetailController<RoomBookingEntity, String> {
+    extends GetBaseDetailController<RoomBookingEntity, String> {
   final FetchRoomBookingDetailUsecase _fetchRoomBookingDetailUsecase;
 
   DetailRoomBookingController(

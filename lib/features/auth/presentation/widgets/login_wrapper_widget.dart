@@ -1,61 +1,45 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:mobile/core/core.dart';
 import 'package:mobile/features/auth/presentation/controllers/controller.dart';
 import 'package:mobile/features/auth/presentation/widgets/widget.dart';
 import 'package:mobile/features/user/user.dart';
-import 'package:mobile/shared/enums/enum.dart';
-import 'package:mobile/shared/extensions/extension.dart';
-import 'package:mobile/shared/widgets/layout/layout.dart';
-import 'package:mobile/shared/widgets/state/custom_full_screen_loading_widget.dart';
+import 'package:mobile/features/notification/notification.dart';
+import 'package:mobile/shared/shared.dart';
 
 class LoginWrapperWidget extends StatelessWidget {
-  const LoginWrapperWidget({super.key});
+  final LoginController controller;
+  const LoginWrapperWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    final loginController = Get.find<LoginController>();
-    return CustomPrimaryLayoutWidget(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 8,
-        children: _buildContent(context, loginController),
-      ),
-    );
-  }
-
-  List<Widget> _buildContent(BuildContext context, LoginController c) {
-    return [
-      const LoginAppBarWidget(),
+    return Column(children: [
       Form(
-        key: c.formKey,
-        autovalidateMode: AutovalidateMode.disabled,
+        key: controller.formKey,
+        autovalidateMode: AutovalidateMode.always,
         child: Column(
           spacing: 8,
           children: [
-            ...loginFormWidget(c),
+            ...loginFormWidget(controller),
           ],
         ),
       ),
       const SizedBox(height: 12),
-      LoginButtonWidget(c: c),
-      _buildStateHandler(context, c),
-    ];
+      _buildButton(context),
+      _buildStateHandler(context),
+    ]);
   }
 
-  Widget _buildStateHandler(BuildContext context, LoginController c) {
+  Widget _buildStateHandler(BuildContext context) {
     return Obx(() {
-      final state = c.state;
-      final errorMessage = c.errorMessage;
+      final state = controller.state;
 
       switch (state) {
         case SubmitStateEnum.success:
           _handleSuccessState(context);
         case SubmitStateEnum.failure:
-          _handleFailureState(context, errorMessage ?? '', c);
+          _handleFailureState(context);
         default:
       }
 
@@ -74,26 +58,63 @@ class LoginWrapperWidget extends StatelessWidget {
         if (Get.isRegistered<UserProfileController>()) {
           Get.find<UserProfileController>().fetchUserProfile();
         }
+
+        // Register FCM device after successful login
+        await _registerFcmDevice();
+
         await Future.delayed(const Duration(milliseconds: 500));
         if (context.mounted) {
           CustomFullScreenLoadingWidget.hide(context);
         }
       }
 
-      Get.offAllNamed(AppRoute.home);
+      final accessToken = await Session.getAccessToken();
+      if (accessToken != null && accessToken.isNotEmpty) {
+        Get.offAllNamed(AppRoute.home);
+      } else {
+        Get.offAllNamed(AppRoute.splash);
+      }
     });
   }
 
-  void _handleFailureState(
-      BuildContext context, String errorMessage, LoginController c) {
+  Future<void> _registerFcmDevice() async {
+    try {
+      if (Get.isRegistered<FcmController>()) {
+        final fcmController = Get.find<FcmController>();
+        final fcm = Get.find<FirebaseMessaging>();
+        final token = await fcm.getToken();
+        if (token != null) {
+          await fcmController.registerDevice(registrationToken: token);
+        }
+      }
+    } catch (e) {
+      // Log error but don't fail login
+      SimpleLogger.error('FCM registration error during login: $e');
+    }
+  }
+
+  void _handleFailureState(BuildContext context) {
     context.showCustomSnackbar(
-      message: errorMessage,
+      message: controller.stateDescription,
       type: SnackbarType.error,
     );
 
     Future.microtask(() {
-      c.cleanForm();
-      c.resetState();
+      controller.cleanForm();
+      controller.resetState();
+      controller.update();
+    });
+  }
+
+  Widget _buildButton(BuildContext context) {
+    return Obx(() {
+      final isFormValid = controller.isFormValid.value;
+      return CustomSubmitButtonWidget(
+        isFormValid: isFormValid,
+        state: controller.state,
+        onPressed: isFormValid ? () => controller.login() : null,
+        textButton: 'auth'.message('login'),
+      );
     });
   }
 }

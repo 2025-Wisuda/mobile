@@ -22,6 +22,10 @@ enum CourseControllerType {
   courseSessionForm,
   detailCourseSession,
   courseSessionWrapper,
+  fetchListCourseSessionAttendance,
+  fetchCourseSessionAttendanceDetail,
+  fetchMyCourseSessionAttendance,
+  manualOverrideAttendance,
 }
 
 class CourseBinding extends Bindings {
@@ -49,6 +53,11 @@ class CourseBinding extends Bindings {
           () => CourseSessionApiClient(Get.find()));
     }
 
+    if (!Get.isRegistered<CourseSessionAttendanceApiClient>()) {
+      Get.lazyPut<CourseSessionAttendanceApiClient>(
+          () => CourseSessionAttendanceApiClient(Get.find()));
+    }
+
     if (!Get.isRegistered<CourseRemoteDataSource>()) {
       Get.lazyPut<CourseRemoteDataSource>(
         () => CourseRemoteDataSourceImpl(
@@ -63,6 +72,13 @@ class CourseBinding extends Bindings {
       );
     }
 
+    if (!Get.isRegistered<CourseSessionAttendanceRemoteDataSource>()) {
+      Get.lazyPut<CourseSessionAttendanceRemoteDataSource>(
+        () => CourseSessionAttendanceRemoteDataSourceImpl(
+            Get.find<CourseSessionAttendanceApiClient>()),
+      );
+    }
+
     if (!Get.isRegistered<CourseLocalDatasource>()) {
       Get.lazyPut<CourseLocalDatasource>(
         () => CourseLocalDatasourceImpl(Get.find()),
@@ -71,8 +87,10 @@ class CourseBinding extends Bindings {
 
     if (!Get.isRegistered<CourseRepository>()) {
       Get.lazyPut<CourseRepository>(
-        () => CourseRepositoryImpl(Get.find<CourseRemoteDataSource>(),
-            Get.find<CourseLocalDatasource>()),
+        () => CourseRepositoryImpl(
+          Get.find<CourseRemoteDataSource>(),
+          Get.find<CourseLocalDatasource>(),
+        ),
       );
     }
 
@@ -80,6 +98,13 @@ class CourseBinding extends Bindings {
       Get.lazyPut<CourseSessionRepository>(
         () => CourseSessionRepositoryImpl(
             Get.find<CourseSessionRemoteDataSource>()),
+      );
+    }
+
+    if (!Get.isRegistered<CourseSessionAttendanceRepository>()) {
+      Get.lazyPut<CourseSessionAttendanceRepository>(
+        () => CourseSessionAttendanceRepositoryImpl(
+            Get.find<CourseSessionAttendanceRemoteDataSource>()),
       );
     }
   }
@@ -244,7 +269,8 @@ class CourseBinding extends Bindings {
 
     final labScheduleBinding = LabScheduleBinding();
     labScheduleBinding.dependencies();
-    labScheduleBinding.registerLabAvailability();
+    labScheduleBinding
+        .registerLabAvailabilityWithTag('course_session_time_availability');
 
     if (!Get.isRegistered<CourseSessionFormController>()) {
       Get.lazyPut<CourseSessionFormController>(
@@ -270,6 +296,78 @@ class CourseBinding extends Bindings {
     registerDeleteCourseSession();
     registerCourseSessionForm();
     registerCourseSessionWrapper();
+  }
+
+  void registerFetchListCourseSessionAttendance() {
+    if (!Get.isRegistered<FetchListCourseSessionAttendancesUsecase>()) {
+      Get.lazyPut<FetchListCourseSessionAttendancesUsecase>(
+        () => FetchListCourseSessionAttendancesUsecase(
+            Get.find<CourseSessionAttendanceRepository>()),
+      );
+    }
+
+    if (!Get.isRegistered<ListCourseSessionAttendanceController>()) {
+      Get.lazyPut<ListCourseSessionAttendanceController>(
+        () => ListCourseSessionAttendanceController(
+          Get.find<FetchListCourseSessionAttendancesUsecase>(),
+        ),
+      );
+    }
+  }
+
+  void registerFetchCourseSessionAttendanceDetail() {
+    if (!Get.isRegistered<FetchCourseSessionAttendanceDetailUsecase>()) {
+      Get.lazyPut<FetchCourseSessionAttendanceDetailUsecase>(
+        () => FetchCourseSessionAttendanceDetailUsecase(
+            Get.find<CourseSessionAttendanceRepository>()),
+      );
+    }
+
+    if (!Get.isRegistered<DetailCourseSessionAttendanceController>()) {
+      Get.lazyPut<DetailCourseSessionAttendanceController>(
+        () => DetailCourseSessionAttendanceController(
+            Get.find<FetchCourseSessionAttendanceDetailUsecase>()),
+      );
+    }
+  }
+
+  void registerFetchMyCourseSessionAttendance() {
+    if (!Get.isRegistered<FetchMyCourseSessionAttendanceUsecase>()) {
+      Get.lazyPut<FetchMyCourseSessionAttendanceUsecase>(
+        () => FetchMyCourseSessionAttendanceUsecase(
+            Get.find<CourseSessionAttendanceRepository>()),
+      );
+    }
+
+    if (!Get.isRegistered<MyCourseSessionAttendanceController>()) {
+      Get.lazyPut<MyCourseSessionAttendanceController>(
+        () => MyCourseSessionAttendanceController(
+            Get.find<FetchMyCourseSessionAttendanceUsecase>()),
+      );
+    }
+  }
+
+  void registerManualOverrideAttendance() {
+    if (!Get.isRegistered<ManualOverrideCourseSessionAttendanceUsecase>()) {
+      Get.lazyPut<ManualOverrideCourseSessionAttendanceUsecase>(
+        () => ManualOverrideCourseSessionAttendanceUsecase(
+            Get.find<CourseSessionAttendanceRepository>()),
+      );
+    }
+
+    if (!Get.isRegistered<ManualOverrideCourseSessionAttendanceController>()) {
+      Get.lazyPut<ManualOverrideCourseSessionAttendanceController>(
+        () => ManualOverrideCourseSessionAttendanceController(
+            Get.find<ManualOverrideCourseSessionAttendanceUsecase>()),
+      );
+    }
+  }
+
+  void registerAllCourseSessionAttendance() {
+    registerFetchListCourseSessionAttendance();
+    registerFetchCourseSessionAttendanceDetail();
+    registerFetchMyCourseSessionAttendance();
+    registerManualOverrideAttendance();
   }
 }
 
@@ -377,6 +475,38 @@ class DeleteCourseSessionBinding extends CourseBinding {
   }
 }
 
+class ListCourseSessionAttendanceBinding extends CourseBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerFetchListCourseSessionAttendance();
+  }
+}
+
+class DetailCourseSessionAttendanceBinding extends CourseBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerFetchCourseSessionAttendanceDetail();
+  }
+}
+
+class MyCourseSessionAttendanceBinding extends CourseBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerFetchMyCourseSessionAttendance();
+  }
+}
+
+class ManualOverrideCourseSessionAttendanceBinding extends CourseBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerManualOverrideAttendance();
+  }
+}
+
 class MultiCourseBinding extends CourseBinding {
   final List<CourseControllerType> controllers;
   final List<UserControllerType>? userControllers;
@@ -442,6 +572,18 @@ class MultiCourseBinding extends CourseBinding {
           break;
         case CourseControllerType.courseSessionWrapper:
           registerCourseSessionWrapper();
+          break;
+        case CourseControllerType.fetchListCourseSessionAttendance:
+          registerFetchListCourseSessionAttendance();
+          break;
+        case CourseControllerType.fetchCourseSessionAttendanceDetail:
+          registerFetchCourseSessionAttendanceDetail();
+          break;
+        case CourseControllerType.fetchMyCourseSessionAttendance:
+          registerFetchMyCourseSessionAttendance();
+          break;
+        case CourseControllerType.manualOverrideAttendance:
+          registerManualOverrideAttendance();
           break;
       }
     }
@@ -536,6 +678,18 @@ class CourseWithUserBinding extends CourseBinding {
           break;
         case CourseControllerType.courseSessionWrapper:
           registerCourseSessionWrapper();
+          break;
+        case CourseControllerType.fetchListCourseSessionAttendance:
+          registerFetchListCourseSessionAttendance();
+          break;
+        case CourseControllerType.fetchCourseSessionAttendanceDetail:
+          registerFetchCourseSessionAttendanceDetail();
+          break;
+        case CourseControllerType.fetchMyCourseSessionAttendance:
+          registerFetchMyCourseSessionAttendance();
+          break;
+        case CourseControllerType.manualOverrideAttendance:
+          registerManualOverrideAttendance();
           break;
       }
     }

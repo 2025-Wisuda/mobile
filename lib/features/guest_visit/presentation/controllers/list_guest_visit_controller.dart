@@ -1,25 +1,36 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 
+import 'package:mobile/features/guest_visit/data/data.dart';
 import 'package:mobile/features/guest_visit/data/models/model.dart';
 import 'package:mobile/features/guest_visit/domain/entities/entity.dart';
 import 'package:mobile/features/guest_visit/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_list_controller.dart';
+import 'package:mobile/shared/controllers/get_base_list_controller.dart';
 import 'package:mobile/shared/entities/base_list_response_entity.dart';
 import 'package:mobile/shared/errors/failure.dart';
+import 'package:mobile/shared/extensions/extension.dart';
+import 'package:mobile/shared/helpers/helper.dart';
 
-class ListGuestVisitController
-    extends BaseListController<GuestVisitEntity, GuestVisitFilterParamsModel> {
+class ListGuestVisitController extends GetBaseListController<GuestVisitEntity,
+    GuestVisitFilterParamsModel> {
   final FetchListGuestVisitUsecase _fetchListGuestVisitUsecase;
 
   ListGuestVisitController(this._fetchListGuestVisitUsecase) {
-    enableSearch();
+    hasSearchEnabled.value = true;
   }
 
   @override
-  String get baseStateKey => 'guest_visit';
+  void onInit() {
+    super.onInit();
+    initializeControllers(['${baseStateKey}SearchController']);
+  }
 
-  RxList<GuestVisitEntity> get guestVisitList => items;
+  @override
+  String get baseStateKey => 'guestVisit';
+
+  RxList<GuestVisitEntity> get visitList => items;
+
+  final selectedDate = RxnString();
 
   @override
   Future<Either<Failure, BaseListResponseEntity<GuestVisitEntity>>>
@@ -38,33 +49,34 @@ class ListGuestVisitController
       page: page,
       pageSize: pageSize,
       search: search,
-      ordering: filters?['ordering'] as String?,
       date: filters?['date'] as String?,
-      dateFrom: filters?['dateFrom'] as String?,
-      dateTo: filters?['dateTo'] as String?,
-      name: filters?['name'] as String?,
-      purpose: filters?['purpose'] as String?,
     );
   }
 
-  Future<void> fetchGuestVisitList({
-    bool isLoadMore = false,
-    int? page,
-    String? ordering,
-    String? date,
-    String? dateFrom,
-    String? dateTo,
-    String? name,
-    String? purpose,
-  }) {
-    final filters = <String, dynamic>{};
-    if (ordering != null) filters['ordering'] = ordering;
-    if (date != null) filters['date'] = date;
-    if (dateFrom != null) filters['dateFrom'] = dateFrom;
-    if (dateTo != null) filters['dateTo'] = dateTo;
-    if (name != null) filters['name'] = name;
-    if (purpose != null) filters['purpose'] = purpose;
+  void setDateFilter(String date) {
+    selectedDate.value = date;
+    fetchList(filters: {
+      if (date.isNotEmpty) 'date': date,
+    });
+  }
 
-    return fetchList(filters: filters, isLoadMore: isLoadMore);
+  bool get hasFiltersApplied => selectedDate.value != null;
+
+  String get filtersDescription {
+    final parts = <String>[];
+    if (selectedDate.value != null) {
+      parts.add(
+          '${'guestVisit'.label('date')}: ${DateHelper.formatDayMonthYear(date: DateTime.tryParse(selectedDate.value!))}');
+    }
+    return parts.join(' • ');
+  }
+
+  @override
+  Future<void> clearFilters() async {
+    selectedDate.value = null;
+    if (hasSearchEnabled.value) {
+      setControllerValue('${baseStateKey}SearchController', '');
+    }
+    await fetchList();
   }
 }

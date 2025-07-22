@@ -12,7 +12,6 @@ class ChangePasswordInstructionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ChangePasswordController>(builder: (controller) {
       final newPassword = controller.getControllerValue('newPassword');
-      // final confirmPassword = controller.getControllerValue('confirmPassword');
       return Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,13 +42,6 @@ class ChangePasswordInstructionWidget extends StatelessWidget {
             'auth'.message('passwordSpecialChar'),
             RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(newPassword),
           ),
-          // _buildRequirementItem(
-          //   context,
-          //   'auth'.message('passwordMatch'),
-          //   newPassword.isNotEmpty &&
-          //       confirmPassword.isNotEmpty &&
-          //       newPassword == confirmPassword,
-          // ),
         ],
       );
     });

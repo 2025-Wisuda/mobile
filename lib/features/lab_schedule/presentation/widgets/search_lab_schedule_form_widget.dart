@@ -7,36 +7,39 @@ import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
 class SearchLabScheduleFormWidget extends StatelessWidget {
-  const SearchLabScheduleFormWidget({super.key});
+  final LabScheduleWrapperController controller;
+  const SearchLabScheduleFormWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    final wrapperController =
-        Get.find<LabScheduleWrapperController>(tag: 'search');
     return Obx(() {
-      final isMySchedule = wrapperController.isMySchedule.value;
-      final c = isMySchedule
+      final activeController = controller.isMySchedule.value
           ? Get.find<MyLabScheduleController>(tag: 'search')
           : Get.find<ListLabScheduleController>(tag: 'search');
 
-      final key = '${c.baseStateKey}SearchController';
+      final key = '${activeController.baseStateKey}SearchController';
 
       return SizedBox(
         height: 44,
         child: CustomSearchFormWidget(
           autoFocus: true,
-          controller: c.getController(key),
-          focusNode: c.getFocusNode(key),
+          controller: activeController.getController(key),
+          focusNode: activeController.getFocusNode(key),
           hintText: 'labSchedule'.message('searchPlaceholder'),
           keyboardType: TextInputType.text,
           onChanged: (value) {
-            c.search(value);
+            activeController.setControllerValue(key, value);
+
+            if (value.isEmpty) {
+              controller.resetAll();
+            } else {
+              activeController.fetchList(filters: {'search': value});
+            }
           },
           trailingIcon: [
             IconButton(
               onPressed: () {
-                c.cleanForm();
-                c.resetState();
+                controller.resetAll();
               },
               icon: Icon(
                 Icons.close,

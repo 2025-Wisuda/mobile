@@ -11,11 +11,10 @@ abstract class SaveGuestVisitRequestModel with _$SaveGuestVisitRequestModel {
     @JsonKey(name: 'identity_type', includeIfNull: false) String? identityType,
     @JsonKey(name: 'identity_number', includeIfNull: false)
     String? identityNumber,
-    @JsonKey(name: 'date') String? date,
-    @JsonKey(name: 'start_time') String? startTime,
+    @JsonKey(name: 'date', includeIfNull: false) String? date,
+    @JsonKey(name: 'start_time', includeIfNull: false) String? startTime,
     @JsonKey(name: 'end_time', includeIfNull: false) String? endTime,
-    @JsonKey(name: 'purpose') String? purpose,
-    @JsonKey(name: 'paraf', includeIfNull: false) String? paraf,
+    @JsonKey(name: 'purpose', includeIfNull: false) String? purpose,
   }) = _SaveGuestVisitRequestModel;
 
   factory SaveGuestVisitRequestModel.fromJson(Map<String, dynamic> json) =>

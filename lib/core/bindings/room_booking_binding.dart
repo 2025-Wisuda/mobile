@@ -23,28 +23,31 @@ class RoomBookingBinding extends Bindings {
     CoreBinding.ensureCoreRegistered();
 
     if (!Get.isRegistered<RoomBookingApiClient>()) {
-      Get.lazyPut<RoomBookingApiClient>(() => RoomBookingApiClient(Get.find()));
+      Get.put<RoomBookingApiClient>(RoomBookingApiClient(Get.find()),
+          permanent: true);
     }
 
     if (!Get.isRegistered<RoomBookingRemoteDataSource>()) {
-      Get.lazyPut<RoomBookingRemoteDataSource>(
-        () => RoomBookingRemoteDataSourceImpl(
+      Get.put<RoomBookingRemoteDataSource>(
+        RoomBookingRemoteDataSourceImpl(
             Get.find<RoomBookingApiClient>(), Get.find(), Get.find()),
+        permanent: true,
       );
     }
 
     if (!Get.isRegistered<RoomBookingRepository>()) {
-      Get.lazyPut<RoomBookingRepository>(
-        () =>
-            RoomBookingRepositoryImpl(Get.find<RoomBookingRemoteDataSource>()),
+      Get.put<RoomBookingRepository>(
+        RoomBookingRepositoryImpl(Get.find<RoomBookingRemoteDataSource>()),
+        permanent: true,
       );
     }
   }
 
   void registerFetchListRoomBooking() {
     if (!Get.isRegistered<FetchListRoomBookingUsecase>()) {
-      Get.lazyPut<FetchListRoomBookingUsecase>(
-        () => FetchListRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+      Get.put<FetchListRoomBookingUsecase>(
+        FetchListRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+        permanent: true,
       );
     }
     if (!Get.isRegistered<ListRoomBookingController>()) {
@@ -57,8 +60,9 @@ class RoomBookingBinding extends Bindings {
 
   void registerFetchRoomBookingDetail() {
     if (!Get.isRegistered<FetchRoomBookingDetailUsecase>()) {
-      Get.lazyPut<FetchRoomBookingDetailUsecase>(
-        () => FetchRoomBookingDetailUsecase(Get.find<RoomBookingRepository>()),
+      Get.put<FetchRoomBookingDetailUsecase>(
+        FetchRoomBookingDetailUsecase(Get.find<RoomBookingRepository>()),
+        permanent: true,
       );
     }
     if (!Get.isRegistered<DetailRoomBookingController>()) {
@@ -71,24 +75,27 @@ class RoomBookingBinding extends Bindings {
 
   void registerCreateRoomBooking() {
     if (!Get.isRegistered<CreateRoomBookingUsecase>()) {
-      Get.lazyPut<CreateRoomBookingUsecase>(
-        () => CreateRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+      Get.put<CreateRoomBookingUsecase>(
+        CreateRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+        permanent: true,
       );
     }
   }
 
   void registerUpdateRoomBooking() {
     if (!Get.isRegistered<UpdateRoomBookingUsecase>()) {
-      Get.lazyPut<UpdateRoomBookingUsecase>(
-        () => UpdateRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+      Get.put<UpdateRoomBookingUsecase>(
+        UpdateRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+        permanent: true,
       );
     }
   }
 
   void registerDeleteRoomBooking() {
     if (!Get.isRegistered<DeleteRoomBookingUsecase>()) {
-      Get.lazyPut<DeleteRoomBookingUsecase>(
-        () => DeleteRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+      Get.put<DeleteRoomBookingUsecase>(
+        DeleteRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+        permanent: true,
       );
     }
     if (!Get.isRegistered<DeleteRoomBookingController>()) {
@@ -100,13 +107,15 @@ class RoomBookingBinding extends Bindings {
 
   void registerApproveRoomBooking() {
     if (!Get.isRegistered<ApproveRoomBookingUsecase>()) {
-      Get.lazyPut<ApproveRoomBookingUsecase>(
-        () => ApproveRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+      Get.put<ApproveRoomBookingUsecase>(
+        ApproveRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+        permanent: true,
       );
     }
     if (!Get.isRegistered<RejectRoomBookingUsecase>()) {
-      Get.lazyPut<RejectRoomBookingUsecase>(
-        () => RejectRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+      Get.put<RejectRoomBookingUsecase>(
+        RejectRoomBookingUsecase(Get.find<RoomBookingRepository>()),
+        permanent: true,
       );
     }
     if (!Get.isRegistered<ApproveRoomBookingController>()) {
@@ -130,6 +139,14 @@ class RoomBookingBinding extends Bindings {
         ),
       );
     }
+  }
+}
+
+class RoomBookingDetailBinding extends RoomBookingBinding {
+  @override
+  void dependencies() {
+    super.dependencies();
+    registerFetchRoomBookingDetail();
   }
 }
 

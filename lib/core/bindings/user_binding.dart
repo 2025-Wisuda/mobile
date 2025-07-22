@@ -64,9 +64,9 @@ class UserBinding extends Bindings {
       Get.lazyPut<FetchListUserUsecase>(
           () => FetchListUserUsecase(Get.find<UserRepository>()));
     }
-    if (!Get.isRegistered<FetchListUserController>()) {
-      Get.lazyPut<FetchListUserController>(
-          () => FetchListUserController(Get.find<FetchListUserUsecase>()));
+    if (!Get.isRegistered<ListUserController>()) {
+      Get.lazyPut<ListUserController>(
+          () => ListUserController(Get.find<FetchListUserUsecase>()));
     }
   }
 
@@ -75,9 +75,9 @@ class UserBinding extends Bindings {
       Get.lazyPut<FetchUserDetailUsecase>(
           () => FetchUserDetailUsecase(Get.find<UserRepository>()));
     }
-    if (!Get.isRegistered<FetchUserDetailController>()) {
-      Get.lazyPut<FetchUserDetailController>(
-          () => FetchUserDetailController(Get.find<FetchUserDetailUsecase>()));
+    if (!Get.isRegistered<DetailUserController>()) {
+      Get.lazyPut<DetailUserController>(
+          () => DetailUserController(Get.find<FetchUserDetailUsecase>()));
     }
   }
 

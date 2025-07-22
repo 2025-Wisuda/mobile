@@ -13,17 +13,17 @@ abstract class AuthApiClient {
     ParseErrorLogger? errorLogger,
   }) = _AuthApiClient;
 
-  @POST("/auth/login")
+  @POST('/auth/login')
   Future<LoginResponseModel> login(@Body() Map<String, dynamic> data);
 
-  @POST("/auth/refresh-token")
+  @POST('/auth/refresh-token')
   Future<RefreshTokenResponseModel> refreshToken(
     @Body() Map<String, dynamic> data,
   );
 
-  @POST("/auth/change-password")
+  @POST('/auth/change-password')
   Future<void> changePassword(@Body() Map<String, dynamic> data);
 
-  @POST("/api/v1/auth/logout")
+  @POST('/auth/logout')
   Future<void> logout(@Body() Map<String, dynamic> data);
 }

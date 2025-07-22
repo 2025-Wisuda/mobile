@@ -38,6 +38,7 @@ class CustomTertiaryAppBarWidget extends StatelessWidget {
   final double elevation;
   final String? titleText;
   final bool showBackButton;
+  final VoidCallback? onBackPressed;
 
   const CustomTertiaryAppBarWidget({
     super.key,
@@ -53,6 +54,7 @@ class CustomTertiaryAppBarWidget extends StatelessWidget {
     this.elevation = 0,
     this.titleText,
     this.showBackButton = true,
+    this.onBackPressed,
   });
 
   @override
@@ -60,7 +62,7 @@ class CustomTertiaryAppBarWidget extends StatelessWidget {
     return SliverAppBar(
       leading: showBackButton
           ? IconButton(
-              onPressed: () => Get.back(),
+              onPressed: onBackPressed ?? () => Get.back(),
               icon: const Icon(Icons.arrow_back_ios_new_rounded),
               iconSize: 18,
             )

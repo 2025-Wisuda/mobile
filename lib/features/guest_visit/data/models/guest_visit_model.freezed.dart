@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -18,7 +17,7 @@ mixin _$GuestVisitModel {
   @JsonKey(name: 'id')
   String? get id;
   @JsonKey(name: 'visitor')
-  UserModel? get visitor;
+  String? get visitor;
   @JsonKey(name: 'name')
   String? get name;
   @JsonKey(name: 'identity_type')
@@ -33,10 +32,6 @@ mixin _$GuestVisitModel {
   String? get endTime;
   @JsonKey(name: 'purpose')
   String? get purpose;
-  @JsonKey(name: 'paraf')
-  String? get paraf;
-  @JsonKey(name: 'staff')
-  UserModel? get staff;
   @JsonKey(name: 'name_display')
   String? get nameDisplay;
   @JsonKey(name: 'identity_display')
@@ -78,8 +73,6 @@ mixin _$GuestVisitModel {
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
             (identical(other.purpose, purpose) || other.purpose == purpose) &&
-            (identical(other.paraf, paraf) || other.paraf == paraf) &&
-            (identical(other.staff, staff) || other.staff == staff) &&
             (identical(other.nameDisplay, nameDisplay) ||
                 other.nameDisplay == nameDisplay) &&
             (identical(other.identityDisplay, identityDisplay) ||
@@ -106,8 +99,6 @@ mixin _$GuestVisitModel {
       startTime,
       endTime,
       purpose,
-      paraf,
-      staff,
       nameDisplay,
       identityDisplay,
       canEdit,
@@ -117,7 +108,7 @@ mixin _$GuestVisitModel {
 
   @override
   String toString() {
-    return 'GuestVisitModel(id: $id, visitor: $visitor, name: $name, identityType: $identityType, identityNumber: $identityNumber, date: $date, startTime: $startTime, endTime: $endTime, purpose: $purpose, paraf: $paraf, staff: $staff, nameDisplay: $nameDisplay, identityDisplay: $identityDisplay, canEdit: $canEdit, createdBy: $createdBy, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'GuestVisitModel(id: $id, visitor: $visitor, name: $name, identityType: $identityType, identityNumber: $identityNumber, date: $date, startTime: $startTime, endTime: $endTime, purpose: $purpose, nameDisplay: $nameDisplay, identityDisplay: $identityDisplay, canEdit: $canEdit, createdBy: $createdBy, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
@@ -129,7 +120,7 @@ abstract mixin class $GuestVisitModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'visitor') UserModel? visitor,
+      @JsonKey(name: 'visitor') String? visitor,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'identity_type') String? identityType,
       @JsonKey(name: 'identity_number') String? identityNumber,
@@ -137,8 +128,6 @@ abstract mixin class $GuestVisitModelCopyWith<$Res> {
       @JsonKey(name: 'start_time') String? startTime,
       @JsonKey(name: 'end_time') String? endTime,
       @JsonKey(name: 'purpose') String? purpose,
-      @JsonKey(name: 'paraf') String? paraf,
-      @JsonKey(name: 'staff') UserModel? staff,
       @JsonKey(name: 'name_display') String? nameDisplay,
       @JsonKey(name: 'identity_display') String? identityDisplay,
       @JsonKey(name: 'can_edit') bool? canEdit,
@@ -146,8 +135,6 @@ abstract mixin class $GuestVisitModelCopyWith<$Res> {
       @JsonKey(name: 'created_at') String? createdAt,
       @JsonKey(name: 'updated_at') String? updatedAt});
 
-  $UserModelCopyWith<$Res>? get visitor;
-  $UserModelCopyWith<$Res>? get staff;
   $UserModelCopyWith<$Res>? get createdBy;
 }
 
@@ -173,8 +160,6 @@ class _$GuestVisitModelCopyWithImpl<$Res>
     Object? startTime = freezed,
     Object? endTime = freezed,
     Object? purpose = freezed,
-    Object? paraf = freezed,
-    Object? staff = freezed,
     Object? nameDisplay = freezed,
     Object? identityDisplay = freezed,
     Object? canEdit = freezed,
@@ -190,7 +175,7 @@ class _$GuestVisitModelCopyWithImpl<$Res>
       visitor: freezed == visitor
           ? _self.visitor
           : visitor // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
+              as String?,
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -219,14 +204,6 @@ class _$GuestVisitModelCopyWithImpl<$Res>
           ? _self.purpose
           : purpose // ignore: cast_nullable_to_non_nullable
               as String?,
-      paraf: freezed == paraf
-          ? _self.paraf
-          : paraf // ignore: cast_nullable_to_non_nullable
-              as String?,
-      staff: freezed == staff
-          ? _self.staff
-          : staff // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
       nameDisplay: freezed == nameDisplay
           ? _self.nameDisplay
           : nameDisplay // ignore: cast_nullable_to_non_nullable
@@ -258,34 +235,6 @@ class _$GuestVisitModelCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get visitor {
-    if (_self.visitor == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_self.visitor!, (value) {
-      return _then(_self.copyWith(visitor: value));
-    });
-  }
-
-  /// Create a copy of GuestVisitModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get staff {
-    if (_self.staff == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_self.staff!, (value) {
-      return _then(_self.copyWith(staff: value));
-    });
-  }
-
-  /// Create a copy of GuestVisitModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res>? get createdBy {
     if (_self.createdBy == null) {
       return null;
@@ -294,6 +243,256 @@ class _$GuestVisitModelCopyWithImpl<$Res>
     return $UserModelCopyWith<$Res>(_self.createdBy!, (value) {
       return _then(_self.copyWith(createdBy: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [GuestVisitModel].
+extension GuestVisitModelPatterns on GuestVisitModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GuestVisitModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitModel() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GuestVisitModel value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitModel():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_GuestVisitModel value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitModel() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'visitor') String? visitor,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'identity_type') String? identityType,
+            @JsonKey(name: 'identity_number') String? identityNumber,
+            @JsonKey(name: 'date') String? date,
+            @JsonKey(name: 'start_time') String? startTime,
+            @JsonKey(name: 'end_time') String? endTime,
+            @JsonKey(name: 'purpose') String? purpose,
+            @JsonKey(name: 'name_display') String? nameDisplay,
+            @JsonKey(name: 'identity_display') String? identityDisplay,
+            @JsonKey(name: 'can_edit') bool? canEdit,
+            @JsonKey(name: 'created_by') UserModel? createdBy,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'updated_at') String? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitModel() when $default != null:
+        return $default(
+            _that.id,
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose,
+            _that.nameDisplay,
+            _that.identityDisplay,
+            _that.canEdit,
+            _that.createdBy,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'visitor') String? visitor,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'identity_type') String? identityType,
+            @JsonKey(name: 'identity_number') String? identityNumber,
+            @JsonKey(name: 'date') String? date,
+            @JsonKey(name: 'start_time') String? startTime,
+            @JsonKey(name: 'end_time') String? endTime,
+            @JsonKey(name: 'purpose') String? purpose,
+            @JsonKey(name: 'name_display') String? nameDisplay,
+            @JsonKey(name: 'identity_display') String? identityDisplay,
+            @JsonKey(name: 'can_edit') bool? canEdit,
+            @JsonKey(name: 'created_by') UserModel? createdBy,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'updated_at') String? updatedAt)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitModel():
+        return $default(
+            _that.id,
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose,
+            _that.nameDisplay,
+            _that.identityDisplay,
+            _that.canEdit,
+            _that.createdBy,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'id') String? id,
+            @JsonKey(name: 'visitor') String? visitor,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'identity_type') String? identityType,
+            @JsonKey(name: 'identity_number') String? identityNumber,
+            @JsonKey(name: 'date') String? date,
+            @JsonKey(name: 'start_time') String? startTime,
+            @JsonKey(name: 'end_time') String? endTime,
+            @JsonKey(name: 'purpose') String? purpose,
+            @JsonKey(name: 'name_display') String? nameDisplay,
+            @JsonKey(name: 'identity_display') String? identityDisplay,
+            @JsonKey(name: 'can_edit') bool? canEdit,
+            @JsonKey(name: 'created_by') UserModel? createdBy,
+            @JsonKey(name: 'created_at') String? createdAt,
+            @JsonKey(name: 'updated_at') String? updatedAt)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitModel() when $default != null:
+        return $default(
+            _that.id,
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose,
+            _that.nameDisplay,
+            _that.identityDisplay,
+            _that.canEdit,
+            _that.createdBy,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        return null;
+    }
   }
 }
 
@@ -310,8 +509,6 @@ class _GuestVisitModel implements GuestVisitModel {
       @JsonKey(name: 'start_time') this.startTime,
       @JsonKey(name: 'end_time') this.endTime,
       @JsonKey(name: 'purpose') this.purpose,
-      @JsonKey(name: 'paraf') this.paraf,
-      @JsonKey(name: 'staff') this.staff,
       @JsonKey(name: 'name_display') this.nameDisplay,
       @JsonKey(name: 'identity_display') this.identityDisplay,
       @JsonKey(name: 'can_edit') this.canEdit,
@@ -326,7 +523,7 @@ class _GuestVisitModel implements GuestVisitModel {
   final String? id;
   @override
   @JsonKey(name: 'visitor')
-  final UserModel? visitor;
+  final String? visitor;
   @override
   @JsonKey(name: 'name')
   final String? name;
@@ -348,12 +545,6 @@ class _GuestVisitModel implements GuestVisitModel {
   @override
   @JsonKey(name: 'purpose')
   final String? purpose;
-  @override
-  @JsonKey(name: 'paraf')
-  final String? paraf;
-  @override
-  @JsonKey(name: 'staff')
-  final UserModel? staff;
   @override
   @JsonKey(name: 'name_display')
   final String? nameDisplay;
@@ -405,8 +596,6 @@ class _GuestVisitModel implements GuestVisitModel {
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
             (identical(other.purpose, purpose) || other.purpose == purpose) &&
-            (identical(other.paraf, paraf) || other.paraf == paraf) &&
-            (identical(other.staff, staff) || other.staff == staff) &&
             (identical(other.nameDisplay, nameDisplay) ||
                 other.nameDisplay == nameDisplay) &&
             (identical(other.identityDisplay, identityDisplay) ||
@@ -433,8 +622,6 @@ class _GuestVisitModel implements GuestVisitModel {
       startTime,
       endTime,
       purpose,
-      paraf,
-      staff,
       nameDisplay,
       identityDisplay,
       canEdit,
@@ -444,7 +631,7 @@ class _GuestVisitModel implements GuestVisitModel {
 
   @override
   String toString() {
-    return 'GuestVisitModel(id: $id, visitor: $visitor, name: $name, identityType: $identityType, identityNumber: $identityNumber, date: $date, startTime: $startTime, endTime: $endTime, purpose: $purpose, paraf: $paraf, staff: $staff, nameDisplay: $nameDisplay, identityDisplay: $identityDisplay, canEdit: $canEdit, createdBy: $createdBy, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'GuestVisitModel(id: $id, visitor: $visitor, name: $name, identityType: $identityType, identityNumber: $identityNumber, date: $date, startTime: $startTime, endTime: $endTime, purpose: $purpose, nameDisplay: $nameDisplay, identityDisplay: $identityDisplay, canEdit: $canEdit, createdBy: $createdBy, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 }
 
@@ -458,7 +645,7 @@ abstract mixin class _$GuestVisitModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'visitor') UserModel? visitor,
+      @JsonKey(name: 'visitor') String? visitor,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'identity_type') String? identityType,
       @JsonKey(name: 'identity_number') String? identityNumber,
@@ -466,8 +653,6 @@ abstract mixin class _$GuestVisitModelCopyWith<$Res>
       @JsonKey(name: 'start_time') String? startTime,
       @JsonKey(name: 'end_time') String? endTime,
       @JsonKey(name: 'purpose') String? purpose,
-      @JsonKey(name: 'paraf') String? paraf,
-      @JsonKey(name: 'staff') UserModel? staff,
       @JsonKey(name: 'name_display') String? nameDisplay,
       @JsonKey(name: 'identity_display') String? identityDisplay,
       @JsonKey(name: 'can_edit') bool? canEdit,
@@ -475,10 +660,6 @@ abstract mixin class _$GuestVisitModelCopyWith<$Res>
       @JsonKey(name: 'created_at') String? createdAt,
       @JsonKey(name: 'updated_at') String? updatedAt});
 
-  @override
-  $UserModelCopyWith<$Res>? get visitor;
-  @override
-  $UserModelCopyWith<$Res>? get staff;
   @override
   $UserModelCopyWith<$Res>? get createdBy;
 }
@@ -505,8 +686,6 @@ class __$GuestVisitModelCopyWithImpl<$Res>
     Object? startTime = freezed,
     Object? endTime = freezed,
     Object? purpose = freezed,
-    Object? paraf = freezed,
-    Object? staff = freezed,
     Object? nameDisplay = freezed,
     Object? identityDisplay = freezed,
     Object? canEdit = freezed,
@@ -522,7 +701,7 @@ class __$GuestVisitModelCopyWithImpl<$Res>
       visitor: freezed == visitor
           ? _self.visitor
           : visitor // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
+              as String?,
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -551,14 +730,6 @@ class __$GuestVisitModelCopyWithImpl<$Res>
           ? _self.purpose
           : purpose // ignore: cast_nullable_to_non_nullable
               as String?,
-      paraf: freezed == paraf
-          ? _self.paraf
-          : paraf // ignore: cast_nullable_to_non_nullable
-              as String?,
-      staff: freezed == staff
-          ? _self.staff
-          : staff // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
       nameDisplay: freezed == nameDisplay
           ? _self.nameDisplay
           : nameDisplay // ignore: cast_nullable_to_non_nullable
@@ -584,34 +755,6 @@ class __$GuestVisitModelCopyWithImpl<$Res>
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
-  }
-
-  /// Create a copy of GuestVisitModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get visitor {
-    if (_self.visitor == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_self.visitor!, (value) {
-      return _then(_self.copyWith(visitor: value));
-    });
-  }
-
-  /// Create a copy of GuestVisitModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get staff {
-    if (_self.staff == null) {
-      return null;
-    }
-
-    return $UserModelCopyWith<$Res>(_self.staff!, (value) {
-      return _then(_self.copyWith(staff: value));
-    });
   }
 
   /// Create a copy of GuestVisitModel

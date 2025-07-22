@@ -9,9 +9,7 @@ part of 'guest_visit_model.dart';
 _GuestVisitModel _$GuestVisitModelFromJson(Map<String, dynamic> json) =>
     _GuestVisitModel(
       id: json['id'] as String?,
-      visitor: json['visitor'] == null
-          ? null
-          : UserModel.fromJson(json['visitor'] as Map<String, dynamic>),
+      visitor: json['visitor'] as String?,
       name: json['name'] as String?,
       identityType: json['identity_type'] as String?,
       identityNumber: json['identity_number'] as String?,
@@ -19,10 +17,6 @@ _GuestVisitModel _$GuestVisitModelFromJson(Map<String, dynamic> json) =>
       startTime: json['start_time'] as String?,
       endTime: json['end_time'] as String?,
       purpose: json['purpose'] as String?,
-      paraf: json['paraf'] as String?,
-      staff: json['staff'] == null
-          ? null
-          : UserModel.fromJson(json['staff'] as Map<String, dynamic>),
       nameDisplay: json['name_display'] as String?,
       identityDisplay: json['identity_display'] as String?,
       canEdit: json['can_edit'] as bool?,
@@ -44,8 +38,6 @@ Map<String, dynamic> _$GuestVisitModelToJson(_GuestVisitModel instance) =>
       'start_time': instance.startTime,
       'end_time': instance.endTime,
       'purpose': instance.purpose,
-      'paraf': instance.paraf,
-      'staff': instance.staff,
       'name_display': instance.nameDisplay,
       'identity_display': instance.identityDisplay,
       'can_edit': instance.canEdit,

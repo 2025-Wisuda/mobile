@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/helpers/time_slot_helper.dart';
@@ -61,7 +60,7 @@ class _CinemaTimeSlotWidgetState extends State<CinemaTimeSlotWidget> {
       final screenHeight = MediaQuery.of(context).size.height;
       final screenWidth = MediaQuery.of(context).size.width;
 
-      if (screenHeight > screenWidth && screenHeight < 800) {
+      if (screenHeight > screenWidth && screenHeight < 512) {
         setState(() => isExpanded = false);
       } else {
         setState(() => isExpanded = true);
@@ -77,7 +76,9 @@ class _CinemaTimeSlotWidgetState extends State<CinemaTimeSlotWidget> {
       children: [
         _buildTimeSlotGrid(context),
         if (widget.showLegend) _buildLegend(context),
-        if (widget.autoExpandCollapse && _shouldShowExpandButton)
+        if (widget.autoExpandCollapse &&
+            _shouldShowExpandButton &&
+            MediaQuery.of(context).size.height < 512)
           CustomExpandCollapseButtonWidget(
             isExpanded: isExpanded,
             onTap: () => setState(() => isExpanded = !isExpanded),
@@ -153,11 +154,10 @@ class _CinemaTimeSlotWidgetState extends State<CinemaTimeSlotWidget> {
   }
 
   Widget _buildLegend(BuildContext context) {
-    // Show only actionable statuses for cleaner UX
-    // Visual cues (colors/styling) make unavailable slots self-explanatory
     final actionableStatuses = [
       TimeSlotStatus.available,
       TimeSlotStatus.selected,
+      TimeSlotStatus.disabled,
     ];
 
     return Wrap(

@@ -128,7 +128,7 @@ class _CustomBottomSheetConfirmationWidgetState
     return GestureDetector(
       onTap: widget.isDismissible ? _closeBottomSheet : null,
       child: Container(
-        color: Colors.black54,
+        color: context.onSurfaceVariant.withValues(alpha: 0.6),
         child: GestureDetector(
           onTap: () {},
           child: FadeTransition(
@@ -147,8 +147,8 @@ class _CustomBottomSheetConfirmationWidgetState
                       topLeft: Radius.circular(24),
                       topRight: Radius.circular(24),
                     ),
-                    elevation: 16,
-                    shadowColor: Colors.black26,
+                    elevation: 1,
+                    shadowColor: context.outline.withValues(alpha: 0.5),
                     child: Container(
                       decoration: BoxDecoration(
                         color: context.surface,

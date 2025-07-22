@@ -4,32 +4,28 @@ import 'package:get/get.dart';
 import 'package:mobile/features/room_booking/data/models/model.dart';
 import 'package:mobile/features/room_booking/domain/entities/entity.dart';
 import 'package:mobile/features/room_booking/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_list_controller.dart';
+import 'package:mobile/shared/controllers/get_base_list_controller.dart';
 import 'package:mobile/shared/entities/base_list_response_entity.dart';
 import 'package:mobile/shared/errors/failure.dart';
 
-class ListRoomBookingController extends BaseListController<RoomBookingEntity,
+class ListRoomBookingController extends GetBaseListController<RoomBookingEntity,
     RoomBookingFilterParamsModel> {
   final FetchListRoomBookingUsecase _fetchListRoomBookingUsecase;
 
-  final RxBool _isGridView = false.obs;
-  bool get isGridView => _isGridView.value;
-
-  // Store current filters to maintain them during pagination
-  Map<String, dynamic>? _currentFilters;
-
   ListRoomBookingController(this._fetchListRoomBookingUsecase) {
-    enableSearch();
+    hasSearchEnabled.value = true;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    initializeControllers(['${baseStateKey}SearchController']);
   }
 
   @override
   String get baseStateKey => 'roomBooking';
 
-  RxList<RoomBookingEntity> get roomBookingList => items;
-
-  void toggleView() {
-    _isGridView.value = !_isGridView.value;
-  }
+  final selectedStatus = RxnString();
 
   @override
   Future<Either<Failure, BaseListResponseEntity<RoomBookingEntity>>>
@@ -48,48 +44,26 @@ class ListRoomBookingController extends BaseListController<RoomBookingEntity,
       page: page,
       pageSize: pageSize,
       search: search,
+      approvalStatus: filters?['approvalStatus'] as String?,
       date: filters?['date'] as String?,
       bookingType: filters?['bookingType'] as String?,
-      approvalStatus: filters?['approvalStatus'] as String?,
       ordering: filters?['ordering'] as String?,
     );
   }
 
-  @override
-  Future<void> fetchList({
-    bool isLoadMore = false,
-    int? page,
-    Map<String, dynamic>? filters,
-  }) async {
-    // Always store current filters for pagination
-    _currentFilters = filters;
-
-    return super.fetchList(
-      isLoadMore: isLoadMore,
-      page: page,
-      filters: filters,
-    );
+  void setStatusFilter(String? status) {
+    selectedStatus.value = status;
+    fetchList(filters: {
+      if (status != null && status.isNotEmpty) 'approvalStatus': status,
+    });
   }
 
   @override
-  Future<void> loadMore() async {
-    if (canLoadMore) {
-      // Use stored filters during pagination
-      await fetchList(isLoadMore: true, filters: _currentFilters);
+  Future<void> clearFilters() async {
+    selectedStatus.value = null;
+    if (hasSearchEnabled.value) {
+      setControllerValue('${baseStateKey}SearchController', '');
     }
-  }
-
-  Future<void> fetchRoomBookingList({
-    bool isLoadMore = false,
-    int? page,
-    String? ordering,
-  }) {
-    final filters = <String, dynamic>{};
-    if (ordering != null) filters['ordering'] = ordering;
-
-    // Store current filters for pagination
-    _currentFilters = filters.isNotEmpty ? filters : null;
-
-    return fetchList(filters: _currentFilters, isLoadMore: isLoadMore);
+    await fetchList();
   }
 }

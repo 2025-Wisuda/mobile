@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 
 import 'package:mobile/core/core.dart';
 import 'package:mobile/features/auth/presentation/controllers/controller.dart';
-import 'package:mobile/features/menu/presentation/controllers/navigation_controller.dart';
+import 'package:mobile/features/menu/presentation/controllers/controller.dart';
 import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
-class LogoutButtonWidget extends StatelessWidget {
+class LogoutButtonWidget extends GetView<GetLogoutController> {
   final LogoutType logoutType;
   final String? buttonText;
   final bool showConfirmDialog;
@@ -23,49 +23,38 @@ class LogoutButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logoutController = Get.find<LogoutController>();
     return Column(
       children: [
-        _buildLogoutButton(context, logoutController),
-        _buildStateHandler(context, logoutController),
+        Obx(() {
+          final state = controller.state;
+          return CustomSubmitButtonWidget(
+            backgroundColor: context.surfaceContainerLow,
+            buttonType: CustomButtonType.outlined,
+            isFormValid: true,
+            state: state,
+            onPressed: () => showConfirmDialog
+                ? _showLogoutDialog(context)
+                : controller.logout(logoutType),
+            textButton: buttonText ?? 'auth'.message('logout'),
+            borderColor: context.error,
+            textColor: context.error,
+            width: double.infinity,
+          );
+        }),
+        _buildStateHandler(context),
       ],
     );
   }
 
-  Widget _buildLogoutButton(BuildContext context, LogoutController c) {
+  Widget _buildStateHandler(BuildContext context) {
     return Obx(() {
-      final bool canLogout = c.canLogout;
-      final logoutState = c.logoutState;
-
-      return CustomSubmitButtonWidget(
-        backgroundColor: context.surfaceContainerLow,
-        buttonType: CustomButtonType.outlined,
-        isFormValid: canLogout,
-        state: logoutState,
-        onPressed: canLogout
-            ? () => showConfirmDialog
-                ? _showLogoutDialog(context, c)
-                : c.logout(logoutType)
-            : null,
-        textButton: buttonText ?? 'auth'.message('logout'),
-        borderColor: context.error,
-        textColor: context.error,
-        width: double.infinity,
-      );
-    });
-  }
-
-  Widget _buildStateHandler(BuildContext context, LogoutController c) {
-    return Obx(() {
-      final logoutState = c.logoutState;
-
-      switch (logoutState) {
+      final state = controller.state;
+      switch (state) {
         case SubmitStateEnum.success:
         case SubmitStateEnum.failure:
           _handleLogoutState(context);
         default:
       }
-
       return const SizedBox.shrink();
     });
   }
@@ -79,7 +68,7 @@ class LogoutButtonWidget extends StatelessWidget {
     });
   }
 
-  void _showLogoutDialog(BuildContext context, LogoutController c) {
+  void _showLogoutDialog(BuildContext context) {
     showCustomConfirmDialog(
       context: context,
       title: 'auth'.message('logoutConfirmationTitle'),
@@ -94,7 +83,7 @@ class LogoutButtonWidget extends StatelessWidget {
           message: 'auth'.message('loggingOut'),
           duration: const Duration(milliseconds: 1000),
         );
-        await c.logout(logoutType);
+        await controller.logout(logoutType);
       },
       icon: Icons.logout,
     );

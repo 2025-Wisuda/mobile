@@ -2,12 +2,12 @@ import 'package:fpdart/fpdart.dart';
 
 import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
 import 'package:mobile/features/lab_schedule/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_detail_controller.dart';
+import 'package:mobile/shared/controllers/controller.dart';
 import 'package:mobile/shared/entities/entity.dart';
 import 'package:mobile/shared/errors/error.dart';
 
 class DetailLabScheduleController
-    extends BaseDetailController<LabScheduleEntity, String> {
+    extends GetBaseDetailController<LabScheduleEntity, String> {
   final FetchLabScheduleDetailUsecase _fetchLabScheduleDetailUsecase;
 
   DetailLabScheduleController(

@@ -65,12 +65,27 @@ class TextHelper {
   }) {
     final code = e.response?.statusCode;
     final baseKey = 'features.$feature.$action.error';
+
+    // 1. Try specific status code translation
     if (code != null) {
-      final key = '$baseKey.$code';
+      final key = '$baseKey.${code.toString()}';
       final translation = i18n.tr(key);
       if (translation != key) return translation;
     }
-    return i18n.tr('$baseKey.default');
+
+    // 2. Try default translation
+    final defaultKey = '$baseKey.default';
+    final defaultTranslation = i18n.tr(defaultKey);
+    if (defaultTranslation != defaultKey) return defaultTranslation;
+
+    // 3. Fallback to server message if available
+    final serverMessage = e.response?.data?['message'];
+    if (serverMessage != null && serverMessage.toString().isNotEmpty) {
+      return serverMessage.toString();
+    }
+
+    // 4. Final fallback to generic error
+    return 'An error occurred';
   }
 
   /// Generates localized success message for completed actions

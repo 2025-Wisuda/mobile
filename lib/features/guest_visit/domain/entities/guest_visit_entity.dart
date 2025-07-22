@@ -8,11 +8,11 @@ part 'guest_visit_entity.freezed.dart';
 abstract class GuestVisitEntity with _$GuestVisitEntity {
   const factory GuestVisitEntity({
     String? id,
-    UserEntity? visitor,
+    String? visitor,
     String? name,
     String? identityType,
     String? identityNumber,
-    DateTime? date,
+    String? date,
     String? startTime,
     String? endTime,
     String? purpose,

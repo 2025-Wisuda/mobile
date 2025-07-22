@@ -6,19 +6,18 @@ import 'package:mobile/features/menu/presentation/controllers/controller.dart';
 import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
-class MenuBottomNavBarWidget extends StatelessWidget {
+class MenuBottomNavBarWidget extends GetView<NavigationController> {
   const MenuBottomNavBarWidget({super.key});
   @override
   Widget build(BuildContext context) {
-    final navigationController = Get.find<NavigationController>();
     return Scaffold(
       body: Obx(() {
-        final currentIndex = navigationController.currentIndex.value;
-        return navigationController.getPageByIndex(currentIndex);
+        final currentIndex = controller.currentIndex.value;
+        return controller.getPageByIndex(currentIndex);
       }),
       bottomNavigationBar: Obx(() {
-        final navMenuList = navigationController.navMenuList;
-        final currentIndex = navigationController.currentIndex.value;
+        final navMenuList = controller.navMenuList;
+        final currentIndex = controller.currentIndex.value;
 
         return SafeArea(
           bottom: true,
@@ -44,7 +43,6 @@ class MenuBottomNavBarWidget extends StatelessWidget {
 
                   return _buildMenuItem(
                     context,
-                    navigationController,
                     iconMenu: menu.iconMenu,
                     labelMenu: menu.nameMenu,
                     indexMenu: index,
@@ -61,8 +59,7 @@ class MenuBottomNavBarWidget extends StatelessWidget {
   }
 
   Widget _buildMenuItem(
-    BuildContext context,
-    NavigationController c, {
+    BuildContext context, {
     required String iconMenu,
     required String labelMenu,
     required int indexMenu,
@@ -73,7 +70,7 @@ class MenuBottomNavBarWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
       child: GestureDetector(
           onTap: () {
-            c.changeIndex(indexMenu);
+            controller.changeIndex(indexMenu);
           },
           child: Column(
             mainAxisSize: MainAxisSize.min,

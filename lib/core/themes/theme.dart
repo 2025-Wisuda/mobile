@@ -6,6 +6,7 @@ export 'button_theme.dart';
 export 'card_theme.dart';
 export 'chip_theme.dart';
 export 'color_scheme_theme.dart';
+export 'date_picker_theme.dart';
 export 'dialog_theme.dart';
 export 'divider_theme.dart';
 export 'dropdown_meu_theme.dart';

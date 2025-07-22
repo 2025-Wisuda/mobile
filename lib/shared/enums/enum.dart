@@ -1,8 +1,11 @@
 export 'approval_status_enum.dart';
+export 'attendance_status_enum.dart';
 export 'dialog_type_enum.dart';
+export 'duty_attendance_status_enum.dart';
 export 'fetch_state_enum.dart';
 export 'form_mode.dart';
 export 'group_enum.dart';
+export 'identity_type_enum.dart';
 export 'logout_type_enum.dart';
 export 'notification_type_enum.dart';
 export 'password_type_enum.dart';
@@ -11,4 +14,3 @@ export 'seminar_type_enum.dart';
 export 'snackbar_type_enum.dart';
 export 'submit_state_enum.dart';
 export 'time_slot_status_enum.dart';
-export 'visitor_identity_type_enum.dart';

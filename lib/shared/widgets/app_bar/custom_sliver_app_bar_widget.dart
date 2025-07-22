@@ -42,6 +42,7 @@ class CustomSliverAppBarWidget extends StatelessWidget {
   final List<Widget>? actions;
   final Widget? leading;
   final Widget? flexibleSpace;
+  final PreferredSizeWidget? bottom;
   final Color? backgroundColor;
   final Color? foregroundColor;
   final double? elevation;
@@ -65,6 +66,7 @@ class CustomSliverAppBarWidget extends StatelessWidget {
     this.actions,
     this.leading,
     this.flexibleSpace,
+    this.bottom,
     this.backgroundColor,
     this.foregroundColor,
     this.elevation,
@@ -140,6 +142,7 @@ class CustomSliverAppBarWidget extends StatelessWidget {
       snap: snap,
       stretch: stretch,
       flexibleSpace: flexibleSpace,
+      bottom: bottom,
       automaticallyImplyLeading: false,
     );
 
@@ -171,6 +174,7 @@ class CustomSliverAppBarWidget extends StatelessWidget {
                 foregroundColor: foregroundColor ?? appBarTheme.foregroundColor,
                 elevation: 0,
                 scrolledUnderElevation: 0,
+                bottom: bottom,
                 automaticallyImplyLeading: false,
               ),
             ),
@@ -202,6 +206,7 @@ class CustomSliverAppBarWithBorder extends CustomSliverAppBarWidget {
     super.actions,
     super.leading,
     super.flexibleSpace,
+    super.bottom,
     super.backgroundColor,
     super.foregroundColor,
     super.elevation,
@@ -227,6 +232,7 @@ class CustomSliverAppBarWithSearch extends CustomSliverAppBarWidget {
     super.actions,
     super.leading,
     super.flexibleSpace,
+    super.bottom,
     super.backgroundColor,
     super.foregroundColor,
     super.elevation,
@@ -251,6 +257,7 @@ class CustomSliverAppBarWithBorderAndSearch extends CustomSliverAppBarWidget {
     super.actions,
     super.leading,
     super.flexibleSpace,
+    super.bottom,
     super.backgroundColor,
     super.foregroundColor,
     super.elevation,
@@ -276,6 +283,7 @@ class CustomSliverAppBarCollapsible extends CustomSliverAppBarWidget {
     super.actions,
     super.leading,
     super.flexibleSpace,
+    super.bottom,
     super.backgroundColor,
     super.foregroundColor,
     super.elevation,
@@ -301,6 +309,7 @@ class CustomSliverAppBarWithBackButtonBorder extends CustomSliverAppBarWidget {
     super.actions,
     super.leading,
     super.flexibleSpace,
+    super.bottom,
     super.backgroundColor,
     super.foregroundColor,
     super.elevation,
@@ -324,6 +333,7 @@ class CustomSliverAppBarWithAllFeatures extends CustomSliverAppBarWidget {
     super.actions,
     super.leading,
     super.flexibleSpace,
+    super.bottom,
     super.backgroundColor,
     super.foregroundColor,
     super.elevation,

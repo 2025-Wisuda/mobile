@@ -13,11 +13,19 @@
     "friday": "Friday",
     "saturday": "Saturday",
     "sunday": "Sunday",
+    "overview": "Overview",
+    "loading": "Loading...",
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
     "text": {
       "noInternet": "No Internet Connection",
       "readLess": "Read Less",
       "readMore": "Read More"
     },
+    "selectStartDate": "Select Start Date",
+    "selectEndDate": "Select End Date",
+    "selectDate": "Select Date",
     "form": {
       "error": {
         "controllerNotFound": "Controller for field \"{fieldName}\" not found. Make sure to call initializeControllers() first."
@@ -198,6 +206,8 @@
         "me": "Me",
         "all": "All",
         "retry": "Retry",
+        "retrying": "Retrying...",
+        "ok": "OK",
         "readLess": "Read Less",
         "readMore": "Read More",
         "available": "Available",
@@ -221,7 +231,9 @@
         },
         "clear": "Clear",
         "reset": "Reset",
-        "tapToSelectTimeSlots": "Tap time slots to select start and end time"
+        "tapToSelectTimeSlots": "Tap time slots to select start and end time",
+        "summary": "Summary",
+        "update": "Update"
       }
     },
     "course": {
@@ -360,7 +372,8 @@
           "sessionStats": "Select session status",
           "sessionDescription": "Enter session description",
           "date": "Select date for lab schedule",
-          "sessionTimeRange": "Select session time range"
+          "sessionTimeRange": "Select session time range",
+          "sessionTeachingAssistants": "Select teaching assistants"
         },
         "label": {
           "description": "Description",
@@ -380,7 +393,15 @@
           "sessionStats": "Session Status",
           "sessionDescription": "Session Description",
           "date": "Date",
-          "sessionTimeRange": "Session Time Range"
+          "sessionTimeRange": "Session Time Range",
+          "sessionTeachingAssistants": "Teaching Assistants",
+          "markedAt": "Marked At",
+          "markedBy": "Marked By",
+          "manualOverride": "Manual Absent",
+          "studentName": "Name",
+          "studentNumber": "Student Number",
+          "attendanceStatus": "Attendance Status",
+          "confidence": "Confidence"
         },
         "validator": {
           "enrollKey": {
@@ -399,6 +420,19 @@
         }
       },
       "text": {
+        "mark": "Mark",
+        "showOnlyManuallyOverridden": "Show only manually attendance",
+        "showOnlyManuallyOverriddenDescription": "Filter to show only attendance records that were manually marked",
+        "manualOverride": "Manual Absent",
+        "status": "Status",
+        "present": "Present",
+        "late": "Late",
+        "absent": "Absent",
+        "notYetPresent": "Not Yet Present",
+        "attendanceRecordsEmpty": "No attendance records found",
+        "attendanceRecordDescription": "View attendance records for this practicum",
+        "attendance": "Attendance",
+        "manageAttendance": "Manage Attendance",
         "createNewCourse": "Create New Practicum",
         "detailCourse": "Practicum Detail",
         "enroll": "Enroll",
@@ -463,7 +497,13 @@
         "endDateOldest": "End Date (Oldest)",
         "newest": "Newest",
         "oldest": "Oldest",
-        "ordering": "Ordering"
+        "ordering": "Ordering",
+        "faceRecognition": {
+          "success": {
+            "default": "Successfully marked attendance for {detectedName}"
+          }
+        },
+        "manualOverrideSuccess": "Attendance successfully marked"
       },
       "updateCourse": {
         "error": {
@@ -497,7 +537,11 @@
         "notSelected": "Not Selected",
         "start": "Start",
         "switchToList": "Switch to List",
-        "switchToGrid": "Switch to Grid"
+        "switchToGrid": "Switch to Grid",
+        "reset": "Reset",
+        "all": "All",
+        "apply": "Apply",
+        "date": "Date"
       }
     },
     "home": {
@@ -555,6 +599,7 @@
           "title": "Schedule Status",
           "upcoming": "Upcoming",
           "ongoing": "Ongoing",
+          "finished": "Finished",
           "past": "Past",
           "selectedDate": "Selected Date"
         },
@@ -583,7 +628,9 @@
         "noAvailableTimeSlotsForSelectedDate": "No available time slots for selected date",
         "pleaseSelectStartTimeFirst": "Please select start time first",
         "failedToLoadAvailableStartTimes": "Failed to load available start times",
-        "failedToLoadAvailableEndTimes": "Failed to load available end times"
+        "failedToLoadAvailableEndTimes": "Failed to load available end times",
+        "emptyMySchedule": "You don't have any schedules for this day",
+        "emptyAllSchedule": "No schedules available for this day"
       },
       "fetchListLabSchedule": {
         "error": {
@@ -621,22 +668,53 @@
         }
       },
       "searchLabSchedule": {
+        "empty": "No results found for your search",
+        "emptyStateSubtitle": "Search by schedule type or details.",
+        "emptyStateTitle": "Start typing to search schedules",
         "error": {
-          "400": "Invalid search request, please try again",
+          "400": "Invalid request, please try again",
           "401": "Unauthorized access, please log in",
           "403": "You do not have permission to access this resource, please contact your administrator",
           "404": "The requested resource was not found, please check the URL",
           "422": "The request was understood but could not be processed. Please check your input and try again.",
           "500": "We're experiencing problems on our servers. Please try again later.",
-          "default": "Oops! Something went wrong. Please try again later"
-        }
+          "default": "Oops! Something went wrong. Please try again later",
+          "noDetailFound": "Room booking details not found"
+        },
+        "loading": "Searching schedules...",
+        "placeholder": "Search lab schedules...",
+        "tryDifferentKeywords": "Try using different keywords"
       }
     },
     "dutySchedule": {
       "text": {
+        "attendanceRecords": "Attendance Records",
+        "attendanceRecordsEmpty": "No attendance records found",
+        "attendanceTitle": "Duty Attendance",
+        "validateOtpTitle": "Validate OTP",
+        "validateOtpSubtitle": "Validate OTP for attendance",
+        "myRecordsTitle": "My Records",
+        "myRecordsSubtitle": "View my attendance records",
+        "manualOverrideSuccess": "Manual attendance successfully",
+        "manualOverrideTitle": "Manual Override",
+        "manualOverrideSubtitle": "Manual attendance override",
+        "attendanceStatisticsTitle": "Attendance Statistics",
+        "attendanceStatisticsSubtitle": "View attendance analytics and reports",
+        "attendanceStatistics": "Attendance Statistics",
+        "attendanceStatisticsEmpty": "No attendance statistics data",
+        "filterByDateRange": "Filter by Date Range",
+        "applyFilter": "Apply Filter",
+        "dailyAttendanceTrends": "Daily Attendance Trends",
+        "fetchStatisticsError": "Failed to fetch attendance statistics",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "statusBreakdown": "Status Breakdown",
         "present": "Present",
-        "absent": "Absent",
+        "late": "Late",
         "notYetPresent": "Not Yet Present",
+        "absent": "Absent",
+        "earlyLeave": "Early Leave",
+        "scheduled": "Scheduled",
         "monday": "Monday",
         "tuesday": "Tuesday",
         "wednesday": "Wednesday",
@@ -646,7 +724,51 @@
         "sunday": "Sunday",
         "tryDifferentDay": "Try using a different day",
         "dutySchedule": {
-          "empty": "No duty schedule for today"
+          "empty": "No assistant duty schedule for today"
+        },
+        "validateOtp": "Validate",
+        "clockIn": "Clock In",
+        "clockOut": "Clock Out",
+        "close": "Close",
+        "date": "Date",
+        "scheduledTime": "Scheduled Time",
+        "clockInTime": "Clock In Time",
+        "clockOutTime": "Clock Out Time",
+        "confidence": "Confidence",
+        "manualOverride": "Manual Override",
+        "attendanceDetail": "Attendance Detail",
+        "otpValidation": "OTP Validation",
+        "loading": "Loading...",
+        "retry": "Retry",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "success": "Success",
+        "error": "Error",
+        "warning": "Warning",
+        "info": "Info",
+        "positionFace": "Position your face in the center",
+        "autoCaptureStart": "Auto-capture will start in 3 seconds",
+        "initializingCamera": "Initializing camera...",
+        "faceDetectionInProgress": "Face detection in progress...",
+        "processingRecognition": "Processing recognition...",
+        "recognitionSuccessful": "Recognition successful!",
+        "recognitionFailed": "Recognition failed for {name}. Please try again.",
+        "noFaceDetected": "No face detected. Please position yourself correctly.",
+        "multipleFacesDetected": "Multiple faces detected. Make sure only one person is visible.",
+        "myDutyAttendanceEmpty": "You don't have any duty attendance yet",
+        "totalDuties": "Total Duties",
+        "days": "Days",
+        "attendanceRate": "Attendance Rate",
+        "selectDate": "Select Date",
+        "status": "Status",
+        "assistantPerformance": "Assistant Performance",
+        "last30DaysDefault": "Last 30 days (default)",
+        "fromDate": "From {date}",
+        "untilDate": "Until {date}",
+        "faceRecognition": {
+          "success": {
+            "default": "Face recognition {action} completed successfully"
+          }
         }
       },
       "fetchDutyScheduleForToday": {
@@ -672,7 +794,203 @@
           "default": "Oops! Something went wrong. Please try again later"
         },
         "empty": "No duty schedules found"
+      },
+      "form": {
+        "label": {
+          "otpCode": "OTP Code",
+          "date": "Date",
+          "scheduledTime": "Scheduled Time",
+          "clockInTime": "Clock In Time",
+          "clockOutTime": "Clock Out Time",
+          "confidence": "Confidence",
+          "manualOverride": "Manual Attendance",
+          "actionType": {
+            "label": "Action Type",
+            "clock_in": "Clock In",
+            "clock_out": "Clock Out"
+          },
+          "action": {
+            "clockIn": "Clock In",
+            "clockOut": "Clock Out"
+          },
+          "clockIn": "Clock In",
+          "clockOut": "Clock Out",
+          "assistantName": "Assistant Name",
+          "studentNumber": "Student Number",
+          "assistantAttendance": "Status Attendance",
+          "reason": "Reason",
+          "notes": "Notes",
+          "startDate": "Start Date",
+          "endDate": "End Date"
+        },
+        "hint": {
+          "otpCode": "Enter 6 digit OTP code displayed on the website.",
+          "actionType": {
+            "clock_in": "Select 'Clock In' to mark attendance for clocking in",
+            "clock_out": "Select 'Clock Out' to mark attendance for clocking out"
+          },
+          "reason": "Enter the reason for manual override",
+          "notes": "Enter additional notes (optional)"
+        }
+      },
+      "manualOverrideAttendance": {
+        "error": {
+          "400": "Invalid action type. Action must be 'clock_in' or 'clock_out'",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to perform manual override",
+          "404": "Attendance record not found",
+          "422": "Invalid request data. Please check your input and try again",
+          "500": "Server error occurred. Please try again later",
+          "default": "Manual override failed. Please try again later"
+        },
+        "success": {
+          "default": "Manual override completed successfully"
+        }
       }
+    },
+    "faceRecognition": {
+      "status": {
+        "initializing": "Initializing camera...",
+        "positionFace": "Position your face in the center",
+        "holdStill": "Hold still...",
+        "analyzing": "Analyzing...",
+        "processing": "Processing...",
+        "success": "Recognition successful!",
+        "faceNotDetected": "Face not detected",
+        "faceNotRecognized": "Face not recognized",
+        "connectionTimeout": "Connection timeout",
+        "connectionError": "Connection error",
+        "recognitionFailed": "Recognition failed",
+        "maxAttemptsReached": "Max attempts reached",
+        "redirectingToManual": "Redirecting to manual override...",
+        "retryCount": "Try again ({current}/{max})"
+      },
+      "text": {
+        "initializationFailed": "Initialization failed",
+        "positionFace": "Position your face in the center",
+        "auto_capture_countdown": "Auto-capture will start in 3 seconds",
+        "initializingCamera": "Initializing camera...",
+        "startingCamera": "Starting camera...",
+        "connectingToServer": "Connecting to server...",
+        "positionFaceCircle": "Position your face in the circle",
+        "holdStill": "Hold still...",
+        "analyzing": "Analyzing...",
+        "faceNotDetected": "Face not detected",
+        "captureFailed": "Failed to capture image",
+        "retrying_attempts": "Retrying... ({current}/{max})",
+        "max_attempts_reached": "Max attempts reached",
+        "redirecting_manual": "Redirecting to manual override...",
+        "recognition_successful": "Recognition successful!",
+        "success": "Recognition Successful!",
+        "camera_initializing": "Initializing camera...",
+        "cameraError": "Camera error",
+        "cameraErrorDescription": "Unable to access camera. Please check permissions and try again.",
+        "cameraInitializationFailed": "Camera initialization failed after multiple attempts",
+        "cameraTimeout": "Camera initialization timed out. Please try again.",
+        "retrying": "Retrying...",
+        "takingLongerThanExpected": "Taking longer than expected",
+        "troubleshootingTips": "Troubleshooting Tips",
+        "tipTimeout": "Make sure your camera is not being used by another app",
+        "tipPermission": "Please grant camera permission in your device settings",
+        "tipInitialization": "Try restarting the app or your device",
+        "tipGeneral": "Check your camera connection and try again",
+        "goBack": "Go Back",
+        "faceNotRecognizedTryAgain": "Face not recognized. Try again.",
+        "welcomeUser": "Welcome, {name}!",
+        "connectionError": "Connection error. Please check your network.",
+        "processing": "Processing...",
+        "faceReadyHoldStill": "Face ready - Hold still...",
+        "moveCloser": "Move closer to camera",
+        "processingFace": "Processing face...",
+        "recognitionError": "Recognition error",
+        "user": "User",
+        "welcome": "Welcome, {name}!",
+        "unknown": "Unknown",
+        "detectedRetrying": "Detected: {name} - Retrying...",
+        "recognitionFailedRetrying": "Recognition failed - Retrying...",
+        "maxRetriesReached": "Maximum retries reached",
+        "faceRecognitionFailedAfter": "Face recognition failed after {maxRetries} attempts",
+        "starting": "Starting...",
+        "autoCaptureStart": "Auto-capture will start in 3 seconds",
+        "confidenceThresholdNotMet": "Confidence threshold not met",
+        "detectedFaceInfo": "Detected face information",
+        "enhancedErrorDetails": "Enhanced error details available",
+        "expectedVsDetected": "Expected vs Detected",
+        "faceMismatchDetected": "Face mismatch detected",
+        "faceRecognitionEnhanced": "Enhanced face recognition response",
+        "faceRecognitionMaxAttempts": "Face recognition failed after {attempts} attempts",
+        "multipleFacesDetected": "Multiple faces detected. Make sure only one person is visible.",
+        "myDutyAttendanceEmpty": "You don't have any duty attendance yet",
+        "noFaceDetected": "No face detected. Please position yourself correctly.",
+        "personIdentified": "Person successfully identified",
+        "processingRecognition": "Processing recognition...",
+        "recognitionDetailsAvailable": "Recognition details available",
+        "recognitionFailed": "Recognition failed for {name}. Please try again.",
+        "recognitionFailedDetailed": "Recognition failed with detailed information",
+        "recognitionSuccessful": "Recognition successful!",
+        "thresholdRequired": "Minimum threshold required",
+        "faceDetectionInProgress": "Face detection in progress...",
+        "quality": {
+          "noFaceDetected": "No face detected",
+          "poor": "Poor quality - Adjust position",
+          "good": "Good quality - Move closer",
+          "excellent": "Excellent quality - Ready!",
+          "issue": {
+            "noFaceDetected": "No face detected",
+            "tooSmall": "Face too small - Move closer",
+            "tooLarge": "Face too large - Move back",
+            "notCentered": "Face not centered - Position in circle",
+            "poorAspectRatio": "Face angle poor - Look straight ahead",
+            "tooDark": "Too dark - Move to better lighting",
+            "tooBright": "Too bright - Move to shade",
+            "blurry": "Image blurry - Hold still",
+            "headTurned": "Head turned - Face forward",
+            "headTilted": "Head tilted - Straighten up",
+            "eyesClosed": "Eyes closed - Open your eyes",
+            "multipleFaces": "Multiple faces - Only one person",
+            "none": "No issues detected"
+          },
+          "instruction": {
+            "noFaceDetected": "Position your face in the center of the frame",
+            "tooSmall": "Move closer to the camera until your face fills the circle",
+            "tooLarge": "Step back from the camera to fit your face in the circle",
+            "notCentered": "Center your face in the circle on screen",
+            "poorAspectRatio": "Look directly at the camera, avoid extreme angles",
+            "tooDark": "Move to an area with better lighting",
+            "tooBright": "Move to a shaded area or turn away from bright light",
+            "blurry": "Hold your device steady and stay still",
+            "headTurned": "Turn your head to face the camera directly",
+            "headTilted": "Straighten your head, avoid tilting",
+            "eyesClosed": "Open your eyes and look at the camera",
+            "multipleFaces": "Ensure only one person is visible in the frame",
+            "none": "Perfect! Hold still for recognition"
+          }
+        },
+        "retry": {
+          "subtitle": "Trying again",
+          "faceReady": "Face ready",
+          "holdStill": "Hold still"
+        },
+        "maxRetries": {
+          "title": "Max retries reached",
+          "subtitle": "Redirecting to manual attendance..."
+        }
+      },
+      "error": {
+        "cameraError": "Camera error",
+        "noCameraFound": "No camera found",
+        "faceNotDetected": "Face not detected",
+        "faceNotRecognized": "Face not recognized",
+        "connectionTimeout": "Connection timeout",
+        "connectionError": "Connection error",
+        "recognitionFailed": "Recognition failed"
+      },
+      "success": {
+        "title": "Recognition Successful!",
+        "welcome": "Welcome, {name}",
+        "completed": "Face recognition completed successfully"
+      },
+      "unknown": "Unknown"
     },
     "menu": {
       "about": "About",
@@ -698,7 +1016,76 @@
       "version": "Version",
       "myCourse": "My Practicum",
       "bookingHistory": "Booking History",
-      "createBooking": "Room Booking Request"
+      "createBooking": "Room Booking Request",
+      "myDutyAttendance": "My Duty Attendance",
+      "validateOtp": "Validate OTP",
+      "manualOverride": "Manual Attendance",
+      "attendanceStatistics": "Attendance Statistics",
+      "attendanceRecords": "Attendance Records",
+      "faceRecognition": "Face Recognition",
+      "courseSessionAttendance": "Practicum Session Attendance",
+      "createGuestVisit": "Create Guest Visit",
+      "updateGuestVisit": "Update Guest Visit",
+      "detailGuestVisit": "Detail Guest Visit"
+    },
+    "notification": {
+      "text": {
+        "empty": "No notifications",
+        "loading": "Loading notifications...",
+        "filter": "Filter",
+        "search": "Search notifications",
+        "type": "Type",
+        "status": "Status",
+        "ordering": "Ordering",
+        "selectType": "Select type",
+        "selectStatus": "Select status",
+        "selectOrdering": "Select ordering",
+        "all": "All",
+        "read": "Read",
+        "newestFirst": "Newest first",
+        "oldestFirst": "Oldest first",
+        "markAllAsRead": "Mark all as read",
+        "marking": "Marking as read...",
+        "unread": "Unread",
+        "details": "Details",
+        "roomBooking": "Room Booking",
+        "courseSession": "Course Session",
+        "labAllocation": "Lab Allocation",
+        "dutySchedule": "Duty Schedule",
+        "permissionTitle": "Enable Notifications",
+        "permissionMessage": "We need notification permission to keep you updated about your lab schedules, room bookings, and important updates. Please allow notifications to get the best experience.",
+        "permissionAllow": "Allow Notifications",
+        "permissionDeny": "Not Now",
+        "settingsTitle": "Notification Settings",
+        "settingsMessage": "To receive notifications, please enable them in your device settings. You can do this by going to Settings > Apps > Lab Management > Notifications.",
+        "settingsOpen": "Open Settings",
+        "settingsCancel": "Cancel",
+        "settingsManual": "Manual Settings Required",
+        "settingsManualMessage": "Please manually enable notifications in your device settings to receive important updates.",
+        "timeFormat": {
+          "justNow": "Just now",
+          "minutesAgo": "{minutes}m ago",
+          "hoursAgo": "{hours}h ago",
+          "daysAgo": "{days}d ago",
+          "dateTimeFormat": "{date} ({time})"
+        }
+      },
+      "getNotifications": {
+        "error": {
+          "404": "Notifications endpoint not found",
+          "default": "Failed to load notifications"
+        }
+      },
+      "markAsRead": {
+        "error": {
+          "default": "Failed to mark notification as read"
+        }
+      },
+      "markAllAsRead": {
+        "error": {
+          "default": "Failed to mark all notifications as read"
+        }
+      }
     },
     "roomBooking": {
       "form": {
@@ -720,7 +1107,8 @@
           "booker": "Booker",
           "bookerIdentifier": "NPM",
           "mainSupervisor": "Main Supervisor",
-          "secondarySupervisor": "Secondary Supervisor"
+          "secondarySupervisor": "Secondary Supervisor",
+          "approvalNotes": "Approval Notes"
         },
         "hint": {
           "selectDate": "Choose booking date",
@@ -744,6 +1132,16 @@
         }
       },
       "text": {
+        "openingDocument": "Opening document...",
+        "documentProofEmpty": "Document proof is empty",
+        "failedToOpenDocument": "Failed to open document",
+        "documentProofDescription": "View or download document proof",
+        "viewDocument": "View Document",
+        "unableToAccessFile": "Unable to access file",
+        "invalidPdfDocument": "Document proof file must be a PDF",
+        "failedToSelectFile": "Failed to select file",
+        "pdfSelected": "PDF selected",
+        "documentProofRequired": "Document proof is required",
         "title": "Room Booking",
         "historyTitle": "Booking History",
         "createTitle": "Create Room Booking",
@@ -756,7 +1154,7 @@
         "selectedSlots": "Selected Slots",
         "disabledSlots": "Disabled Slots",
         "pendingBookings": "Pending",
-        "approvedBookings": "Approved", 
+        "approvedBookings": "Approved",
         "rejectedBookings": "Rejected",
         "noBookingsTitle": "No Bookings Found",
         "noBookingsSubtitle": "No room bookings available at the moment",
@@ -764,11 +1162,11 @@
         "noPendingBookingsSubtitle": "All bookings have been processed",
         "noApprovedBookingsTitle": "No Approved Bookings",
         "noApprovedBookingsSubtitle": "No approved bookings found",
-        "noRejectedBookingsTitle": "No Rejected Bookings", 
+        "noRejectedBookingsTitle": "No Rejected Bookings",
         "noRejectedBookingsSubtitle": "No rejected bookings found",
         "submitBooking": "Submit Booking",
         "updateBooking": "Update Booking",
-        "deleteBooking": "Delete Booking",
+        "deleteBooking": "Cancel Booking",
         "approve": "Approve",
         "reject": "Reject",
         "cancel": "Cancel",
@@ -785,10 +1183,10 @@
         "error": "Error",
         "approveTitle": "Approve Booking",
         "approveMessage": "Are you sure you want to approve this booking?",
-        "rejectTitle": "Reject Booking", 
+        "rejectTitle": "Reject Booking",
         "rejectMessage": "Are you sure you want to reject this booking?",
-        "deleteTitle": "Delete Booking",
-        "deleteMessage": "Are you sure you want to delete this booking? This action cannot be undone.",
+        "deleteTitle": "Cancel Booking",
+        "deleteMessage": "Are you sure you want to cancel this booking?",
         "errorTitle": "Something went wrong",
         "viewDetails": "View Details",
         "bookingInfo": "Booking Information",
@@ -808,13 +1206,15 @@
         "createdAt": "Created At",
         "updatedAt": "Updated At",
         "confirm": "Confirm",
+        "approvalActions": "Approval Actions",
+        "approvalNotesHint": "Add notes for approval/rejection...",
         "confirmation": {
           "title": "Confirmation",
           "message": "Are you sure you want to proceed with this action?",
           "confirm": "Confirm",
           "cancel": "Cancel"
         },
-        "selectTimeInstruction": "Pilih waktu mulai dan waktu selesai terlebih dahulu, kemudian Anda akan dibawa ke halaman pemesanan ruangan",
+        "selectTimeInstruction": "Pilih waktu mulai dan waktu selesai terlebih dahulu, kemudian Anda akan dibawa ke halaman peminjaman ruangan",
         "timeSlotDisabled": "Time slot is disabled",
         "timeSlotBooked": "Time slot is booked",
         "searchPlaceholder": "Search bookings...",
@@ -824,11 +1224,22 @@
         "hideSeminarDetails": "Hide Seminar Details",
         "proposal": "Proposal",
         "result": "Result",
-        "internship": "Internship"
+        "internship": "Internship",
+        "notSelected": "Not Selected",
+        "updateRoomBooking": "Update Booking",
+        "cancelBooking": "Cancel Booking",
+        "backToHistory": "Back to History",
+        "bookingConfirmed": "Booking Confirmed",
+        "bookingSuccessful": "Booking Successful",
+        "countdownTimeUp": "Time is up",
+        "countdownSubtitle": "You have {time} to cancel the booking",
+        "roomBooking": {
+          "error": "Something went wrong"
+        }
       },
       "validation": {
         "dateRequired": "Date is required",
-        "startTimeRequired": "Start time is required", 
+        "startTimeRequired": "Start time is required",
         "endTimeRequired": "End time is required",
         "bookingTypeRequired": "Booking type is required",
         "purposeRequired": "Purpose is required",
@@ -843,7 +1254,7 @@
       },
       "error": {
         "failedToCreate": "Failed to create room booking",
-        "failedToUpdate": "Failed to update room booking", 
+        "failedToUpdate": "Failed to update room booking",
         "failedToDelete": "Failed to delete room booking",
         "failedToApprove": "Failed to approve room booking",
         "failedToReject": "Failed to reject room booking",
@@ -911,11 +1322,39 @@
           "403": "You do not have permission to access this resource, please contact your administrator",
           "404": "The requested resource was not found, please check the URL",
           "422": "The request was understood but could not be processed. Please check your input and try again.",
-          "500": "We're experiencing problems on our servers. Please try again later.", 
+          "500": "We're experiencing problems on our servers. Please try again later.",
           "default": "Oops! Something went wrong. Please try again later."
         },
         "success": {
           "default": "Successfully deleted room booking"
+        }
+      },
+      "rejectRoomBooking": {
+        "error": {
+          "400": "Invalid request, please try again",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "The requested resource was not found, please check the URL",
+          "422": "The request was understood but could not be processed. Please check your input and try again.",
+          "500": "We're experiencing problems on our servers. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        },
+        "success": {
+          "default": "Successfully rejected room booking"
+        }
+      },
+      "approveRoomBooking": {
+        "error": {
+          "400": "Cannot approve room booking, have a conflict with other booking",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "The requested resource was not found, please check the URL",
+          "422": "The request was understood but could not be processed. Please check your input and try again.",
+          "500": "We're experiencing problems on our servers. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        },
+        "success": {
+          "default": "Successfully approved room booking"
         }
       }
     },
@@ -934,12 +1373,13 @@
           "staff": "Accompanying Staff",
           "createdBy": "Created By",
           "createdAt": "Created At",
-          "updatedAt": "Updated At"
+          "updatedAt": "Updated At",
+          "time": "Time"
         },
         "hint": {
           "visitor": "Select registered visitor",
           "name": "Enter visitor name manually",
-          "identityType": "Select identity type (NIM, NIP, KTP, SIM, Passport, Other)",
+          "identityType": "Select identity type",
           "identityNumber": "Enter identity number",
           "date": "Select visit date",
           "startTime": "Select visit start time",
@@ -959,15 +1399,77 @@
         "updateTitle": "Update Guest Visit",
         "detailTitle": "Guest Visit Details",
         "visitorMode": "Visitor Mode",
-        "registeredVisitor": "Registered Visitor",
+        "registeredVisitor": "Registered",
         "manualEntry": "Manual Entry",
-        "identityTypes": {
-          "nim": "NIM",
-          "nip": "NIP",
-          "ktp": "KTP",
-          "sim": "SIM",
-          "passport": "Passport",
-          "other": "Other"
+        "identifier": "Identity",
+        "studentNumber": "Student Number",
+        "createGuestVisit": "Register Guest Visit",
+        "updateGuestVisit": "Update Guest Visit",
+        "detailGuestVisit": "Guest Visit Details",
+        "searchPlaceholder": "Search guest visits...",
+        "empty": "No guest visits found",
+        "unregisteredVisitor": "Unregistered",
+        "employeeNumber": "Employee Number",
+        "other": "Other",
+        "date": "Date",
+        "deleteGuestVisit": "Delete Guest Visit",
+        "deleteTitle": "Delete Guest Visit",
+        "deleteMessage": "Are you sure you want to delete this guest visit?"
+      },
+      "createGuestVisit": {
+        "error": {
+          "400": "Failed to create guest visit",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "The requested resource was not found, please check the URL",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "500": "We're experiencing problems on our servers. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        },
+        "success": {
+          "default": "Successfully created guest visit"
+        }
+      },
+      "updateGuestVisit": {
+        "error": {
+          "400": "Failed to update guest visit",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "The requested resource was not found, please check the URL",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "500": "We're experiencing problems on our servers. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        },
+        "success": {
+          "default": "Successfully updated guest visit"
+        }
+      },
+      "detailGuestVisit": {
+        "error": {
+          "400": "Failed to fetch guest visit details",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "The requested resource was not found, please check the URL",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "500": "We're experiencing problems on our servers. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        },
+        "success": {
+          "default": "Successfully fetched guest visit details"
+        }
+      },
+      "deleteGuestVisit": {
+        "error": {
+          "400": "Failed to delete guest visit",
+          "401": "Unauthorized access, please log in",
+          "403": "You do not have permission to access this resource, please contact your administrator",
+          "404": "The requested resource was not found, please check the URL",
+          "422": "The request was understood, but could not be processed. Please check your input and try again.",
+          "500": "We're experiencing problems on our servers. Please try again later.",
+          "default": "Oops! Something went wrong. Please try again later."
+        },
+        "success": {
+          "default": "Successfully deleted guest visit"
         }
       }
     },

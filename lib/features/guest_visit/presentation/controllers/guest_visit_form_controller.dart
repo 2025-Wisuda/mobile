@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 
 import 'package:mobile/features/guest_visit/domain/entities/entity.dart';
 import 'package:mobile/features/guest_visit/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_form_controller.dart';
-import 'package:mobile/shared/entities/base_response_entity.dart';
-import 'package:mobile/shared/enums/form_mode.dart';
+import 'package:mobile/features/user/domain/entities/entity.dart';
+import 'package:mobile/shared/controllers/get_base_form_controller.dart';
+import 'package:mobile/shared/entities/entity.dart';
+import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/errors/error.dart';
-import 'package:mobile/shared/errors/failure.dart';
-import 'package:mobile/shared/helpers/helper.dart' show DateHelper;
+import 'package:mobile/shared/helpers/helper.dart';
 
-class GuestVisitFormController
-    extends BaseFormController<SaveGuestVisitRequestEntity, GuestVisitEntity> {
+class GuestVisitFormController extends GetBaseFormController<
+    SaveGuestVisitRequestEntity, BaseResponseEntity<GuestVisitEntity>> {
   final CreateGuestVisitUsecase _createGuestVisitUsecase;
   final UpdateGuestVisitUsecase _updateGuestVisitUsecase;
 
@@ -24,9 +24,19 @@ class GuestVisitFormController
   GuestVisitEntity? get guestVisit => _guestVisit.value;
 
   final RxnString _guestVisitId = RxnString();
+  final selectedDate = Rxn<DateTime>();
+  final selectedStartTime = RxnString();
+  final selectedEndTime = RxnString();
+  final selectedIdentityType = RxnString();
+  final RxBool isRegisteredVisitor = false.obs;
+  final RxnString selectedVisitorUserId = RxnString();
+  final RxList<String> selectedVisitorIds = <String>[].obs;
+  final RxList<UserEntity> selectedVisitorUsers = <UserEntity>[].obs;
 
   @override
   void onInit() {
+    super.onInit();
+
     initializeControllers([
       'visitor',
       'name',
@@ -38,7 +48,6 @@ class GuestVisitFormController
       'purpose',
       'paraf',
     ]);
-    super.onInit();
   }
 
   @override
@@ -49,7 +58,7 @@ class GuestVisitFormController
       _guestVisitId.value != null ? FormMode.update : FormMode.create;
 
   @override
-  List<String> get requiredFields => ['date', 'startTime', 'purpose'];
+  List<String> get requiredFields => ['purpose'];
 
   @override
   Future<Either<Failure, BaseResponseEntity<GuestVisitEntity>>> executeUsecase(
@@ -67,15 +76,24 @@ class GuestVisitFormController
   @override
   SaveGuestVisitRequestEntity buildEntity() {
     return SaveGuestVisitRequestEntity(
-      visitor: _getNonEmptyValue('visitor'),
+      visitor: isRegisteredVisitor.value
+          ? (selectedVisitorIds.isNotEmpty ? selectedVisitorIds.first : null)
+          : _getNonEmptyValue('visitor'),
       name: _getNonEmptyValue('name'),
-      identityType: _getNonEmptyValue('identityType'),
+      identityType: selectedIdentityType.value?.isNotEmpty == true
+          ? selectedIdentityType.value
+          : null,
       identityNumber: _getNonEmptyValue('identityNumber'),
-      date: DateTime.parse(getControllerValue('date')),
-      startTime: getControllerValue('startTime'),
-      endTime: _getNonEmptyValue('endTime'),
-      purpose: getControllerValue('purpose'),
-      paraf: _getNonEmptyValue('paraf'),
+      date: selectedDate.value != null
+          ? DateHelper.formatIsoDate(date: selectedDate.value!)
+          : null,
+      startTime: selectedStartTime.value?.isNotEmpty == true
+          ? selectedStartTime.value
+          : null,
+      endTime: selectedEndTime.value?.isNotEmpty == true
+          ? selectedEndTime.value
+          : null,
+      purpose: _getNonEmptyValue('purpose'),
     );
   }
 
@@ -85,17 +103,16 @@ class GuestVisitFormController
   }
 
   @override
-  void onSubmitSuccess(dynamic response) {
+  void onSubmitSuccess(BaseResponseEntity<GuestVisitEntity> response) {
     super.onSubmitSuccess(response);
 
-    if (response is BaseResponseEntity<GuestVisitEntity> &&
-        response.data != null) {
+    if (response.data != null) {
       _guestVisit.value = response.data;
       _guestVisitId.value = response.data!.id;
     }
 
     Future.microtask(() {
-      clearForm();
+      cleanForm();
     });
   }
 
@@ -103,15 +120,15 @@ class GuestVisitFormController
 
   @override
   Map<String, String?> validateAllFields() {
-    final date = getControllerValue('date');
-    final startTime = getControllerValue('startTime');
-    final purpose = getControllerValue('purpose');
+    final errors = <String, String?>{};
 
-    final errors = {
-      'date': validateRequired(date, 'Date'),
-      'startTime': validateRequired(startTime, 'Start Time'),
-      'purpose': validateRequired(purpose, 'Purpose'),
-    };
+    for (final field in requiredFields) {
+      final error =
+          validateRequired(getControllerValue(field), field.capitalizeFirst!);
+      if (error != null) {
+        errors[field] = error;
+      }
+    }
 
     return errors..removeWhere((_, value) => value == null);
   }
@@ -120,71 +137,122 @@ class GuestVisitFormController
     _guestVisit.value = guestVisit;
     _guestVisitId.value = guestVisit.id;
 
-    autoPopulateForm(guestVisit);
-
-    if (guestVisit.visitor?.id != null) {
-      getController('visitor').text = guestVisit.visitor!.id!;
-    }
-
-    if (guestVisit.nameDisplay != null) {
-      getController('name').text = guestVisit.nameDisplay!;
-    }
-
-    if (guestVisit.identityType != null) {
-      getController('identityType').text = guestVisit.identityType!;
-    }
-
-    if (guestVisit.identityNumber != null) {
-      getController('identityNumber').text = guestVisit.identityNumber!;
-    }
+    autoPopulateFromEntity(
+      entity: guestVisit,
+      entityToMap: (entity) => {
+        'visitor': entity.visitor ?? '',
+        'name': entity.name ?? '',
+        'identityType': entity.identityType ?? '',
+        'identityNumber': entity.identityNumber ?? '',
+        'purpose': entity.purpose ?? '',
+        'date': entity.date ?? '',
+        'startTime': entity.startTime ?? '',
+        'endTime': entity.endTime ?? '',
+        'paraf': entity.paraf ?? '',
+      },
+    );
 
     if (guestVisit.date != null) {
-      getController('date').text =
-          DateHelper.formatDayMonthYear(date: guestVisit.date!);
+      selectedDate.value = DateTime.tryParse(guestVisit.date!);
     }
 
     if (guestVisit.startTime != null) {
-      getController('startTime').text = guestVisit.startTime!;
+      selectedStartTime.value = guestVisit.startTime!;
     }
 
     if (guestVisit.endTime != null) {
-      getController('endTime').text = guestVisit.endTime!;
+      selectedEndTime.value = guestVisit.endTime!;
     }
 
-    if (guestVisit.purpose != null) {
-      getController('purpose').text = guestVisit.purpose!;
+    if (isRegisteredVisitor.value && guestVisit.visitor != null) {
+      selectedVisitorIds.assignAll([guestVisit.visitor!]);
     }
 
-    if (guestVisit.paraf != null) {
-      getController('paraf').text = guestVisit.paraf!;
+    _markPopulatedFieldsAsInteracted(guestVisit);
+  }
+
+  void _markPopulatedFieldsAsInteracted(GuestVisitEntity guestVisit) {
+    for (final field in requiredFields) {
+      final hasValue = _hasFieldValue(field, guestVisit);
+      if (hasValue) {
+        markFieldAsInteracted(field);
+      }
+    }
+  }
+
+  bool _hasFieldValue(String fieldName, GuestVisitEntity guestVisit) {
+    switch (fieldName) {
+      case 'visitor':
+        return guestVisit.visitor?.isNotEmpty == true;
+      case 'name':
+        return guestVisit.name?.isNotEmpty == true;
+      case 'identityType':
+        return guestVisit.identityType?.isNotEmpty == true;
+      case 'identityNumber':
+        return guestVisit.identityNumber?.isNotEmpty == true;
+      case 'date':
+        return guestVisit.date != null;
+      case 'startTime':
+        return guestVisit.startTime?.isNotEmpty == true;
+      case 'endTime':
+        return guestVisit.endTime?.isNotEmpty == true;
+      case 'purpose':
+        return guestVisit.purpose?.isNotEmpty == true;
+      case 'paraf':
+        return guestVisit.paraf?.isNotEmpty == true;
+      default:
+        return false;
     }
   }
 
   void resetForCreate() {
     _guestVisitId.value = null;
-    clearForm();
+    cleanForm();
+  }
+
+  void selectDate(DateTime date) {
+    selectedDate.value = date;
+    selectedStartTime.value = null;
+    selectedEndTime.value = null;
+  }
+
+  void selectStartTime(String startTime) {
+    selectedStartTime.value = startTime;
+  }
+
+  void selectEndTime(String endTime) {
+    selectedEndTime.value = endTime;
+  }
+
+  void selectIdentityType(String identityType) {
+    selectedIdentityType.value = identityType;
+  }
+
+  void resetTimeSelections() {
+    selectedStartTime.value = null;
+    selectedEndTime.value = null;
+  }
+
+  void resetScheduleSelections() {
+    selectedDate.value = null;
+    selectedStartTime.value = null;
+    selectedEndTime.value = null;
+    selectedIdentityType.value = null;
+  }
+
+  @override
+  void cleanForm() {
+    super.cleanForm();
+    selectedDate.value = null;
+    selectedStartTime.value = null;
+    selectedEndTime.value = null;
+    selectedIdentityType.value = null;
   }
 
   Future<void> createGuestVisit() => submitForm();
   Future<void> updateGuestVisit() => submitForm();
+}
 
-  // @override
-  // Map<String, dynamic> get initialValues => {
-  //       'visitor': '',
-  //       'name': '',
-  //       'identityType': '',
-  //       'identityNumber': '',
-  //       'date': '',
-  //       'startTime': '',
-  //       'endTime': '',
-  //       'purpose': '',
-  //       'paraf': '',
-  //     };
-
-  // @override
-  // Map<String, String> get validations => {
-  //       'date': 'required',
-  //       'startTime': 'required',
-  //       'purpose': 'required',
-  //     };
+extension GuestVisitFormControllerMode on GuestVisitFormController {
+  bool get isUpdateMode => guestVisitId != null && guestVisitId!.isNotEmpty;
 }

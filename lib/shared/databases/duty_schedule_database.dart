@@ -5,7 +5,7 @@ import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-import 'package:mobile/features/duty_schedule/domain/entities/entity.dart';
+import 'package:mobile/features/duty/domain/entities/entity.dart';
 import 'package:mobile/shared/errors/error.dart';
 
 part 'duty_schedule_database.g.dart';

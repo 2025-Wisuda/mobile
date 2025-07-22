@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:mobile/features/splash/presentation/widgets/widget.dart';
 
 class SplashScreen extends StatelessWidget {

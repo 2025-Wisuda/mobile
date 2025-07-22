@@ -11,5 +11,5 @@ part of 'env.dart';
 // generated_from: .env
 final class _EnvConfig {
   static const String apiKeyBackend =
-      'QgMskIoq.a9s0fEz7zuM6bkKes9Ey8SChkIpflkJN';
+      'ePrnkbGG.4Q5fDHuOJjhNm3WLUXMP4NrArPLRKzhM';
 }

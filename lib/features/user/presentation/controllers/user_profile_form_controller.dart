@@ -4,16 +4,15 @@ import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'package:mobile/features/user/data/models/model.dart';
 import 'package:mobile/features/user/domain/entities/entity.dart';
 import 'package:mobile/features/user/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_form_controller.dart';
+import 'package:mobile/shared/controllers/get_base_form_controller.dart';
 import 'package:mobile/shared/entities/entity.dart';
 import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/errors/error.dart';
 
 class UserProfileFormController
-    extends BaseFormController<UserEntity, UserModel> {
+    extends GetBaseFormController<UserEntity, BaseResponseEntity<UserEntity>> {
   final UpdateUserProfileUsecase _updateUserProfileUsecase;
 
   UserProfileFormController(this._updateUserProfileUsecase);
@@ -63,27 +62,50 @@ class UserProfileFormController
     );
   }
 
-  void populateFormFields(UserEntity user) {
-    populateForm({
-      'username': user.username ?? '',
-      'firstName': user.firstName ?? '',
-      'lastName': user.lastName ?? '',
-      'email': user.email ?? '',
-      'group': user.group ?? '',
-      'studentNumber': user.studentNumber ?? '',
-      'employeeNumber': user.employeeNumber ?? '',
-    });
+  void loadUserProfileForUpdate(UserEntity user) {
+    autoPopulateFromEntity(
+      entity: user,
+      entityToMap: (entity) => {
+        'username': entity.username ?? '',
+        'firstName': entity.firstName ?? '',
+        'lastName': entity.lastName ?? '',
+        'email': entity.email ?? '',
+        'group': entity.group ?? '',
+        'studentNumber': entity.studentNumber ?? '',
+        'employeeNumber': entity.employeeNumber ?? '',
+      },
+    );
+
+    _markPopulatedFieldsAsInteracted(user);
   }
 
-  void initializeWithUserData(UserEntity user) {
-    populateFormFields(user);
+  void _markPopulatedFieldsAsInteracted(UserEntity user) {
+    for (final field in requiredFields) {
+      final hasValue = _hasFieldValue(field, user);
+      if (hasValue) {
+        markFieldAsInteracted(field);
+      }
+    }
   }
 
-  @override
-  void onSubmitSuccess(dynamic response) {
-    super.onSubmitSuccess(response);
-    if (response is BaseResponseEntity<UserEntity>) {
-      populateFormFields(response.data!);
+  bool _hasFieldValue(String fieldName, UserEntity user) {
+    switch (fieldName) {
+      case 'username':
+        return user.username?.isNotEmpty == true;
+      case 'firstName':
+        return user.firstName?.isNotEmpty == true;
+      case 'lastName':
+        return user.lastName?.isNotEmpty == true;
+      case 'email':
+        return user.email?.isNotEmpty == true;
+      case 'group':
+        return user.group?.isNotEmpty == true;
+      case 'studentNumber':
+        return user.studentNumber?.isNotEmpty == true;
+      case 'employeeNumber':
+        return user.employeeNumber?.isNotEmpty == true;
+      default:
+        return false;
     }
   }
 
@@ -128,7 +150,7 @@ class UserProfileFormController
   }
 
   bool get isFormValidWithImages {
-    return reactiveFormValid.value || avatar != null;
+    return isFormValid.value || avatar != null;
   }
 
   Future<void> updateProfile() => submitForm();

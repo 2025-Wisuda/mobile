@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -288,6 +287,292 @@ class _$RoomBookingEntityCopyWithImpl<$Res>
     return $UserEntityCopyWith<$Res>(_self.approvedByUser!, (value) {
       return _then(_self.copyWith(approvedByUser: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [RoomBookingEntity].
+extension RoomBookingEntityPatterns on RoomBookingEntity {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_RoomBookingEntity value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RoomBookingEntity() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_RoomBookingEntity value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RoomBookingEntity():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_RoomBookingEntity value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RoomBookingEntity() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String? booker,
+            String? bookerName,
+            String? bookerIdentifier,
+            String? bookingType,
+            String? purpose,
+            DateTime? date,
+            String? startTime,
+            String? endTime,
+            String? seminarType,
+            String? researchTitle,
+            String? supervisorMain,
+            String? supervisorSecondary,
+            String? examiner,
+            String? documentProof,
+            String? approvalStatus,
+            UserEntity? approvedByUser,
+            DateTime? approvalTimestamp,
+            String? approvalNotes,
+            DateTime? createdAt,
+            DateTime? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _RoomBookingEntity() when $default != null:
+        return $default(
+            _that.id,
+            _that.booker,
+            _that.bookerName,
+            _that.bookerIdentifier,
+            _that.bookingType,
+            _that.purpose,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.seminarType,
+            _that.researchTitle,
+            _that.supervisorMain,
+            _that.supervisorSecondary,
+            _that.examiner,
+            _that.documentProof,
+            _that.approvalStatus,
+            _that.approvedByUser,
+            _that.approvalTimestamp,
+            _that.approvalNotes,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String? booker,
+            String? bookerName,
+            String? bookerIdentifier,
+            String? bookingType,
+            String? purpose,
+            DateTime? date,
+            String? startTime,
+            String? endTime,
+            String? seminarType,
+            String? researchTitle,
+            String? supervisorMain,
+            String? supervisorSecondary,
+            String? examiner,
+            String? documentProof,
+            String? approvalStatus,
+            UserEntity? approvedByUser,
+            DateTime? approvalTimestamp,
+            String? approvalNotes,
+            DateTime? createdAt,
+            DateTime? updatedAt)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RoomBookingEntity():
+        return $default(
+            _that.id,
+            _that.booker,
+            _that.bookerName,
+            _that.bookerIdentifier,
+            _that.bookingType,
+            _that.purpose,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.seminarType,
+            _that.researchTitle,
+            _that.supervisorMain,
+            _that.supervisorSecondary,
+            _that.examiner,
+            _that.documentProof,
+            _that.approvalStatus,
+            _that.approvedByUser,
+            _that.approvalTimestamp,
+            _that.approvalNotes,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String? id,
+            String? booker,
+            String? bookerName,
+            String? bookerIdentifier,
+            String? bookingType,
+            String? purpose,
+            DateTime? date,
+            String? startTime,
+            String? endTime,
+            String? seminarType,
+            String? researchTitle,
+            String? supervisorMain,
+            String? supervisorSecondary,
+            String? examiner,
+            String? documentProof,
+            String? approvalStatus,
+            UserEntity? approvedByUser,
+            DateTime? approvalTimestamp,
+            String? approvalNotes,
+            DateTime? createdAt,
+            DateTime? updatedAt)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _RoomBookingEntity() when $default != null:
+        return $default(
+            _that.id,
+            _that.booker,
+            _that.bookerName,
+            _that.bookerIdentifier,
+            _that.bookingType,
+            _that.purpose,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.seminarType,
+            _that.researchTitle,
+            _that.supervisorMain,
+            _that.supervisorSecondary,
+            _that.examiner,
+            _that.documentProof,
+            _that.approvalStatus,
+            _that.approvedByUser,
+            _that.approvalTimestamp,
+            _that.approvalNotes,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        return null;
+    }
   }
 }
 

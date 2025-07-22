@@ -4,22 +4,33 @@ import 'package:get/get.dart';
 import 'package:mobile/features/lab_schedule/data/models/model.dart';
 import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
 import 'package:mobile/features/lab_schedule/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_list_controller.dart';
+import 'package:mobile/shared/controllers/get_base_list_controller.dart';
 import 'package:mobile/shared/entities/base_list_response_entity.dart';
 import 'package:mobile/shared/errors/failure.dart';
 
-class MyLabScheduleController extends BaseListController<LabScheduleEntity,
+class MyLabScheduleController extends GetBaseListController<LabScheduleEntity,
     LabScheduleFilterParamsModel> {
   final FetchMyLabScheduleUsecase _fetchMyLabScheduleUsecase;
 
   MyLabScheduleController(this._fetchMyLabScheduleUsecase) {
-    enableSearch();
+    hasSearchEnabled.value = true;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    initializeControllers(['${baseStateKey}SearchController']);
+
+    final isSearch = Get.currentRoute.contains('search');
+    if (isSearch) {
+      fetchList();
+    }
   }
 
   @override
   String get baseStateKey => 'myLabSchedule';
 
-  RxList<LabScheduleEntity> get myLabScheduleList => items;
+  RxList<LabScheduleEntity> get listMyLabSchedule => items;
 
   @override
   Future<Either<Failure, BaseListResponseEntity<LabScheduleEntity>>>

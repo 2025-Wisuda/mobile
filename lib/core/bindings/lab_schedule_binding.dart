@@ -54,6 +54,20 @@ class LabScheduleBinding extends Bindings {
         permanent: true,
       );
     }
+
+    if (!Get.isRegistered<FetchListLabScheduleUsecase>()) {
+      Get.put<FetchListLabScheduleUsecase>(
+        FetchListLabScheduleUsecase(Get.find<LabScheduleRepository>()),
+        permanent: true,
+      );
+    }
+
+    if (!Get.isRegistered<FetchMyLabScheduleUsecase>()) {
+      Get.put<FetchMyLabScheduleUsecase>(
+        FetchMyLabScheduleUsecase(Get.find<LabScheduleRepository>()),
+        permanent: true,
+      );
+    }
   }
 
   void registerFetchListLabSchedule() {
@@ -69,11 +83,6 @@ class LabScheduleBinding extends Bindings {
             ListLabScheduleController(Get.find<FetchListLabScheduleUsecase>()),
       );
     }
-    if (!Get.isRegistered<LabScheduleWrapperController>()) {
-      Get.lazyPut<LabScheduleWrapperController>(
-        () => LabScheduleWrapperController(),
-      );
-    }
   }
 
   void registerFetchListLabScheduleWithTag(String tag) {
@@ -87,12 +96,6 @@ class LabScheduleBinding extends Bindings {
       Get.lazyPut<ListLabScheduleController>(
         () =>
             ListLabScheduleController(Get.find<FetchListLabScheduleUsecase>()),
-        tag: tag,
-      );
-    }
-    if (!Get.isRegistered<LabScheduleWrapperController>(tag: tag)) {
-      Get.lazyPut<LabScheduleWrapperController>(
-        () => LabScheduleWrapperController(tag: tag),
         tag: tag,
       );
     }
@@ -115,17 +118,31 @@ class LabScheduleBinding extends Bindings {
 
   void registerLabAvailability() {
     if (!Get.isRegistered<FetchLabAvailabilityUsecase>()) {
-      Get.lazyPut<FetchLabAvailabilityUsecase>(
-        () => FetchLabAvailabilityUsecase(Get.find<LabScheduleRepository>()),
+      Get.put<FetchLabAvailabilityUsecase>(
+        FetchLabAvailabilityUsecase(Get.find<LabScheduleRepository>()),
+        permanent: true,
       );
     }
-
-    if (!Get.isRegistered<LabAvailabilityController>(
-        tag: 'course_session_time_availability')) {
+    if (!Get.isRegistered<LabAvailabilityController>()) {
       Get.lazyPut<LabAvailabilityController>(
         () =>
             LabAvailabilityController(Get.find<FetchLabAvailabilityUsecase>()),
-        tag: 'course_session_time_availability',
+      );
+    }
+  }
+
+  void registerLabAvailabilityWithTag(String tag) {
+    if (!Get.isRegistered<FetchLabAvailabilityUsecase>()) {
+      Get.put<FetchLabAvailabilityUsecase>(
+        FetchLabAvailabilityUsecase(Get.find<LabScheduleRepository>()),
+        permanent: true,
+      );
+    }
+    if (!Get.isRegistered<LabAvailabilityController>(tag: tag)) {
+      Get.lazyPut<LabAvailabilityController>(
+        () =>
+            LabAvailabilityController(Get.find<FetchLabAvailabilityUsecase>()),
+        tag: tag,
       );
     }
   }
@@ -142,11 +159,6 @@ class LabScheduleBinding extends Bindings {
         () => MyLabScheduleController(Get.find<FetchMyLabScheduleUsecase>()),
       );
     }
-    if (!Get.isRegistered<LabScheduleWrapperController>()) {
-      Get.lazyPut<LabScheduleWrapperController>(
-        () => LabScheduleWrapperController(),
-      );
-    }
   }
 
   void registerFetchMyLabScheduleWithTag(String tag) {
@@ -157,15 +169,10 @@ class LabScheduleBinding extends Bindings {
       );
     }
     if (!Get.isRegistered<MyLabScheduleController>(tag: tag)) {
-      Get.lazyPut<MyLabScheduleController>(
-        () => MyLabScheduleController(Get.find<FetchMyLabScheduleUsecase>()),
+      Get.put<MyLabScheduleController>(
+        MyLabScheduleController(Get.find<FetchMyLabScheduleUsecase>()),
         tag: tag,
-      );
-    }
-    if (!Get.isRegistered<LabScheduleWrapperController>(tag: tag)) {
-      Get.lazyPut<LabScheduleWrapperController>(
-        () => LabScheduleWrapperController(tag: tag),
-        tag: tag,
+        permanent: true,
       );
     }
   }
@@ -206,7 +213,8 @@ class FetchMyLabScheduleBinding extends LabScheduleBinding {
   @override
   void dependencies() {
     super.dependencies();
-    registerFetchMyLabScheduleWithTag('list');
+    registerFetchMyLabScheduleWithTag('home');
+    registerFetchLabScheduleDetail();
   }
 }
 
@@ -216,6 +224,15 @@ class SearchLabScheduleBinding extends LabScheduleBinding {
     super.dependencies();
     registerFetchListLabScheduleWithTag('search');
     registerFetchMyLabScheduleWithTag('search');
+    if (!Get.isRegistered<LabScheduleWrapperController>(tag: 'search')) {
+      Get.put<LabScheduleWrapperController>(
+        LabScheduleWrapperController(
+          tag: 'search',
+        ),
+        tag: 'search',
+        permanent: true,
+      );
+    }
     registerFetchLabScheduleDetail();
   }
 }
@@ -227,6 +244,16 @@ class ListLabScheduleBinding extends LabScheduleBinding {
     registerFetchListLabScheduleWithTag('list');
     registerFetchMyLabScheduleWithTag('list');
     registerFetchLabScheduleDetail();
+
+    if (!Get.isRegistered<LabScheduleWrapperController>(tag: 'list')) {
+      Get.put<LabScheduleWrapperController>(
+        LabScheduleWrapperController(
+          tag: 'list',
+        ),
+        tag: 'list',
+        permanent: true,
+      );
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:mobile/shared/extensions/extension.dart';
+import 'package:mobile/shared/widgets/layout/layout.dart';
 
 class AboutUsWrapperWidget extends StatelessWidget {
   const AboutUsWrapperWidget({super.key});
@@ -23,6 +23,20 @@ class AboutUsWrapperWidget extends StatelessWidget {
                     'aboutUs'.message('description'),
                     style: context.bodyMedium(),
                   ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  CustomDashedLineWidget(color: context.outline),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'NUR ANNISA SEPTRIZA (MOBILE) \nLEVIAN DANDRA (BACKEND) \nBUDI CAHYONO (AI)',
+                      style: context
+                          .bodyMediumW(700)
+                          .copyWith(color: context.onSurfaceVariant),
+                      textAlign: TextAlign.center,
+                    ),
+                  )
                 ],
               ),
             ),

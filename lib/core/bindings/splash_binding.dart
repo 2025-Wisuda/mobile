@@ -8,6 +8,10 @@ Bindings splashBinding() {
     final mainWrapperBinding = MainWrapperBinding();
     mainWrapperBinding.dependencies();
 
+    // Register notification binding
+    final notificationBinding = NotificationBinding();
+    notificationBinding.dependencies();
+
     Get.lazyPut(() => SplashController());
   });
 }

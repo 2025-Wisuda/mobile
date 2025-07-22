@@ -34,4 +34,29 @@ extension RoomBookingEntityExtension on RoomBookingEntity {
   bool get isCourse => bookingType == 'COURSE';
   bool get isMeeting => bookingType == 'MEETING';
   bool get isEvent => bookingType == 'EVENT';
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'booker': booker,
+      'bookerName': bookerName,
+      'bookerIdentifier': bookerIdentifier,
+      'bookingType': bookingType,
+      'purpose': purpose,
+      'date': date?.toIso8601String(),
+      'startTime': startTime,
+      'endTime': endTime,
+      'seminarType': seminarType,
+      'researchTitle': researchTitle,
+      'supervisorMain': supervisorMain,
+      'supervisorSecondary': supervisorSecondary,
+      'examiner': examiner,
+      'documentProof': documentProof,
+      'approvalStatus': approvalStatus,
+      'approvalNotes': approvalNotes,
+      'createdAt': createdAt?.toIso8601String(),
+      'updatedAt': updatedAt?.toIso8601String(),
+      'approvalTimestamp': approvalTimestamp?.toIso8601String(),
+    };
+  }
 }

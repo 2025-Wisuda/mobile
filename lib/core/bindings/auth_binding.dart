@@ -44,6 +44,8 @@ class AuthBinding extends Bindings {
       Get.lazyPut<LoginController>(
           () => LoginController(Get.find<LoginUsecase>()));
     }
+    // Force immediate initialization to prevent cold start race condition
+    Get.find<LoginController>();
   }
 
   void registerChangePassword() {
@@ -62,9 +64,9 @@ class AuthBinding extends Bindings {
       Get.lazyPut<LogoutUsecase>(
           () => LogoutUsecase(Get.find<AuthRepository>()));
     }
-    if (!Get.isRegistered<LogoutController>()) {
-      Get.lazyPut<LogoutController>(
-          () => LogoutController(Get.find<LogoutUsecase>()));
+    if (!Get.isRegistered<GetLogoutController>()) {
+      Get.lazyPut<GetLogoutController>(
+          () => GetLogoutController(Get.find<LogoutUsecase>()));
     }
   }
 

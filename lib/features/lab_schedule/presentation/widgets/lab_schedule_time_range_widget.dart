@@ -42,7 +42,7 @@ class _LabScheduleTimeRangeWidgetState
   final selectedTimes = <String>[].obs;
   String? _lastFetchedDate;
 
-  LabAvailabilityController get labAvailabilityC =>
+  LabAvailabilityController get controller =>
       Get.find<LabAvailabilityController>(
         tag: widget.controllerKey ?? 'default',
       );
@@ -67,8 +67,7 @@ class _LabScheduleTimeRangeWidgetState
       if (_lastFetchedDate != formattedDate) {
         _lastFetchedDate = formattedDate;
         selectedTimes.clear();
-        Future.microtask(
-            () => labAvailabilityC.fetchAvailability(formattedDate));
+        Future.microtask(() => controller.setFilters({'date': formattedDate}));
       }
     }
 
@@ -82,8 +81,8 @@ class _LabScheduleTimeRangeWidgetState
           optional: widget.isOptional,
         ),
         Obx(() {
-          final state = labAvailabilityC.state;
-          final availabilitySlots = labAvailabilityC.items;
+          final state = controller.state;
+          final availabilitySlots = controller.items;
 
           return _buildTimeRangeContent(
             context: context,

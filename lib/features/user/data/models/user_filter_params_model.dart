@@ -3,7 +3,7 @@ part of 'user_model.dart';
 class UserFilterParamsModel {
   final String? search;
   final String? group;
-  final List<String>? groups; // New parameter for multiple groups
+  final List<String>? groups;
   final int page;
   final int pageSize;
 
@@ -20,10 +20,7 @@ class UserFilterParamsModel {
 
     if (search != null && search!.isNotEmpty) params['search'] = search;
 
-    // Priority: groups (multiple) > group (single)
     if (groups != null && groups!.isNotEmpty) {
-      // For multiple groups, use the same parameter name multiple times
-      // This will create: ?groups=Group1&groups=Group2
       params['groups'] = groups!;
     } else if (group != null && group!.isNotEmpty) {
       params['group'] = group;

@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 import 'package:mobile/features/room_booking/domain/entities/entity.dart';
 import 'package:mobile/features/room_booking/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/controller.dart';
+import 'package:mobile/shared/controllers/get_base_form_controller.dart';
 import 'package:mobile/shared/entities/entity.dart';
 import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/errors/error.dart';
 
-class ApproveRoomBookingController extends BaseFormController<
+class ApproveRoomBookingController extends GetBaseFormController<
     ApproveRoomBookingEntity, BaseResponseEntity<RoomBookingEntity>> {
   final ApproveRoomBookingUsecase _approveRoomBookingUsecase;
   final RejectRoomBookingUsecase _rejectRoomBookingUsecase;
@@ -81,9 +81,7 @@ class ApproveRoomBookingController extends BaseFormController<
     return submitForm();
   }
 
-  @override
   bool validateBeforeSubmit() {
-    // No form fields required, so always valid. Skip default form validation.
     return true;
   }
 }

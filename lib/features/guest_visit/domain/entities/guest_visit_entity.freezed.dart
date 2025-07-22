@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -16,11 +15,11 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$GuestVisitEntity {
   String? get id;
-  UserEntity? get visitor;
+  String? get visitor;
   String? get name;
   String? get identityType;
   String? get identityNumber;
-  DateTime? get date;
+  String? get date;
   String? get startTime;
   String? get endTime;
   String? get purpose;
@@ -108,11 +107,11 @@ abstract mixin class $GuestVisitEntityCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      UserEntity? visitor,
+      String? visitor,
       String? name,
       String? identityType,
       String? identityNumber,
-      DateTime? date,
+      String? date,
       String? startTime,
       String? endTime,
       String? purpose,
@@ -125,7 +124,6 @@ abstract mixin class $GuestVisitEntityCopyWith<$Res> {
       DateTime? createdAt,
       DateTime? updatedAt});
 
-  $UserEntityCopyWith<$Res>? get visitor;
   $UserEntityCopyWith<$Res>? get staff;
   $UserEntityCopyWith<$Res>? get createdBy;
 }
@@ -169,7 +167,7 @@ class _$GuestVisitEntityCopyWithImpl<$Res>
       visitor: freezed == visitor
           ? _self.visitor
           : visitor // ignore: cast_nullable_to_non_nullable
-              as UserEntity?,
+              as String?,
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -185,7 +183,7 @@ class _$GuestVisitEntityCopyWithImpl<$Res>
       date: freezed == date
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       startTime: freezed == startTime
           ? _self.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
@@ -237,20 +235,6 @@ class _$GuestVisitEntityCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<$Res>? get visitor {
-    if (_self.visitor == null) {
-      return null;
-    }
-
-    return $UserEntityCopyWith<$Res>(_self.visitor!, (value) {
-      return _then(_self.copyWith(visitor: value));
-    });
-  }
-
-  /// Create a copy of GuestVisitEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $UserEntityCopyWith<$Res>? get staff {
     if (_self.staff == null) {
       return null;
@@ -273,6 +257,268 @@ class _$GuestVisitEntityCopyWithImpl<$Res>
     return $UserEntityCopyWith<$Res>(_self.createdBy!, (value) {
       return _then(_self.copyWith(createdBy: value));
     });
+  }
+}
+
+/// Adds pattern-matching-related methods to [GuestVisitEntity].
+extension GuestVisitEntityPatterns on GuestVisitEntity {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_GuestVisitEntity value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitEntity() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_GuestVisitEntity value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitEntity():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_GuestVisitEntity value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitEntity() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String? visitor,
+            String? name,
+            String? identityType,
+            String? identityNumber,
+            String? date,
+            String? startTime,
+            String? endTime,
+            String? purpose,
+            String? paraf,
+            UserEntity? staff,
+            String? nameDisplay,
+            String? identityDisplay,
+            bool? canEdit,
+            UserEntity? createdBy,
+            DateTime? createdAt,
+            DateTime? updatedAt)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitEntity() when $default != null:
+        return $default(
+            _that.id,
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose,
+            _that.paraf,
+            _that.staff,
+            _that.nameDisplay,
+            _that.identityDisplay,
+            _that.canEdit,
+            _that.createdBy,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String? id,
+            String? visitor,
+            String? name,
+            String? identityType,
+            String? identityNumber,
+            String? date,
+            String? startTime,
+            String? endTime,
+            String? purpose,
+            String? paraf,
+            UserEntity? staff,
+            String? nameDisplay,
+            String? identityDisplay,
+            bool? canEdit,
+            UserEntity? createdBy,
+            DateTime? createdAt,
+            DateTime? updatedAt)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitEntity():
+        return $default(
+            _that.id,
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose,
+            _that.paraf,
+            _that.staff,
+            _that.nameDisplay,
+            _that.identityDisplay,
+            _that.canEdit,
+            _that.createdBy,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String? id,
+            String? visitor,
+            String? name,
+            String? identityType,
+            String? identityNumber,
+            String? date,
+            String? startTime,
+            String? endTime,
+            String? purpose,
+            String? paraf,
+            UserEntity? staff,
+            String? nameDisplay,
+            String? identityDisplay,
+            bool? canEdit,
+            UserEntity? createdBy,
+            DateTime? createdAt,
+            DateTime? updatedAt)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _GuestVisitEntity() when $default != null:
+        return $default(
+            _that.id,
+            _that.visitor,
+            _that.name,
+            _that.identityType,
+            _that.identityNumber,
+            _that.date,
+            _that.startTime,
+            _that.endTime,
+            _that.purpose,
+            _that.paraf,
+            _that.staff,
+            _that.nameDisplay,
+            _that.identityDisplay,
+            _that.canEdit,
+            _that.createdBy,
+            _that.createdAt,
+            _that.updatedAt);
+      case _:
+        return null;
+    }
   }
 }
 
@@ -301,7 +547,7 @@ class _GuestVisitEntity implements GuestVisitEntity {
   @override
   final String? id;
   @override
-  final UserEntity? visitor;
+  final String? visitor;
   @override
   final String? name;
   @override
@@ -309,7 +555,7 @@ class _GuestVisitEntity implements GuestVisitEntity {
   @override
   final String? identityNumber;
   @override
-  final DateTime? date;
+  final String? date;
   @override
   final String? startTime;
   @override
@@ -410,11 +656,11 @@ abstract mixin class _$GuestVisitEntityCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
-      UserEntity? visitor,
+      String? visitor,
       String? name,
       String? identityType,
       String? identityNumber,
-      DateTime? date,
+      String? date,
       String? startTime,
       String? endTime,
       String? purpose,
@@ -427,8 +673,6 @@ abstract mixin class _$GuestVisitEntityCopyWith<$Res>
       DateTime? createdAt,
       DateTime? updatedAt});
 
-  @override
-  $UserEntityCopyWith<$Res>? get visitor;
   @override
   $UserEntityCopyWith<$Res>? get staff;
   @override
@@ -474,7 +718,7 @@ class __$GuestVisitEntityCopyWithImpl<$Res>
       visitor: freezed == visitor
           ? _self.visitor
           : visitor // ignore: cast_nullable_to_non_nullable
-              as UserEntity?,
+              as String?,
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -490,7 +734,7 @@ class __$GuestVisitEntityCopyWithImpl<$Res>
       date: freezed == date
           ? _self.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       startTime: freezed == startTime
           ? _self.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
@@ -536,20 +780,6 @@ class __$GuestVisitEntityCopyWithImpl<$Res>
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
-  }
-
-  /// Create a copy of GuestVisitEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<$Res>? get visitor {
-    if (_self.visitor == null) {
-      return null;
-    }
-
-    return $UserEntityCopyWith<$Res>(_self.visitor!, (value) {
-      return _then(_self.copyWith(visitor: value));
-    });
   }
 
   /// Create a copy of GuestVisitEntity

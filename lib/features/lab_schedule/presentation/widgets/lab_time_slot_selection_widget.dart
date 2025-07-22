@@ -7,8 +7,8 @@ import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
-class LabTimeSlotSelectionWidget extends StatelessWidget {
-  final LabTimeSlotSelectionController c;
+class LabTimeSlotSelectionWidget extends StatefulWidget {
+  final LabAvailabilityController controller;
   final String feature;
   final String? title;
   final String? instructionMessage;
@@ -19,7 +19,7 @@ class LabTimeSlotSelectionWidget extends StatelessWidget {
 
   const LabTimeSlotSelectionWidget({
     super.key,
-    required this.c,
+    required this.controller,
     required this.feature,
     this.title,
     this.instructionMessage,
@@ -30,23 +30,33 @@ class LabTimeSlotSelectionWidget extends StatelessWidget {
   });
 
   @override
+  State<LabTimeSlotSelectionWidget> createState() =>
+      _LabTimeSlotSelectionWidgetState();
+}
+
+class _LabTimeSlotSelectionWidgetState
+    extends State<LabTimeSlotSelectionWidget> {
+  @override
+  void initState() {
+    super.initState();
+    widget.controller
+        .fetchAvailabilityForDate(widget.controller.selectedDate.value);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (c.shouldFetchAvailability()) {
-        Future.microtask(() => c.fetchAvailability(c.selectedDate.value));
-      }
-
-      final state = c.labAvailabilityC.state;
-      final availabilitySlots = c.labAvailabilityC.items;
+      final state = widget.controller.state;
+      final availabilitySlots = widget.controller.items;
 
       return customSkeletonizerHandler(
         context: context,
         state: state,
-        feature: feature,
-        customErrorMessage: c.labAvailabilityC.errorMessage,
+        feature: widget.feature,
+        customErrorMessage: null,
         customIcon: state == FetchStateEnum.empty ? Icons.schedule : null,
         customSubtitle: state == FetchStateEnum.empty
-            ? feature.message('tryDifferentDate')
+            ? widget.feature.message('tryDifferentDate')
             : null,
         onSuccess: () => _buildTimeSelectionContent(context, availabilitySlots),
       );
@@ -58,21 +68,21 @@ class LabTimeSlotSelectionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
       children: [
-        if (showSelectedRange)
+        if (widget.showSelectedRange)
           Obx(() {
-            if (c.hasSelection) {
+            if (widget.controller.hasSelection) {
               return Row(
                 children: [
                   Expanded(
                     child: CustomSelectedTimeRangeWidget(
-                      startTime: c.selectedStartTime.value,
-                      endTime: c.selectedEndTime.value,
+                      startTime: widget.controller.selectedStartTime.value,
+                      endTime: widget.controller.selectedEndTime.value,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 12),
                     child: GestureDetector(
-                      onTap: () => c.reset(),
+                      onTap: () => widget.controller.resetTimeSelection(),
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
@@ -107,7 +117,8 @@ class LabTimeSlotSelectionWidget extends StatelessWidget {
               );
             } else {
               return Text(
-                instructionMessage ?? 'common'.message('tapToSelectTimeSlots'),
+                widget.instructionMessage ??
+                    'common'.message('tapToSelectTimeSlots'),
                 style: context.bodyMediumW(500).copyWith(
                       color: context.onSurface.withValues(alpha: 0.6),
                     ),
@@ -115,15 +126,15 @@ class LabTimeSlotSelectionWidget extends StatelessWidget {
             }
           }),
         Obx(() => CinemaTimeSlotWidget(
-              timeSlots: c.generateTimeSlots(availabilitySlots),
-              selectedStartTime: c.selectedStartTime.value,
-              selectedEndTime: c.selectedEndTime.value,
+              timeSlots: widget.controller.generateTimeSlots(availabilitySlots),
+              selectedStartTime: widget.controller.selectedStartTime.value,
+              selectedEndTime: widget.controller.selectedEndTime.value,
               onTimeSlotTap: (time) {
-                c.handleTimeSlotTap(time);
-                onTimeSlotSelected?.call(time);
+                widget.controller.handleTimeSlotTap(time);
+                widget.onTimeSlotSelected?.call(time);
               },
-              autoExpandCollapse: autoExpandCollapse,
-              collapsedRows: collapsedRows,
+              autoExpandCollapse: widget.autoExpandCollapse,
+              collapsedRows: widget.collapsedRows,
             )),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:mobile/core/routes/route.dart';
+import 'package:mobile/features/duty/presentation/_helpers/duty_schedule_helpers.dart';
 import 'package:mobile/shared/extensions/extension.dart';
 
 class MainMenuItemWidget extends StatelessWidget {
@@ -21,7 +22,7 @@ class MainMenuItemWidget extends StatelessWidget {
     this.onTap,
   });
 
-  void _navigateToRoute(String routeName) {
+  void _navigateToRoute(BuildContext context, String routeName) {
     switch (routeName) {
       case '/duty-schedules':
         Get.toNamed(AppRoute.dutySchedule);
@@ -30,13 +31,13 @@ class MainMenuItemWidget extends StatelessWidget {
         Get.toNamed(AppRoute.myCourses);
         break;
       case '/assistant-attendance':
-        Get.toNamed('/assistant-attendance');
+        DutyScheduleHelpers.handleAttendanceNavigation(context);
         break;
-      case '/practicum-attendance':
-        Get.toNamed('/practicum-attendance');
-        break;
+      // case '/practicum-attendance':
+      //   Get.toNamed('/practicum-attendance');
+      //   break;
       case '/guest-visit':
-        Get.toNamed('/guest-visit');
+        Get.toNamed(AppRoute.guestVisit);
         break;
       default:
         debugPrint('Route not implemented: $routeName');
@@ -67,7 +68,7 @@ class MainMenuItemWidget extends StatelessWidget {
               child: InkWell(
                 borderRadius: BorderRadius.circular(36),
                 onTap: () {
-                  _navigateToRoute(routeName);
+                  _navigateToRoute(context, routeName);
                   onTap?.call();
                 },
                 child: Center(child: iconMenu),

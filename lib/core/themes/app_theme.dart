@@ -34,6 +34,7 @@ class AppTheme {
     switchTheme: SwitchThemeX.kSwitchThemeLight,
     chipTheme: ChipThemeX.kChipThemeLight,
     cardTheme: CardThemeX.light(ColorSchemeX.kColorSchemeLight),
+    datePickerTheme: DatePickerThemeX.kDatePickerThemeLight,
   );
 
   static final kDarkTheme = ThemeData(
@@ -65,5 +66,6 @@ class AppTheme {
     switchTheme: SwitchThemeX.kSwitchThemeDark,
     chipTheme: ChipThemeX.kChipThemeDark,
     cardTheme: CardThemeX.dark(ColorSchemeX.kColorSchemeDark),
+    datePickerTheme: DatePickerThemeX.kDatePickerThemeDark,
   );
 }

@@ -8,6 +8,5 @@ export 'foundation/foundation.dart';
 export 'helpers/helper.dart';
 export 'mixins/mixin.dart';
 export 'models/model.dart';
-export 'services/service.dart';
 export 'utils/util.dart';
 export 'widgets/widget.dart';

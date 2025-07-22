@@ -17,7 +17,6 @@ _SaveGuestVisitRequestModel _$SaveGuestVisitRequestModelFromJson(
       startTime: json['start_time'] as String?,
       endTime: json['end_time'] as String?,
       purpose: json['purpose'] as String?,
-      paraf: json['paraf'] as String?,
     );
 
 Map<String, dynamic> _$SaveGuestVisitRequestModelToJson(
@@ -27,9 +26,8 @@ Map<String, dynamic> _$SaveGuestVisitRequestModelToJson(
       if (instance.name case final value?) 'name': value,
       if (instance.identityType case final value?) 'identity_type': value,
       if (instance.identityNumber case final value?) 'identity_number': value,
-      'date': instance.date,
-      'start_time': instance.startTime,
+      if (instance.date case final value?) 'date': value,
+      if (instance.startTime case final value?) 'start_time': value,
       if (instance.endTime case final value?) 'end_time': value,
-      'purpose': instance.purpose,
-      if (instance.paraf case final value?) 'paraf': value,
+      if (instance.purpose case final value?) 'purpose': value,
     };

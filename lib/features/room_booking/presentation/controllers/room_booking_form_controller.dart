@@ -3,16 +3,15 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
-
 import 'package:mobile/features/room_booking/domain/entities/entity.dart';
 import 'package:mobile/features/room_booking/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_form_controller.dart';
+import 'package:mobile/shared/controllers/get_base_form_controller.dart';
 import 'package:mobile/shared/entities/entity.dart';
 import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/errors/error.dart';
 import 'package:mobile/shared/helpers/helper.dart';
 
-class RoomBookingFormController extends BaseFormController<
+class RoomBookingFormController extends GetBaseFormController<
     SaveRoomBookingRequestEntity, BaseResponseEntity<RoomBookingEntity>> {
   final CreateRoomBookingUsecase _createRoomBookingUsecase;
   final UpdateRoomBookingUsecase _updateRoomBookingUsecase;
@@ -61,8 +60,12 @@ class RoomBookingFormController extends BaseFormController<
     final baseFields = ['bookingType'];
 
     if (selectedBookingType.value == RoomBookingTypeEnum.seminar.value) {
-      baseFields.addAll(
-          ['seminarType', 'researchTitle', 'supervisorMain', 'examiner']);
+      baseFields.addAll([
+        'seminarType',
+        'researchTitle',
+        'supervisorMain',
+        'examiner',
+      ]);
     }
 
     return baseFields;
@@ -112,17 +115,16 @@ class RoomBookingFormController extends BaseFormController<
   }
 
   @override
-  void onSubmitSuccess(dynamic response) {
+  void onSubmitSuccess(BaseResponseEntity<RoomBookingEntity> response) {
     super.onSubmitSuccess(response);
 
-    if (response is BaseResponseEntity<RoomBookingEntity> &&
-        response.data != null) {
+    if (response.data != null) {
       _roomBooking.value = response.data;
       _roomBookingId.value = response.data!.id;
     }
 
     Future.microtask(() {
-      clearForm();
+      cleanForm();
     });
   }
 
@@ -132,18 +134,23 @@ class RoomBookingFormController extends BaseFormController<
   Map<String, String?> validateAllFields() {
     final errors = <String, String?>{};
 
-    errors['bookingType'] =
-        validateRequired(getControllerValue('bookingType'), 'Booking Type');
+    for (final field in requiredFields) {
+      final error =
+          validateRequired(getControllerValue(field), field.capitalizeFirst!);
+      if (error != null) {
+        errors[field] = error;
+      }
+    }
 
     if (selectedBookingType.value == RoomBookingTypeEnum.seminar.value) {
-      errors['seminarType'] =
-          validateRequired(selectedSeminarType.value, 'Seminar Type');
-      errors['researchTitle'] = validateRequired(
-          getControllerValue('researchTitle'), 'Research Title');
-      errors['supervisorMain'] = validateRequired(
-          getControllerValue('supervisorMain'), 'Main Supervisor');
-      errors['examiner'] =
-          validateRequired(getControllerValue('examiner'), 'Examiner');
+    if (mode == FormMode.create ||
+        (mode == FormMode.update &&
+            _roomBooking.value?.documentProof == null)) {
+      if (selectedDocumentFile.value == null) {
+          errors['documentProof'] =
+              'Document proof is required for seminar bookings';
+        }
+      }
     }
 
     return errors..removeWhere((_, value) => value == null);
@@ -153,14 +160,20 @@ class RoomBookingFormController extends BaseFormController<
     _roomBooking.value = roomBooking;
     _roomBookingId.value = roomBooking.id;
 
-    autoPopulateForm(roomBooking);
+    autoPopulateFromEntity(
+      entity: roomBooking,
+      entityToMap: (entity) => {
+        'bookingType': entity.bookingType ?? '',
+        'purpose': entity.purpose ?? '',
+        'researchTitle': entity.researchTitle ?? '',
+        'supervisorMain': entity.supervisorMain ?? '',
+        'supervisorSecondary': entity.supervisorSecondary ?? '',
+        'examiner': entity.examiner ?? '',
+      },
+    );
 
     if (roomBooking.bookingType != null) {
       selectBookingType(roomBooking.bookingType!);
-    }
-
-    if (roomBooking.purpose != null) {
-      getController('purpose').text = roomBooking.purpose!;
     }
 
     if (roomBooking.date != null) {
@@ -179,23 +192,6 @@ class RoomBookingFormController extends BaseFormController<
       selectSeminarType(roomBooking.seminarType!);
     }
 
-    if (roomBooking.researchTitle != null) {
-      getController('researchTitle').text = roomBooking.researchTitle!;
-    }
-
-    if (roomBooking.supervisorMain != null) {
-      getController('supervisorMain').text = roomBooking.supervisorMain!;
-    }
-
-    if (roomBooking.supervisorSecondary != null) {
-      getController('supervisorSecondary').text =
-          roomBooking.supervisorSecondary!;
-    }
-
-    if (roomBooking.examiner != null) {
-      getController('examiner').text = roomBooking.examiner!;
-    }
-
     // Note: For document proof, we only store the URL/path reference
     // The actual file is not restored for editing
     if (roomBooking.documentProof != null) {
@@ -203,16 +199,49 @@ class RoomBookingFormController extends BaseFormController<
       // User needs to reselect file if they want to update it
       selectedDocumentFile.value = null;
     }
+
+    _markPopulatedFieldsAsInteracted(roomBooking);
+  }
+
+  void _markPopulatedFieldsAsInteracted(RoomBookingEntity roomBooking) {
+    for (final field in requiredFields) {
+      final hasValue = _hasFieldValue(field, roomBooking);
+      if (hasValue) {
+        markFieldAsInteracted(field);
+      }
+    }
+  }
+
+  bool _hasFieldValue(String fieldName, RoomBookingEntity roomBooking) {
+    switch (fieldName) {
+      case 'bookingType':
+        return roomBooking.bookingType?.isNotEmpty == true;
+      case 'purpose':
+        return roomBooking.purpose?.isNotEmpty == true;
+      case 'seminarType':
+        return roomBooking.seminarType?.isNotEmpty == true;
+      case 'researchTitle':
+        return roomBooking.researchTitle?.isNotEmpty == true;
+      case 'supervisorMain':
+        return roomBooking.supervisorMain?.isNotEmpty == true;
+      case 'supervisorSecondary':
+        return roomBooking.supervisorSecondary?.isNotEmpty == true;
+      case 'examiner':
+        return roomBooking.examiner?.isNotEmpty == true;
+      default:
+        return false;
+    }
   }
 
   void resetForCreate() {
     _roomBookingId.value = null;
-    clearForm();
+    cleanForm();
   }
 
   void selectBookingType(String bookingType) {
     selectedBookingType.value = bookingType;
     getController('bookingType').text = bookingType;
+    markFieldAsInteracted('bookingType');
 
     if (bookingType != RoomBookingTypeEnum.seminar.value) {
       selectedSeminarType.value = '';
@@ -221,7 +250,31 @@ class RoomBookingFormController extends BaseFormController<
       getController('supervisorMain').clear();
       getController('supervisorSecondary').clear();
       getController('examiner').clear();
+
+      // Reset interaction states for seminar fields when switching to non-seminar
+      fieldInteractionStates.remove('seminarType');
+      fieldInteractionStates.remove('researchTitle');
+      fieldInteractionStates.remove('supervisorMain');
+      fieldInteractionStates.remove('supervisorSecondary');
+      fieldInteractionStates.remove('examiner');
+    } else {
+      // When switching to seminar, mark seminar fields as interacted if they have values
+      if (getControllerValue('seminarType').isNotEmpty) {
+        markFieldAsInteracted('seminarType');
+      }
+      if (getControllerValue('researchTitle').isNotEmpty) {
+        markFieldAsInteracted('researchTitle');
+      }
+      if (getControllerValue('supervisorMain').isNotEmpty) {
+        markFieldAsInteracted('supervisorMain');
+      }
+      if (getControllerValue('examiner').isNotEmpty) {
+        markFieldAsInteracted('examiner');
+      }
     }
+
+    // Trigger form validation update when booking type changes
+    update();
   }
 
   void selectSeminarType(String seminarType) {
@@ -259,7 +312,7 @@ class RoomBookingFormController extends BaseFormController<
       type: FileType.custom,
       allowedExtensions: ['pdf'],
       allowMultiple: false,
-      withData: false, // Don't load file data into memory
+      withData: false,
     );
 
     return result;
@@ -270,14 +323,13 @@ class RoomBookingFormController extends BaseFormController<
       return 'Please select a PDF file only';
     }
 
-    // Check file size (5MB limit)
-    const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+    const maxSizeInBytes = 5 * 1024 * 1024;
     if (!PdfHelper.isValidPdfFile(file, maxSizeInBytes: maxSizeInBytes)) {
       final fileSizeFormatted = PdfHelper.getFormattedFileSize(file);
       return 'PDF file size ($fileSizeFormatted) exceeds 5MB limit';
     }
 
-    return null; // Valid file
+    return null;
   }
 
   Future<bool> validatePdfHeader(File file) async {
@@ -293,8 +345,8 @@ class RoomBookingFormController extends BaseFormController<
   }
 
   @override
-  void clearForm() {
-    super.clearForm();
+  void cleanForm() {
+    super.cleanForm();
     selectedDate.value = null;
     selectedStartTime.value = null;
     selectedEndTime.value = null;

@@ -18,10 +18,12 @@ Widget customFetchStateHandler({
   String? customTitle,
   String? customSubtitle,
   double? customIconSize,
+  String? customLoadingTitle,
   bool useSkeletonizer = false,
   Map<String, String>? messageArgs,
 }) {
   switch (state) {
+    case FetchStateEnum.initial:
     case FetchStateEnum.loading:
     case FetchStateEnum.searching:
     case FetchStateEnum.filtering:
@@ -34,21 +36,15 @@ Widget customFetchStateHandler({
       }
 
       // Traditional loading widget
-      return customHandlingStateWidget(
-        context,
-        item: state.shouldShowLoadingIndicator
-            ? null
-            : Icon(
-                customIcon ?? state.defaultIcon,
-                size: customIconSize ?? state.defaultIconSize,
-                color: context.primary,
-              ),
-        title: customTitle ??
-            (messageArgs != null
-                ? feature.message(state.getDefaultMessageKey(feature),
-                    args: messageArgs)
-                : feature.message(state.getDefaultMessageKey(feature))),
-      );
+      return customHandlingStateWidget(context,
+          item: state.shouldShowLoadingIndicator
+              ? null
+              : Icon(
+                  customIcon ?? state.defaultIcon,
+                  size: customIconSize ?? state.defaultIconSize,
+                  color: context.primary,
+                ),
+          title: customLoadingTitle ?? 'loading'.note());
 
     case FetchStateEnum.failure:
     case FetchStateEnum.timeout:
@@ -106,6 +102,7 @@ Widget customSkeletonizerHandler({
   String? customSubtitle,
   double? customIconSize,
   Map<String, String>? messageArgs,
+  String? customLoadingTitle,
 }) {
   return customFetchStateHandler(
     context: context,
@@ -146,6 +143,7 @@ Widget customFetchStateHandlerWithArgs({
   String? customSubtitle,
   double? customIconSize,
   bool useSkeletonizer = false,
+  String? customLoadingTitle,
 }) {
   return customFetchStateHandler(
     context: context,

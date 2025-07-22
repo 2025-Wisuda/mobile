@@ -16,25 +16,34 @@ class UserRepositoryImpl implements UserRepository {
   final UserLocalDatasource _userLocalDatasource;
 
   UserRepositoryImpl(this._userRemoteDatasource, this._userLocalDatasource);
-  final String noInternet = 'common'.message('noInternet');
 
-  Future<Either<Failure, BaseResponseEntity<UserEntity>>> _handleCacheFallback(
+  String get _noInternetMessage => 'common'.message('noInternet');
+
+  Future<Either<Failure, BaseResponseEntity<UserEntity>>> _getCachedUserOrFail(
     Failure originalFailure,
   ) async {
     final localData = await _userLocalDatasource.getUserProfile();
-    return localData.fold((localFailure) => left(originalFailure), (
-      cachedUser,
-    ) {
-      if (cachedUser != null) {
-        return right(BaseResponseEntity(data: cachedUser));
-      } else {
-        return left(originalFailure);
-      }
-    });
+    return localData.fold(
+      (_) => left(originalFailure),
+      (cachedUser) => cachedUser != null
+          ? right(BaseResponseEntity(data: cachedUser))
+          : left(originalFailure),
+    );
   }
 
-  Future<void> _saveToCache(UserModel model) async {
+  Future<void> _cacheUser(UserModel model) async {
     await _userLocalDatasource.saveUserProfile(model.toEntity());
+  }
+
+  Future<Either<Failure, BaseResponseEntity<UserEntity>>>
+      _getCachedUser() async {
+    final localData = await _userLocalDatasource.getUserProfile();
+    return localData.fold(
+      (_) => left(NoConnectionFailure(_noInternetMessage)),
+      (cachedUser) => cachedUser != null
+          ? right(BaseResponseEntity(data: cachedUser))
+          : left(NoConnectionFailure(_noInternetMessage)),
+    );
   }
 
   @override
@@ -61,26 +70,14 @@ class UserRepositoryImpl implements UserRepository {
     if (hasConnection) {
       final response = await _userRemoteDatasource.fetchUserProfile();
       return response.fold(
-        (failure) async {
-          return await _handleCacheFallback(failure);
-        },
+        (failure) async => await _getCachedUserOrFail(failure),
         (model) async {
-          await _saveToCache(model.data!);
+          await _cacheUser(model.data!);
           return right(model.toEntity((user) => user.toEntity()));
         },
       );
     } else {
-      final localData = await _userLocalDatasource.getUserProfile();
-      return localData.fold(
-        (failure) => left(NoConnectionFailure(noInternet)),
-        (cachedUser) {
-          if (cachedUser != null) {
-            return right(BaseResponseEntity(data: cachedUser));
-          } else {
-            return left(NoConnectionFailure(noInternet));
-          }
-        },
-      );
+      return await _getCachedUser();
     }
   }
 
@@ -94,16 +91,14 @@ class UserRepositoryImpl implements UserRepository {
       final response =
           await _userRemoteDatasource.updateUserProfile(data: data.toModel());
       return response.fold(
-        (failure) async {
-          return await _handleCacheFallback(failure);
-        },
+        (failure) async => await _getCachedUserOrFail(failure),
         (model) async {
-          await _saveToCache(model.data!);
+          await _cacheUser(model.data!);
           return right(model.toEntity((user) => user.toEntity()));
         },
       );
     } else {
-      return left(NoConnectionFailure(noInternet));
+      return left(NoConnectionFailure(_noInternetMessage));
     }
   }
 }

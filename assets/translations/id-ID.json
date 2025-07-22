@@ -13,11 +13,20 @@
     "friday": "Jumat",
     "saturday": "Sabtu",
     "sunday": "Minggu",
+    "overview": "Ringkasan",
+    "loading": "Memuat...",
+    "yes": "Ya",
+    "no": "Tidak",
+    "cancel": "Batal",
     "text": {
       "noInternet": "Tidak Ada Koneksi Internet",
       "readLess": "Baca Lebih Sedikit",
       "readMore": "Baca Lebih Banyak"
     },
+    
+    "selectStartDate": "Pilih Tanggal Mulai",
+    "selectEndDate": "Pilih Tanggal Selesai",
+    "selectDate": "Pilih Tanggal",
     "form": {
       "error": {
         "controllerNotFound": "Controller untuk field \"{fieldName}\" tidak ditemukan. Pastikan untuk memanggil initializeControllers() terlebih dahulu."
@@ -52,7 +61,7 @@
           "beforeMax": "{fieldName} harus sebelum {maxDate}"
         },
         "time": {
-          "conflictsWithBookings": "Waktu yang dipilih bertentangan dengan pemesanan yang ada",
+          "conflictsWithBookings": "Waktu yang dipilih bertentangan dengan peminjaman yang ada",
           "noAvailableSlots": "Tidak ada slot waktu yang tersedia untuk tanggal yang dipilih",
           "conflictsWithPeriod": "Waktu bertentangan dengan periode yang sudah dipesan: {periods}",
           "notAvailable": "Waktu yang dipilih tidak tersedia"
@@ -198,6 +207,8 @@
         "me": "Saya",
         "all": "Semua",
         "retry": "Coba Lagi",
+        "retrying": "Mencoba lagi...",
+        "ok": "OK",
         "readLess": "Baca Lebih Sedikit",
         "readMore": "Baca Lebih Banyak",
         "available": "Tersedia",
@@ -221,7 +232,8 @@
         },
         "clear": "Hapus",
         "reset": "Reset",
-        "tapToSelectTimeSlots": "Ketuk slot waktu untuk memilih waktu mulai dan selesai"
+        "tapToSelectTimeSlots": "Ketuk slot waktu untuk memilih waktu mulai dan selesai",
+        "summary": "Ringkasan"
       }
     },
     "course": {
@@ -350,7 +362,7 @@
           "image": "Pilih gambar",
           "startDate": "Pilih tanggal mulai",
           "students": "Cari praktikan",
-          "teachingAssistants": "Cari asisten laboratorium",
+          "teachingAssistants": "Cari asisten praktikum",
           "title": "Judul",
           "enrollKey": "Masukkan Enroll Key",
           "sessionType": "Pilih jenis pertemuan",
@@ -360,7 +372,8 @@
           "sessionStats": "Pilih status pertemuan",
           "sessionDescription": "Masukkan deskripsi pertemuan",
           "date": "Pilih tanggal",
-          "sessionTimeRange": "Pilih waktu pertemuan"
+          "sessionTimeRange": "Pilih waktu pertemuan",
+          "sessionTeachingAssistants": "Pilih asisten praktikum"
         },
         "label": {
           "description": "Deskripsi",
@@ -380,7 +393,15 @@
           "sessionStats": "Status Pertemuan",
           "sessionDescription": "Deskripsi Pertemuan",
           "date": "Tanggal",
-          "sessionTimeRange": "Waktu Pertemuan"
+          "sessionTimeRange": "Waktu Pertemuan",
+          "sessionTeachingAssistants": "Asisten Praktikum",
+          "markedAt": "Diabsen Pada",
+          "markedBy": "Diabsen Oleh",
+          "manualOverride": "Absen Manual",
+          "studentName": "Nama",
+          "studentNumber": "NPM",
+          "attendanceStatus": "Status Kehadiran",
+          "confidence": "Kecocokan"
         },
         "validator": {
           "enrollKey": {
@@ -399,6 +420,19 @@
         }
       },
       "text": {
+        "mark": "Absen",
+        "showOnlyManuallyOverridden": "Tampilkan hanya absen manual",
+        "showOnlyManuallyOverriddenDescription": "Filter untuk menampilkan hanya catatan kehadiran yang ditandai secara manual",
+        "manualOverride": "Absen Manual",
+        "status": "Status",
+        "present": "Hadir",
+        "late": "Terlambat",
+        "absent": "Tidak Hadir",
+        "notYetPresent": "Belum Hadir",
+        "attendanceRecordsEmpty": "Tidak ada catatan kehadiran yang ditemukan",
+        "attendanceRecordDescription": "Lihat catatan kehadiran untuk praktikum ini",
+        "attendance": "Kehadiran",
+        "manageAttendance": "Kelola Kehadiran",
         "createNewCourse": "Buat Praktikum Baru",
         "detailCourse": "Detail Praktikum",
         "enroll": "Daftar Praktikum",
@@ -464,9 +498,12 @@
         "newest": "Terbaru",
         "oldest": "Terlama",
         "ordering": "Pengurutan",
-        "course": {
-          "loading": "Memuat praktikum..."
-        }
+        "faceRecognition": {
+          "success": {
+            "default": "Berhasil mengabsensikan kehadiran {detectedName}"
+          }
+        },
+        "manualOverrideSuccess": "Absensi Berhasil"
       },
       "updateCourse": {
         "error": {
@@ -486,21 +523,25 @@
     "general": {
       "form": {
         "label": {
-          "apply": "Apply",
-          "create": "Create",
-          "next": "Next",
-          "previous": "Previous",
+          "apply": "Terapkan",
+          "create": "Buat",
+          "next": "Selanjutnya",
+          "previous": "Sebelumnya",
           "reset": "Reset",
-          "save": "Save"
+          "save": "Simpan"
         }
       },
       "text": {
-        "end": "End",
+        "end": "Selesai",
         "filter": "Filter",
         "notSelected": "Belum Dipilih",
         "start": "Start",
         "switchToList": "Tampilkan List",
-        "switchToGrid": "Tampilkan Grid"
+        "switchToGrid": "Tampilkan Grid",
+        "reset": "Reset",
+        "all": "Semua",
+        "apply": "Terapkan",
+        "date": "Tanggal"
       }
     },
     "home": {
@@ -560,10 +601,11 @@
           "ongoing": "Berlangsung",
           "upcoming": "Akan Datang",
           "finished": "Selesai",
+          "past": "Lalu",
           "selectedDate": "Tanggal yang dipilih"
         },
-        "loadingMySchedule": "Sedang memuat jadwal saya...",
-        "loadingAllSchedule": "Sedang memuat semua jadwal...",
+        "loadingMySchedule": "Memuat jadwal saya...",
+        "loadingAllSchedule": "Memuat semua jadwal...",
         "noScheduleFound": "Tidak ada jadwal yang ditemukan",
         "searchPlaceholder": "Cari jadwal",
         "searchEmpty": "Tidak ada hasil ditemukan untuk pencarian Anda",
@@ -587,7 +629,9 @@
         "noAvailableTimeSlotsForSelectedDate": "Tidak ada slot waktu yang tersedia untuk tanggal yang dipilih",
         "pleaseSelectStartTimeFirst": "Silakan pilih waktu mulai terlebih dahulu",
         "failedToLoadAvailableStartTimes": "Gagal memuat slot waktu mulai",
-        "failedToLoadAvailableEndTimes": "Gagal memuat slot waktu selesai"
+        "failedToLoadAvailableEndTimes": "Gagal memuat slot waktu selesai",
+        "emptyMySchedule": "Anda tidak memiliki jadwal untuk hari ini",
+        "emptyAllSchedule": "Tidak ada jadwal yang tersedia untuk hari ini"
       },
       "fetchListLabSchedule": {
         "error": {
@@ -642,12 +686,15 @@
         }
       }
     },
-    
+
     "dutySchedule": {
       "text": {
         "present": "Hadir",
         "absent": "Tidak Hadir",
         "notYetPresent": "Belum Hadir",
+        "late": "Terlambat",
+        "earlyLeave": "Pulang Lebih Awal",
+        "scheduled": "Terjadwal",
         "monday": "Senin",
         "tuesday": "Selasa",
         "wednesday": "Rabu",
@@ -658,6 +705,71 @@
         "tryDifferentDay": "Coba gunakan hari lain",
         "dutySchedule": {
           "empty": "Tidak ada jadwal piket asisten untuk hari ini"
+        },
+        "validateOtp": "Validasi",
+        "clockIn": "Masuk",
+        "clockOut": "Keluar",
+        "close": "Tutup",
+        "date": "Tanggal",
+        "scheduledTime": "Waktu Terjadwal",
+        "clockInTime": "Waktu Clock In",
+        "clockOutTime": "Waktu Clock Out",
+        "confidence": "Confidence",
+        "manualOverride": "Manual Override",
+        "attendanceDetail": "Detail Absensi",
+        "otpValidation": "Validasi OTP",
+        "loading": "Memuat...",
+        "retry": "Coba Lagi",
+        "cancel": "Batal",
+        "confirm": "Konfirmasi",
+        "success": "Berhasil",
+        "error": "Error",
+        "warning": "Peringatan",
+        "info": "Info",
+        "positionFace": "Posisikan wajah Anda di tengah",
+        "autoCaptureStart": "Auto-capture akan dimulai dalam 3 detik",
+        "initializingCamera": "Menginisialisasi kamera...",
+        "faceDetectionInProgress": "Deteksi wajah sedang berlangsung...",
+        "processingRecognition": "Memproses pengenalan...",
+        "recognitionSuccessful": "Pengenalan berhasil!",
+        "recognitionFailed": "Gagal, dikenali sebagai {name}.",
+        "noFaceDetected": "Tidak ada wajah terdeteksi. Silakan posisikan diri dengan benar.",
+        "multipleFacesDetected": "Beberapa wajah terdeteksi. Pastikan hanya satu orang yang terlihat.",
+        "myDutyAttendanceEmpty": "Kamu belum memiliki absensi piket",
+        "attendanceRecords": "Rekam Kehadiran",
+        "attendanceRecordsEmpty": "Tidak ada rekam kehadiran ditemukan",
+        "attendanceTitle": "Kehadiran Tugas",
+        "validateOtpTitle": "Validasi OTP",
+        "validateOtpSubtitle": "Validasi OTP untuk kehadiran",
+        "myRecordsTitle": "Rekam Saya",
+        "myRecordsSubtitle": "Lihat rekam kehadiran saya",
+        "manualOverrideSuccess": "Berhasil Absen Manual",
+        "manualOverrideTitle": "Override Manual",
+        "manualOverrideSubtitle": "Override kehadiran manual",
+        "attendanceStatisticsTitle": "Statistik Kehadiran",
+        "attendanceStatisticsSubtitle": "Lihat analitik dan laporan kehadiran",
+        "attendanceStatistics": "Statistik Kehadiran",
+        "attendanceStatisticsEmpty": "Tidak ada data statistik kehadiran",
+        "filterByDateRange": "Filter Berdasarkan Rentang Tanggal",
+        "applyFilter": "Terapkan Filter",
+        "dailyAttendanceTrends": "Tren Kehadiran Harian",
+        "fetchStatisticsError": "Gagal mengambil statistik kehadiran",
+        "startDate": "Tanggal Mulai",
+        "endDate": "Tanggal Akhir",
+        "last30DaysDefault": "30 hari terakhir (default)",
+        "fromDate": "Dari {date}",
+        "untilDate": "Sampai {date}",
+        "statusBreakdown": "Rincian Status",
+        "totalDuties": "Total Piket",
+        "days": "Hari",
+        "attendanceRate": "Tingkat Kehadiran",
+        "selectDate": "Pilih Tanggal",
+        "status": "Status",
+        "assistantPerformance": "Kinerja Asisten",
+        "faceRecognition": {
+          "success": {
+            "default": "Pengenalan wajah {action} berhasil diselesaikan"
+          }
         }
       },
       "fetchDutyScheduleForToday": {
@@ -683,7 +795,204 @@
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
         "empty": "Tidak ada jadwal piket asisten yang ditemukan"
+      },
+      "form": {
+        "label": {
+          "otpCode": "Kode OTP",
+          "date": "Tanggal",
+          "scheduledTime": "Waktu Terjadwal",
+          "clockInTime": "Waktu Masuk",
+          "clockOutTime": "Waktu Keluar",
+          "confidence": "Kecocokan",
+          "manualOverride": "Absensi Manual",
+          "actionType": {
+            "label": "Jenis Aksi",
+            "clock_in": "Masuk",
+            "clock_out": "Keluar"
+          },
+          "action": {
+            "clockIn": "Masuk",
+            "clockOut": "Keluar"
+          },
+          "clockIn": "Masuk",
+          "clockOut": "Keluar",
+          "assistantName": "Nama Asisten",
+          "studentNumber": "NPM",
+          "assistantAttendance": "Status Kehadiran",
+          "reason": "Alasan",
+          "notes": "Catatan",
+          "startDate": "Tanggal Mulai",
+          "endDate": "Tanggal Akhir"
+        },
+        "hint": {
+          "otpCode": "Masukkan 6 digit kode OTP yang ditampilkan pada website.",
+          "actionType": {
+            "clock_in": "Pilih 'Masuk' untuk mencatat kehadiran Anda.",
+            "clock_out": "Pilih 'Keluar' untuk mencatat waktu pulang Anda."
+          },
+          "reason": "Masukkan alasan untuk manual override",
+          "notes": "Masukkan catatan tambahan (opsional)"
+        }
+      },
+      "manualOverrideAttendance": {
+        "error": {
+          "400": "Jenis aksi tidak valid. Aksi harus 'clock_in' atau 'clock_out'",
+          "401": "Akses tidak sah, silakan login",
+          "403": "Anda tidak memiliki izin untuk melakukan manual override",
+          "404": "Catatan kehadiran tidak ditemukan",
+          "422": "Data permintaan tidak valid. Silakan periksa input Anda dan coba lagi",
+          "500": "Terjadi kesalahan server. Silakan coba lagi nanti",
+          "default": "Manual override gagal. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Manual override berhasil diselesaikan"
+        }
       }
+    },
+    "faceRecognition": {
+      "status": {
+        "initializing": "Menginisialisasi kamera...",
+        "positionFace": "Posisikan wajah Anda di tengah",
+        "holdStill": "Diam sebentar...",
+        "analyzing": "Menganalisis...",
+        "processing": "Memproses...",
+        "success": "Pengenalan berhasil!",
+        "faceNotDetected": "Wajah tidak terdeteksi",
+        "faceNotRecognized": "Wajah tidak dikenali",
+        "connectionTimeout": "Koneksi timeout",
+        "connectionError": "Koneksi bermasalah",
+        "recognitionFailed": "Pengenalan gagal",
+        "maxAttemptsReached": "Maksimal percobaan tercapai",
+        "redirectingToManual": "Mengarahkan ke manual override...",
+        "retryCount": "Coba lagi ({current}/{max})"
+      },
+      "text": {
+        "initializationFailed": "Inisialisasi gagal",
+        "positionFace": "Posisikan wajah Anda di tengah",
+        "auto_capture_countdown": "Auto-capture akan dimulai dalam 3 detik",
+        "initializingCamera": "Menginisialisasi kamera...",
+        "startingCamera": "Memulai kamera...",
+        "connectingToServer": "Menghubungkan ke server...",
+        "positionFaceCircle": "Posisikan wajah Anda di lingkaran",
+        "holdStill": "Diam sebentar...",
+        "analyzing": "Menganalisis...",
+        "faceNotDetected": "Wajah tidak terdeteksi",
+        "captureFailed": "Gagal mengambil gambar",
+        "retrying_attempts": "Mencoba lagi... ({current}/{max})",
+        "max_attempts_reached": "Maksimal percobaan tercapai",
+        "redirecting_manual": "Mengarahkan ke manual override...",
+        "recognition_successful": "Pengenalan berhasil!",
+        "success": "Pengenalan Berhasil!",
+        "camera_initializing": "Menginisialisasi kamera...",
+        "cameraError": "Error kamera",
+        "cameraErrorDescription": "Tidak dapat mengakses kamera. Silakan periksa izin dan coba lagi.",
+        "cameraInitializationFailed": "Inisialisasi kamera gagal setelah beberapa percobaan",
+        "cameraTimeout": "Inisialisasi kamera habis waktu. Silakan coba lagi.",
+        "retrying": "Mencoba lagi...",
+        "takingLongerThanExpected": "Membutuhkan waktu lebih lama dari yang diharapkan",
+        "troubleshootingTips": "Tips Pemecahan Masalah",
+        "tipTimeout": "Pastikan kamera tidak digunakan oleh aplikasi lain",
+        "tipPermission": "Berikan izin kamera pada pengaturan perangkat",
+        "tipInitialization": "Coba mulai ulang aplikasi atau perangkat",
+        "tipGeneral": "Periksa koneksi kamera dan coba lagi",
+        "goBack": "Kembali",
+        "faceNotRecognizedTryAgain": "Wajah tidak dikenali. Coba lagi.",
+        "welcomeUser": "Selamat datang, {name}!",
+        "connectionError": "Error koneksi. Periksa jaringan Anda.",
+        "faceRecognitionMaxAttempts": "Pengenalan wajah gagal setelah {attempts} percobaan",
+        "autoCaptureStart": "Otomatis mengambil foto dalam 3 detik",
+        "faceDetectionInProgress": "Deteksi wajah sedang berlangsung...",
+        "processingRecognition": "Memproses pengenalan...",
+        "recognitionSuccessful": "Pengenalan berhasil!",
+        "recognitionFailed": "Gagal, dikenali sebagai {name}.",
+        "noFaceDetected": "Tidak ada wajah terdeteksi. Harap posisikan diri dengan benar.",
+        "multipleFacesDetected": "Beberapa wajah terdeteksi. Pastikan hanya satu orang dalam pandangan.",
+        "myDutyAttendanceEmpty": "Anda tidak memiliki absensi tugas piket",
+        "recognitionFailedDetailed": "Pengenalan gagal dengan informasi detail",
+        "faceMismatchDetected": "Ketidakcocokan wajah terdeteksi",
+        "confidenceThresholdNotMet": "Tingkat kepercayaan tidak mencukupi",
+        "personIdentified": "Orang berhasil diidentifikasi",
+        "enhancedErrorDetails": "Detail error lanjutan tersedia",
+        "thresholdRequired": "Ambang batas minimum diperlukan",
+        "detectedFaceInfo": "Informasi wajah yang terdeteksi",
+        "expectedVsDetected": "Yang Diharapkan vs Terdeteksi",
+        "recognitionDetailsAvailable": "Detail pengenalan tersedia",
+        "faceRecognitionEnhanced": "Respon pengenalan wajah lanjutan",
+        "processing": "Memproses...",
+        "faceReadyHoldStill": "Wajah siap - Diam sebentar...",
+        "moveCloser": "Mendekat ke kamera",
+        "processingFace": "Memproses wajah...",
+        "recognitionError": "Error pengenalan",
+        "user": "Pengguna",
+        "welcome": "Selamat datang, {name}!",
+        "unknown": "Tidak dikenal",
+        "detectedRetrying": "Terdeteksi: {name} - Mencoba lagi...",
+        "recognitionFailedRetrying": "Pengenalan gagal - Mencoba lagi...",
+        "maxRetriesReached": "Maksimal percobaan tercapai",
+        "faceRecognitionFailedAfter": "Pengenalan wajah gagal setelah {maxRetries} percobaan",
+        "starting": "Memulai...",
+        "ready": "Siap",
+        "quality": {
+          "noFaceDetected": "Tidak ada wajah terdeteksi",
+          "poor": "Kualitas buruk - Sesuaikan posisi",
+          "good": "Kualitas baik - Mendekat",
+          "excellent": "Kualitas sangat baik - Siap!",
+          "issue": {
+            "noFaceDetected": "Tidak ada wajah terdeteksi",
+            "tooSmall": "Wajah terlalu kecil - Mendekat",
+            "tooLarge": "Wajah terlalu besar - Mundur",
+            "notCentered": "Wajah tidak di tengah - Posisikan di lingkaran",
+            "poorAspectRatio": "Sudut wajah buruk - Lihat lurus ke depan",
+            "tooDark": "Terlalu gelap - Pindah ke pencahayaan yang lebih baik",
+            "tooBright": "Terlalu terang - Pindah ke tempat teduh",
+            "blurry": "Gambar buram - Diam sebentar",
+            "headTurned": "Kepala terbalik - Hadap ke depan",
+            "headTilted": "Kepala miring - Tegakkan kepala",
+            "eyesClosed": "Mata tertutup - Buka mata Anda",
+            "multipleFaces": "Beberapa wajah - Hanya satu orang",
+            "none": "Tidak ada masalah terdeteksi"
+          },
+          "instruction": {
+            "noFaceDetected": "Posisikan wajah Anda di tengah layar",
+            "tooSmall": "Mendekat ke kamera sampai wajah mengisi lingkaran",
+            "tooLarge": "Mundur dari kamera agar wajah muat dalam lingkaran",
+            "notCentered": "Pusatkan wajah Anda di lingkaran di layar",
+            "poorAspectRatio": "Lihat langsung ke kamera, hindari sudut ekstrem",
+            "tooDark": "Pindah ke area dengan pencahayaan yang lebih baik",
+            "tooBright": "Pindah ke area teduh atau menjauh dari cahaya terang",
+            "blurry": "Pegang perangkat dengan stabil dan diam",
+            "headTurned": "Putar kepala untuk menghadap kamera langsung",
+            "headTilted": "Tegakkan kepala, hindari miring",
+            "eyesClosed": "Buka mata Anda dan lihat ke kamera",
+            "multipleFaces": "Pastikan hanya satu orang yang terlihat di layar",
+            "none": "Sempurna! Diam sebentar untuk pengenalan"
+          }
+        },
+        "retry": {
+          "subtitle": "Mencoba lagi",
+          "faceReady": "Wajah siap",
+          "holdStill": "Diam sebentar"
+        },
+        "maxRetries": {
+          "title": "Maksimal percobaan tercapai",
+          "subtitle": "Dialihkan ke absen manual..."
+        }
+      },
+      "error": {
+        "cameraError": "Error kamera",
+        "noCameraFound": "Kamera tidak ditemukan",
+        "faceNotDetected": "Wajah tidak terdeteksi",
+        "faceNotRecognized": "Wajah tidak dikenali",
+        "connectionTimeout": "Koneksi timeout",
+        "connectionError": "Koneksi bermasalah",
+        "recognitionFailed": "Pengenalan gagal"
+      },
+      "success": {
+        "title": "Pengenalan Berhasil!",
+        "welcome": "Selamat datang, {name}",
+        "completed": "Pengenalan wajah berhasil diselesaikan"
+      },
+      "unknown": "Tidak Diketahui"
     },
     "menu": {
       "about": "Tentang",
@@ -709,14 +1018,84 @@
       "version": "Versi",
       "myCourse": "Praktikum Saya",
       "bookingHistory": "Riwayat Peminjaman",
-      "createBooking": "Ajukan Peminjaman Ruangan"
+      "createBooking": "Ajukan Peminjaman Ruangan",
+      "myDutyAttendance": "Absensi Piket Saya",
+      "validateOtp": "Validasi OTP",
+      "manualOverride": "Absen Manual",
+      "attendanceStatistics": "Statistik Absensi",
+      "attendanceRecords": "Riwayat Absensi",
+      "faceRecognition": "Pengenalan Wajah",
+      "courseSessionAttendance": "Absensi Pertemuan Praktikum",
+      "createGuestVisit": "Tambah Kunjungan Tamu",
+      "updateGuestVisit": "Perbarui Data Kunjungan",
+      "detailGuestVisit": "Detail Kunjungan",
+      "notification": "Notifikasi"
+    },
+    "notification": {
+      "text": {
+        "empty": "Tidak ada notifikasi",
+        "loading": "Memuat notifikasi...",
+        "filter": "Filter",
+        "search": "Cari notifikasi",
+        "type": "Tipe",
+        "status": "Status",
+        "ordering": "Urutan",
+        "selectType": "Pilih tipe",
+        "selectStatus": "Pilih status",
+        "selectOrdering": "Pilih urutan",
+        "all": "Semua",
+        "read": "Sudah dibaca",
+        "newestFirst": "Terbaru dulu",
+        "oldestFirst": "Terlama dulu",
+        "markAllAsRead": "Tandai semua sebagai dibaca",
+        "marking": "Menandai sebagai dibaca...",
+        "unread": "Belum dibaca",
+        "details": "Detail",
+        "roomBooking": "Peminjaman Ruangan",
+        "courseSession": "Sesi Praktikum",
+        "labAllocation": "Alokasi Lab",
+        "dutySchedule": "Jadwal Piket",
+        "permissionTitle": "Aktifkan Notifikasi",
+        "permissionMessage": "Kami membutuhkan izin notifikasi untuk memberikan informasi terbaru tentang jadwal lab, peminjaman ruangan, dan pembaruan penting. Silakan izinkan notifikasi untuk pengalaman terbaik.",
+        "permissionAllow": "Izinkan Notifikasi",
+        "permissionDeny": "Nanti Saja",
+        "settingsTitle": "Pengaturan Notifikasi",
+        "settingsMessage": "Untuk menerima notifikasi, silakan aktifkan di pengaturan perangkat Anda. Anda dapat melakukannya dengan pergi ke Pengaturan > Aplikasi > Lab Management > Notifikasi.",
+        "settingsOpen": "Buka Pengaturan",
+        "settingsCancel": "Batal",
+        "settingsManual": "Pengaturan Manual Diperlukan",
+        "settingsManualMessage": "Silakan aktifkan notifikasi secara manual di pengaturan perangkat Anda untuk menerima pembaruan penting.",
+        "timeFormat": {
+          "justNow": "Baru saja",
+          "minutesAgo": "{minutes}m yang lalu",
+          "hoursAgo": "{hours}j yang lalu",
+          "daysAgo": "{days}h yang lalu",
+          "dateTimeFormat": "{date} ({time})"
+        }
+      },
+      "getNotifications": {
+        "error": {
+          "404": "Endpoint notifikasi tidak ditemukan",
+          "default": "Gagal memuat notifikasi"
+        }
+      },
+      "markAsRead": {
+        "error": {
+          "default": "Gagal menandai notifikasi sebagai telah dibaca"
+        }
+      },
+      "markAllAsRead": {
+        "error": {
+          "default": "Gagal menandai semua notifikasi sebagai telah dibaca"
+        }
+      }
     },
     "roomBooking": {
       "form": {
         "label": {
           "selectDate": "Pilih Tanggal",
           "selectTimeSlot": "Pilih Slot Waktu",
-          "bookingType": "Jenis Pemesanan",
+          "bookingType": "Jenis Peminjaman",
           "purpose": "Tujuan",
           "startTime": "Waktu Mulai",
           "endTime": "Waktu Selesai",
@@ -726,18 +1105,19 @@
           "supervisorSecondary": "Pembimbing Kedua",
           "examiner": "Penguji",
           "documentProof": "Bukti Dokumen",
-          "submitBooking": "Ajukan Pemesanan",
+          "submitBooking": "Ajukan Peminjaman",
           "date": "Tanggal",
           "booker": "Pemesan",
           "bookerIdentifier": "NPM",
           "mainSupervisor": "Pembimbing Utama",
-          "secondarySupervisor": "Pembimbing Kedua"
+          "secondarySupervisor": "Pembimbing Kedua",
+          "approvalNotes": "Catatan Persetujuan"
         },
         "hint": {
-          "selectDate": "Pilih tanggal pemesanan",
+          "selectDate": "Pilih tanggal peminjaman",
           "selectTimeSlot": "Pilih slot waktu",
-          "bookingType": "Pilih jenis pemesanan",
-          "purpose": "Masukkan tujuan pemesanan",
+          "bookingType": "Pilih jenis peminjaman",
+          "purpose": "Masukkan tujuan peminjaman",
           "startTime": "Pilih waktu mulai",
           "endTime": "Pilih waktu selesai",
           "seminarType": "Pilih jenis seminar",
@@ -746,7 +1126,7 @@
           "supervisorSecondary": "Masukkan nama pembimbing kedua",
           "examiner": "Masukkan nama penguji",
           "documentProof": "Pilih file bukti dokumen",
-          "submitBooking": "Klik untuk mengajukan pemesanan",
+          "submitBooking": "Klik untuk mengajukan peminjaman",
           "date": "Pilih tanggal",
           "booker": "Nama pemesan",
           "bookerIdentifier": "Masukkan NPM",
@@ -755,12 +1135,21 @@
         }
       },
       "text": {
-        "title": "Pemesanan Ruangan",
-        "historyTitle": "Riwayat Pemesanan",
-        "createTitle": "Buat Pemesanan Ruangan",
-        "updateTitle": "Perbarui Pemesanan Ruangan",
-        "detailTitle": "Detail Pemesanan",
-        "searchHint": "Cari pemesanan...",
+        "openingDocument": "Membuka dokumen...",
+        "documentProofEmpty": "Bukti dokumen kosong",
+        "failedToOpenDocument": "Gagal membuka dokumen",
+        "documentProofDescription": "Lihat atau unduh bukti dokumen",
+        "viewDocument": "Lihat Dokumen",
+        "unableToAccessFile": "Tidak dapat mengakses file",
+        "invalidPdfDocument": "File bukti dokumen harus berupa PDF",
+        "failedToSelectFile": "Gagal memilih file",
+        "pdfSelected": "PDF dipilih",
+        "title": "Peminjaman Ruangan",
+        "historyTitle": "Riwayat Peminjaman",
+        "createTitle": "Buat Peminjaman Ruangan",
+        "updateTitle": "Perbarui Peminjaman Ruangan",
+        "detailTitle": "Detail Peminjaman",
+        "searchHint": "Cari peminjaman...",
         "filterTitle": "Opsi Filter",
         "availableSlots": "Slot Tersedia",
         "bookedSlots": "Slot Terpesan",
@@ -769,21 +1158,21 @@
         "pendingBookings": "Menunggu",
         "approvedBookings": "Disetujui",
         "rejectedBookings": "Ditolak",
-        "noBookingsTitle": "Tidak Ada Pemesanan",
-        "noBookingsSubtitle": "Tidak ada pemesanan ruangan saat ini",
-        "noPendingBookingsTitle": "Tidak Ada Pemesanan Menunggu",
-        "noPendingBookingsSubtitle": "Semua pemesanan telah diproses",
-        "noApprovedBookingsTitle": "Tidak Ada Pemesanan Disetujui",
-        "noApprovedBookingsSubtitle": "Tidak ada pemesanan yang disetujui",
-        "noRejectedBookingsTitle": "Tidak Ada Pemesanan Ditolak",
-        "noRejectedBookingsSubtitle": "Tidak ada pemesanan yang ditolak",
-        "submitBooking": "Ajukan Pemesanan",
-        "updateBooking": "Perbarui Pemesanan",
-        "deleteBooking": "Hapus Pemesanan",
-        "approve": "Setuju",
+        "noBookingsTitle": "Tidak Ada Peminjaman",
+        "noBookingsSubtitle": "Tidak ada peminjaman ruangan saat ini",
+        "noPendingBookingsTitle": "Tidak Ada Peminjaman Menunggu",
+        "noPendingBookingsSubtitle": "Semua peminjaman telah diproses",
+        "noApprovedBookingsTitle": "Tidak Ada Peminjaman Disetujui",
+        "noApprovedBookingsSubtitle": "Tidak ada peminjaman yang disetujui",
+        "noRejectedBookingsTitle": "Tidak Ada Peminjaman Ditolak",
+        "noRejectedBookingsSubtitle": "Tidak ada peminjaman yang ditolak",
+        "submitBooking": "Ajukan Peminjaman",
+        "updateBooking": "Perbarui Peminjaman",
+        "deleteBooking": "Hapus Peminjaman",
+        "approve": "Setujui",
         "reject": "Tolak",
         "cancel": "Batal",
-        "edit": "Edit",
+        "edit": "Ubah",
         "delete": "Hapus",
         "approved": "Disetujui",
         "rejected": "Ditolak",
@@ -794,22 +1183,22 @@
         "inProgress": "Berlangsung",
         "success": "Berhasil",
         "error": "Error",
-        "approveTitle": "Setujui Pemesanan",
-        "approveMessage": "Apakah Anda yakin ingin menyetujui pemesanan ini?",
-        "rejectTitle": "Tolak Pemesanan",
-        "rejectMessage": "Apakah Anda yakin ingin menolak pemesanan ini?",
-        "deleteTitle": "Hapus Pemesanan",
-        "deleteMessage": "Apakah Anda yakin ingin menghapus pemesanan ini? Tindakan ini tidak dapat dibatalkan.",
+        "approveTitle": "Setujui Peminjaman",
+        "approveMessage": "Apakah Anda yakin ingin menyetujui peminjaman ini?",
+        "rejectTitle": "Tolak Peminjaman",
+        "rejectMessage": "Apakah Anda yakin ingin menolak peminjaman ini?",
+        "deleteTitle": "Batalkan Peminjaman",
+        "deleteMessage": "Apakah Anda yakin ingin membatalkan peminjaman ini?",
         "errorTitle": "Terjadi kesalahan",
         "viewDetails": "Lihat Detail",
-        "bookingInfo": "Informasi Pemesanan",
+        "bookingInfo": "Informasi Peminjaman",
         "scheduleInfo": "Informasi Jadwal",
         "seminarInfo": "Informasi Seminar",
         "approvalInfo": "Informasi Persetujuan",
         "bookerInfo": "Informasi Pemesan",
         "expandDetails": "Perluas Detail",
         "collapseDetails": "Tutup Detail",
-        "bookingDate": "Tanggal Pemesanan",
+        "bookingDate": "Tanggal Peminjaman",
         "timeSlot": "Slot Waktu",
         "booker": "Pemesan",
         "approvalStatus": "Status Persetujuan",
@@ -819,47 +1208,59 @@
         "createdAt": "Dibuat Pada",
         "updatedAt": "Diperbarui Pada",
         "confirm": "Konfirmasi",
+        "approvalActions": "Aksi Persetujuan",
+        "approvalNotesHint": "Tambahkan catatan untuk persetujuan/penolakan...",
         "confirmation": {
           "title": "Konfirmasi",
           "message": "Apakah Anda yakin ingin melanjutkan tindakan ini?",
           "confirm": "Konfirmasi",
           "cancel": "Batal"
         },
-        "selectTimeInstruction": "Pilih waktu mulai dan waktu selesai terlebih dahulu, kemudian Anda akan dibawa ke halaman pemesanan ruangan",
+        "selectTimeInstruction": "Pilih waktu mulai dan waktu selesai terlebih dahulu, kemudian Anda akan dibawa ke halaman peminjaman ruangan",
         "timeSlotDisabled": "Slot waktu tidak tersedia",
         "timeSlotBooked": "Slot waktu sudah terpesan",
-        "searchPlaceholder": "Cari pemesanan...",
+        "searchPlaceholder": "Cari peminjaman...",
         "basicInformation": "Informasi Dasar",
         "scheduleInformation": "Informasi Jadwal",
         "showSeminarDetails": "Tampilkan Detail Seminar",
         "hideSeminarDetails": "Tutup Detail Seminar",
         "proposal": "Proposal",
         "result": "Hasil",
-        "internship": "Kerja Praktik"
+        "internship": "Kerja Praktik",
+        "notSelected": "Tidak Dipilih",
+        "cancelBooking": "Batal Peminjaman",
+        "backToHistory": "Kembali ke Riwayat",
+        "bookingConfirmed": "Peminjaman Berhasil",
+        "bookingSuccessful": "Peminjaman Berhasil",
+        "countdownTimeUp": "Waktu habis",
+        "countdownSubtitle": "Anda memiliki {time} untuk membatalkan peminjaman",
+        "roomBooking" : {
+          "error": "Terjadi kesalahan"
+        }
       },
       "validation": {
         "dateRequired": "Tanggal harus diisi",
         "startTimeRequired": "Waktu mulai harus diisi",
         "endTimeRequired": "Waktu selesai harus diisi",
-        "bookingTypeRequired": "Jenis pemesanan harus diisi",
+        "bookingTypeRequired": "Jenis peminjaman harus diisi",
         "purposeRequired": "Tujuan harus diisi",
-        "seminarTypeRequired": "Jenis seminar harus diisi untuk pemesanan seminar",
-        "researchTitleRequired": "Judul penelitian harus diisi untuk pemesanan seminar",
-        "supervisorMainRequired": "Pembimbing utama harus diisi untuk pemesanan seminar",
-        "examinerRequired": "Penguji harus diisi untuk pemesanan seminar",
-        "documentProofRequired": "Bukti dokumen harus diisi untuk pemesanan seminar",
+        "seminarTypeRequired": "Jenis seminar harus diisi untuk peminjaman seminar",
+        "researchTitleRequired": "Judul penelitian harus diisi untuk peminjaman seminar",
+        "supervisorMainRequired": "Pembimbing utama harus diisi untuk peminjaman seminar",
+        "examinerRequired": "Penguji harus diisi untuk peminjaman seminar",
+        "documentProofRequired": "Bukti dokumen harus diisi untuk peminjaman seminar",
         "timeSlotRequired": "Silakan pilih slot waktu",
         "endTimeAfterStartTime": "Waktu selesai harus setelah waktu mulai",
-        "minimumDuration": "Durasi minimum pemesanan adalah 30 menit"
+        "minimumDuration": "Durasi minimum peminjaman adalah 30 menit"
       },
       "error": {
-        "failedToCreate": "Gagal membuat pemesanan ruangan",
-        "failedToUpdate": "Gagal memperbarui pemesanan ruangan",
-        "failedToDelete": "Gagal menghapus pemesanan ruangan",
-        "failedToApprove": "Gagal menyetujui pemesanan ruangan",
-        "failedToReject": "Gagal menolak pemesanan ruangan",
-        "failedToFetch": "Gagal mengambil data pemesanan ruangan",
-        "failedToFetchDetail": "Gagal mengambil detail pemesanan",
+        "failedToCreate": "Gagal membuat peminjaman ruangan",
+        "failedToUpdate": "Gagal memperbarui peminjaman ruangan",
+        "failedToDelete": "Gagal menghapus peminjaman ruangan",
+        "failedToApprove": "Gagal menyetujui peminjaman ruangan",
+        "failedToReject": "Gagal menolak peminjaman ruangan",
+        "failedToFetch": "Gagal mengambil data peminjaman ruangan",
+        "failedToFetchDetail": "Gagal mengambil detail peminjaman",
         "networkError": "Terjadi kesalahan jaringan",
         "serverError": "Terjadi kesalahan server",
         "timeSlotUnavailable": "Slot waktu yang dipilih tidak tersedia lagi",
@@ -898,7 +1299,7 @@
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
         "success": {
-          "default": "Berhasil membuat pemesanan ruangan"
+          "default": "Berhasil membuat peminjaman ruangan"
         }
       },
       "updateRoomBooking": {
@@ -912,7 +1313,7 @@
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
         "success": {
-          "default": "Berhasil memperbarui pemesanan ruangan"
+          "default": "Berhasil memperbarui peminjaman ruangan"
         }
       },
       "deleteRoomBooking": {
@@ -922,11 +1323,39 @@
           "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
           "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
           "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
-          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.", 
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
           "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
         },
         "success": {
-          "default": "Berhasil menghapus pemesanan ruangan"
+          "default": "Berhasil menghapus peminjaman ruangan"
+        }
+      },
+      "rejectRoomBooking": {
+        "error": {
+          "400": "Permintaan tidak valid, coba lagi",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil menolak peminjaman ruangan"
+        }
+      },
+      "approveRoomBooking": {
+        "error": {
+          "400": "Gagal menyetujui peminjaman ruangan, terdapat konflik dengan peminjaman lain",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil menyetujui peminjaman ruangan"
         }
       }
     },
@@ -945,12 +1374,13 @@
           "staff": "Staff Pendamping",
           "createdBy": "Dibuat Oleh",
           "createdAt": "Dibuat Pada",
-          "updatedAt": "Diperbarui Pada"
+          "updatedAt": "Diperbarui Pada",
+          "time": "Waktu"
         },
         "hint": {
           "visitor": "Pilih pengunjung yang sudah terdaftar",
           "name": "Masukkan nama pengunjung manual",
-          "identityType": "Pilih jenis identitas (NIM, NIP, KTP, SIM, Passport, Lainnya)",
+          "identityType": "Pilih jenis identitas",
           "identityNumber": "Masukkan nomor identitas",
           "date": "Pilih tanggal kunjungan",
           "startTime": "Pilih waktu mulai kunjungan",
@@ -970,15 +1400,77 @@
         "updateTitle": "Perbarui Kunjungan Tamu",
         "detailTitle": "Detail Kunjungan Tamu",
         "visitorMode": "Mode Pengunjung",
-        "registeredVisitor": "Pengunjung Terdaftar",
+        "registeredVisitor": " Terdaftar",
         "manualEntry": "Input Manual",
-        "identityTypes": {
-          "nim": "NIM",
-          "nip": "NIP", 
-          "ktp": "KTP",
-          "sim": "SIM",
-          "passport": "Passport",
-          "other": "Lainnya"
+        "identifier": "KTP",
+        "studentNumber": "NPM",
+        "createGuestVisit": "Tambah Kunjungan Tamu",
+        "updateGuestVisit": "Perbarui Kunjungan Tamu",
+        "detailGuestVisit": "Detail Kunjungan Tamu",
+        "searchPlaceholder": "Cari kunjungan tamu...",
+        "empty": "Tidak ada kunjungan tamu yang ditemukan",
+        "unregisteredVisitor": "Tidak Terdaftar",
+        "employeeNumber": "NIP",
+        "other": "Lainnya",
+        "date": "Tanggal",
+        "deleteGuestVisit": "Hapus Kunjungan Tamu",
+        "deleteTitle": "Hapus Kunjungan Tamu",
+        "deleteMessage": "Apakah Anda yakin ingin menghapus kunjungan tamu ini?"
+      },
+      "createGuestVisit": {
+        "error": {
+          "400": "Gagal membuat kunjungan tamu",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil membuat kunjungan tamu"
+        }
+      },
+      "updateGuestVisit": {
+        "error": {
+          "400": "Gagal memperbarui kunjungan tamu",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil memperbarui kunjungan tamu"
+        }
+      },
+      "detailGuestVisit": {
+        "error": {
+          "400": "Gagal mengambil detail kunjungan tamu",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil mengambil detail kunjungan tamu"
+        }
+      },
+      "deleteGuestVisit": {
+        "error": {
+          "400": "Gagal menghapus kunjungan tamu",
+          "401": "Akses tidak sah, harap masuk terlebih dahulu",
+          "403": "Anda tidak memiliki izin untuk mengakses sumber daya ini, hubungi administrator Anda",
+          "404": "Kami tidak dapat menemukan sumber daya yang diminta, periksa URL Anda",
+          "422": "Permintaan dimengerti, tetapi tidak dapat diproses. Periksa input Anda dan coba lagi.",
+          "500": "Kami mengalami masalah di sisi kami. Coba lagi nanti.",
+          "default": "Ups! Terjadi kesalahan. Silakan coba lagi nanti"
+        },
+        "success": {
+          "default": "Berhasil menghapus kunjungan tamu"
         }
       }
     },

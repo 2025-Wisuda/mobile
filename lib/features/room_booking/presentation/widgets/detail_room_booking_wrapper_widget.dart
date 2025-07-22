@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:mobile/features/room_booking/domain/entities/entity.dart';
+import 'package:mobile/features/room_booking/presentation/_helpers/room_booking_helpers.dart';
 import 'package:mobile/features/room_booking/presentation/controllers/controller.dart';
 import 'package:mobile/features/room_booking/presentation/widgets/widget.dart';
 import 'package:mobile/shared/enums/enum.dart';
@@ -21,18 +22,15 @@ class DetailRoomBookingWrapperWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final detailController = Get.find<DetailRoomBookingController>();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      detailController.fetchDetail(roomBookingId);
-    });
-
     return _buildContent(context, detailController);
   }
 
-  Widget _buildContent(BuildContext context, DetailRoomBookingController c) {
+  Widget _buildContent(
+      BuildContext context, DetailRoomBookingController controller) {
     return Obx(() {
-      final booking = c.entity.value;
-      final state = c.state;
-      final errorMessage = c.errorMessage;
+      final booking = controller.entity.value;
+      final state = controller.state;
+      final errorMessage = controller.stateDescription;
 
       switch (state) {
         case FetchStateEnum.loading:
@@ -48,13 +46,41 @@ class DetailRoomBookingWrapperWidget extends StatelessWidget {
             message: 'roomBooking'.message('noDetailFound'),
           );
         case FetchStateEnum.success:
-          return DetailRoomBookingWidget(
-            booking: booking ?? RoomBookingEntity(),
-            roomBookingId: roomBookingId,
-          );
+          return _buildDetailRoomBookingWidget(
+              context, booking ?? RoomBookingEntity(), controller);
         default:
           return const SizedBox.shrink();
       }
     });
+  }
+
+  Widget _buildDetailRoomBookingWidget(BuildContext context,
+      RoomBookingEntity booking, DetailRoomBookingController controller) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          DetailRoomBookingBasicInfoSection(booking: booking),
+          const SizedBox(height: 8),
+          DetailRoomBookingScheduleSection(booking: booking),
+          if (_isBookingTypeSeminar(booking)) ...[
+            const SizedBox(height: 8),
+            DetailRoomBookingSeminarSection(booking: booking),
+          ],
+          const SizedBox(height: 8),
+          DetailRoomBookingApprovalSection(booking: booking),
+          RoomBookingHelpers.buildApprovalStateHandler(
+            context,
+            controller: Get.find<ApproveRoomBookingController>(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  bool _isBookingTypeSeminar(RoomBookingEntity booking) {
+    final bookingType = RoomBookingTypeEnum.fromValue(booking.bookingType);
+    return bookingType == RoomBookingTypeEnum.seminar;
   }
 }

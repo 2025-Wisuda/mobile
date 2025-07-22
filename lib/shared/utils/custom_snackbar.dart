@@ -7,11 +7,29 @@ import 'package:mobile/shared/enums/snackbar_type_enum.dart';
 /// Shows a custom snackbar using GetX with a modern, toast-like design.
 ///
 /// This function is context-less and can be configured to show at the top or bottom.
+/// Safely handles calls during build phase by using post-frame callback.
 void showCustomSnackbar({
   required String message,
   required SnackbarType type,
   bool showOnTop = false,
 }) {
+  // Safety check: Don't call during build phase
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    _showSnackbarSafely(
+      message: message,
+      type: type,
+      showOnTop: showOnTop,
+    );
+  });
+}
+
+/// Internal method to show snackbar after build is complete
+void _showSnackbarSafely({
+  required String message,
+  required SnackbarType type,
+  bool showOnTop = false,
+}) {
+  // Close existing snackbar if open
   if (Get.isSnackbarOpen) {
     Get.closeCurrentSnackbar();
   }
@@ -59,5 +77,18 @@ void showCustomSnackbar({
     ],
     forwardAnimationCurve: Curves.easeOutQuad,
     reverseAnimationCurve: Curves.easeInQuad,
+  );
+}
+
+/// Immediate version for use outside build context (use with caution)
+void showCustomSnackbarImmediate({
+  required String message,
+  required SnackbarType type,
+  bool showOnTop = false,
+}) {
+  _showSnackbarSafely(
+    message: message,
+    type: type,
+    showOnTop: showOnTop,
   );
 }

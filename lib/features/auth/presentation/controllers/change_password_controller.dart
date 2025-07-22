@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 import 'package:mobile/features/auth/domain/entities/entity.dart';
 import 'package:mobile/features/auth/domain/usecases/usecase.dart';
-import 'package:mobile/shared/controllers/base_form_controller.dart';
+import 'package:mobile/shared/controllers/get_base_form_controller.dart';
 import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/errors/error.dart';
 
 class ChangePasswordController
-    extends BaseFormController<ChangePasswordRequestEntity, void> {
+    extends GetBaseFormController<ChangePasswordRequestEntity, void> {
   final ChangePasswordUsecase _changePasswordUseCase;
 
   ChangePasswordController(this._changePasswordUseCase);
@@ -54,33 +54,11 @@ class ChangePasswordController
 
   @override
   void onSubmitSuccess(dynamic response) {
-    super.onSubmitSuccess(response);
+    super.onSubmitSuccess(null);
     Future.microtask(() {
-      clearForm();
+      cleanForm();
     });
   }
-
-  @override
-  Map<String, String?> validateAllFields() {
-    final currentPassword = getControllerValue('currentPassword');
-    final newPassword = getControllerValue('newPassword');
-    final confirmPassword = getControllerValue('confirmPassword');
-
-    final errors = {
-      'currentPassword': validateRequired(currentPassword, 'Current Password'),
-      'newPassword': validatePassword(newPassword),
-      'confirmPassword':
-          validatePasswordConfirmation(confirmPassword, newPassword),
-    };
-
-    return errors..removeWhere((_, value) => value == null);
-  }
-
-  RxBool get obscureCurrentPassword =>
-      getReactiveObscureText('currentPassword');
-  RxBool get obscureNewPassword => getReactiveObscureText('newPassword');
-  RxBool get obscureConfirmPassword =>
-      getReactiveObscureText('confirmPassword');
 
   void toggleObscureCurrentPassword() {
     toggleObscureText('currentPassword');
@@ -94,5 +72,25 @@ class ChangePasswordController
     toggleObscureText('confirmPassword');
   }
 
+  RxBool get obscureCurrentPassword =>
+      getReactiveObscureText('currentPassword');
+  RxBool get obscureNewPassword => getReactiveObscureText('newPassword');
+  RxBool get obscureConfirmPassword =>
+      getReactiveObscureText('confirmPassword');
+
   Future<void> changePassword() => submitForm();
+
+  @override
+  Map<String, String?> validateAllFields() {
+    return {
+      for (final field in requiredFields)
+        field:
+            validateRequired(getControllerValue(field), field.capitalizeFirst!),
+      'newPassword': validatePassword(getControllerValue('newPassword')),
+      'confirmPassword': validatePasswordConfirmation(
+        getControllerValue('confirmPassword'),
+        getControllerValue('newPassword'),
+      ),
+    }..removeWhere((_, value) => value == null);
+  }
 }

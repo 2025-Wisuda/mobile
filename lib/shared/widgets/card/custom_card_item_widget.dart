@@ -35,15 +35,15 @@ import 'package:mobile/shared/extensions/extension.dart';
 /// CardSectionHelpers.statusBadge(context,
 ///   icon: Icons.check_circle,
 ///   label: 'Done',
-///   backgroundColor: Colors.green,
-///   textColor: Colors.white,
+///   backgroundColor: context.surface,
+///   textColor: context.surface,
 /// )
 ///
 /// // Status badge without icon (text only)
 /// CardSectionHelpers.statusBadge(context,
 ///   label: 'Processing',
-///   backgroundColor: Colors.blue,
-///   textColor: Colors.white,
+///   backgroundColor: context.surface,
+///   textColor: context.surface,
 /// )
 ///
 /// // Metadata with icon

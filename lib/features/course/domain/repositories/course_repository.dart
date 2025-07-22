@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 
-import 'package:mobile/features/course/data/models/model.dart';
+import 'package:mobile/features/course/data/models/base/course_filter_params_model.dart';
 import 'package:mobile/features/course/domain/entities/entity.dart';
 import 'package:mobile/shared/entities/entity.dart';
 import 'package:mobile/shared/errors/error.dart';

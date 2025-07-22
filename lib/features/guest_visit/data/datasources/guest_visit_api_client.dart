@@ -14,28 +14,28 @@ abstract class GuestVisitApiClient {
     ParseErrorLogger? errorLogger,
   }) = _GuestVisitApiClient;
 
-  @GET('/guest_visits/')
+  @GET('/guest-visits')
   Future<BaseListResponseModel<GuestVisitModel>> fetchListGuestVisit(
     @Queries() Map<String, dynamic> queries,
   );
 
-  @GET('/guest_visits/{id}/')
+  @GET('/guest-visits/{id}')
   Future<BaseResponseModel<GuestVisitModel>> fetchGuestVisitDetail(
     @Path('id') String id,
   );
 
-  @POST('/guest_visits/')
+  @POST('/guest-visits')
   Future<BaseResponseModel<GuestVisitModel>> createGuestVisit(
-    @Body() SaveGuestVisitRequestModel data,
+    @Body() Map<String, dynamic> data,
   );
 
-  @PATCH('/guest_visits/{id}/')
+  @PATCH('/guest-visits/{id}')
   Future<BaseResponseModel<GuestVisitModel>> updateGuestVisit(
     @Path('id') String id,
-    @Body() SaveGuestVisitRequestModel data,
+    @Body() Map<String, dynamic> data,
   );
 
-  @DELETE('/guest_visits/{id}/')
+  @DELETE('/guest-visits/{id}')
   Future<void> deleteGuestVisit(
     @Path('id') String id,
   );

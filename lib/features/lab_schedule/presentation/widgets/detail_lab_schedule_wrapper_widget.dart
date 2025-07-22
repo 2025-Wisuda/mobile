@@ -10,31 +10,29 @@ import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
 class DetailLabScheduleWrapperWidget extends StatelessWidget {
+  final DetailLabScheduleController controller;
   final String labScheduleId;
+
   const DetailLabScheduleWrapperWidget({
     super.key,
     required this.labScheduleId,
+    required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
-    final detailLabScheduleController = Get.find<DetailLabScheduleController>();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      detailLabScheduleController.fetchDetail(labScheduleId);
-    });
-
     return Padding(
       padding: EdgeInsets.all(16),
-      child: _buildContent(context, detailLabScheduleController),
+      child: _buildContent(context),
     );
   }
 
-  Widget _buildContent(BuildContext context, DetailLabScheduleController c) {
+  Widget _buildContent(BuildContext context) {
     return Obx(() {
-      final schedule = c.entity.value;
-      final state = c.state;
-      final errorMessage = c.errorMessage;
+      final schedule = controller.entity.value;
+      final state = controller.state;
+      final errorMessage = controller.stateDescription;
+
       switch (state) {
         case FetchStateEnum.loading:
           return Center(child: CustomPrimaryLoadingWidget());
@@ -51,9 +49,9 @@ class DetailLabScheduleWrapperWidget extends StatelessWidget {
             ),
           );
         case FetchStateEnum.success:
-          return DetailLabScheduleWidget(
-              schedule: schedule ?? LabScheduleEntity());
-
+          return DetailLabScheduleSection(
+            schedule: schedule ?? LabScheduleEntity(),
+          );
         default:
           return SizedBox.shrink();
       }

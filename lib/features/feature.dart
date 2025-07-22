@@ -1,11 +1,13 @@
 export 'about_us/about_us.dart';
 export 'auth/auth.dart';
 export 'course/course.dart';
-export 'duty_schedule/duty_schedule.dart';
+export 'duty/duty.dart';
+export 'face_recognition/face_recognition.dart';
 export 'guest_visit/guest_visit.dart';
 export 'home/home.dart';
 export 'lab_schedule/lab_schedule.dart';
 export 'menu/menu.dart';
+export 'notification/notification.dart';
 export 'room_booking/room_booking.dart';
 export 'settings/setting.dart';
 export 'splash/splash.dart';

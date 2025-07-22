@@ -32,8 +32,7 @@ class UserFormSelectionWidget extends StatelessWidget {
     this.restrictToUserIds,
   });
 
-  FetchListUserController get fetchListUserC =>
-      Get.find<FetchListUserController>(
+  ListUserController get fetchListUserC => Get.find<ListUserController>(
         tag: controllerKey ?? 'default',
       );
 
@@ -43,7 +42,7 @@ class UserFormSelectionWidget extends StatelessWidget {
     final noUserFound = 'user'.message('fetchListUser.empty');
 
     Get.lazyPut(
-      () => FetchListUserController(Get.find<FetchListUserUsecase>()),
+      () => ListUserController(Get.find<FetchListUserUsecase>()),
       tag: controllerKey ?? 'default',
     );
 
@@ -55,7 +54,7 @@ class UserFormSelectionWidget extends StatelessWidget {
       scrollController.addListener(() {
         if (scrollController.position.pixels ==
                 scrollController.position.maxScrollExtent &&
-            !fetchListUserC.isLoadingMore &&
+            !fetchListUserC.isLoadingMore.value &&
             fetchListUserC.canLoadMore) {
           fetchListUserC.loadMore();
         }
@@ -251,7 +250,8 @@ class UserFormSelectionWidget extends StatelessWidget {
                 color: context.outline.withValues(alpha: 0.1),
               ),
               controller: scrollController,
-              itemCount: users.length + (fetchListUserC.isLoadingMore ? 1 : 0),
+              itemCount:
+                  users.length + (fetchListUserC.isLoadingMore.value ? 1 : 0),
               itemBuilder: (context, index) {
                 if (index == users.length) {
                   return Container(

@@ -27,12 +27,12 @@ import 'package:flutter/material.dart';
 ///   trailingIcon: [Icon(Icons.clear)],
 ///   backgroundColor: Colors.grey[100],
 ///   borderRadius: 12.0,
-///   borderColor: Colors.blue,
+///   borderColor: context.surface,
 ///   textStyle: TextStyle(fontSize: 16),
 ///   hintStyle: TextStyle(color: Colors.grey),
 ///   padding: EdgeInsets.symmetric(horizontal: 12),
 ///   elevation: 0,
-///   shadowColor: Colors.black12,
+///   shadowColor: context.onSurface12,
 /// )
 /// ```
 ///

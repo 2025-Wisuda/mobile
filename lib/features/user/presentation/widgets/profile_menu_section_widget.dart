@@ -9,14 +9,14 @@ import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
 class ProfileMenuSectionWidget extends StatelessWidget {
-  final ProfileMenuController c;
+  final ProfileMenuController controller;
 
-  const ProfileMenuSectionWidget({super.key, required this.c});
+  const ProfileMenuSectionWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    c.loadProfileMenu();
-    return Obx(() => _menuList(c, context));
+    controller.loadProfileMenu();
+    return Obx(() => _menuList(controller, context));
   }
 
   Widget _menuList(

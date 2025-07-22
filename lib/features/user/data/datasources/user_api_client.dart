@@ -14,17 +14,17 @@ abstract class UserApiClient {
     ParseErrorLogger? errorLogger,
   }) = _UserApiClient;
 
-  @GET("/users")
+  @GET('/users')
   Future<BaseListResponseModel<UserModel>> fetchListUser(
     @Queries() Map<String, dynamic> queries,
   );
 
-  @GET("/users/{id}")
+  @GET('/users/{id}')
   Future<BaseResponseModel<UserModel>> fetchUserDetail(@Path("id") String id);
 
-  @GET("/users/me")
+  @GET('/users/me')
   Future<BaseResponseModel<UserModel>> fetchUserProfile();
 
-  @PATCH("/users/me")
+  @PATCH('/users/me')
   Future<BaseResponseModel<UserModel>> updateUserProfile(@Body() FormData data);
 }

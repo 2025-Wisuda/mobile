@@ -5,10 +5,14 @@ import 'package:mobile/core/bindings/binding.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    final userBinding = MultiUserBinding(controllers: [
-      UserControllerType.fetchUserProfile,
-    ]);
+    // Register notification binding
+    final notificationBinding = NotificationBinding();
+    notificationBinding.dependencies();
+
+    final userBinding =
+        MultiUserBinding(controllers: [UserControllerType.fetchUserProfile]);
     userBinding.dependencies();
+
     final menuBinding = MultiMenuBinding(controllers: [
       MenuControllerType.mainMenu,
       MenuControllerType.profileMenu,
@@ -16,15 +20,10 @@ class HomeBinding extends Bindings {
     ]);
     menuBinding.dependencies();
 
-    final labScheduleBinding = MultiLabScheduleBinding(controllers: [
-      LabScheduleControllerType.fetchMyLabSchedule,
-      LabScheduleControllerType.fetchLabScheduleDetail,
-    ]);
+    final labScheduleBinding = FetchMyLabScheduleBinding();
     labScheduleBinding.dependencies();
 
-    final dutyScheduleBinding = MultiDutyScheduleBinding(controllers: [
-      DutyScheduleControllerType.fetchDutyScheduleForToday,
-    ]);
+    final dutyScheduleBinding = FetchDutyScheduleForTodayBinding();
     dutyScheduleBinding.dependencies();
   }
 }

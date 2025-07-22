@@ -8,8 +8,11 @@ import 'package:mobile/shared/extensions/extension.dart';
 import 'package:mobile/shared/widgets/widget.dart';
 
 class SearchLabScheduleWrapperWidget extends StatelessWidget {
-  final LabScheduleWrapperController c;
-  const SearchLabScheduleWrapperWidget({super.key, required this.c});
+  final LabScheduleWrapperController controller;
+  const SearchLabScheduleWrapperWidget({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +28,19 @@ class SearchLabScheduleWrapperWidget extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Obx(
-                  () => CustomTertiaryToggleWidget(
+                child: Obx(() {
+                  final isMySchedule = controller.isMySchedule.value;
+                  return CustomTertiaryToggleWidget(
                     firstOption: 'common'.message('me'),
                     secondOption: 'common'.message('all'),
-                    isFirstSelected: c.isMySchedule.value,
-                    onToggle: () => c.isMySchedule.value
-                        ? c.switchToAllSchedule()
-                        : c.switchToMySchedule(),
-                  ),
-                ),
+                    isFirstSelected: isMySchedule,
+                    onToggle: () {
+                      controller.resetAll();
+                      controller.switchToMySchedule();
+                      controller.isMySchedule.value = !isMySchedule;
+                    },
+                  );
+                }),
               ),
               Expanded(
                 child: CustomDashedLineWidget(
@@ -45,23 +51,36 @@ class SearchLabScheduleWrapperWidget extends StatelessWidget {
           ),
           Obx(
             () {
-              final isMySchedule = c.isMySchedule.value;
-              final controller = isMySchedule
-                  ? Get.find<MyLabScheduleController>(tag: 'search')
-                  : Get.find<ListLabScheduleController>(tag: 'search');
-
-              final searchKey = '${controller.baseStateKey}SearchController';
-              final searchQuery = controller.getControllerValue(searchKey);
+              final isLoadingMore = controller.isLoadingMore.value;
 
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: LabSchedulePaginatedListWidget(
-                  key: c.paginationKey.value,
-                  isMySchedule: c.isMySchedule.value,
-                  searchQuery: searchQuery,
-                  isShowDate: true,
-                  isShowDuration: true,
-                  tag: 'search',
+                child: customFetchStateHandler(
+                  context: context,
+                  state: controller.state,
+                  feature: 'labSchedule',
+                  customErrorMessage: controller.stateDescription,
+                  customTitle: 'labSchedule'.message('noScheduleFound'),
+                  customSubtitle:
+                      'labSchedule'.message('searchTryDifferentKeywords'),
+                  customLoadingTitle: controller.isMySchedule.value
+                      ? 'labSchedule'.message('loadingMySchedule')
+                      : 'labSchedule'.message('loadingAllSchedule'),
+                  onSuccess: () => Column(
+                    children: [
+                      LabScheduleListItemWidget(
+                        schedules: controller.items.cast(),
+                        isShowDate: true,
+                        isShowDuration: true,
+                      ),
+                      if (isLoadingMore)
+                        const Center(
+                          child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: CustomPrimaryLoadingWidget()),
+                        ),
+                    ],
+                  ),
                 ),
               );
             },

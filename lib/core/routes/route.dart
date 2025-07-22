@@ -7,6 +7,7 @@ export 'duty_schedule_route.dart';
 export 'guest_visit_route.dart';
 export 'lab_schedule_route.dart';
 export 'menu_route.dart';
+export 'notification_route.dart';
 export 'room_booking_route.dart';
 export 'splash_route.dart';
 export 'user_route.dart';

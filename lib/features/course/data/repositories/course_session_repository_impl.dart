@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 
-import 'package:mobile/features/course/data/datasources/course_session_remote_datasource.dart';
+import 'package:mobile/features/course/data/datasources/session/course_session_remote_datasource.dart';
 import 'package:mobile/features/course/data/models/model.dart';
 import 'package:mobile/features/course/domain/entities/entity.dart';
 import 'package:mobile/features/course/domain/repositories/course_session_repository.dart';
@@ -76,14 +76,14 @@ class CourseSessionRepositoryImpl implements CourseSessionRepository {
     required String courseId,
     required String courseSessionId,
   }) async {
-    try {
-      await _courseSessionRemoteDataSource.deleteCourseSession(
-        courseId: courseId,
-        courseSessionId: courseSessionId,
-      );
-      return right(null);
-    } catch (e) {
-      return left(ServerFailure('Failed to delete course session'));
-    }
+    final result = await _courseSessionRemoteDataSource.deleteCourseSession(
+      courseId: courseId,
+      courseSessionId: courseSessionId,
+    );
+
+    return result.fold(
+      (failure) => left(failure),
+      (model) => right(null),
+    );
   }
 }

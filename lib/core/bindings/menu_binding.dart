@@ -23,6 +23,10 @@ class MenuBinding extends Bindings {
   void _registerMenuCore() {
     CoreBinding.ensureCoreRegistered();
 
+    // Register notification binding
+    final notificationBinding = NotificationBinding();
+    notificationBinding.dependencies();
+
     if (!Get.isRegistered<MainMenuLocalDatasource>()) {
       Get.put<MainMenuLocalDatasource>(
         MainMenuLocalDatasource(),
@@ -165,10 +169,7 @@ class MainWrapperBinding extends Bindings {
     ]);
     menuBinding.dependencies();
 
-    final labScheduleBinding = MultiLabScheduleBinding(controllers: [
-      LabScheduleControllerType.fetchMyLabSchedule,
-      LabScheduleControllerType.fetchLabScheduleDetail,
-    ]);
+    final labScheduleBinding = FetchMyLabScheduleBinding();
     labScheduleBinding.dependencies();
 
     final dutyScheduleBinding = MultiDutyScheduleBinding(controllers: [

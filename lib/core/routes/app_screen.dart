@@ -12,5 +12,6 @@ class AppScreen {
     ...courseRoutes,
     ...roomBookingRoutes,
     ...guestVisitRoutes,
+    ...notificationRoutes,
   ];
 }

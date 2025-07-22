@@ -6,79 +6,85 @@ import 'package:mobile/features/auth/presentation/controllers/controller.dart';
 import 'package:mobile/features/auth/presentation/widgets/widget.dart';
 import 'package:mobile/shared/enums/enum.dart';
 import 'package:mobile/shared/extensions/extension.dart';
+import 'package:mobile/shared/widgets/widget.dart';
 
 class ChangePasswordWrapperWidget extends StatelessWidget {
-  const ChangePasswordWrapperWidget({super.key});
+  final ChangePasswordController controller;
+  const ChangePasswordWrapperWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    final changePasswordController = Get.find<ChangePasswordController>();
     return SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 8,
-          children: _buildContent(context, changePasswordController),
-        ));
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: 8,
+            children: [
+              Form(
+                key: controller.formKey,
+                autovalidateMode: AutovalidateMode.disabled,
+                child: Column(
+                  spacing: 8,
+                  children: [
+                    ...changePasswordFormWidget(controller),
+                  ],
+                ),
+              ),
+              const ChangePasswordInstructionWidget(),
+              const SizedBox(height: 12),
+              _buildButton(),
+              _buildStateHandler(context),
+            ]));
   }
 
-  List<Widget> _buildContent(BuildContext context, ChangePasswordController c) {
-    return [
-      Form(
-        key: c.formKey,
-        autovalidateMode: AutovalidateMode.disabled,
-        child: Column(
-          spacing: 8,
-          children: [
-            ...changePasswordFormWidget(c),
-          ],
-        ),
-      ),
-      const ChangePasswordInstructionWidget(),
-      const SizedBox(height: 12),
-      ChangePasswordButtonWidget(
-        c: c,
-      ),
-      _buildStateHandler(context, c),
-    ];
+  Widget _buildStateHandler(BuildContext context) {
+    return Obx(() {
+      final state = controller.state;
+
+      switch (state) {
+        case SubmitStateEnum.success:
+          _handleSuccessState(context);
+        case SubmitStateEnum.failure:
+          _handleFailureState(context);
+        default:
+      }
+
+      return const SizedBox.shrink();
+    });
   }
-}
 
-Widget _buildStateHandler(BuildContext context, ChangePasswordController c) {
-  return Obx(() {
-    final state = c.state;
-    final errorMessage = c.errorMessage ?? '';
+  void _handleSuccessState(BuildContext context) {
+    Future.microtask(() => Get.back());
+    context.showCustomSnackbar(
+      message: 'auth'.success('changePassword'),
+      type: SnackbarType.success,
+    );
+  }
 
-    switch (state) {
-      case SubmitStateEnum.success:
-        _handleSuccessState(context);
-      case SubmitStateEnum.failure:
-        _handleFailureState(context, errorMessage, c);
-      default:
-    }
+  void _handleFailureState(BuildContext context) {
+    context.showCustomSnackbar(
+      message: controller.stateDescription,
+      type: SnackbarType.error,
+    );
 
-    return const SizedBox.shrink();
-  });
-}
+    Future.microtask(() {
+      controller.cleanForm();
+      controller.resetState();
+      controller.update();
+    });
+  }
 
-void _handleSuccessState(BuildContext context) {
-  Future.microtask(() => Get.back());
-  context.showCustomSnackbar(
-    message: 'auth'.success('changePassword'),
-    type: SnackbarType.success,
-  );
-}
-
-void _handleFailureState(
-    BuildContext context, String errorMessage, ChangePasswordController c) {
-  context.showCustomSnackbar(
-    message: errorMessage,
-    type: SnackbarType.error,
-  );
-
-  Future.microtask(() {
-    c.cleanForm();
-    c.resetState();
-  });
+  Widget _buildButton() {
+    return Obx(() {
+      final isFormValid = controller.isFormValid.value;
+      return CustomSubmitButtonWidget(
+        isFormValid: isFormValid,
+        state: controller.state,
+        onPressed: isFormValid ? () => controller.changePassword() : null,
+        textButton: 'auth'.message('changePassword'),
+      );
+    });
+  }
 }

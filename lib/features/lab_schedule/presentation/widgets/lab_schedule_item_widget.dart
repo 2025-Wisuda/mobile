@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
+
+import 'package:mobile/core/bindings/binding.dart';
 import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
+import 'package:mobile/features/lab_schedule/presentation/controllers/controller.dart';
 import 'package:mobile/features/lab_schedule/presentation/widgets/widget.dart';
 import 'package:mobile/shared/shared.dart';
 
@@ -37,7 +41,13 @@ class LabScheduleItemWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      onTap: () => detailLabScheduleBottomSheetWidget(context, schedule.idStr),
+      onTap: () {
+        FetchLabScheduleDetailBinding().dependencies();
+        final controller = Get.find<DetailLabScheduleController>();
+        controller.clearEntity();
+        controller.fetchDetail(schedule.idStr);
+        detailLabScheduleBottomSheetWidget(context, schedule.idStr, controller);
+      },
       leading: _buildTimeAndStatusSection(context),
       title: _buildTitle(context),
       subtitle: _buildSubtitle(context),
@@ -200,19 +210,19 @@ class LabScheduleItemWidget extends StatelessWidget {
       final targetDate = DateTime(date.year, date.month, date.day);
       final difference = targetDate.difference(today).inDays;
 
-      if (difference == 0) return 'common'.message('today');
-      if (difference == 1) return 'common'.message('tomorrow');
-      if (difference == -1) return 'common'.message('yesterday');
+      if (difference == 0) return 'today'.note();
+      if (difference == 1) return 'tomorrow'.note();
+      if (difference == -1) return 'yesterday'.note();
 
       if (difference > 1 && difference <= 7) {
         final weekdays = [
-          'common'.message('monday'),
-          'common'.message('tuesday'),
-          'common'.message('wednesday'),
-          'common'.message('thursday'),
-          'common'.message('friday'),
-          'common'.message('saturday'),
-          'common'.message('sunday')
+          'monday'.note(),
+          'tuesday'.note(),
+          'wednesday'.note(),
+          'thursday'.note(),
+          'friday'.note(),
+          'saturday'.note(),
+          'sunday'.note()
         ];
         return weekdays[date.weekday - 1];
       }

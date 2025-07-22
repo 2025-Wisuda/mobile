@@ -18,17 +18,14 @@ class UpdateProfileAvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formC = formController ?? Get.find<UserProfileFormController>();
-    final profileC = profileController ?? Get.find<UserProfileController>();
-
     return Column(
       children: [
         Obx(() {
-          final user = profileC.userProfile;
-          final avatarFile = formC.avatar;
+          final user = profileController?.userProfile;
+          final avatarFile = formController?.avatar;
 
           return GestureDetector(
-            onTap: () => _showPickerSheet(context, formC),
+            onTap: () => _showPickerSheet(context, formController!),
             child: Stack(
               children: [
                 Container(

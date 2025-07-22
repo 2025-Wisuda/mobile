@@ -54,9 +54,9 @@ class CustomImagePickerWidget extends StatelessWidget {
               Widget imageWidget;
 
               if (hasLocalImage) {
-                imageWidget = _buildLocalImageWidget(maxWidth);
+                imageWidget = _buildLocalImageWidget(context, maxWidth);
               } else if (hasNetworkImage) {
-                imageWidget = _buildNetworkImageWidget(maxWidth);
+                imageWidget = _buildNetworkImageWidget(context, maxWidth);
               } else {
                 imageWidget = _buildPlaceholderWidget(context, maxWidth);
               }
@@ -69,7 +69,7 @@ class CustomImagePickerWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildLocalImageWidget(double maxWidth) {
+  Widget _buildLocalImageWidget(BuildContext context, double maxWidth) {
     return Stack(
       children: [
         ClipRRect(
@@ -81,12 +81,12 @@ class CustomImagePickerWidget extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        if (onDelete != null) _buildDeleteButton(),
+        if (onDelete != null) _buildDeleteButton(context),
       ],
     );
   }
 
-  Widget _buildNetworkImageWidget(double maxWidth) {
+  Widget _buildNetworkImageWidget(BuildContext context, double maxWidth) {
     return Stack(
       children: [
         CustomCardImageWidget(
@@ -95,28 +95,32 @@ class CustomImagePickerWidget extends StatelessWidget {
           width: maxWidth,
           borderRadius: borderRadius ?? BorderRadius.circular(8),
         ),
-        if (onDelete != null) _buildDeleteButton(),
+        if (onDelete != null) _buildDeleteButton(context),
       ],
     );
   }
 
   Widget _buildPlaceholderWidget(BuildContext context, double maxWidth) {
+    final theme = Theme.of(context).inputDecorationTheme;
+
     return Container(
       height: height,
       width: maxWidth,
       decoration: BoxDecoration(
-        border: Border.all(color: context.outline),
+        border: Border.all(color: theme.fillColor ?? Colors.transparent),
         borderRadius: borderRadius ?? BorderRadius.circular(8),
-        color: context.shadow,
+        color: theme.fillColor ?? Colors.transparent,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.image, size: 40, color: context.scrim),
+          Icon(Icons.image, size: 40, color: theme.hintStyle?.color),
           const SizedBox(height: 8),
           Text(
             feature.hint(fieldKey),
-            style: context.labelSmallW(500).copyWith(color: context.scrim),
+            style: context.labelSmallW(500).copyWith(
+                color: theme.hintStyle?.color ??
+                    context.onSurface.withValues(alpha: 0.5)),
             textAlign: TextAlign.center,
           ),
         ],
@@ -124,17 +128,17 @@ class CustomImagePickerWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDeleteButton() {
+  Widget _buildDeleteButton(BuildContext context) {
     return Positioned(
       top: 8,
       right: 8,
       child: CircleAvatar(
         radius: 16,
-        backgroundColor: Colors.black54,
+        backgroundColor: context.onSurface.withValues(alpha: 0.8),
         child: IconButton(
           padding: EdgeInsets.zero,
           iconSize: 16,
-          icon: const Icon(Icons.close, color: Colors.white),
+          icon: Icon(Icons.close, color: context.surface),
           onPressed: onDelete,
         ),
       ),

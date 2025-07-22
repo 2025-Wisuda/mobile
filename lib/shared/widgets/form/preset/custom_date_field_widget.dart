@@ -15,6 +15,7 @@ class CustomDateFieldWidget extends StatelessWidget {
   final bool isRequired;
   final bool readOnly;
   final bool showCalendarIcon;
+  final bool enabled;
 
   const CustomDateFieldWidget({
     super.key,
@@ -29,6 +30,7 @@ class CustomDateFieldWidget extends StatelessWidget {
     this.isRequired = true,
     this.readOnly = true,
     this.showCalendarIcon = true,
+    this.enabled = true,
   });
 
   @override

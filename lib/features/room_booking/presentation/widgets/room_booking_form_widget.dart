@@ -1,30 +1,32 @@
 import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import 'package:mobile/features/room_booking/presentation/controllers/controller.dart';
 import 'package:mobile/shared/shared.dart';
 
-Widget roomBookingResearchTitleFieldWidget(RoomBookingFormController c) {
+Widget roomBookingResearchTitleFieldWidget(
+    RoomBookingFormController controller) {
   return CustomTextFormFieldWidget(
-    controller: c.getController('researchTitle'),
-    focusNode: c.getFocusNode('researchTitle'),
+    controller: controller.getController('researchTitle'),
+    focusNode: controller.getFocusNode('researchTitle'),
     labelText: 'roomBooking'.label('researchTitle'),
     hintText: 'roomBooking'.hint('researchTitle'),
     keyboardType: TextInputType.text,
-    validator: (value) =>
-        c.validateRequired(value, 'roomBooking'.message('researchTitle')),
-    onChanged: (_) => c.markFieldAsInteracted('researchTitle'),
+    validator: (value) => controller.shouldShowValidationError('researchTitle')
+        ? controller.validateRequired(
+            value, 'roomBooking'.label('researchTitle'))
+        : null,
+    onChanged: (_) => controller.markFieldAsInteracted('researchTitle'),
+    requiredField: true,
   );
 }
 
-Widget roomBookingSeminarTypeFieldWidget(RoomBookingFormController c) {
+Widget roomBookingSeminarTypeFieldWidget(RoomBookingFormController controller) {
   return Obx(() => CustomDropdownFieldWidget<String>(
-        value: c.selectedSeminarType.value.isEmpty
+        value: controller.selectedSeminarType.value.isEmpty
             ? null
-            : c.selectedSeminarType.value,
+            : controller.selectedSeminarType.value,
         items: SeminarTypeEnum.values
             .map((type) => DropdownMenuItem(
                   value: type.value,
@@ -34,86 +36,113 @@ Widget roomBookingSeminarTypeFieldWidget(RoomBookingFormController c) {
         labelText: 'roomBooking'.label('seminarType'),
         hintText: 'roomBooking'.hint('seminarType'),
         onChanged: (value) {
-          c.selectSeminarType(value ?? '');
-          c.markFieldAsInteracted('seminarType');
+          controller.selectSeminarType(value ?? '');
+          controller.markFieldAsInteracted('seminarType');
         },
       ));
 }
 
-Widget roomBookingMainSupervisorFieldWidget(RoomBookingFormController c) {
+Widget roomBookingMainSupervisorFieldWidget(
+    RoomBookingFormController controller) {
   return CustomTextFormFieldWidget(
-    controller: c.getController('supervisorMain'),
-    focusNode: c.getFocusNode('supervisorMain'),
+    controller: controller.getController('supervisorMain'),
+    focusNode: controller.getFocusNode('supervisorMain'),
     labelText: 'roomBooking'.label('mainSupervisor'),
     hintText: 'roomBooking'.hint('mainSupervisor'),
     keyboardType: TextInputType.text,
-    validator: (value) =>
-        c.validateRequired(value, 'roomBooking'.message('mainSupervisor')),
-    onChanged: (_) => c.markFieldAsInteracted('supervisorMain'),
+    validator: (value) => controller.shouldShowValidationError('supervisorMain')
+        ? controller.validateRequired(
+            value, 'roomBooking'.label('mainSupervisor'))
+        : null,
+    onChanged: (_) => controller.markFieldAsInteracted('supervisorMain'),
+    requiredField: true,
   );
 }
 
-Widget roomBookingSecondarySupervisorFieldWidget(RoomBookingFormController c) {
+Widget roomBookingSecondarySupervisorFieldWidget(
+    RoomBookingFormController controller) {
   return CustomTextFormFieldWidget(
-    controller: c.getController('supervisorSecondary'),
-    focusNode: c.getFocusNode('supervisorSecondary'),
+    controller: controller.getController('supervisorSecondary'),
+    focusNode: controller.getFocusNode('supervisorSecondary'),
     labelText: 'roomBooking'.label('secondarySupervisor'),
     hintText: 'roomBooking'.hint('secondarySupervisor'),
     keyboardType: TextInputType.text,
     requiredField: false,
     validator: null,
-    onChanged: (_) => c.markFieldAsInteracted('supervisorSecondary'),
+    onChanged: (_) => controller.markFieldAsInteracted('supervisorSecondary'),
+    optional: true,
   );
 }
 
-Widget roomBookingExaminerFieldWidget(RoomBookingFormController c) {
+Widget roomBookingExaminerFieldWidget(RoomBookingFormController controller) {
   return CustomTextFormFieldWidget(
-    controller: c.getController('examiner'),
-    focusNode: c.getFocusNode('examiner'),
+    controller: controller.getController('examiner'),
+    focusNode: controller.getFocusNode('examiner'),
     labelText: 'roomBooking'.label('examiner'),
     hintText: 'roomBooking'.hint('examiner'),
     keyboardType: TextInputType.text,
-    validator: (value) =>
-        c.validateRequired(value, 'roomBooking'.message('examiner')),
-    onChanged: (_) => c.markFieldAsInteracted('examiner'),
+    validator: (value) => controller.shouldShowValidationError('examiner')
+        ? controller.validateRequired(value, 'roomBooking'.label('examiner'))
+        : null,
+    onChanged: (_) => controller.markFieldAsInteracted('examiner'),
+    requiredField: true,
   );
 }
 
-Widget roomBookingPurposeFieldWidget(RoomBookingFormController c) {
-  return CustomTextFormFieldWidget(
-    controller: c.getController('purpose'),
-    focusNode: c.getFocusNode('purpose'),
+Widget roomBookingPurposeFieldWidget(RoomBookingFormController controller) {
+  return CustomMultilineTextFormFieldWidget(
+    controller: controller.getController('purpose'),
+    focusNode: controller.getFocusNode('purpose'),
     labelText: 'roomBooking'.label('purpose'),
     hintText: 'roomBooking'.hint('purpose'),
     keyboardType: TextInputType.multiline,
     requiredField: false,
     validator: null,
-    onChanged: (_) => c.markFieldAsInteracted('purpose'),
+    onChanged: (_) => controller.markFieldAsInteracted('purpose'),
+    optional: true,
+    maxLines: 3,
   );
 }
 
 Widget roomBookingDocumentUploadFieldWidget(
-    RoomBookingFormController c, BuildContext context) {
-  return Obx(() => CustomFilePickerWidget(
-        selectedFile: c.selectedDocumentFile.value,
-        onTap: () async {
-          await _handleDocumentFilePicker(c, context);
-          c.markFieldAsInteracted('documentProof');
-        },
-        onDelete: () {
-          c.removeDocumentFile();
-          c.markFieldAsInteracted('documentProof');
-        },
-        feature: 'roomBooking',
-        fieldKey: 'documentProof',
-        allowedExtensions: const ['pdf'],
+    RoomBookingFormController controller, BuildContext context) {
+  return Obx(() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomFilePickerWidget(
+            requiredField: true,
+            selectedFile: controller.selectedDocumentFile.value,
+            onTap: () async {
+              await _handleDocumentFilePicker(controller, context);
+              controller.markFieldAsInteracted('documentProof');
+            },
+            onDelete: () {
+              controller.removeDocumentFile();
+              controller.markFieldAsInteracted('documentProof');
+            },
+            feature: 'roomBooking',
+            fieldKey: 'documentProof',
+            allowedExtensions: const ['pdf'],
+          ),
+          if (controller.shouldShowValidationError('documentProof') &&
+              controller.selectedDocumentFile.value == null)
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                'Document proof is required',
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+              ),
+            ),
+        ],
       ));
 }
 
 Future<void> _handleDocumentFilePicker(
-    RoomBookingFormController c, BuildContext context) async {
+    RoomBookingFormController controller, BuildContext context) async {
   try {
-    final result = await c.pickDocumentFile();
+    final result = await controller.pickDocumentFile();
 
     if (result != null && result.files.isNotEmpty) {
       final platformFile = result.files.first;
@@ -130,7 +159,7 @@ Future<void> _handleDocumentFilePicker(
 
       final file = io.File(platformFile.path!);
 
-      final validationError = c.validateDocumentFile(file);
+      final validationError = controller.validateDocumentFile(file);
       if (validationError != null) {
         if (context.mounted) {
           context.showCustomSnackbar(
@@ -141,7 +170,7 @@ Future<void> _handleDocumentFilePicker(
         return;
       }
 
-      final isValidPdf = await c.validatePdfHeader(file);
+      final isValidPdf = await controller.validatePdfHeader(file);
       if (!isValidPdf) {
         if (context.mounted) {
           context.showCustomSnackbar(
@@ -152,15 +181,15 @@ Future<void> _handleDocumentFilePicker(
         return;
       }
 
-      c.setDocumentFile(file);
+      controller.setDocumentFile(file);
 
-      final metadata = await PdfHelper.getPdfMetadata(file);
+      // final metadata = await PdfHelper.getPdfMetadata(file);
       if (context.mounted) {
-        context.showCustomSnackbar(
-          message:
-              '${'roomBooking'.message('pdfSelected')}: ${metadata.fileName} (${metadata.formattedSize})',
-          type: SnackbarType.success,
-        );
+        // context.showCustomSnackbar(
+        //   message:
+        //       '${'roomBooking'.message('pdfSelected')}: ${metadata.fileName} (${metadata.formattedSize})',
+        //   type: SnackbarType.success,
+        // );
       }
     }
   } catch (e) {
@@ -175,30 +204,32 @@ Future<void> _handleDocumentFilePicker(
 }
 
 List<Widget> roomBookingStudentSeminarForm(
-    RoomBookingFormController c, BuildContext context) {
+    RoomBookingFormController controller, BuildContext context) {
   return [
-    roomBookingResearchTitleFieldWidget(c),
-    roomBookingSeminarTypeFieldWidget(c),
-    roomBookingMainSupervisorFieldWidget(c),
-    roomBookingSecondarySupervisorFieldWidget(c),
-    roomBookingExaminerFieldWidget(c),
-    roomBookingDocumentUploadFieldWidget(c, context),
+    roomBookingResearchTitleFieldWidget(controller),
+    roomBookingSeminarTypeFieldWidget(controller),
+    roomBookingMainSupervisorFieldWidget(controller),
+    roomBookingSecondarySupervisorFieldWidget(controller),
+    roomBookingExaminerFieldWidget(controller),
+    roomBookingDocumentUploadFieldWidget(controller, context),
   ];
 }
 
-Widget roomBookingApprovalNotesFieldWidget(BaseFormController c) {
+Widget roomBookingApprovalNotesFieldWidget(
+    ApproveRoomBookingController controller) {
   return CustomMultilineTextFormFieldWidget(
-    controller: c.getController('approvalNotes'),
-    focusNode: c.getFocusNode('approvalNotes'),
+    controller: controller.getController('approvalNotes'),
+    focusNode: controller.getFocusNode('approvalNotes'),
     labelText: 'roomBooking'.message('approvalNotes'),
     hintText: 'roomBooking'.message('approvalNotesHint'),
     keyboardType: TextInputType.multiline,
     requiredField: false,
     validator: null,
-    onChanged: (_) => c.markFieldAsInteracted('approvalNotes'),
+    onChanged: (_) => controller.markFieldAsInteracted('approvalNotes'),
+    maxLines: 3,
   );
 }
 
-Widget roomBookingStaffGeneralForm(RoomBookingFormController c) {
-  return roomBookingPurposeFieldWidget(c);
+Widget roomBookingStaffGeneralForm(RoomBookingFormController controller) {
+  return roomBookingPurposeFieldWidget(controller);
 }

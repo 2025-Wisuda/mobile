@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import 'package:mobile/features/lab_schedule/domain/entities/entity.dart';
 import 'package:mobile/features/lab_schedule/presentation/controllers/controller.dart';
+import 'package:mobile/shared/enums/fetch_state_enum.dart';
 import 'package:mobile/shared/helpers/helper.dart';
 
 class LabScheduleWrapperController extends GetxController {
@@ -18,13 +20,19 @@ class LabScheduleWrapperController extends GetxController {
   final selectedDate = DateTime.now().obs;
   final paginationKey = UniqueKey().obs;
 
-  MyLabScheduleController get _myLabScheduleController => tag != null
-      ? Get.find<MyLabScheduleController>(tag: tag!)
-      : Get.find<MyLabScheduleController>();
+  MyLabScheduleController get _myLabScheduleController =>
+      Get.find<MyLabScheduleController>(
+        tag: tag ?? 'list',
+      );
 
-  ListLabScheduleController get _listLabScheduleController => tag != null
-      ? Get.find<ListLabScheduleController>(tag: tag!)
-      : Get.find<ListLabScheduleController>();
+  ListLabScheduleController get _listLabScheduleController =>
+      Get.find<ListLabScheduleController>(
+        tag: tag ?? 'list',
+      );
+
+  dynamic get _activeController => isMySchedule.value
+      ? _myLabScheduleController
+      : _listLabScheduleController;
 
   @override
   void onInit() {
@@ -44,11 +52,9 @@ class LabScheduleWrapperController extends GetxController {
   }
 
   void triggerLoadMore() {
-    final c = isMySchedule.value
-        ? _myLabScheduleController
-        : _listLabScheduleController;
-    if (c.canLoadMore && !c.isLoadingMore) {
-      c.fetchList(isLoadMore: true);
+    if (_activeController.canLoadMore &&
+        !_activeController.isLoadingMore.value) {
+      _activeController.loadMore();
     }
   }
 
@@ -56,10 +62,7 @@ class LabScheduleWrapperController extends GetxController {
 
   void _fetchWithDate(DateTime date) {
     final dateString = DateHelper.formatIsoDate(date: date);
-    final c = isMySchedule.value
-        ? _myLabScheduleController
-        : _listLabScheduleController;
-    c.fetchList(filters: {'date': dateString});
+    _activeController.fetchList(filters: {'date': dateString});
   }
 
   void switchToMySchedule() => _switchSchedule(true);
@@ -96,8 +99,24 @@ class LabScheduleWrapperController extends GetxController {
   }
 
   bool get hasSchedules {
-    return isMySchedule.value
-        ? _myLabScheduleController.myLabScheduleList.isNotEmpty
-        : _listLabScheduleController.labScheduleList.isNotEmpty;
+    return _activeController.items.isNotEmpty;
+  }
+
+  Future<void> fetchList(Map<String, dynamic> filters) async {
+    await _activeController.fetchList(filters: filters);
+  }
+
+  RxBool get isLoadingMore => _activeController.isLoadingMore;
+  FetchStateEnum get state => _activeController.state;
+  String get stateDescription => _activeController.stateDescription;
+  List<LabScheduleEntity> get items => _activeController.items;
+
+  void resetAll() {
+    _activeController.clearAll();
+    _activeController.items.clear();
+    _activeController.fetchStates[_activeController.baseStateKey] =
+        FetchStateEnum.initial;
+    _activeController.cleanForm();
+    update();
   }
 }

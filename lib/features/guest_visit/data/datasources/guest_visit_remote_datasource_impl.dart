@@ -22,7 +22,7 @@ class GuestVisitRemoteDataSourceImpl implements GuestVisitRemoteDataSource {
       return left(
         ServerFailure(
           TextHelper.error(e,
-              feature: 'guest_visit', action: 'fetchListGuestVisit'),
+              feature: 'guestVisit', action: 'fetchListGuestVisit'),
         ),
       );
     }
@@ -40,7 +40,7 @@ class GuestVisitRemoteDataSourceImpl implements GuestVisitRemoteDataSource {
       return left(
         ServerFailure(
           TextHelper.error(e,
-              feature: 'guest_visit', action: 'fetchGuestVisitDetail'),
+              feature: 'guestVisit', action: 'fetchGuestVisitDetail'),
         ),
       );
     }
@@ -51,13 +51,13 @@ class GuestVisitRemoteDataSourceImpl implements GuestVisitRemoteDataSource {
     required SaveGuestVisitRequestModel data,
   }) async {
     try {
-      final response = await _guestVisitApiClient.createGuestVisit(data);
+      final response = await _guestVisitApiClient.createGuestVisit(data.toJson());
       return right(response);
     } on DioException catch (e) {
       return left(
         ServerFailure(
           TextHelper.error(e,
-              feature: 'guest_visit', action: 'createGuestVisit'),
+              feature: 'guestVisit', action: 'createGuestVisit'),
         ),
       );
     }
@@ -69,13 +69,14 @@ class GuestVisitRemoteDataSourceImpl implements GuestVisitRemoteDataSource {
     required SaveGuestVisitRequestModel data,
   }) async {
     try {
-      final response = await _guestVisitApiClient.updateGuestVisit(id, data);
+      final response =
+          await _guestVisitApiClient.updateGuestVisit(id, data.toJson());
       return right(response);
     } on DioException catch (e) {
       return left(
         ServerFailure(
           TextHelper.error(e,
-              feature: 'guest_visit', action: 'updateGuestVisit'),
+              feature: 'guestVisit', action: 'updateGuestVisit'),
         ),
       );
     }
@@ -92,7 +93,7 @@ class GuestVisitRemoteDataSourceImpl implements GuestVisitRemoteDataSource {
       return left(
         ServerFailure(
           TextHelper.error(e,
-              feature: 'guest_visit', action: 'deleteGuestVisit'),
+              feature: 'guestVisit', action: 'deleteGuestVisit'),
         ),
       );
     }

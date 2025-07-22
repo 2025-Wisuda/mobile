@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import 'package:mobile/features/lab_schedule/presentation/controllers/controller.dart';
 import 'package:mobile/features/lab_schedule/presentation/widgets/widget.dart';
 import 'package:mobile/shared/shared.dart';
@@ -15,12 +13,14 @@ class LabScheduleScreen extends StatefulWidget {
 
 class _LabScheduleScreenState extends State<LabScheduleScreen> {
   late final ScrollController _scrollController;
+  late final LabScheduleWrapperController _wrapperController;
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
+    _wrapperController = Get.find<LabScheduleWrapperController>(tag: 'list');
   }
 
   @override
@@ -33,25 +33,25 @@ class _LabScheduleScreenState extends State<LabScheduleScreen> {
   void _scrollListener() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent * 0.8) {
-      Get.find<LabScheduleWrapperController>(tag: 'list').triggerLoadMore();
+      _wrapperController.triggerLoadMore();
     }
+  }
+
+  dynamic _getActiveController() {
+    return _wrapperController.isMySchedule.value
+        ? Get.find<MyLabScheduleController>(tag: 'list')
+        : Get.find<ListLabScheduleController>(tag: 'list');
   }
 
   @override
   Widget build(BuildContext context) {
-    final labScheduleWrapperController =
-        Get.find<LabScheduleWrapperController>(tag: 'list');
-
+    final activeController = _getActiveController();
     return Scaffold(
       body: CustomRefreshWrapperWidget(
         onRefresh: () async {
-          final controller = labScheduleWrapperController.isMySchedule.value
-              ? Get.find<MyLabScheduleController>(tag: 'list')
-              : Get.find<ListLabScheduleController>(tag: 'list');
-
           final dateString = DateHelper.formatIsoDate(
-              date: labScheduleWrapperController.selectedDate.value);
-          await controller.fetchList(filters: {'date': dateString});
+              date: activeController.selectedDate.value);
+          await activeController.fetchList({'date': dateString});
         },
         child: Scrollbar(
           controller: _scrollController,
@@ -61,18 +61,38 @@ class _LabScheduleScreenState extends State<LabScheduleScreen> {
               parent: AlwaysScrollableScrollPhysics(),
             ),
             slivers: [
-              Obx(() => ListLabScheduleAppBarWidget(
-                    isMySchedule:
-                        labScheduleWrapperController.isMySchedule.value,
-                    onToggle: labScheduleWrapperController.isMySchedule.value
-                        ? labScheduleWrapperController.switchToAllSchedule
-                        : labScheduleWrapperController.switchToMySchedule,
+              Obx(() => _buildAppBar(
+                    _wrapperController.isMySchedule.value,
+                    _wrapperController.isMySchedule.value
+                        ? _wrapperController.switchToAllSchedule
+                        : _wrapperController.switchToMySchedule,
                   )),
-              ListLabScheduleWrapperWidget(c: labScheduleWrapperController),
+              ListLabScheduleWrapperWidget(controller: _wrapperController),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+Widget _buildAppBar(bool isMySchedule, VoidCallback onToggle) {
+  return CustomSliverAppBarWithBorder(
+    centerTitle: false,
+    toolbarHeight: 72,
+    pinned: true,
+    showBackButton: false,
+    title: 'labSchedule'.menu(),
+    actions: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+        child: CustomTertiaryToggleWidget(
+          firstOption: 'common'.message('me'),
+          secondOption: 'common'.message('all'),
+          isFirstSelected: isMySchedule,
+          onToggle: onToggle,
+        ),
+      ),
+    ],
+  );
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -25,8 +27,10 @@ import 'package:mobile/shared/extensions/extension.dart';
 /// }
 /// ```
 mixin FormMixin on GetxController {
-  /// Global form key for form validation
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  /// Global form key for form validation - unique per instance
+  late final GlobalKey<FormState> formKey = GlobalKey<FormState>(
+      debugLabel:
+          'FormKey_${runtimeType}_${hashCode}_${DateTime.now().microsecondsSinceEpoch}_${Random().nextInt(999999)}');
 
   /// Map to store text editing controllers dynamically
   final Map<String, TextEditingController> _controllers = {};
@@ -194,6 +198,9 @@ mixin FormMixin on GetxController {
     for (String key in _obscureTextStates.keys) {
       _obscureTextStates[key]!.value = true;
     }
+
+    // Force update to ensure reactive states are properly refreshed
+    update();
   }
 
   /// Clears form validation state and errors.

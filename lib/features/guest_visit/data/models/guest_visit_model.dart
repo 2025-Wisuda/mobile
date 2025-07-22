@@ -11,7 +11,7 @@ part 'guest_visit_model_extension.dart';
 abstract class GuestVisitModel with _$GuestVisitModel {
   const factory GuestVisitModel({
     @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'visitor') UserModel? visitor,
+    @JsonKey(name: 'visitor') String? visitor,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'identity_type') String? identityType,
     @JsonKey(name: 'identity_number') String? identityNumber,
@@ -19,8 +19,6 @@ abstract class GuestVisitModel with _$GuestVisitModel {
     @JsonKey(name: 'start_time') String? startTime,
     @JsonKey(name: 'end_time') String? endTime,
     @JsonKey(name: 'purpose') String? purpose,
-    @JsonKey(name: 'paraf') String? paraf,
-    @JsonKey(name: 'staff') UserModel? staff,
     @JsonKey(name: 'name_display') String? nameDisplay,
     @JsonKey(name: 'identity_display') String? identityDisplay,
     @JsonKey(name: 'can_edit') bool? canEdit,

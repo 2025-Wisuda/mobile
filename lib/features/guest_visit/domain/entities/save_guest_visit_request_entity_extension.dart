@@ -7,12 +7,10 @@ extension SaveGuestVisitRequestEntityExtension on SaveGuestVisitRequestEntity {
       name: name,
       identityType: identityType,
       identityNumber: identityNumber,
-      date:
-          '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}',
+      date: date,
       startTime: startTime,
       endTime: endTime,
       purpose: purpose,
-      paraf: paraf,
     );
   }
 
@@ -25,11 +23,11 @@ extension SaveGuestVisitRequestEntityExtension on SaveGuestVisitRequestEntity {
       return false;
     }
 
-    if (purpose.isEmpty) {
+    if (purpose?.isEmpty == true) {
       return false;
     }
 
-    if (startTime.isEmpty) {
+    if (startTime?.isEmpty == true) {
       return false;
     }
 
@@ -51,11 +49,11 @@ extension SaveGuestVisitRequestEntityExtension on SaveGuestVisitRequestEntity {
       errors.add('Either select a registered user or provide visitor name');
     }
 
-    if (purpose.isEmpty) {
+    if (purpose?.isEmpty == true) {
       errors.add('Purpose is required');
     }
 
-    if (startTime.isEmpty) {
+    if (startTime?.isEmpty == true) {
       errors.add('Start time is required');
     }
 
@@ -67,9 +65,9 @@ extension SaveGuestVisitRequestEntityExtension on SaveGuestVisitRequestEntity {
       errors.add('Identity type required when identity number is provided');
     }
 
-    if (endTime?.isNotEmpty == true && startTime.isNotEmpty) {
+    if (endTime?.isNotEmpty == true && startTime?.isNotEmpty == true) {
       try {
-        final startParts = startTime.split(':');
+        final startParts = startTime!.split(':');
         final endParts = endTime!.split(':');
         final startMinutes =
             int.parse(startParts[0]) * 60 + int.parse(startParts[1]);

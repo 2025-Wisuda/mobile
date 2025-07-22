@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Notification color (should match your app theme) -->
+    <color name="notification_color">#0175C2</color>
+    
+    <!-- Lab schedule notification colors -->
+    <color name="lab_schedule_color">#4CAF50</color>
+    
+    <!-- Room booking notification colors -->
+    <color name="room_booking_color">#FF9800</color>
+    
+    <!-- General notification colors -->
+    <color name="general_notification_color">#2196F3</color>
+    
+    <!-- Error/urgent notification colors -->
+    <color name="urgent_notification_color">#F44336</color>
+</resources>
